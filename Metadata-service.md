@@ -17,7 +17,7 @@ python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_pa
 --ipfabric_service_ip <nova-api-server-ip> --ipfabric_service_port 8775
 
 ### Nova Configuration
-The following has to be added to the DEFAULT section in nova.conf file to enable metadata service. Restart the openstack-nova-api service after editing the nova.conf file.
+The following has to be added to the DEFAULT section in nova.conf file to enable metadata proxy service. Restart the openstack-nova-api service after editing the nova.conf file.
 
 service_quantum_metadata_proxy = True
 
