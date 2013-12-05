@@ -17,10 +17,8 @@ python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_pa
 --ipfabric_service_ip <nova-api-server-ip> --ipfabric_service_port 8775
 
 ### Nova Configuration
-The following has to be added to the DEFAULT section in nova.conf file to enable metadata service.
+The following has to be added to the DEFAULT section in nova.conf file to enable metadata service. Restart the openstack-nova-api service after editing the nova.conf file.
 
 service_quantum_metadata_proxy = True
-
-Restart the openstack-nova-api service after editing the nova.conf file.
 
 Nova configuration also has a shared secret (configured as quantum_metadata_proxy_shared_secret = secret in nova.conf). The proxy uses this shared secret to add an instance-signature (HMAC SHA256 digest) in the HTTP header while sending the request to the Nova API server. If this shared secret is configured, the same has to be added in the agent configuration file in each compute node (shared-secret tag in agent.conf). The shared secret can also be left empty (which is the default configuration).
