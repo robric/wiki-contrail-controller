@@ -15,7 +15,7 @@ python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_pa
 --linklocal_service_name metadata --linklocal_service_ip 169.254.169.254 --linklocal_service_port 80 
 --ipfabric_service_ip <nova-api-server-ip> --ipfabric_service_port 8775
 
-**Nova Configuration**
+## Nova Configuration
 The following has to be added to the DEFAULT section in nova.conf file to enable metadata service.
 
 service_quantum_metadata_proxy = True
