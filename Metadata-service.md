@@ -1,6 +1,6 @@
 Openstack allows VMs to access metadata by sending a HTTP request to the link local address 169.254.169.254. The metadata request from the VM is proxied to Nova, with additional HTTP header fields added. Nova uses these to identify the source instance and responds with appropriate metadata.
 
-**Contrail Vrouter acts as the proxy, trapping the metadata requests, adding the necessary header fields and sending the requests to the Nova Api server. **
+Contrail Vrouter acts as the proxy, trapping the metadata requests, adding the necessary header fields and sending the requests to the Nova Api server.
 
 The metadata service is configured by setting the "linklocal-services" property on the "global-grouter-config" object. The linklocal-services element should have an entry of the form:
  - linklocal-service-name = metadata
@@ -10,6 +10,7 @@ The metadata service is configured by setting the "linklocal-services" property 
  - ip-fabric-service-port = [server-port]
 
 This configuration can be done either thru UI or by using the following command:
+
 python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_password <passwd> 
 --linklocal_service_name metadata --linklocal_service_ip 169.254.169.254 --linklocal_service_port 80 
 --ipfabric_service_ip <nova-api-server-ip> --ipfabric_service_port 8775
