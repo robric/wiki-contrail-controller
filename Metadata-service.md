@@ -2,9 +2,7 @@ Openstack allows VMs to access metadata by sending a HTTP request to the link lo
 
 Contrail Vrouter acts as the proxy, trapping the metadata requests, adding the necessary header fields and sending the requests to the Nova Api server. 
 
-The metadata service is configured by setting the "linklocal-services" property on the "global-grouter-config" object.
-
-The linklocal-services element should have an entry of the form:
+The metadata service is configured by setting the "linklocal-services" property on the "global-grouter-config" object. The linklocal-services element should have an entry of the form:
  - linklocal-service-name = metadata
  - linklocal-service-ip = 169.254.169.254
  - linklocal-service-port = 80
