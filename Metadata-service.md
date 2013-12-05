@@ -12,9 +12,9 @@ The metadata service is configured by setting the "linklocal-services" property 
 
 This configuration can be done either thru UI or by using the following command:
 
-python /opt/contrail/utils/provision_linklocal.py --admin_user \<user\> --admin_password <passwd> 
+python /opt/contrail/utils/provision_linklocal.py --admin_user \<user\> --admin_password \<passwd\> 
 --linklocal_service_name metadata --linklocal_service_ip 169.254.169.254 --linklocal_service_port 80 
---ipfabric_service_ip <nova-api-server-ip> --ipfabric_service_port 8775
+--ipfabric_service_ip \<nova-api-server-ip\> --ipfabric_service_port 8775
 
 ### Nova Configuration
 The following has to be added to the DEFAULT section in nova.conf file to enable metadata proxy service. Restart the openstack-nova-api service after editing the nova.conf file.
