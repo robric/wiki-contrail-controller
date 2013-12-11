@@ -23,3 +23,25 @@ neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBN
    python /opt/stack/contrail/controller/src/config/utils/create_floating_pool.py --public_vn_name default-    domain:admin:public --floating_ip_pool_name floatingip_pool
    python /opt/stack/contrail/controller/src/config/utils/use_floating_pool.py --project_name default-domain:admin --floating_ip_pool_name default-domain:admin:public:floatingip_pool
 ```
+
+# Setup Security Group
+
+```
+. openrc admin demo
+nova secgroup-list
+nova secgroup-list-rules default
+nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
+nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+nova secgroup-list-rules default
+```
+
+# Setup floating ip
+```
+neutron floatingip-create $public_id
+neutron floatingip-associate $floatingip_id $port_id
+```
+
+# Test it
+neutron floatingip-show $floatingip_id
+ssh cirros@$floatingip_ip
+
