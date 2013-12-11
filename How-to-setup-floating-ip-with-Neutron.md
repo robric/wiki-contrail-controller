@@ -2,16 +2,20 @@
 
 # Add This on LocalRC
 
+```
 CONTRAIL_VGW_INTERFACE=vgw
 CONTRAIL_VGW_PUBLIC_SUBNET=10.99.99.0/24 # replace with your floating IP range
 CONTRAIL_VGW_PUBLIC_NETWORK=default-domain:admin:public:public
+```
 
 # Setup public network in neutron
 
-   . openrc admin admin
-   neutron net-create public
-   public_id=`neutron net-list | awk '/public/{print $2}'`
-   neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBNET --disable-dhcp
+```
+. openrc admin admin
+neutron net-create public
+public_id=`neutron net-list | awk '/public/{print }'`
+neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBNET --disable-dhcp
+```
 
 # Setup floating ip pool in contrail
 
