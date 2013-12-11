@@ -1,4 +1,5 @@
 (See also https://github.com/Juniper/contrail-controller/wiki/Simple-Gateway)
+(See also Noel's network test script is at:  https://github.com/noelbk/devstack/blob/contrail/contrail/test_network.sh )
 
 # Add This on LocalRC
 
