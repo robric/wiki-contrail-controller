@@ -8,13 +8,12 @@ CONTRAIL_VGW_PUBLIC_NETWORK=default-domain:admin:public:public
 
 # Setup public network in neutron
 
-. openrc admin admin
-
-neutron net-create public
-public_id=`neutron net-list | awk '/public/{print $2}'`
-neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBNET --disable-dhcp
+   . openrc admin admin
+   neutron net-create public
+   public_id=`neutron net-list | awk '/public/{print $2}'`
+   neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBNET --disable-dhcp
 
 # Setup floating ip pool in contrail
 
-python /opt/stack/contrail/controller/src/config/utils/create_floating_pool.py --public_vn_name default-domain:admin:public --floating_ip_pool_name floatingip_pool
-python /opt/stack/contrail/controller/src/config/utils/use_floating_pool.py --project_name default-domain:admin --floating_ip_pool_name default-domain:admin:public:floatingip_pool
+   python /opt/stack/contrail/controller/src/config/utils/create_floating_pool.py --public_vn_name default-    domain:admin:public --floating_ip_pool_name floatingip_pool
+   python /opt/stack/contrail/controller/src/config/utils/use_floating_pool.py --project_name default-domain:admin --floating_ip_pool_name default-domain:admin:public:floatingip_pool
