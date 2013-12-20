@@ -14,7 +14,7 @@ CONTRAIL_VGW_PUBLIC_NETWORK=default-domain:admin:public:public
 ```
 . openrc admin admin
 neutron net-create public
-public_id=`neutron net-list | awk '/public/{print }'`
+public_id=`neutron net-list | awk '/public/{print $2}'`
 neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBNET --disable-dhcp
 ```
 
