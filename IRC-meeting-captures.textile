@@ -1,4 +1,4 @@
-* 2014_01_15   -(To do to find out how to create sub-pages in github wiki)-
+* 2014_01_15   *To do to find out how to create sub-pages in github wiki*
 
 ‹rr_›
 [18:04:00]Is the FreeBSD port targetted to ship vRouter + agent in regular Junos ? 
