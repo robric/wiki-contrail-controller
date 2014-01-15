@@ -191,3 +191,19 @@ Anyone wants to start a gdoc for architecture / internals and be the "keeper of 
 [19:06:44]OK: if there are no additional topics to bring up we can close the meeting for today. 
 ‹rr_›
 [19:06:54]Thx Pedro ! 
+‹pedro_r_marques›
+[19:07:13]Action items: works on arch document; meeting minutes to ML; FreeBSD port minutes to ML; 
+[19:07:41]gjbernacki: can you please create a blueprint in launchpad for freebsd port ? 
+[19:08:07]<meeting over> 
+‹nati_ueno›
+[19:08:39]Thanks! 
+‹gjbernacki›
+[19:08:48]thanks 
+‹nati_ueno›
+[19:08:55]dsetia: BTW, devstack is working on your env? 
+[19:09:11]dsetia: It looks dataplane will be disconnected in my env 
+* gjbernacki has left the channel
+* nati_ueno has quit IRC (Read error: Connection reset by peer)
+* nati_ueno has joined the channel
+‹dsetia›
+[19:15:19]I tested with Ubuntu 12.04 yesterday. I think you are on 13.04 which I have not tried lately. Will try today. 
