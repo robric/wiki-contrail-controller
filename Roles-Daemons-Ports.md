@@ -13,9 +13,13 @@
   * 5000 - tenant port
   * 35357 - administrative port
 
-### QPID
-+ **ports**
+### RabbitMQ
++ **Ports**
   * 5672
+
+### MySQL
++ **Ports**
+  * 3306
 
 ## Configuration Role
 ### Quantum Server
@@ -50,6 +54,8 @@
 + **Ports**
   * 8081 - public port
 ### Collector
++ **Ports**
+  * 8086 - public port
 ### Query Engine
 
 ## WEBUI Role
