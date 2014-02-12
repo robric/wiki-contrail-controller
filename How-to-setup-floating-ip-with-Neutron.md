@@ -25,6 +25,8 @@ neutron subnet-create --name public-subnet1 $public_id $CONTRAIL_VGW_PUBLIC_SUBN
    python /opt/stack/contrail/controller/src/config/utils/use_floating_pool.py --project_name default-domain:admin --floating_ip_pool_name default-domain:admin:public:floatingip_pool
 ```
 
+The "use_floating_pool" script associates the floating ip pool with a project that is allows to use the floating ip. Multiple projects can be associated with a single floating ip pool. This allows for fine grain control of what projects are allowed to use what pools.
+
 # Setup Security Group
 
 ```
@@ -42,7 +44,8 @@ neutron floatingip-create $public_id
 neutron floatingip-associate $floatingip_id $port_id
 ```
 
+The create a floating ip address in a project other than the project that owns the target network. Use the "--tenant_id" option to the "floatingip-create" neutron command. This assumes that the user invoking the command has provided credentials to the project owning the public network.
+
 # Test it
 neutron floatingip-show $floatingip_id
 ssh cirros@$floatingip_ip
-
