@@ -1,4 +1,4 @@
-Four DNS modes are supported in the system.
+Four DNS modes are supported, IPAM configuration can select the DNS mode required.
 
 ## 1. None
 No DNS support for the VMs.
@@ -13,6 +13,7 @@ Tenants can use their own DNS servers using this mode. A list of servers can be 
 In this mode, the system supports virtual DNS servers, providing DNS servers that resolve the DNS requests from the VMs. We can define multiple virtual domain name servers under each domain in the system. Each virtual domain name server is an authoritative server for the DNS domain configured. 
 
 The following properties can be configured for each virtual DNS server:
+
 1. Domain name (e.g. juniper.net)
 
 2. Record order : when a name has multiple records matching, this determines the order in which the records are sent in the response. 
@@ -25,3 +26,5 @@ The following properties can be configured for each virtual DNS server:
 4. Next DNS server : indicates the next DNS server to send the request to when the request cannot be served in the context of the current virtual DNS server. 
     * When configured, the next DNS server can either be another virtual DNS server defined in the system or the IP address of an external DNS server which is reachable from the server infrastructure
     * Using the next DNS servers, we can configure a hierarchy of servers thru which the DNS requests are iterated
+
+Each IPAM in the system can refer to one of the virtual DNS servers configured (when DNS mode is chosen as _Virtual DNS Server_). The virtual networks and virtual machines spawned will fall under the DNS domain of the virtual DNS server specified in the corresponding IPAM. The VMs will receive this domain in the DHCP DOMAIN-NAME option.
