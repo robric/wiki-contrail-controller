@@ -46,7 +46,9 @@ Configuration can be done using the contrail webui as follows:
 ## Trouble Shooting
 
 Operational virtual DNS servers and the configured DNS records on the control node can be seen at:
+
 `http://<control node ip>:8092/Snh_ShowVirtualDnsServers?`
 
 DNS query and response traces can be seen on the compute node at:
+
 `http://<compute node ip>:8085/Snh_SandeshTraceRequest?x=DnsBind`
