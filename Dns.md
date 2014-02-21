@@ -32,3 +32,13 @@ Each IPAM in the system can refer to one of the virtual DNS servers configured (
 When a VM is spawned, an A record and a PTR record with the VM's name and IP address are added into the virtual DNS server associated with the corresponding virtual network's IPAM. DNS Records can also be added statically. A, CNAME, PTR and NS records are currently supported in the system. Each record takes the type (A / CNAME / PTR / NS), class (IN), name, data and TTL values.
 
 **NS records** are used to delegate a sub-domain to another DNS server. The DNS server could be another virtual DNS server defined in the system or the IP address of an external DNS server reachable via the infrastructure. The sub-domain to be delegated (record name) and the name of the virtual DNS server or IP address of an external server (record data) can be configured in an NS record.
+
+### Configuration
+Configuration can be done using the contrail webui as follows:
+
+1. Create or delete virtual DNS servers here : Configure -> DNS -> Servers
+
+2. Edit IPAMs DNS method and tenant DNS servers or virtual DNS servers here : Configure -> Networking -> IP Address Management
+
+3. Add or delete static DNS records here : Configure -> DNS -> Records 
+    * Remember that A and PTR records for VMs are added automatically in the corresponding virtual DNS servers)
