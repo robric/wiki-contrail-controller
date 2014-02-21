@@ -41,7 +41,7 @@ Configuration can be done using the contrail webui as follows:
 2. Edit IPAMs DNS method and tenant DNS servers or virtual DNS servers here : Configure -> Networking -> IP Address Management
 
 3. Add or delete static DNS records here : Configure -> DNS -> Records 
-    * Remember that A and PTR records for VMs are added automatically in the corresponding virtual DNS servers)
+    * Remember that A and PTR records for VMs are added / deleted automatically in the corresponding virtual DNS servers
 
 ## Trouble Shooting
 
