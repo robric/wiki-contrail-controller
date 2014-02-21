@@ -28,3 +28,7 @@ The following properties can be configured for each virtual DNS server:
     * Using the next DNS servers, we can configure a hierarchy of servers thru which the DNS requests are iterated
 
 Each IPAM in the system can refer to one of the virtual DNS servers configured (when DNS mode is chosen as _Virtual DNS Server_). The virtual networks and virtual machines spawned will fall under the DNS domain of the virtual DNS server specified in the corresponding IPAM. The VMs will receive this domain in the DHCP DOMAIN-NAME option.
+
+When a VM is spawned, an A record and a PTR record with the VM's name and IP address are added into the virtual DNS server associated with the corresponding virtual network's IPAM. DNS Records can also be added statically. A, CNAME, PTR and NS records are currently supported in the system. Each record takes the type (A / CNAME / PTR / NS), class (IN), name, data and TTL values.
+
+**NS records** are used to delegate a sub-domain to another DNS server. The DNS server could be another virtual DNS server defined in the system or the IP address of an external DNS server reachable via the infrastructure. The sub-domain to be delegated (record name) and the name of the virtual DNS server or IP address of an external server (record data) can be configured in an NS record.
