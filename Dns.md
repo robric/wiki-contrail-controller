@@ -1,10 +1,10 @@
-Four DNS modes are supported, IPAM configuration can select the DNS mode required.
+Four DNS modes are supported in the system, IPAM configuration can select the DNS mode required.
 
 ## 1. None
 No DNS support for the VMs.
 
 ## 2. Default DNS server
-DNS resolution for the VMs is done based on the name server configuration in the server infrastructure. When a VM gets a DHCP response, the subnet default gateway is configured as the DNS server for the VM. DNS requests that the VM sends sent to this default gateway are resolved via the name servers configured on the respective compute nodes and the responses are sent back to the VM.
+DNS resolution for the VMs is done based on the name server configuration in the server infrastructure. When a VM gets a DHCP response, the subnet default gateway is configured as the DNS server for the VM. DNS requests that the VM sends to this default gateway are resolved via the (fabric) name servers configured on the respective compute nodes and the responses are sent back to the VM.
 
 ## 3. Tenant DNS server
 Tenants can use their own DNS servers using this mode. A list of servers can be configured in the IPAM, which are then sent in the DHCP response to the VM as DNS server(s). DNS requests that the VM sends are routed as any other data packet based on the available routing information.
@@ -32,6 +32,13 @@ Each IPAM in the system can refer to one of the virtual DNS servers configured (
 When a VM is spawned, an A record and a PTR record with the VM's name and IP address are added into the virtual DNS server associated with the corresponding virtual network's IPAM. DNS Records can also be added statically. A, CNAME, PTR and NS records are currently supported in the system. Each record takes the type (A / CNAME / PTR / NS), class (IN), name, data and TTL values.
 
 **NS records** are used to delegate a sub-domain to another DNS server. The DNS server could be another virtual DNS server defined in the system or the IP address of an external DNS server reachable via the infrastructure. The sub-domain to be delegated (record name) and the name of the virtual DNS server or IP address of an external server (record data) can be configured in an NS record.
+
+### External Access
+The virtual DNS servers and records defined in them can be accessed from external DNS servers or clients by sending the DNS requests to any of the two control nodes. The external DNS servers can consider the sub-domains served by the virtual DNS servers as delegated zones and can add NS records in their respective servers pointing the delegated zones to the IP address of the control node. 
+
+Similarly, virtual DNS servers can be configured to forward requests to external servers by using the "Next DNS Server" in the virtual DNS server configuration.
+
+Here, it is assumed that any firewalls present between external servers and control nodes are appropriately configured to allow DNS traffic.
 
 ### Configuration
 Configuration can be done using the contrail webui as follows:
