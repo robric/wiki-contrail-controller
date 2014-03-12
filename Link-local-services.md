@@ -4,8 +4,6 @@ A link local address (use 169.254.0.x and a service port) is chosen for the spec
 
 Link local service can be configured using the webui (Configure -> Infrastructure -> Link Local Services) or using the following command:
 
-`
-python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_password <passwd> 
---linklocal_service_name <name> --linklocal_service_ip <169.254.x.y> --linklocal_service_port <port> 
---ipfabric_service_ip <fabric-ip> --ipfabric_service_port <fabric-port>
-`
+python /opt/contrail/utils/provision_linklocal.py --admin_user \<user\> --admin_password \<passwd\> 
+--linklocal_service_name \<name\> --linklocal_service_ip \<169.254.0.x\> --linklocal_service_port \<port\> 
+--ipfabric_service_ip \<fabric-ip\> --ipfabric_service_port \<fabric-port\>
