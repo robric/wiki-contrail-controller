@@ -31,11 +31,14 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 ### Cloudstack
 * [Checkout](https://cwiki.apache.org/confluence/display/CLOUDSTACK/Getting+the+Source+Code)the latest master code
 * Start the management server on your host machine (laptop)
+
+***
+
 `mvn -P developer,systemvm clean install`
- 
 `mvn -P developer -pl developer,tools/devcloud -Ddeploydb`
- 
 `mvn -pl :cloud-client-ui jetty:run`
+
+***
 
 Wait till the management server is up and running.
 
