@@ -34,6 +34,19 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
          mvn -P developer,systemvm clean install
 
+### Compute Node (Xen with XCP and Contrail Networking)
+* **Note:** This section assumes that you have a valid Git account and you have setup the account for ssh access. If you have not, follow [these] (https://help.github.com/articles/generating-ssh-keys) instructions 
+* In the DevCloud VM, clone the scripts which would build and install the Contrail bits.
+         git clone https://github.com/rranjeet/vrouter-xen-utils.git
+* Go to the directory, `cd vrouter-xen-utils/contrail-devcloud`
+* And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
+* To build, run `build_copy.sh`.
+* To setup, run `xen_setup.sh`.
+* Restart the VM.
+
+
+## Provisioning/Starting the setup
+### CloudStack
 * Create a file with name `contrail.properties` in path `client/target/generated-webapp/WEB-INF/classes/contrail.properties` and add the following text into it.
 
         api.hostname = 192.168.56.30
