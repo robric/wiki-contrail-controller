@@ -44,6 +44,13 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * To setup, run `xen_setup.sh`.
 * Restart the VM.
 
+### Contrail Control Node 
+* **Note:** This section assumes that you have a valid Git account and you have setup the account for ssh access. If you have not, follow [these] (https://help.github.com/articles/generating-ssh-keys) instructions 
+* In the Ubuntu VM, clone the scripts which would build and install the Contrail Control Node bits.
+         git clone https://github.com/rranjeet/vrouter-xen-utils.git
+* Go to the directory, `cd vrouter-xen-utils/contrail-devcloud`
+* And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
+
 
 ## Provisioning/Starting the setup
 ### CloudStack
