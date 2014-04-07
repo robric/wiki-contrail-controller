@@ -32,7 +32,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * [Checkout](https://cwiki.apache.org/confluence/display/CLOUDSTACK/Getting+the+Source+Code) the latest master code
 * Build the  management server on your host machine (laptop)
 
-                mvn -P developer,systemvm clean install
+         mvn -P developer,systemvm clean install
 
 * Create a file with name `contrail.properties` in path `client/target/generated-webapp/WEB-INF/classes/contrail.properties` and add the following text into it.
 
@@ -41,13 +41,11 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
 * Drop the existing Cloudstack state (if any) and set up the database clean.
 
-               mvn -P developer -pl developer,tools/devcloud -Ddeploydb
+        mvn -P developer -pl developer,tools/devcloud -Ddeploydb
 
-* D
+* Start the management Server
 
-               mvn -pl :cloud-client-ui jetty:run
+        mvn -pl :cloud-client-ui jetty:run
 
-***
-
-Wait till the management server is up and running.
+  Wait till the management server is up and running.
 
