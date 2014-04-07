@@ -34,19 +34,18 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
 ***
 
-`mvn -P developer,systemvm clean install`
+               `mvn -P developer,systemvm clean install`
 
 ***
 
 * Create a file with name `contrail.properties` in path `client/target/generated-webapp/WEB-INF/classes/contrail.properties` and add the following text into it.
 
 `api.hostname = 192.168.56.30`
-
 `api.port = 8082`
 
 * Drop the existing Cloudstack state (if any) and set up the database clean.
 
-`mvn -P developer -pl developer,tools/devcloud -Ddeploydb`
+               `mvn -P developer -pl developer,tools/devcloud -Ddeploydb`
 
 * D
 
