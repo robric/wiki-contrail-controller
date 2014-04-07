@@ -19,7 +19,11 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
 ### Xen Hypervisor with XCP 1.6 
 * Download the DevCloud image for CloudStack 4.3 and above from [here] (http://people.apache.org/~sebgoa/devcloud2.ova)
+* Import the image into VirtualBox. After VM boots up, login into VM with username: root, password: password
 
-
-
+### Contrail Control Node
+* Download any of the Ubuntu VirtualBox images from [here] (http://virtualboximages.com/Ubuntu+12.04+amd64+LAMP/Tomcat+Server+Virtual+Appliance).
+* Create two network interfaces for the VM.
+    * Host-only network interface
+    * NAT network interface
 
