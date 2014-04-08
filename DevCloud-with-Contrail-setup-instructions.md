@@ -23,9 +23,9 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
 ### Contrail Control Node
 * Download any of the Ubuntu VirtualBox images from [here] (http://virtualboximages.com/Ubuntu+12.04+amd64+LAMP/Tomcat+Server+Virtual+Appliance).
-* Create two network interfaces for the VM.
-    * Host-only network interface
-    * NAT network interface
+* Create two network interfaces for the VM. (Open "Settings" of the image and choose "Network" to create the interfaces)
+    * Host-only network interface - Assign a new static IP address of 192.168.56.30 to this.
+    * NAT network interface - This interface is to connect to the internet.
 
 ## Building the code from Source
 ### Cloudstack
