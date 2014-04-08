@@ -26,6 +26,8 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * Create two network interfaces for the VM. (Open "Settings" of the image and choose "Network" to create the interfaces)
     * Host-only network interface - Assign a new static IP address of 192.168.56.30 to this.
     * NAT network interface - This interface is to connect to the internet.
+* Import the image into VirtualBox. After VM boots up, login into VM with `username: adminuser, password: adminuser`
+
 
 ## Building the code from Source
 ### Cloudstack
@@ -39,8 +41,10 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * In the DevCloud VM, clone the scripts which would build and install the Contrail bits.
          `git clone https://github.com/rranjeet/vrouter-xen-utils.git`
 * Go to the directory, `cd vrouter-xen-utils/contrail-devcloud`
+* Run `sudo install_dependencies.sh`
 * And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
-* To build, run `build_copy.sh`.
+    * Sometimes, wget freezes while downloading some of the package. If you see that the download is frozen for a long time, break in and restart the script.
+* To build, run `build_copy.sh`. The build would take 60 minutes to complete.
 * To setup, run `xen_setup.sh`.
 * Restart the VM.
 
@@ -50,7 +54,9 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * In the Ubuntu VM, clone the scripts which would build and install the Contrail Control Node bits.
          `git clone https://github.com/rranjeet/vrouter-xen-utils.git`
 * Go to the directory, `cd vrouter-xen-utils/contrail-devcloud`
+* Run `sudo install_dependencies.sh`
 * And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
+    * Sometimes, wget freezes while downloading some of the package. If you see that the download is frozen for a long time, break in and restart the script.
 
 
 ## Provisioning/Starting the setup
