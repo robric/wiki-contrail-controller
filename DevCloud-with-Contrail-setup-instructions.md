@@ -19,7 +19,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
 ### Xen Hypervisor with XCP 1.6 
 * Download the DevCloud image for CloudStack 4.3 and above from [here] (http://people.apache.org/~sebgoa/devcloud2.ova)
-* Import the image into VirtualBox. After VM boots up, login into VM with username: root, password: password
+* Import the image into VirtualBox. After VM boots up, login into VM with `username: root, password: password`
 
 ### Contrail Control Node
 * Download any of the Ubuntu VirtualBox images from [here] (http://virtualboximages.com/Ubuntu+12.04.4+amd64+Desktop+VirtualBox+VDI). (This is a Desktop image, feel free to disable the XServer or choose a Ubuntu image of your choice)
@@ -37,7 +37,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 ### Compute Node (Xen with XCP and Contrail Networking)
 * **Note:** This section assumes that you have a valid Git account and you have setup the account for ssh access. If you have not, follow [these] (https://help.github.com/articles/generating-ssh-keys) instructions 
 * In the DevCloud VM, clone the scripts which would build and install the Contrail bits.
-         git clone https://github.com/rranjeet/vrouter-xen-utils.git
+         `git clone https://github.com/rranjeet/vrouter-xen-utils.git`
 * Go to the directory, `cd vrouter-xen-utils/contrail-devcloud`
 * And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
 * To build, run `build_copy.sh`.
