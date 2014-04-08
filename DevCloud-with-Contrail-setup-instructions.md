@@ -22,7 +22,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * Import the image into VirtualBox. After VM boots up, login into VM with username: root, password: password
 
 ### Contrail Control Node
-* Download any of the Ubuntu VirtualBox images from [here] (http://virtualboximages.com/Ubuntu+12.04.4+amd64+Desktop+VirtualBox+VDI).
+* Download any of the Ubuntu VirtualBox images from [here] (http://virtualboximages.com/Ubuntu+12.04.4+amd64+Desktop+VirtualBox+VDI). (This is a Desktop image, feel free to disable the XServer or choose a Ubuntu image of your choice)
 * Create two network interfaces for the VM. (Open "Settings" of the image and choose "Network" to create the interfaces)
     * Host-only network interface - Assign a new static IP address of 192.168.56.30 to this.
     * NAT network interface - This interface is to connect to the internet.
