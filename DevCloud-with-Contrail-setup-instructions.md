@@ -36,9 +36,9 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
      
     * NAT network interface - This interface is to connect to the internet.
 * Import the image into VirtualBox. After VM boots up, login into VM with `username: adminuser, password: adminuser`
-* Run `sudo passwd root` and set a root password for the Ubuntu VM. The scripts uses `adminuser` as the root password.
+* Run `sudo passwd root` and set a root password to `adminuser` for the Ubuntu VM. The scripts uses `adminuser` as the root password.
+* Install ssh if not already installed, `sudo apt-get update` and `sudo apt-get install openssh-server`
 * Reboot the VM once.
-
 
 ## Building the code from Source
 ### Cloudstack
@@ -61,6 +61,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 
 ### Contrail Control Node 
 * **Note:** This section assumes that you have a valid Git account and you have setup the account for ssh access. If you have not, follow [these] (https://help.github.com/articles/generating-ssh-keys) instructions 
+
 * Install git, `apt-get install git`
 * In the Ubuntu VM, clone the scripts which would build and install the Contrail Control Node bits.
          `git clone https://github.com/rranjeet/vrouter-xen-utils.git`
