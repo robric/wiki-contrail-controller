@@ -11,7 +11,7 @@ For more details on the architecture and how these components interact together,
 In your host machine, use the instructions [here](https://cwiki.apache.org/confluence/display/CLOUDSTACK/Setting+up+CloudStack+Development+Environment) to setup a CloudStack development environment.
 
 ### Setting up VirtualBox 
-* Install VirtualBox for your environment from [here](https://www.virtualbox.org/wiki/Downloads).
+* Install VirtualBox for your host environment from [here](https://www.virtualbox.org/wiki/Downloads).
 * Create and config a "host-only" network in VirtualBox, if you don't have one (or have just installed VirtualBox).
     * To create a network, go to File -> Preferences -> Network -> "Add host only network", it would usually have a name like vboxnet0 etc. (Windows Only: You don't have to perform the Add host only network" step, move on to step 3.2)
     * To config the network created in step 3.1, right click and select "Edit host-only network", then uncheck "Enable server" in the "DHCP server" tab
@@ -26,16 +26,17 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * Create two network interfaces for the VM. (Open "Settings" of the image and choose "Network" to create the interfaces)
     * Host-only network interface - Assign a new static IP address of 192.168.56.30 to this. (Add the following config to `/etc/network/interfaces`.
 
-            `auto eth0`
-            `iface eth0 inet static`
-                `address 192.168.56.30`
-                `netmask 255.255.255.0`
-                `network 192.168.56.0`
-                `broadcast 192.168.56.255`
-                `gateway 192.168.56.1`
+            auto eth0
+            iface eth0 inet static
+                address 192.168.56.30
+                netmask 255.255.255.0
+                network 192.168.56.0
+                broadcast 192.168.56.255
+                gateway 192.168.56.1
      
     * NAT network interface - This interface is to connect to the internet.
 * Import the image into VirtualBox. After VM boots up, login into VM with `username: adminuser, password: adminuser`
+* Run `sudo passwd root` and set a root password for the Ubuntu VM. The scripts uses `adminuser` as the root password.
 
 
 ## Building the code from Source
