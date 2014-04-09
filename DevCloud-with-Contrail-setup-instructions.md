@@ -66,7 +66,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * In the Ubuntu VM, clone the scripts which would build and install the Contrail Control Node bits.
          `git clone https://github.com/rranjeet/vrouter-xen-utils.git`
 * Go to the directory, `cd vrouter-xen-utils/contrail-devcloud`
-* Run `sudo install_dependencies.sh`
+* Run `install_control_dependencies.sh`
 * And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
     * Sometimes, wget freezes while downloading some of the packages. If you see that the download is frozen for a long time, break in and restart the script.
 
