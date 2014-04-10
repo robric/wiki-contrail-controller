@@ -24,7 +24,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 ### Contrail Control Node
 * Download any of the Ubuntu VirtualBox images from [here] (http://virtualboximages.com/Ubuntu+12.04.4+amd64+Desktop+VirtualBox+VDI). (This is a Desktop image, feel free to disable the XServer or choose a Ubuntu image of your choice. Instructions to disable XServer can be found [here] (http://askubuntu.com/questions/16371/how-do-i-disable-x-at-boot-time-so-that-the-system-boots-in-text-mode))
 * Create two network interfaces for the VM. (Open "Settings" of the image and choose "Network" to create the interfaces)
-    * Host-only network interface - Assign a new static IP address of 192.168.56.30 to this. (Add the following config to `/etc/network/interfaces`.
+    * Host-only network interface - Assign a new static IP address of 192.168.56.30 to this. (Add the following config to `/etc/network/interfaces`.)
 
             auto eth0
             iface eth0 inet static
@@ -36,9 +36,9 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
      
     * NAT network interface - This interface is to connect to the internet.
 * Import the image into VirtualBox. After VM boots up, login into VM with `username: adminuser, password: adminuser`
-* Run `sudo passwd root` and set a root password to `adminuser` for the Ubuntu VM. The scripts uses `adminuser` as the root password.
+* Run `sudo passwd root` and set the root password to `adminuser` for the Ubuntu VM. 
 * Install ssh if not already installed, `sudo apt-get update` and `sudo apt-get install openssh-server`
-* Reboot the VM once.
+* Reboot the VM once and login as a `root` user.
 
 ## Building the code from Source
 ### Cloudstack
