@@ -43,7 +43,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 ## Building the code from Source
 ### Cloudstack
 * [Checkout](https://cwiki.apache.org/confluence/display/CLOUDSTACK/Getting+the+Source+Code) the latest master code
-* Code to enable Contrail network provider in DevCloud is under code review in the CloudStack master branch. Till it is checked in, please patch [this] (https://reviews.apache.org/r/19892/diff/raw/) diff into the CloudStack code. 
+* Code to enable Contrail Network offering in DevCloud is under code review in the CloudStack master branch. Till it is checked in, please patch [this] (https://reviews.apache.org/r/19892/diff/raw/) diff into the CloudStack code. 
     * Note: This instruction will be removed once the code is checked in.
 * Build the  management server on your host machine (laptop)
 
