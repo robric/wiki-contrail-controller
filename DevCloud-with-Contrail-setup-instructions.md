@@ -104,3 +104,11 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * Restart the VM.
 
 Note: Restart the Cloudstack Management server once again. 
+
+## And Finally...
+After all these steps, you should be able to
+* login to the CS management server with `192.168.56.1:8080/client`. Credentials are `admin, password`.
+* In Infrastructure tab, you should see the hosts, primary storage, secondary storage and two System VMs running.
+* The Templates tab should show templates to launch the VMs as ready.
+* In the Network tab, you should be able to create a Juniper Network offering.
+* Once the network offering is created, you should be able to create new instances of the "Tiny Linux" template.
