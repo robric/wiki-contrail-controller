@@ -70,13 +70,6 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
     * Sometimes, wget freezes while downloading some of the packages. If you see that the download is frozen for a long time, break in and restart the script.
 * Run `build_control.sh`. This will build all the Contrail Control components. It will take close to 60 minutes.
-* Run `copy_control_binaries.sh` which will copy all the files in the relevant directories.
-* Run `install_control_components.sh` which will install Cassandra, ZooKeeper and the IFMap Server
-* Run `start_control_node.sh` which will start all the required services.
-    * All the services are started using the `screen` command.
-    * To monitor the different services, `screen -r contrail` and once inside the screen, use `Ctrl A + "` to list the different services that are running.
-
-
 
 ## Provisioning/Starting the setup
 ### CloudStack
@@ -94,4 +87,10 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
         mvn -pl :cloud-client-ui jetty:run
 
   Wait till the management server is up and running.
+### Control Node
+* Run `copy_control_binaries.sh` which will copy all the files in the relevant directories.
+* Run `install_control_components.sh` which will install Cassandra, ZooKeeper and the IFMap Server
+* Run `start_control_node.sh` which will start all the required services.
+    * All the services are started using the `screen` command.
+    * To monitor the different services, `screen -r contrail` and once inside the screen, use `Ctrl A + "` to list the different services that are running.
 
