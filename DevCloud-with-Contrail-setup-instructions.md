@@ -60,7 +60,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * To build, run `build_copy.sh`. The build would take 60 minutes to complete.
 
 
-### Contrail Control Node 
+### Contrail Control Node (Ubuntu Server)
 * **Note:** This section assumes that you have a valid Git account and you have setup the account for ssh access. If you have not, follow [these] (https://help.github.com/articles/generating-ssh-keys) instructions 
 
 * Install git, `apt-get install git`
@@ -92,7 +92,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
         cd tools/devcloud
         python ../marvin/marvin/deployDataCenter.py -i devcloud-advanced_juniper-contrail.cfg
   
-### Control Node
+### Control Node (Ubuntu Server)
 * Run `copy_control_binaries.sh` which will copy all the files in the relevant directories.
 * Run `install_control_components.sh` which will install Cassandra, ZooKeeper and the IFMap Server
 * Run `start_control_node.sh` which will start all the required services.
