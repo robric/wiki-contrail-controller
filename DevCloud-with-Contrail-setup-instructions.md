@@ -88,6 +88,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
         mvn -pl :cloud-client-ui jetty:run
   Wait till the management server is up and running.
 * Run CloudStack provisioning in a new terminal
+
         cd tools/devcloud
         python ../marvin/marvin/deployDataCenter.py -i devcloud-advanced_juniper-contrail.cfg
   
