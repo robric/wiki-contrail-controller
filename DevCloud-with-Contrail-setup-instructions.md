@@ -43,6 +43,8 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 ## Building the code from Source
 ### Cloudstack
 * [Checkout](https://cwiki.apache.org/confluence/display/CLOUDSTACK/Getting+the+Source+Code) the latest master code
+* Code to enable Contrail network provider in DevCloud is under code review in the CloudStack master branch. Till it is checked in, please patch [this] (https://reviews.apache.org/r/19892/diff/raw/) diff into the CloudStack code. 
+    * Note: This instruction will be removed once the code is checked in.
 * Build the  management server on your host machine (laptop)
 
          mvn -P developer,systemvm clean install
@@ -84,8 +86,11 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * Start the management Server
 
         mvn -pl :cloud-client-ui jetty:run
-
   Wait till the management server is up and running.
+* Run CloudStack provisioning in a new terminal
+        cd tools/devcloud
+        python ../marvin/marvin/deployDataCenter.py -i devcloud-advanced_juniper-contrail.cfg
+  
 ### Control Node
 * Run `copy_control_binaries.sh` which will copy all the files in the relevant directories.
 * Run `install_control_components.sh` which will install Cassandra, ZooKeeper and the IFMap Server
@@ -96,3 +101,5 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 ### Compute Node (XenServer)
 * To setup, run `xen_setup.sh`.
 * Restart the VM.
+
+Note: Restart the Cloudstack Management server once again. 
