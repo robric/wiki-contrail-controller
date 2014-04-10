@@ -56,8 +56,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * And run `download_the_code.sh`. The shell script will prompt for your git password to download the Contrail code.
     * Sometimes, wget freezes while downloading some of the packages. If you see that the download is frozen for a long time, break in and restart the script.
 * To build, run `build_copy.sh`. The build would take 60 minutes to complete.
-* To setup, run `xen_setup.sh`.
-* Restart the VM.
+
 
 ### Contrail Control Node 
 * **Note:** This section assumes that you have a valid Git account and you have setup the account for ssh access. If you have not, follow [these] (https://help.github.com/articles/generating-ssh-keys) instructions 
@@ -94,3 +93,6 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
     * All the services are started using the `screen` command.
     * To monitor the different services, `screen -r contrail` and once inside the screen, use `Ctrl A + "` to list the different services that are running.
 
+### Compute Node (XenServer)
+* To setup, run `xen_setup.sh`.
+* Restart the VM.
