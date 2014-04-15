@@ -50,6 +50,42 @@ Configuration can be done using the contrail webui as follows:
 3. Add or delete static DNS records here : Configure -> DNS -> Records 
     * Remember that A and PTR records for VMs are added / deleted automatically in the corresponding virtual DNS servers
 
+### Configure using scripts
+
+* Create virtual DNS server
+
+    `python /opt/contrail/utils/add_virtual_dns.py --name vdns1 --domain_name default-domain --dns_domain contrail.com --dyn_updates --record_order random --ttl 2000`
+
+* Create virtual DNS server with next virtual dns server
+
+    `python /opt/contrail/utils/add_virtual_dns.py --name vdns1 --domain_name default-domain --dns_domain contrail.com --dyn_updates --record_order random --ttl 2000 --next_vdns vdns2`
+
+* Create dns record (A, PTR, CNAME, NS records can be created)
+
+    `python /opt/contrail/utils/add_virtual_dns_record.py --name rec1 --vdns_fqname default-domain:vdns1 --rec_name host1 --rec_type A --rec_class IN --rec_data 1.2.3.4 --rec_ttl 1000`
+
+* Associate an IPAM to a virtual dns server
+
+    `python /opt/contrail/utils/associate_virtual_dns.py --ipam_fqname default-domain:admin:ipam1 --ipam_dns_method virtual-dns-server --vdns_fqname default-domain:vdns1`
+
+* Change IPAM dns method to default
+
+    `python /opt/contrail/utils/associate_virtual_dns.py --ipam_fqname default-domain:admin:ipam1 --ipam_dns_method default-dns-server`
+
+* Disassociate IPAM from a virtual DNS server
+
+    `python /opt/contrail/utils/disassociate_virtual_dns.py --ipam_fqname default-domain:admin:ipam1` 
+
+    `python /opt/contrail/utils/disassociate_virtual_dns.py --ipam_fqname default-domain:admin:ipam1 --vdns_fqname default-domain:vdns1`
+
+* Delete DNS record
+
+    `python /opt/contrail/utils/del_virtual_dns_record.py --fq_name default-domain:vdns1:rec1`
+
+* Delete virtual dns server
+
+     `python /opt/contrail/utils/del_virtual_dns.py --fq_name default-domain:vdns1`
+
 ## Trouble Shooting
 
 Operational virtual DNS servers and the configured DNS records on the control node can be seen at:
