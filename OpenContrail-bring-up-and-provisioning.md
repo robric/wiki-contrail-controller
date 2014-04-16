@@ -47,6 +47,8 @@ Servers running control-node components should be time synchronized.
 * control-node
 * dns deamon
 
+Recommendation: 2 control-nodes.
+
 ## Compute node
 * vrouter agent
 * vrouter kernel module
