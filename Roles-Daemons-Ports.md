@@ -18,7 +18,7 @@
   + ifmap
   + contrail-schema
   + contrail-svc-monitor
-  + rabbitmq-server
+  + rabbitmq-server (this can optionally be located on an external server)
   + zookeeper (will move to database node)
 
 * Control Node
