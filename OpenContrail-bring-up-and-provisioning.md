@@ -27,7 +27,7 @@ Servers running control-node components should be time synchronized.
 * discovery
 * ifmap-server
 
-- discovery server must be front-ended with load balancer when running multi-node. Only one of the copies will answer API requests.
+- Load balanced services: api-server (port 8082) and discovery.
 
 ## Analytics
 
@@ -50,3 +50,7 @@ Servers running control-node components should be time synchronized.
 ## Compute node
 * vrouter agent
 * vrouter kernel module
+* nova vif driver
+
+## Neutron
+* neutron opencontrail plugin
