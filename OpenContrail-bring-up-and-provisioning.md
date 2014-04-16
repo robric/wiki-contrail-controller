@@ -11,12 +11,15 @@ The contrail software consists of multiple modules:
 * zookeeper
 * cassandra
 * rabbitmq
+* ntp
 
-Zookeeper: recommend even number of nodes.
+Zookeeper: recommend odd number of nodes.
 
 Cassandra: recommend a multi-node cluster configuration.
 
 If rabbitmq is being used for openstack, we recommend that one uses the same service with a "vhost" for open contrail.
+
+Servers running control-node components should be time synchronized.
 
 ### Processes
 * api-server
