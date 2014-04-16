@@ -8,9 +8,15 @@ The contrail software consists of multiple modules:
 ## Configuration
 
 ### Services
+* zookeeper
 * cassandra
 * rabbitmq
-** If rabbitmq is being used for openstack, we recommend that one uses the same service with a "vhost" for open contrail.
+
+Zookeeper: recommend even number of nodes.
+
+Cassandra: recommend a multi-node cluster configuration.
+
+If rabbitmq is being used for openstack, we recommend that one uses the same service with a "vhost" for open contrail.
 
 ### Processes
 * api-server
@@ -21,6 +27,7 @@ The contrail software consists of multiple modules:
 ## Analytics
 
 ### Services
+* zookeeper
 * cassandra
 * redis
 
