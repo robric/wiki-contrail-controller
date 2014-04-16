@@ -10,6 +10,7 @@ The contrail software consists of multiple modules:
 ### Services
 * cassandra
 * rabbitmq
+** If rabbitmq is being used for openstack, we recommend that one uses the same service with a "vhost" for open contrail.
 
 ### Processes
 * api-server
@@ -36,5 +37,4 @@ The contrail software consists of multiple modules:
 
 ## Compute node
 * vrouter agent
-* vrouter kernel modules
-
+* vrouter kernel module
