@@ -16,3 +16,25 @@ The contrail software consists of multiple modules:
 * schema-transformer
 * discovery
 * ifmap-server
+
+## Analytics
+
+### Services
+* cassandra
+* redis
+
+### Processes
+* collector
+* query-engine
+* query-api (?)
+
+## Control plane
+
+### Processes
+* control-node
+* dns deamon
+
+## Compute node
+* vrouter agent
+* vrouter kernel modules
+
