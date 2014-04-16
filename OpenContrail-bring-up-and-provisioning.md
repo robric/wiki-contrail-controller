@@ -27,6 +27,8 @@ Servers running control-node components should be time synchronized.
 * discovery
 * ifmap-server
 
+- discovery server must be front-ended with load balancer when running multi-node. Only one of the copies will answer API requests.
+
 ## Analytics
 
 ### Services
