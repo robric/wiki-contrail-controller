@@ -61,6 +61,11 @@ log_file = /var/log/contrail/contrail-schema.log
 cassandra_server_list = x.x.x.x:9160
 zk_server_ip = x.x.x.x
 disc_server_ip = x.x.x.x
+
+[KEYSTONE]
+admin_user = neutron
+admin_password = xxxxxxxxxxxxxxxxxxxx
+admin_tenant_name = service
 ```
 
 Parameters should be the same as api-server.conf.
