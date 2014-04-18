@@ -101,6 +101,14 @@ curl http://api-server-address:8082/projects | python -mjson.tool
 ```
 When multi_tenancy is enabled the http request to the api server requires a keystone auth_token.
 The command should return a list of several projects, including the project that contrail creates internally as well as all projects currently visible in keystone tenant-list.
+
+```
+http://x.x.x.x:5998/services
+```
+
+Displays the services registered in the discovery server. Only one of the discovery servers will answer API requests in a multi node configuration. The others are in standby mode.
+The output should show one or more entries for: ApiServer, IfmapServer, Collector and xmpp-server.
+
 ## Analytics
 
 ### Services
