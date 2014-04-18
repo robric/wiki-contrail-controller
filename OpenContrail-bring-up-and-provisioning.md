@@ -95,6 +95,10 @@ zk_server_ip = x.x.x.x
 - api-server (port 8082).
 - discovery (port 5998).
 
+#### Diagnostics
+```
+curl http://api-server-address:8082/projects
+```
 ## Analytics
 
 ### Services
