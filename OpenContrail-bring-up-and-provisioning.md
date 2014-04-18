@@ -33,6 +33,7 @@ ifmap_password = api-server
 cassandra_server_list = 127.0.0.1:9160
 auth = keystone
 multi_tenancy = True
+disc_server_ip = x.x.x.x
 zk_server_ip = x.x.x.x:2181
 rabbit_server = x.x.x.x
 rabbit_password = xxxxxxxxxxxxxxxxxxxx
@@ -48,6 +49,7 @@ admin_tenant_name = service
 
 ```
 
+- disc_server_ip should be the load balancer address. The LB should front-end port 5998 which is served by the discovery process. Only a single discovery server answers requires (master election via zookeeper).
 - cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160".
 - zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
 
