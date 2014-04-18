@@ -23,6 +23,25 @@ Servers running control-node components should be time synchronized.
 
 ### Processes
 * api-server
+```Example: /etc/contrail/contrail-api.conf
+[DEFAULTS]
+log_file = /var/log/contrail/contrail-api.log
+ifmap_username = api-server
+ifmap_password = api-server
+cassandra_server_list = 127.0.0.1:9160
+auth = keystone
+rabbit_password = xxxxxxxxxxxxxxxxxxxx
+
+[KEYSTONE]
+auth_host = x.x.x.x
+auth_port = 35357
+auth_protocol = http
+admin_user = neutron
+admin_password = xxxxxxxxxxxxxxxxxxxx
+admin_token = 
+admin_tenant_name = service
+
+```
 * schema-transformer
 * discovery
 * ifmap-server
