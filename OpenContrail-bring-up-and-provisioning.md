@@ -80,7 +80,7 @@ AUTHN_PORT = 35357
 AUTHN_URL = /v2.0/tokens
 ```
 
-vnc_api_lib.ini is required in the systems that run schema-transformer and neutron plugin. It is accessed from the neutron process.
+vnc_api_lib.ini is required in the systems that run schema-transformer and neutron-server plugin. It is accessed from the neutron process.
 
 #### discovery
 #### ifmap-server
