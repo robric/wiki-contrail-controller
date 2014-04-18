@@ -127,6 +127,9 @@ The output should show one or more entries for: ApiServer, IfmapServer, Collecto
 #### control-node
 Example: /etc/contrail/control-node.conf
 ```
+[DISCOVERY]
+server = x.x.x.x
+
 [IFMAP]
 user=control-node-<N>
 password=control-node-<N>
