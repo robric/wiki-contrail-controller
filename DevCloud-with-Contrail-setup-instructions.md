@@ -103,7 +103,7 @@ In your host machine, use the instructions [here](https://cwiki.apache.org/confl
 * To setup, run `xen_setup.sh`.
 * Restart the VM.
 
-Note: Restart the Cloudstack Management server once again. 
+Note: Restart the Cloudstack Management server once again. (Break into the terminal which is running the CS management server and rerun `mvn -pl :cloud-client-ui jetty:run`.
 
 ## And Finally...
 After all these steps, you should be able to
