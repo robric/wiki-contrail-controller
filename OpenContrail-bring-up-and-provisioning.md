@@ -97,8 +97,10 @@ zk_server_ip = x.x.x.x
 
 #### Diagnostics
 ```
-curl http://api-server-address:8082/projects
+curl http://api-server-address:8082/projects | python -mjson.tool
 ```
+When multi_tenancy is enabled the http request to the api server requires a keystone auth_token.
+The command should return a list of several projects, including the project that contrail creates internally as well as all projects currently visible in keystone tenant-list.
 ## Analytics
 
 ### Services
