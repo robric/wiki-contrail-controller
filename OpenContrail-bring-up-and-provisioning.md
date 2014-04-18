@@ -55,6 +55,7 @@ admin_tenant_name = service
 
 #### schema-transformer
 
+- Example: /etc/contrail/contrail-schema.conf
 ```
 [DEFAULTS]
 log_file = /var/log/contrail/contrail-schema.log
@@ -69,6 +70,17 @@ admin_tenant_name = service
 ```
 
 Parameters should be the same as api-server.conf.
+
+- Example: /etc/contrail/vnc_api_lib.ini
+```
+[auth]
+AUTHN_TYPE = keystone
+AUTHN_SERVER=x.x.x.x
+AUTHN_PORT = 35357
+AUTHN_URL = /v2.0/tokens
+```
+
+vnc_api_lib.ini is required in the systems that run schema-transformer and neutron plugin. It is accessed from the neutron process.
 
 #### discovery
 #### ifmap-server
