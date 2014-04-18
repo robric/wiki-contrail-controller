@@ -48,8 +48,8 @@ admin_tenant_name = service
 
 ```
 
-cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160"
-zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
+- cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160".
+- zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
 
 * schema-transformer
 * discovery
