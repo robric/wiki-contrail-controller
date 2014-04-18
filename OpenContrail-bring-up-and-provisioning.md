@@ -84,8 +84,10 @@ vnc_api_lib.ini is required in the systems that run schema-transformer and neutr
 
 #### discovery
 - Example: /etc/contrail/contrail-discovery.conf
+```
 [DEFAULTS]
 zk_server_ip = x.x.x.x
+```
 #### ifmap-server
 
 - Load balanced services: api-server (port 8082) and discovery.
