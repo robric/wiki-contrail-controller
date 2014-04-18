@@ -139,6 +139,8 @@ password=control-node-<N>
 
 Where N should be the instance-id (e.g. 1, 2, ...)
 
+For diagnostics check whether the control-node process has an established TCP session to port 8443 using "netstat -ntap".
+
 * dns deamon
 
 Recommendation: 2 control-nodes.
