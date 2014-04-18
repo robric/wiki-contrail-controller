@@ -150,6 +150,13 @@ Recommendation: 2 control-nodes.
 * vrouter kernel module
 * nova vif driver
 
+- /etc/nova/nova.conf
+```
+[DEFAULT]
+network_api_class = nova.network.quantumv2.api.API
+libvirt_vif_driver = contrail_vif.contrailvif.VRouterVIFDriver
+```
+
 - Example /etc/network/interfaces
 ```
 auto eth1
