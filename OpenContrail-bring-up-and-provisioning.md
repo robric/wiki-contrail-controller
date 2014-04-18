@@ -83,6 +83,9 @@ AUTHN_URL = /v2.0/tokens
 vnc_api_lib.ini is required in the systems that run schema-transformer and neutron-server plugin. It is accessed from the neutron process.
 
 #### discovery
+- Example: /etc/contrail/contrail-discovery.conf
+[DEFAULTS]
+zk_server_ip = x.x.x.x
 #### ifmap-server
 
 - Load balanced services: api-server (port 8082) and discovery.
