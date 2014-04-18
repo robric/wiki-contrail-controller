@@ -89,8 +89,11 @@ vnc_api_lib.ini is required in the systems that run schema-transformer and neutr
 zk_server_ip = x.x.x.x
 ```
 #### ifmap-server
+- The ifmap-server works with default config when running on all the nodes that api-server runs; the config examples above assume that.
 
-- Load balanced services: api-server (port 8082) and discovery.
+#### Load balanced services
+- api-server (port 8082).
+- discovery (port 5998).
 
 ## Analytics
 
