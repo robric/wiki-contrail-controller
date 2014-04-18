@@ -23,7 +23,9 @@ Servers running control-node components should be time synchronized.
 
 ### Processes
 * api-server
-```Example: /etc/contrail/contrail-api.conf
+
+Example: /etc/contrail/contrail-api.conf
+```
 [DEFAULTS]
 log_file = /var/log/contrail/contrail-api.log
 ifmap_username = api-server
