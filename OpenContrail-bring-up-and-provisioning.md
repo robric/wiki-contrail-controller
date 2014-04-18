@@ -154,7 +154,7 @@ Recommendation: 2 control-nodes.
 ```
 [DEFAULT]
 network_api_class = nova.network.quantumv2.api.API
-libvirt_vif_driver = contrail_vif.contrailvif.VRouterVIFDriver
+libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver
 ```
 
 - Example /etc/network/interfaces
