@@ -150,6 +150,23 @@ Recommendation: 2 control-nodes.
 * vrouter kernel module
 * nova vif driver
 
+- Example /etc/network/interfaces
+```
+auto eth1
+iface eth1 inet static
+      address 0.0.0.0
+      up ifconfig $IFACE up
+      down ifconfig $IFACE down
+
+auto vhost0
+iface vhost0 inet static
+        pre-up vif --create vhost0 --mac $(cat /sys/class/net/eth1/address)
+        pre-up vif --add vhost0 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --mode x --type vhost
+        address 192.168.2.252
+        netmask 255.255.254.0
+```
+In the example above eth1 is used as VM data interface.
+
 ## Neutron
 * neutron opencontrail plugin
 Currently distributed as a neutron fork at github.com/Juniper/neutron
