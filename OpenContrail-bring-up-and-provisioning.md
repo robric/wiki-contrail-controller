@@ -32,6 +32,9 @@ ifmap_username = api-server
 ifmap_password = api-server
 cassandra_server_list = 127.0.0.1:9160
 auth = keystone
+multi_tenancy = True
+zk_server_ip = x.x.x.x:2181
+rabbit_server = x.x.x.x
 rabbit_password = xxxxxxxxxxxxxxxxxxxx
 
 [KEYSTONE]
