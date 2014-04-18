@@ -22,7 +22,7 @@ If rabbitmq is being used for openstack, we recommend that one uses the same ser
 Servers running control-node components should be time synchronized.
 
 ### Processes
-* api-server
+#### api-server
 
 Example: /etc/contrail/contrail-api.conf
 ```
@@ -51,9 +51,9 @@ admin_tenant_name = service
 - cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160".
 - zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
 
-* schema-transformer
-* discovery
-* ifmap-server
+#### schema-transformer
+#### discovery
+#### ifmap-server
 
 - Load balanced services: api-server (port 8082) and discovery.
 
