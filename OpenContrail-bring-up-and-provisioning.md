@@ -30,7 +30,7 @@ Example: /etc/contrail/contrail-api.conf
 log_file = /var/log/contrail/contrail-api.log
 ifmap_username = api-server
 ifmap_password = api-server
-cassandra_server_list = 127.0.0.1:9160
+cassandra_server_list = x.x.x.x:9160
 auth = keystone
 multi_tenancy = True
 disc_server_ip = x.x.x.x
@@ -49,11 +49,22 @@ admin_tenant_name = service
 
 ```
 
-- disc_server_ip should be the load balancer address. The LB should front-end port 5998 which is served by the discovery process. Only a single discovery server answers requires (master election via zookeeper).
+- disc_server_ip should be the load balancer address. The LB should front-end port 5998 which is served by the discovery process. Only a single discovery server answers requires (master election via zookeeper); defaults to localhost.
 - cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160".
 - zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
 
 #### schema-transformer
+
+```
+[DEFAULTS]
+log_file = /var/log/contrail/contrail-schema.log
+cassandra_server_list = x.x.x.x:9160
+zk_server_ip = x.x.x.x
+disc_server_ip = x.x.x.x
+```
+
+Parameters should be the same as api-server.conf.
+
 #### discovery
 #### ifmap-server
 
