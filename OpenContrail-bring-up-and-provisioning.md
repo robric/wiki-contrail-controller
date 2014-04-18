@@ -124,7 +124,16 @@ The output should show one or more entries for: ApiServer, IfmapServer, Collecto
 ## Control plane
 
 ### Processes
-* control-node
+#### control-node
+Example: /etc/contrail/control-node.conf
+```
+[IFMAP]
+user=control-node-<N>
+password=control-node-<N>
+```
+
+Where N should be the instance-id (e.g. 1, 2, ...)
+
 * dns deamon
 
 Recommendation: 2 control-nodes.
