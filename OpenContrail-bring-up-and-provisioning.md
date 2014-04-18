@@ -44,6 +44,9 @@ admin_token =
 admin_tenant_name = service
 
 ```
+
+cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160"
+
 * schema-transformer
 * discovery
 * ifmap-server
