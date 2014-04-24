@@ -5,10 +5,6 @@ Every virtual-network has a routing-instance associated with it. The routing-ins
 Virtual-Networks do not have access to "public" network. "public" network here can be the IP Fabric or external networks across the IP Fabric. A Gateway must be used to provide connectivity to "public" network from a virtual-network. In traditional deployments, a routing device such as Juniper MX can act as a gateway.
  
 Simple Gateway is a restricted implementation of gateway which can be used for experimental purposes. Simple gateway provides access to "public" network to a single virtual-network.
- 
-Note:
-* A compute node can act as simple gateway for atmost one virtual-network
-* A virtual-network can ideally have multiple subnets. But, simple-gateway supports only one subnet per virtual-network
 
 # Configuration
 
