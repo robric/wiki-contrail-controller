@@ -73,7 +73,7 @@ admin_tenant_name=admin
 
 * edit /etc/neutron/plugin.ini and provide API server IP and port along with the keystone credentials. 
 
-* _Here is an example of the configuration_
+*Here is a sample configuration:
 
 ==================================================================================================
 [APISERVER]
@@ -86,11 +86,10 @@ api_server_port = 8082
 admin_user=admin
 admin_password=1a0137e30d2845ee
 
-==================================================================================================
-
-* edit /etc/neutron/neutron.conf and provide the auth_host. Also provide the rabbitMQ details.
-* _Here is the sample config_
-==================================================================================================
+=============================================================================================
+* edit /etc/neutron/neutron.conf and provide the auth_host. Also provide the rabbitMQ details
+*Here is the sample config:
+=======================================================================
 [keystone_authtoken]
 auth_host = 10.1.1.2
 auth_port = 35357
@@ -100,13 +99,13 @@ admin_user = neutron
 admin_password = 66bd8e29876844aa
 signing_dir = $state_path/keystone-signing
 
-rabbit_host = 10.1.1.2
-rabbit_port = 5672
-==================================================================================================
+rabbit_host=10.1.1.2
+rabbit_port=5672
+========================================================================
 
 * edit /etc/contrail/config.global.js and provide the OpenStack IP and port for image, compute, identity and storage.
 
-* _Here is an example_
+*Here is an example:
 
 config.imageManager = {};
 config.imageManager.ip = '10.1.1.2';
