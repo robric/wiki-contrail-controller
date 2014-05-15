@@ -126,6 +126,9 @@ The output should show one or more entries for: ApiServer, IfmapServer, Collecto
 * query-engine
 * query-api (?)
 
+- Diagnostics
+* Use "contrail-logs" to query the analytics api and verify that it answers correctly.
+
 ## Control plane
 
 ### Processes
