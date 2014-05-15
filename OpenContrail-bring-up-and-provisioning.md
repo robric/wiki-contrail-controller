@@ -191,3 +191,14 @@ neutron-plugin-contrail package
 core_plugin = neutron_plugin_contrail.plugins.opencontrail.contrailplugin.ContrailPlugin
 api_extensions_path = extensions:/usr/lib/python2.7/dist-packages/neutron_plugin_contrail/extensions
 ```
+
+* /etc/neutron/plugins/opencontrail/ContrailPlugin.ini
+```
+[APISERVER]
+multi_tenancy = True
+[KEYSTONE]
+admin_user = neutron
+admin_password = 
+admin_tenant_name = service
+auth_url = http://x.x.x.x:35357/v2.0
+```
