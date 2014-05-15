@@ -148,6 +148,9 @@ Recommendation: 2 control-nodes.
 ## Compute node
 * vrouter agent
 * vrouter kernel module
+```
+modprobe vrouter
+```
 * nova vif driver
 
 - /etc/nova/nova.conf
