@@ -5,6 +5,9 @@ The contrail software consists of multiple modules:
 * compute node
 * web-ui
 
+Binaries built from source packages are available on
+https://launchpad.net/~opencontrail/+archive/ppa
+
 ## Configuration
 
 ### Services
@@ -179,4 +182,9 @@ In the example above eth1 is used as VM data interface.
 
 ## Neutron
 * neutron opencontrail plugin
-Currently distributed as a neutron fork at github.com/Juniper/neutron
+neutron-plugin-contrail package
+- Requires the following configuration in neutron.conf
+```
+core_plugin = neutron_plugin_contrail.plugins.opencontrail.contrailplugin.ContrailPlugin
+api_extensions_path = extensions:/usr/lib/python2.7/dist-packages/neutron_plugin_contrail/extensions
+```
