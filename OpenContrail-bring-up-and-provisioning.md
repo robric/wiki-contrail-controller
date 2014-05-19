@@ -125,7 +125,7 @@ It is expected 2 instances of redis-server are instantiated on the local node th
 
 ### Processes
 #### contrail-collector
-contrail collector *collects* information across the system through sandesh protocol and stores them in
+contrail collector **collects** information across the system through sandesh protocol and stores them in
 analytics database
 
 - Example /etc/contrail/contrail-collector.conf
@@ -218,8 +218,48 @@ contrail-analytics-api is the operation REST API server and provides operational
 #redis_query_port=6380
 ```
 
-- Diagnostics
+### Diagnostics
 * Use "contrail-logs" to query the analytics api and verify that it answers correctly.
+* contrail-webui gets much of the info from contrail-analytics-api and hence can be
+used to verify analytics functionality
+
+## Contrail WebUI
+
+### Services
+
+#### redis
+It is expected an instance of redis-server is instantiated on the local node that is used by webui processes [this is done by creating redis-webui.conf with appropriate parameters]. The ports are configurable through the webui conf file - /etc/contrail/config.global.js, with default being 6383.
+
+### Processes
+#### contrail-webui and contrail-webui-middleware
+The configurable parameters for the webui processes are given through /etc/contrail/config.global.js
+And by default, the webui console is accessible through <ip>:8080
+
+- Example: /etc/contrail/config.global.js
+```
+var config = {};
+
+config.orchestration = {};
+config.orchestration.Manager = 'openstack'
+
+...
+
+config.networkManager = {};
+config.networkManager.ip = '10.84.13.45';
+config.networkManager.port = '9696'
+config.networkManager.authProtocol = 'http';
+
+...
+
+/* Configure level of logs, supported log levels are:
+   debug, info, notice, warning, error, crit, alert, emerg
+ */
+config.logs = {};
+config.logs.level = 'debug';
+
+// Export this as a module.
+module.exports = config;
+```
 
 ## Control plane
 
