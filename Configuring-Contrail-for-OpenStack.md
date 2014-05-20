@@ -1,4 +1,4 @@
-# Configuring Contrail for OpenStack
+## Configuring Contrail for OpenStack
 
 Contrail can be installed and added to any existing OpenStack deployment by making relevant configuration changes on the OpenStack setup and pointing Contrail configuration to the existing OpenStack. The same principle can also be applied to a new contrail and new openstack deployments. 
 
