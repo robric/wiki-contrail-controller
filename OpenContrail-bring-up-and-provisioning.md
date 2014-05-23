@@ -120,8 +120,8 @@ The output should show one or more entries for: ApiServer, IfmapServer, Collecto
 #### cassandra
 Cassandra cluster addresses can be provided as space separated list of <ip>:<port>, e.g '10.10.10.10:9160 10.10.10.11:9160', to the analytics processes through the respective dot conf file.
 
-#### redis
-It is expected 2 instances of redis-server are instantiated on the local node that are used by analytics processes [this is done by creating redis-uve.conf and redis-query.conf with appropriate parameters]. The ports are configurable through dot conf file, with defaults being 6380 and 6381.
+#### redis (>= 2.6.13)
+The redis-server version should be (>= 2.6.13). It is expected 2 instances of redis-server are instantiated on the local node that are used by analytics processes [this is done by creating redis-uve.conf and redis-query.conf with appropriate parameters]. The ports are configurable through dot conf file, with defaults being 6380 and 6381.
 
 ### Processes
 #### contrail-collector
