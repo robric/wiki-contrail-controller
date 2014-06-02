@@ -5,7 +5,7 @@ In order to use the new system, you need to
 1. Login to [review](review.opencontrail.org) using your launchpad open id
 2. Goto settings and 
     1. Select unique user name (STEP USER)
-    2. Select (add if necessary) preferred email address to be same as the one used in your [github (github.com/Junuper) and launch-pad
+    2. Select (add if necessary) preferred email address to be same as the one used in your [github] (github.com/Junuper) and launch-pad
 3. Add your ssh public keys
 
 ## Code review process
