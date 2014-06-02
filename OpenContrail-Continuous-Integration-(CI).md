@@ -39,5 +39,5 @@ Some one should review and (optionally some one else) must approve the changes. 
 
 For all other Questions, please email to [ci-team](mailto:ci-team@opencontrail.org)
 
-Thanks,
+Thank You.
 OpenContrail-CI-Team
