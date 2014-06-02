@@ -2,21 +2,19 @@ OpenContrail CI is now live. All commits to contrail-controller git repo will no
 
 In order to use the new system, you need to 
 
-o Login to [review](review.opencontrail.org) using your launchpad open id
-o Goto settings and 
-    - Select unique user name (STEP USER)
-    - Select (add if necessary) preferred email address to be same as the
-      one used in your [github](github.com/Junuper) and launch-pad
-    - Add your ssh public keys
+1. Login to [review](review.opencontrail.org) using your launchpad open id
+2. Goto settings and 
+    1. Select unique user name (STEP USER)
+    2. Select (add if necessary) preferred email address to be same as the one used in your [github (github.com/Junuper) and launch-pad
+3. Add your ssh public keys
 
-Code review process
-===================
-o Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo
-o Create a branch e.g. bugfix
-o Make your changes
-o Commit
-o If necessary: apt-get -y install git-review
-o run "git review"
+## Code review process
+1. Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo
+2. Create a branch e.g. bugfix
+3. Make your changes
+4. Commit
+5. If necessary: apt-get -y install git-review (or yum -y install git-review)
+6. run "git review"
 
 First time when you run "git review", it asks for the user name. Please use the same that you used in step USER above.
 
