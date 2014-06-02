@@ -37,7 +37,7 @@ Some one should review and (optionally some one else) must approve the changes. 
 4. How long does it take for the tests to complete ?
     At the moment, it takes 4 to 5 hours. Work is in progress to speed this up, while at the same time add additional tests that run in parallel.
 
-For all other Questions, please email to [ci-team](mailto:ci-team@opencontrail.org)
+For all other Questions, please email to [ci-admin](mailto:ci-admin@opencontrail.org)
 
 Thank You.
 OpenContrail-CI-Team
