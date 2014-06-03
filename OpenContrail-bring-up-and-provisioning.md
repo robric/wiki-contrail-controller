@@ -289,6 +289,10 @@ Recommendation: 2 control-nodes.
 ```
 modprobe vrouter
 ```
+* for CentOS /etc/modprobe.conf (otherwise kernel panic)
+```
+alias bridge off
+```
 * nova vif driver
 
 - /etc/nova/nova.conf
