@@ -128,7 +128,7 @@ The result will be something like this
     ]
 }
 ```
-
+----
 #### schema-transformer
 ##### Install
 ```
