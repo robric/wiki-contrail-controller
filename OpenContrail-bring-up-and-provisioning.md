@@ -80,8 +80,8 @@ admin_tenant_name = service
 ```
 service contrail-api start
 ```
-----
-#### Diagnostics/Verification of contrail-api
+
+##### Diagnostics/Verification
 Before contrail-api will listen on 8082 it has to be able to connect to rabbitmq, cassandra, zookeeper and the ifmap-server.
 You can check by
 ```
@@ -95,7 +95,7 @@ The command should return a list of several projects, including the project that
 If contrail-api is listening on TCP/8082 you can verfiy the service by
 
 ```
-curl -s -H "X-Auth-Token: $(keystone token-get | awk '/ id / {print $4}')" localhost:8082/projects | python -mjson.tool
+curl -s -H "X-Auth-Token: $(keystone token-get | awk '/ id / {print $4}')" api-server-ip:8082/projects | python -mjson.tool
 ```
 The result will be something like this
 ```
@@ -172,25 +172,20 @@ service contrail-schema start
 [DEFAULTS]
 zk_server_ip = x.x.x.x
 ```
-
-
-#### Load balanced services
-- api-server (port 8082).
-- discovery (port 5998).
-
-#### Diagnostics/Verification
-```
-curl http://api-server-address:8082/projects | python -mjson.tool
-```
-When multi_tenancy is enabled the http request to the api server requires a keystone auth_token.
-The command should return a list of several projects, including the project that contrail creates internally as well as all projects currently visible in keystone tenant-list.
+##### Diagnostics/Verification
 
 ```
-http://x.x.x.x:5998/services
+curl http://x.x.x.x:5998/services
 ```
 
 Displays the services registered in the discovery server. Only one of the discovery servers will answer API requests in a multi node configuration. The others are in standby mode.
 The output should show one or more entries for: ApiServer, IfmapServer, Collector and xmpp-server.
+
+----
+#### Load balanced services
+- api-server (port 8082).
+- discovery (port 5998).
+
 
 ## Analytics
 
