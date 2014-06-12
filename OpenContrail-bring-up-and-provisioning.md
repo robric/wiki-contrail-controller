@@ -25,8 +25,27 @@ If rabbitmq is being used for openstack, we recommend that one uses the same ser
 Servers running control-node components should be time synchronized.
 
 ### Processes
+#### ifmap-server
+##### Install
+```
+apt-get install ifmap-server
+```
+##### Config
+- The ifmap-server works with default config when running on all the nodes that api-server runs; the config examples above assume that.
+- Authentication is defined in /etc/irond/basicauthusers.properties
+Each ifmap client requires a different username; typically api-server connects to local ifmap-server but control-nodes default to connecting to ifmap-server via discovery; in this case all control-nodes should have unique if map client ids.
+##### Running
+```
+service ifmap-server start
+```
+----
 #### api-server
+##### Install
+```
+apt-get install contrail-config
+```
 
+##### Config
 Example: /etc/contrail/contrail-api.conf
 ```
 [DEFAULTS]
@@ -56,8 +75,65 @@ admin_tenant_name = service
 - cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160".
 - zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
 
-#### schema-transformer
+##### Running
+```
+service contrail-api start
+```
+----
+#### Diagnostics/Verification of contrail-api
+Before contrail-api will listen on 8082 it has to be able to connect to rabbitmq, cassandra, zookeeper and the ifmap-server.
+You can check by
+```
+netstat -ntop|grep $(ps auxw|grep [c]ontrail-api|awk '{print $2}')
+```
+There you can see if the contrail-api process actually connects to those services. The log might not always say that it cannot connect.
 
+When multi_tenancy is enabled the http request to the api server requires a keystone auth_token.
+The command should return a list of several projects, including the project that contrail creates internally as well as all projects currently visible in keystone tenant-list.
+
+If contrail-api is listening on TCP/8082 you can verfiy the service by
+
+```
+curl -s -H "X-Auth-Token: $(keystone token-get | awk '/ id / {print $4}')" localhost:8082/projects | python -mjson.tool
+```
+The result will be something like this
+```
+{
+    "projects": [
+        {
+            "fq_name": [
+                "default-domain", 
+                "admin"
+            ], 
+            "href": "http://localhost:8082/project/61e4177f-d495-4a99-a5da-773dbb7769bf", 
+            "uuid": "61e4177f-d495-4a99-a5da-773dbb7769bf"
+        }, 
+        {
+            "fq_name": [
+                "default-domain", 
+                "default-project"
+            ], 
+            "href": "http://localhost:8082/project/66823993-6175-4318-b9d2-77e3cbf8b069", 
+            "uuid": "66823993-6175-4318-b9d2-77e3cbf8b069"
+        }, 
+        {
+            "fq_name": [
+                "default-domain", 
+                "services"
+            ], 
+            "href": "http://localhost:8082/project/7ca8dc77-b965-44c1-b7ae-e1580286cbb5", 
+            "uuid": "7ca8dc77-b965-44c1-b7ae-e1580286cbb5"
+        }
+    ]
+}
+```
+
+#### schema-transformer
+##### Install
+```
+apt-get install contrail-config
+```
+##### Config
 - Example: /etc/contrail/contrail-schema.conf
 ```
 [DEFAULTS]
@@ -84,23 +160,24 @@ AUTHN_URL = /v2.0/tokens
 ```
 
 vnc_api_lib.ini is required in the systems that run schema-transformer and neutron-server plugin. It is accessed from the neutron process.
-
+##### Running
+```
+service contrail-schema start
+```
+----
 #### discovery
 - Example: /etc/contrail/contrail-discovery.conf
 ```
 [DEFAULTS]
 zk_server_ip = x.x.x.x
 ```
-#### ifmap-server
-- The ifmap-server works with default config when running on all the nodes that api-server runs; the config examples above assume that.
-- Authentication is defined in /etc/irond/basicauthusers.properties
-Each ifmap client requires a different username; typically api-server connects to local ifmap-server but control-nodes default to connecting to ifmap-server via discovery; in this case all control-nodes should have unique if map client ids.
+
 
 #### Load balanced services
 - api-server (port 8082).
 - discovery (port 5998).
 
-#### Diagnostics
+#### Diagnostics/Verification
 ```
 curl http://api-server-address:8082/projects | python -mjson.tool
 ```
