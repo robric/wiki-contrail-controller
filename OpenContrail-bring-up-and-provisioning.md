@@ -34,6 +34,7 @@ apt-get install ifmap-server
 - The ifmap-server works with default config when running on all the nodes that api-server runs; the config examples above assume that.
 - Authentication is defined in /etc/irond/basicauthusers.properties
 Each ifmap client requires a different username; typically api-server connects to local ifmap-server but control-nodes default to connecting to ifmap-server via discovery; in this case all control-nodes should have unique if map client ids.
+
 ##### Running
 ```
 service ifmap-server start
