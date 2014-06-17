@@ -413,6 +413,11 @@ iface vhost0 inet static
         netmask 255.255.254.0
 ```
 In the example above eth1 is used as VM data interface.
+
+* known Ubuntu-12.04 LTS qemu issue and workaround
+```
+http://wiki.libvirt.org/page/Guest_won%27t_start_-_warning:_could_not_open_/dev/net/tun_%28%27generic_ethernet%27_interface%29
+```
 ### Running
 ``` 
 service nova-compute restart
