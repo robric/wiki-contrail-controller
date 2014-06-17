@@ -32,7 +32,7 @@ apt-get install ifmap-server
 ```
 ##### Config
 - The ifmap-server works with default config when running on all the nodes that api-server runs; the config examples above assume that.
-- Authentication is defined in /etc/irond/basicauthusers.properties
+- Authentication is defined in /etc/ifmap-server/basicauthusers.properties
 Each ifmap client requires a different username; typically api-server connects to local ifmap-server but control-nodes default to connecting to ifmap-server via discovery; in this case all control-nodes should have unique if map client ids.
 
 ##### Running
@@ -51,12 +51,14 @@ Example: /etc/contrail/contrail-api.conf
 ```
 [DEFAULTS]
 log_file = /var/log/contrail/contrail-api.log
+ifmap_server_ip = x.x.x.x 
 ifmap_username = api-server
 ifmap_password = api-server
 cassandra_server_list = x.x.x.x:9160
 auth = keystone
 multi_tenancy = True
 disc_server_ip = x.x.x.x
+disc_server_port = 5998
 zk_server_ip = x.x.x.x:2181
 rabbit_server = x.x.x.x
 rabbit_password = xxxxxxxxxxxxxxxxxxxx
@@ -75,6 +77,7 @@ admin_tenant_name = service
 - disc_server_ip should be the load balancer address. The LB should front-end port 5998 which is served by the discovery process. Only a single discovery server answers requires (master election via zookeeper); defaults to localhost.
 - cassandra_server_list is a space separated list in the form: "x.x.x.x:9160 y.y.y.y:9160".
 - zk_server_ip is a comma separated list in the form "x.x.x.x:2181,y.y.y.y:2181" and defaults to localhost.
+- ifmap_server_ip is the IP where the ifmap-server is running (might be localhost)
 
 ##### Running
 ```
@@ -336,8 +339,13 @@ module.exports = config;
 
 ## Control plane
 
-### Processes
-#### control-node
+### control-node
+#### Install
+```
+apt-get install contrail-control
+```
+
+#### Config
 Example: /etc/contrail/control-node.conf
 ```
 [DISCOVERY]
@@ -348,8 +356,15 @@ user=control-node-<N>
 password=control-node-<N>
 ```
 
-Where N should be the instance-id (e.g. 1, 2, ...)
+* N should be the instance-id (e.g. 1, 2, ...)
+* each username/password has to be defined in in /etc/ifmap-server/basicauthusers.properties and ifmap-server restarted
 
+#### Running
+```
+service ifmap-server restart
+```
+
+#### Verification/Diagnostics
 For diagnostics check whether the control-node process has an established TCP session to port 8443 using "netstat -ntap".
 
 * dns deamon
