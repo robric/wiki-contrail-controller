@@ -414,6 +414,11 @@ iface vhost0 inet static
 ```
 In the example above eth1 is used as VM data interface.
 
+- /etc/contrail/contrail-vrouter-agent.conf
+```
+??? FIXME
+```
+
 * known Ubuntu-12.04 LTS qemu issue and workaround
 ```
 http://wiki.libvirt.org/page/Guest_won%27t_start_-_warning:_could_not_open_/dev/net/tun_%28%27generic_ethernet%27_interface%29
@@ -421,6 +426,7 @@ http://wiki.libvirt.org/page/Guest_won%27t_start_-_warning:_could_not_open_/dev/
 ### Running
 ``` 
 service nova-compute restart
+service contrail-vrouter-agent start
 ```
 
 ====
