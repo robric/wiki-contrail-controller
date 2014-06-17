@@ -356,9 +356,16 @@ For diagnostics check whether the control-node process has an established TCP se
 
 Recommendation: 2 control-nodes.
 
+=====
 ## Compute node
+### Install
 * vrouter agent
 * vrouter kernel module
+* nova contrail driver
+```
+apt-get install contrail-vrouter-agent contrail-nova-driver 
+```
+* load the vrouter module
 ```
 modprobe vrouter
 ```
@@ -366,8 +373,8 @@ modprobe vrouter
 ```
 alias bridge off
 ```
-* nova vif driver
 
+### Config
 - /etc/nova/nova.conf
 ```
 [DEFAULT]
@@ -391,17 +398,26 @@ iface vhost0 inet static
         netmask 255.255.254.0
 ```
 In the example above eth1 is used as VM data interface.
+### Running
+``` 
+service nova-compute restart
+```
 
-## Neutron
+====
+## Neutron Server
+### Install
 * neutron opencontrail plugin
-neutron-plugin-contrail package
-- Requires the following configuration in neutron.conf
+```
+apt-get install neutron-plugin-contrail
+```
+### Config
+- neutron.conf
 ```
 core_plugin = neutron_plugin_contrail.plugins.opencontrail.contrailplugin.ContrailPlugin
 api_extensions_path = extensions:/usr/lib/python2.7/dist-packages/neutron_plugin_contrail/extensions
 ```
 
-* /etc/neutron/plugins/opencontrail/ContrailPlugin.ini
+- /etc/neutron/plugins/opencontrail/ContrailPlugin.ini
 ```
 [APISERVER]
 multi_tenancy = True
@@ -410,4 +426,8 @@ admin_user = neutron
 admin_password = 
 admin_tenant_name = service
 auth_url = http://x.x.x.x:35357/v2.0
+```
+### Running
+```
+service neutron-server restart
 ```
