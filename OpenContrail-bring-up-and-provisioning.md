@@ -409,6 +409,7 @@ auto vhost0
 iface vhost0 inet static
         pre-up vif --create vhost0 --mac $(cat /sys/class/net/eth1/address)
         pre-up vif --add vhost0 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --mode x --type vhost
+        pre-up vif --add eth1 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --mode x --type physical
         address 192.168.2.252
         netmask 255.255.254.0
 ```
