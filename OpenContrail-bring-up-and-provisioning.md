@@ -383,6 +383,8 @@ apt-get install contrail-vrouter-agent contrail-nova-driver
 * load the vrouter module
 ```
 modprobe vrouter
+# autoload vrouter on boot (Ubuntu)
+echo vrouter >> /etc/modules
 ```
 * for CentOS /etc/modprobe.conf (otherwise kernel panic)
 ```
