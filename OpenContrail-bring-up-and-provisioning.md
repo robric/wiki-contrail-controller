@@ -422,6 +422,22 @@ In the example above eth1 is used as VM data interface.
 ??? FIXME
 ```
 
+* for CentOS /etc/contrail/agent.conf
+```
+<config>
+    <agent>
+        
+        <vhost>
+            <name>vhost0</name>
+            <ip-address>192.168.2.252/23</ip-address><gateway>192.168.2.1</gateway></vhost>
+        <eth-port>
+            <name>eth1</name></eth-port>
+        <metadata-proxy>
+            <shared-secret />
+        </metadata-proxy>
+    <control><ip-address>192.168.2.252</ip-address></control><discovery-server><ip-address>192.168.2.253</ip-address><control-instances>1</control-instances></discovery-server></agent>
+```
+
 * known Ubuntu-12.04 LTS qemu issue and workaround
 ```
 http://wiki.libvirt.org/page/Guest_won%27t_start_-_warning:_could_not_open_/dev/net/tun_%28%27generic_ethernet%27_interface%29
