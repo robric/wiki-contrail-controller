@@ -32,7 +32,7 @@ Some one should review and (optionally some one else) must approve the changes. 
     Some times, zuul, the queue manager loses track of a review entry. In that case, one should abandon and restore the change again to feed the review entry back into the pipeline. Fresh tests are triggered, upon completion of which, changes would get merged upstream (provided review and approvals are complete)
 
 3. How to submit a patch to an already submitted entry ?
-    Please see OpenStack documentation. In short, checkout the previous entry changes (git review --download <review-entry-id>, make changes, git commit --amend, and git review again)
+    Please see OpenStack documentation. In short, checkout the previous entry changes (git review --download <review-entry-id>, make changes, git commit --amend, and git review again).  If the sandbox and branch where the original changes were made is still available, the first step (i.e. git review --download) can be skipped. Note that git-review fails if the change has been abandoned.
 
 4. How long does it take for the tests to complete ?
     At the moment, it takes 4 to 5 hours. Work is in progress to speed this up, while at the same time add additional tests that run in parallel.
