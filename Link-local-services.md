@@ -8,9 +8,10 @@ python /opt/contrail/utils/provision_linklocal.py --admin_user \<user\> --admin_
 --linklocal_service_name \<name\> --linklocal_service_ip \<169.254.0.x\> --linklocal_service_port \<port\> 
 --ipfabric_service_ip \<fabric-ip\> --ipfabric_service_port \<fabric-port\>
 
-### Example
+### Example : Configure NTP
 
-To configure NTP link local service:
+To configure NTP link local service, run the following on the config node:
+
 python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_password <passwd> --linklocal_service_name ntp-service --linklocal_service_ip 169.254.169.254 --linklocal_service_port 123 --ipfabric_service_ip 172.17.28.5 --ipfabric_service_port 123
 
 On the VM, to set the date and time via NTP, run:
