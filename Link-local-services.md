@@ -7,3 +7,11 @@ Link local service can be configured using the webui (Configure -> Infrastructur
 python /opt/contrail/utils/provision_linklocal.py --admin_user \<user\> --admin_password \<passwd\> 
 --linklocal_service_name \<name\> --linklocal_service_ip \<169.254.0.x\> --linklocal_service_port \<port\> 
 --ipfabric_service_ip \<fabric-ip\> --ipfabric_service_port \<fabric-port\>
+
+### Example
+
+To configure NTP link local service:
+python /opt/contrail/utils/provision_linklocal.py --admin_user <user> --admin_password <passwd> --linklocal_service_name ntp-service --linklocal_service_ip 169.254.169.254 --linklocal_service_port 123 --ipfabric_service_ip 172.17.28.5 --ipfabric_service_port 123
+
+On the VM, to set the date and time via NTP, run:
+sudo ntpdate 169.254.169.254
