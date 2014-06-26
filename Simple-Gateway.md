@@ -133,9 +133,9 @@ The diagram below shows a summary of configuration.
 # Dynamic Virtual Gateway
 From R1.1, Virtual Gateway can be created & deleted dynamically by sending thrift messages to the vrouter agent. The following thrift messages are defined:
 
-    1. AddVirtualGateway to add a virtual gateway
-    2. DeleteVirtualGateway to delete a virtual gateway
-    3. ConnectForVirtualGateway can be used by stateful clients, which allows audit of virtual gateway configuration. Upon a new ConnectForVirtualGateway request, one minute is given for the configuration to be redone. Any older virtual gateway configuration remaining after this time is deleted.
+ 1. AddVirtualGateway to add a virtual gateway
+ 2. DeleteVirtualGateway to delete a virtual gateway
+ 3. ConnectForVirtualGateway can be used by stateful clients, which allows audit of virtual gateway configuration. Upon a new ConnectForVirtualGateway request, one minute is given for the configuration to be redone. Any older virtual gateway configuration remaining after this time is deleted.
 
 ## To create a virtual gateway
 * Run the following script on the compute node where the virtual gateway will be created. This script enables forwarding on the node, creates the required interface, adds it to vrouter, adds required routes in the host OS and sends thrift message to the vrouter agent to create the virtual gateway.
