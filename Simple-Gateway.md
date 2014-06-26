@@ -135,10 +135,10 @@ From R1.1, Virtual Gateway can be created & deleted dynamically by sending thrif
 
     1. AddVirtualGateway to add a virtual gateway
     2. DeleteVirtualGateway to delete a virtual gateway
-    3. ConnectForVirtualGateway can be used by stageful clients, which allows audit of virtual gateway configuration. Upon a new ConnectForVirtualGateway request, one minute is given for the configuration to be redone. Any older virtual gateway configuration remaining after this time is deleted.
+    3. ConnectForVirtualGateway can be used by stateful clients, which allows audit of virtual gateway configuration. Upon a new ConnectForVirtualGateway request, one minute is given for the configuration to be redone. Any older virtual gateway configuration remaining after this time is deleted.
 
 ## To create a virtual gateway
-* Run the following script on the compute node where the virtual gateway will be created. This script enables forwarding on the node, creates the required interface, adds it to vrouter, adds required routes in the host OS and send the thrift message to the vrouter agent to create the virtual gateway.
+* Run the following script on the compute node where the virtual gateway will be created. This script enables forwarding on the node, creates the required interface, adds it to vrouter, adds required routes in the host OS and sends thrift message to the vrouter agent to create the virtual gateway.
 
     For example, to create interface vgw1 with subnets 20.30.40.0/24 and 30.40.50.0/24 in vrf default-domain:admin:vn1:vn1, run
 
