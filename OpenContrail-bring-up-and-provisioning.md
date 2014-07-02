@@ -421,20 +421,20 @@ In the example above eth1 is used as VM data interface.
 ```
 auto eth1
 iface eth1 inet static
-      address 0.0.0.0
-      up ifconfig $IFACE up
-      down ifconfig $IFACE down
+    address 0.0.0.0
+    up ifconfig $IFACE up
+    down ifconfig $IFACE down
 
 auto vhost0
 iface vhost0 inet static
-	pre-up ip link add type vhost
-	pre-up vif --add eth1 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --vhost-phys --type physical
-        pre-up vif --add vhost0 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --type vhost --xconnect eth1
-        address 192.168.99.253
-        netmask 255.255.254.0
-	post-down vif --list | awk '/^vif.*OS: vhost0/ {split($1, arr, "\/"); print arr[2];}' | xargs vif --delete
-	post-down vif --list | awk '/^vif.*OS: eth1/ {split($1, arr, "\/"); print arr[2];}' | xargs vif --delete
-	post-down ip link delete vhost0
+    pre-up ip link add type vhost
+    pre-up vif --add eth1 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --vhost-phys --type physical
+    pre-up vif --add vhost0 --mac $(cat /sys/class/net/eth1/address) --vrf 0 --type vhost --xconnect eth1
+    address 192.168.99.253
+    netmask 255.255.254.0
+    post-down vif --list | awk '/^vif.*OS: vhost0/ {split($1, arr, "\/"); print arr[2];}' | xargs vif --delete
+    post-down vif --list | awk '/^vif.*OS: eth1/ {split($1, arr, "\/"); print arr[2];}' | xargs vif --delete
+    post-down ip link delete vhost0
 ```
 
 - /etc/contrail/contrail-vrouter-agent.conf
