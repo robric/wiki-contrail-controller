@@ -417,8 +417,14 @@ iface vhost0 inet static
 ```
 In the example above eth1 is used as VM data interface.
 
-- Example /etc/network/interfaces (>= R1.1/master)
+- Example /etc/network/interfaces.d/vhost0.cfg (>= R1.1/master)
 ```
+auto eth1
+iface eth1 inet static
+      address 0.0.0.0
+      up ifconfig $IFACE up
+      down ifconfig $IFACE down
+
 auto vhost0
 iface vhost0 inet static
 	pre-up ip link add type vhost
