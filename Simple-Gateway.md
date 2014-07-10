@@ -138,14 +138,17 @@ From R1.1, Virtual Gateway can be created & deleted dynamically by sending thrif
  3. ConnectForVirtualGateway can be used by stateful clients, which allows audit of virtual gateway configuration. Upon a new ConnectForVirtualGateway request, one minute is given for the configuration to be redone. Any older virtual gateway configuration remaining after this time is deleted.
 
 ## To create a virtual gateway
-* Run the following script on the compute node where the virtual gateway will be created. This script enables forwarding on the node, creates the required interface, adds it to vrouter, adds required routes in the host OS and sends thrift message to the vrouter agent to create the virtual gateway.
+Run the following script on the compute node where the virtual gateway will be created. This script enables forwarding on the node, creates the required interface, adds it to vrouter, adds required routes in the host OS and sends thrift message to the vrouter agent to create the virtual gateway.
 
     For example, to create interface vgw1 with subnets 20.30.40.0/24 and 30.40.50.0/24 in vrf default-domain:admin:vn1:vn1, run
 
     `python /opt/contrail/utils/provision_vgw_interface.py --oper create --interface vgw1 --subnets 20.30.40.0/24 30.40.50.0/24 --routes 8.8.8.0/24 9.9.9.0/24 --vrf default-domain:admin:vn1:vn1`
 
+   * Option --subnets specifies list of subnets defined in virtual-network vn1
+   * Option --routes specifies routes in public-network injected into vn1. In example above, the Virtual machines in vn1 can access subnets 8.8.8.0/24 and 9.9.9.0/24 in public network
+
 ## To delete a virtual gateway
-*  Run the following script on the compute node where the virtual gateway was created. This sends the DeleteVirtualGateway thrift message to the vrouter agent to delete the virtual gateway, deletes the interface from vrouter and deletes the routes added in the host OS.
+Run the following script on the compute node where the virtual gateway was created. This sends the DeleteVirtualGateway thrift message to the vrouter agent to delete the virtual gateway, deletes the interface from vrouter and deletes the routes added in the host OS.
 
     `python /opt/contrail/utils/provision_vgw_interface.py --oper delete --interface vgw1 --subnets 20.30.40.0/24 30.40.50.0/24`
 
