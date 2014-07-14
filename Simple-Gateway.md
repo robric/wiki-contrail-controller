@@ -1,106 +1,108 @@
 # Introduction
 
-Every virtual-network has a routing-instance associated with it. The routing-instance defines network connectivity for the virtual-machines spawned in the corresponding virtual-network. By default, the routing-instance contains routes only for the virtual-machines spawned in the virtual-network. Network policies allow network connectivity between two virtual-networks. 
- 
+Every virtual-network has a routing-instance associated with it. The routing-instance defines network connectivity for the virtual-machines spawned in the corresponding virtual-network. By default, the routing-instance contains routes only for virtual-machines spawned in the virtual-network. Connectivity between virtual-networks can be achieved by defining Network policies. 
+
 Virtual-Networks do not have access to "public" network. "public" network here can be the IP Fabric or external networks across the IP Fabric. A Gateway must be used to provide connectivity to "public" network from a virtual-network. In traditional deployments, a routing device such as Juniper MX can act as a gateway.
  
-Simple Gateway is a restricted implementation of gateway which can be used for experimental purposes. Simple gateway provides access to "public" network to a single virtual-network.
+Simple Gateway is a restricted implementation of gateway which can be used for experimental purposes. Simple gateway provides access to "public" network to virtual-networks.
 
-# Configuration
+# Working of Simple Gateway Work
 
-Simple Gateway uses following configuration parameters in the devstack "localrc" file. The routes given below in example are derived from the configuration parameters given below.
- 
-## CONTRAIL_VGW_PUBLIC_NETWORK
-A routing-instance is internally created for every virtual-network defined. CONTRAIL_VGW_PUBLIC_NETWORK must specify the routing-instance created for virtual-network that needs "public" access. The routing-instance must be specified as fully-qualified name (FQN).
- 
-The FQN is derived from tenant, project and virtual-network according to format tenant:project:virtual-network:virtual-network.
- 
-Example: If tenant=default-domain, project=admin and virtual-network=net1, FQN for routing-instance created for virtual-network "net1" is default-domain:admin:net1:net1
- 
-## CONTRAIL_VGW_PUBLIC_SUBNET
-Configuration variable CONTRAIL_VGW_PUBLIC_SUBNET specifies subnet of virtual-network (net1) needing "public" access. This subnet must be routable in the "public" network.
-Example: 192.168.1.0/24
- 
-## CONTRAIL_VGW_INTERFACE
-Simple-gateway creates a tap interface with this name. The tap interface is added in vrouter in context of routing-instance for the virtual-network. The interface carries packets between vrouter and host-os belonging to routing-instance CONTRAIL_VGW_PUBLIC_NETWORK.
- 
-Packets from virtual-network destined to "public" network are sent over this interface from vrouter. Also, packets from public network destined to virtual-network are sent from host-os to vrouter on this interface.
- 
-Example: vgw
+Working of Simple Gateway is explained by an example.
 
-# Example Scenario
+## Setup without Simple Gateway
+The diagram below shows a setup when Simple Gateway is not configured
 
-Example configuration :
-If "public" access is needed for a virtual-network with following attributes 
-tenant = default-domain
-project = admin
-network-name = net1
-subnet = 192.168.1.0/24
- 
-## Devstack Configuration
+1. A Virtual-Network default-domain:admin:net1 is configured with subnet 192.168.1.0/24
+1. Routing instance default-domain:admin:net1:net1 is associated with virtual-network default-domain:admin:net1
+1. There is a virtual-machine with IP 192.168.1.253 spawned in net1
+1. Virtual machine is spawned on compute server-1
+1. Interface vhost0 is in host-os of server-1 and is assigned IP 10.1.1.1/24
+1. Interface vhost0 is added to vrouter in routing-instance FABRIC
+1. Simple Gateway is not configured
 
-Add following lines in the "localrc" file for stack.sh
- 
-CONTRAIL_VGW_INTERFACE=vgw
-CONTRAIL_VGW_PUBLIC_SUBNET=192.168.1.0/24
-CONTRAIL_VGW_PUBLIC_NETWORK=default-domain:admin:net1:net1
-
-## Vrouter and host-os configuration
-
-The diagram below shows a summary of configuration.
-
+> 
     +-------------------------------------------------------------------+
     |                  Host-OS Networking Stack                         |
     |                  0.0.0.0/24 => 10.1.1.254                         |
-    |                  192.168.1.253/24 => vgw                          |
+    |                                                                   |
     |                                              10.1.1.1/24          |
-    +---------+----------------------------------------+----------------+
-              |                                        |
-              |vgw                                     |vhost0
-              |                                        |
-    +---------+----------------------------------------+----------------+
-    |         |                                        |                |
-    |+--------+-------------------+         +----------+-------------+  |
-    ||NET1 Routing-Instance       |         | FABRIC Routing-Instance|  |
-    ||                            |         |                        |  |
-    ||0.0.0.0/0 => vgw            |         |192.168.1.0/24 => vhost0|  |
-    ||192.168.1.253/32 => tap0    |         |10.1.1.1/32=>vhost0     |  |
-    ||                            |         |10.1.1.253/32=>eth0     |  |
-    |+-------+- ------------------+         +------------------------+  |
-    |        |                                                          |
-    |        |                    VROUTER                               |
-    +--------+-----------------------------------------+----------------+
+    +--------------------------------------------------+----------------+
+                                                       |vhost0
+                                                       |
+                                                       |
+    +--------------------------------------------------+-----------------+
+    |                                                  |                 |
+    |   VRF:default-domain:admin:net1:net1             | VRF : Fabric    |
+    |+-------------------------------+      +----------+--------------+  |
+    ||                               |      |                         |  |
+    || 192.168.1.253/32 => tap0      |      | 10.1.1.1/32 => vhost0   |  |
+    || 192.168.1.0/24 => drop        |      |                         |  |
+    |+-------+- ---------------------+      +----------+--------------+  |
+    |        |                    VROUTER              |                 |
+    +--------+-----------------------------------------+-----------------+
+             | tap0                                    |eth0
              |                                         |
-             |tap0                                     |eth0
     +--------+------------+                            |
-    |  192.168.1.253/24   |                             
-    |                     |
-    |   VM (VN=net1)      |
+    |  192.168.1.253/24   |                 -----------+------------            
+    |                     |                             Fabric-Network 
+    |   VM-1              |
     +---------------------+
- 
-*NET1  is short form for default-project:admin:net1:net1
+    
 
-*FABRIC is the routing-instance for traffic on fabric-network
+## Setup with Simple Gateway
 
-1. Virtual-network with tenant=default-domain, project=admin and virtual-network=net1 needs "public" access. FQN for routing-instance for the virtual-network is default-domain:admin:net1:net1. The virtual-network is configued with subnet 192.168.1.0/24
-1. A virtual-machine is spawned in virtual-network net1 with IP address 192.168.1.253
+The diagram below shows a setup with Simple Gateway configured for Virtual-Network default-domain:admin:net1.
+
+Simple Gateway make use of Gateway Interface (**vgw** below) to provides connectivity between routing-instances FABRIC and default-domain:admin:net1:net1.
+
+Packets between the FABRIC and default-domain:admin:net1:net1 
+
+>
+    +-------------------------------------------------------------------+
+    |                  Host-OS Networking Stack                         |
+    |                  0.0.0.0/24 => 10.1.1.254                         |
+    |                  192.168.1.253/24 => vgw*                         |
+    |                                              10.1.1.1/24          |
+    +----+---------------------------------------------+----------------+
+         |vgw                                          |vhost0
+         |                                             |
+         |                                             |
+    +----+---------------------------------------------+----------------+
+    |    | VRF: default-domain:admin:net1:net1         | VRF: FABRIC    |
+    |+---+--------------------------+       +----------+-------------+  |
+    || 192.168.1.253/32 => tap0     |       |10.1.1.1/32 => vhost0   |  |
+    || 192.168.1.0/24 => drop       |       |192.168.1.0/24 => vhost0|  |
+    || 0.0.0.0/0 => vgw             |       |                        |  |
+    ||                              |       |                        |  |
+    |+---------+--------------------+       +------------------------+  |
+    |          |                  VROUTER                               |
+    +----------+---------------------------------------+----------------+
+               |tap0                                   |eth0
+    +---+------+----------+                            |
+    |  192.168.1.253/24   |                 -----------+------------            
+    |                     |                             Fabric-Network 
+    |   VM-1              |
+    +---------------------+
+    Routes marked with (*) are added by Simple Gateway feature.    
+
+1. Simple Gateway is configured for Virtual-Network default-domain:admin:net1
+1. Gateway interface **vgw** provides connectivity between routing instance default-domain:admin:net1:net1 and FABRIC.
+   1. IP address is not configured for Gateway interface **vgw**
 1. Host-OS is configured with following,
-   1. The routing-instance FABRIC represents the IP-Fabric.
-   1. vhost0 interface is configured with IP 10.1.1.1/24. 
-   1. I nterface vgw in host-os does not have any IP address.
-   1. The host-os is n ot aware of any routing-instances.
-   1. Routing is enabled in host-os to route packets between vhost0 and vgw
-   1. Route is added for 192.168.1.0/24 pointing to vgw interface. Any packet destined to 192.168.1.0/24 from host-os are transmitted on this interface.
+   1. Two INET interfaces are added to host-os - **vgw** and **vhost0**
+   1. Host-os is not aware of routing-instances, so **vgw** and **vhost0** are part of same routing-instance in host-os
+   1. Simple Gateway adds route 192.168.1.0/24 pointing to vgw interface is added to host-os. This route will ensure any packet destined to VM is sent to Vrouter on **vgw** interface.
+
 1. vrouter is configured with following,
-   1. A routing-instance with name FABRIC is created for IP Fabric.
+   1. Routing-instance FABRIC is created for Fabric Network.
        1. Interface vhost0 is added to routing-instance FABRIC
-       1. Interface eth0 is added to routing-instance FABRIC. The interface connected to IP Fabric.
-       1. Default route is added pointing to interface vgw. This route will ensure packets destined to "public" network are sent to host-os
-       1. The default route is exported in routing-instance NET1 to other compute nodes using BGP.
-   1. A routing-instance for default-domain:admin:net1:net1 corresponding to virtual-network net1. The routing-instance is shown in abbrevated form as NET1 in diagram below.
-      1. Interface vgw is added to routing-instance NET1
-      1. Routing-instance NET1 has default-route pointing to interface tap0.
-      1. Routing-instance NET1 contains routes to virtual-machines in the virtual-network
+       1. Interface eth0 (connected to Fabric Network) is added to routing-instance FABRIC.
+       1. Simple Gateway adds route 192.168.1.0/24 => vhost0 is added so that packets destined to virtual-network default-domain:admin:net1 are sent to host-os
+   1. Routing-instance default-domain:admin:net1:net1 is created for virtual-network default-domain:admin:net1.
+      1. Interface vgw is added to routing-instance default-domain:admin:net1:net1
+      1. Simple Gateway adds a default route 0.0.0.0/0 pointing to interface vgw.
+         Packets in routing-instance default-domain:admin:net1:net hitting this route are sent to host-os on **vgw** interface. The host-os will route packets to FABRIC network over vhost0 interface.
 
 # Packet flow
 
@@ -113,7 +115,7 @@ The diagram below shows a summary of configuration.
 1. Host-os does forwarding based on its routing table and forwards packet on vhost0 interface
 1. Packets transmitted on vhost0 are received by vrouter
 1. vhost0 interface is added in routing-instance FABRIC
-1. Route for 10.1.1.253 in routing-instance FABRIC points to eth0 interface
+1. Routing for 10.1.1.253 in routing-instance FABRIC will result in packet being transmitted on eth0 interface
 1. vrouter transmits packet on eth0 interface
 1. Host 10.1.1.253 on fabric receives the packet
 
@@ -130,24 +132,39 @@ The diagram below shows a summary of configuration.
 1. vrouter transmits packet on tap0 interface
 1. virtual-machine receives packet destined to 192.168.1.253
 
-# Dynamic Virtual Gateway
+# Configuration
+
+Simple Gateway can be configured with 3 different options.
+
+## Static Gateway using contrail-vrouter-agent.conf file
+
+One or more Gateway Interfaces can be configured in contrail-vrouter-agent.conf file. Each Gateway Interface can take following parameters,
+
+* **interface=vgw** : Gateway Interface name
+* **routing_instance=default-domain:admin:public:public** : Name of the routing_instance for which gateway is being configured
+* **ip_block=1.1.1.0/24** : List of subnet addresses allocated for the virtual-network. Route with this subnet are added to both host-os and routing-instance for FABRIC. Multiple subnets are represented by separating each with a space
+* **routes=10.10.10.1/24 11.11.11.1/24** : List of subnets in public network that are reachable from virtual-network. Routes with this subnet are added to routing-instance configured above. Multiple routes are represented by separating each with a space
+
+Any change in gateway configuration will be effective on next restart of agent.
+
+## Dynamic Simple Gateway
 From R1.1, Virtual Gateway can be created & deleted dynamically by sending thrift messages to the vrouter agent. The following thrift messages are defined:
 
  1. AddVirtualGateway to add a virtual gateway
  2. DeleteVirtualGateway to delete a virtual gateway
  3. ConnectForVirtualGateway can be used by stateful clients, which allows audit of virtual gateway configuration. Upon a new ConnectForVirtualGateway request, one minute is given for the configuration to be redone. Any older virtual gateway configuration remaining after this time is deleted.
 
-## To create a virtual gateway
+### To create a virtual gateway
 Run the following script on the compute node where the virtual gateway will be created. This script enables forwarding on the node, creates the required interface, adds it to vrouter, adds required routes in the host OS and sends thrift message to the vrouter agent to create the virtual gateway.
 
     For example, to create interface vgw1 with subnets 20.30.40.0/24 and 30.40.50.0/24 in vrf default-domain:admin:vn1:vn1, run
 
-    `python /opt/contrail/utils/provision_vgw_interface.py --oper create --interface vgw1 --subnets 20.30.40.0/24 30.40.50.0/24 --routes 8.8.8.0/24 9.9.9.0/24 --vrf default-domain:admin:vn1:vn1`
+    python /opt/contrail/utils/provision_vgw_interface.py --oper create --interface vgw1 --subnets 20.30.40.0/24 30.40.50.0/24 --routes 8.8.8.0/24 9.9.9.0/24 --vrf default-domain:admin:vn1:vn1
 
    * Option --subnets specifies list of subnets defined in virtual-network vn1
    * Option --routes specifies routes in public-network injected into vn1. In example above, the Virtual machines in vn1 can access subnets 8.8.8.0/24 and 9.9.9.0/24 in public network
 
-## To delete a virtual gateway
+### To delete a virtual gateway
 Run the following script on the compute node where the virtual gateway was created. This sends the DeleteVirtualGateway thrift message to the vrouter agent to delete the virtual gateway, deletes the interface from vrouter and deletes the routes added in the host OS.
 
     `python /opt/contrail/utils/provision_vgw_interface.py --oper delete --interface vgw1 --subnets 20.30.40.0/24 30.40.50.0/24`
@@ -156,6 +173,51 @@ If using a stateful client, send the ConnectForVirtualGateway thrift message to 
 
 **Note:**
 If the vrouter agent restarts or if  the compute node reboots, it is expected that the client will reconfigure again
+
+## Static Gateway in devstack
+
+Simple Gateway uses following configuration parameters in the devstack "localrc" file. The routes given below in example are derived from the configuration parameters given below.
+ 
+**CONTRAIL_VGW_PUBLIC_NETWORK** : Name of the routing_instance for which gateway is being configured.
+
+**CONTRAIL_VGW_PUBLIC_SUBNET** :  List of subnet addresses allocated for the virtual-network. Route with this subnet are added to both host-os and routing-instance for FABRIC. Multiple subnets are represented by separating each with a space
+ 
+**CONTRAIL_VGW_INTERFACE** : List of subnets in public network that are reachable from virtual-network. Routes with this subnet are added to routing-instance configured above. Multiple routes are represented by separating each with a space
+
+This method can only add default route 0.0.0.0/0 into routing-instance specified in CONTRAIL_VGW_PUBLIC_NETWORK.
+
+# Example Scenario
+
+Example configuration :
+
+1. Virtual Network default-domain:admin:net1 needs Simple Gateway
+1. Subnet 192.168.1.0/24 is configured for Virtual Network default-domain:admin:net1
+1. Virtual Network net1 needs access to subnets 8.8.8.0/24 and 9.9.9.0/24 in public network
+
+## contrail-vrouter-agent.conf Configuration
+interface=vgw
+
+routing_instance=default-domain:admin:net1:net1
+
+ip_blocks=192.168.1.0/24
+
+routes=8.8.8.0/24 9.9.9.0/24
+
+## Dynamic Simple Gateway Configuration
+
+Run following command
+`python /opt/contrail/utils/provision_vgw_interface.py --oper create --interface vgw1 --subnets 192.168.1.0/24  --routes 8.8.8.0/24 9.9.9.0/24 --vrf default-domain:admin:net1:net1`
+
+## Devstack Configuration
+Add following lines in the "localrc" file for stack.sh
+
+CONTRAIL_VGW_INTERFACE=vgw
+
+CONTRAIL_VGW_PUBLIC_SUBNET=192.168.1.0/24
+
+CONTRAIL_VGW_PUBLIC_NETWORK=default-domain:admin:net1:net1
+
+**NOTE** : This method can only add default route 0.0.0.0/0 into routing-instance specified in CONTRAIL_VGW_PUBLIC_NETWORK.
 
 # FAQ's
 
