@@ -104,6 +104,11 @@ Packets between the FABRIC and default-domain:admin:net1:net1
       1. Simple Gateway adds a default route 0.0.0.0/0 pointing to interface vgw.
          Packets in routing-instance default-domain:admin:net1:net hitting this route are sent to host-os on **vgw** interface. The host-os will route packets to FABRIC network over vhost0 interface.
 
+## Restrictions
+1. A single compute node can have Simple Gateway for multiple virtual-networks
+1. If multiple Virtual Networks have Simple Gateway on same compute node, they cannot have overlapping subnets. The host-os does not support routing-instances hence, all Gateway Interfaces in host-os are in same routing-instance. As a result, the subnets in Virtual Networks must not overlap. 
+1. Each Virtual-Network can have single Simple Gateway interface. ECMP is not yet supported.
+
 # Packet flow
 
 ## Packet from virtual-network (net1) to public network
