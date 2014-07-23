@@ -131,11 +131,12 @@ This process acts a registry for all contrail services. It exposes a REST API th
   * 5998 - public port
 
 ### Analytics Node
-#### OP server
-+ **Service Name** - contrail-opserver
+#### Analytics REST API Server
++ **Service Name** - contrail-analytics-api
 + **Ports**
   * 8081 - public port
 ### Collector
++ **Service Name** - contrail-collector
 + **Ports**
   * 8086 - public port
 ### Query Engine
