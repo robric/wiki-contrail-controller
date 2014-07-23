@@ -38,11 +38,8 @@
 
   Every instance of a analytics node runs the following processes:
   + contrail-collector
-  + contrail-opserver
-  + contrail-qe (query engine)
-  + redis-query
-  + redis-uve
-  + redis-sentinel
+  + contrail-analytics-api
+  + contrail-query-engine (query engine)
 
 * WebUI Node
 
@@ -135,10 +132,12 @@ This process acts a registry for all contrail services. It exposes a REST API th
 + **Service Name** - contrail-analytics-api
 + **Ports**
   * 8081 - public port
+
 ### Collector
 + **Service Name** - contrail-collector
 + **Ports**
   * 8086 - public port
+
 ### Query Engine
 
 ## WEBUI Role
