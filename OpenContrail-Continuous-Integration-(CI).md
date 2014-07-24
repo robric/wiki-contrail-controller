@@ -22,8 +22,6 @@ In order to use the new system, you need to
 6. Commit (This has to be done, after git review -s is successfully complete only)
 7. If necessary: apt-get -y install git-review (or yum -y install git-review)
      Please see [this](https://bugs.launchpad.net/git-review/+bug/1337701) if you get a pkg_resources.DistributionNotFound error
-***
-
 8. To backup your changes in your private repo (optional)
      Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo at github.com
      git remote-add <ur-private-repo>
