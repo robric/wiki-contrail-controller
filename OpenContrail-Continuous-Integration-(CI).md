@@ -13,7 +13,7 @@ In order to use the new system, you need to
 ## Code review process
 1. repo init, repo sync etc.
 2. cd controller (e.g.)
-3. git review -s
+3. git review -s (Only required, when you need to do 'git review' for the first time in this git repo)
        It asks for username. You must use the one setup in STEP USER step above (at review.opencontrail.org)
        If keys are correct, it setups a remote named gerrit in your git config
        git-hooks are setup to generate unique change-id with each commit
