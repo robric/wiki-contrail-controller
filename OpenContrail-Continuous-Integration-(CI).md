@@ -11,14 +11,23 @@ In order to use the new system, you need to
 3. Add your ssh public keys
 
 ## Code review process
-1. Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo
-2. Create a branch e.g. bugfix
-3. Make your changes
-4. Commit
-5. If necessary: apt-get -y install git-review (or yum -y install git-review)
-6. run "git review"
+1. repo init, repo sync etc.
+2. cd controller (e.g.)
+3. git review -s
+       It asks for username. You must use the one setup in STEP USER step above (at review.opencontrail.org)
+       If keys are correct, it setups a remote named gerrit in your git config
+       git-hooks are setup to generate unique change-id with each commit
+4. Create a branch e.g. git checkout -b bugfix github/master (tracking github/master at github.com/juniper/...)
+5. Make your changes
+6. Commit (This has to be done, after git review -s is successfully complete only)
+7. If necessary: apt-get -y install git-review (or yum -y install git-review)
+8. To backup your changes in your private repo (optional)
+     Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo at github.com
+     git remote-add <ur-private-repo>
+     git push <ur-private-repo> bugfix
+9. run "git review"
 
-First time when you run "git review", it asks for the user name. Please use the same that you used in step USER above.
+First time when you run "git review", it asks for the user name. Please use the same that you used in step USER above. But you should do "git review -s" first, which does the setup.
 
 If works correctly, a review entry is created in [review server](review.opencontrail.org) Jenkins jobs are run to verify your changes. Jenkins master can be accessed at [jenkins](jenkins.opencontrail.org)
 
