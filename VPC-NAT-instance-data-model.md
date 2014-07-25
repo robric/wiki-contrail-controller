@@ -1,6 +1,6 @@
 Below are the steps:
 
-1. Create a NAT service instance with public network as its right network and a fake network as its left network.
+1. Create a NAT service instance with public network as its right network and a fake network as its left network and auto_policy set to True
 2. Create a route-table object.
        route_table = RouteTable("my-route-table")
 3. Add a route with prefix=0.0.0.0/0 and next-hop as the service instance name to the route table.
