@@ -398,7 +398,7 @@ alias bridge off
 - /etc/nova/nova.conf
 ```
 [DEFAULT]
-network_api_class = nova.network.quantumv2.api.API
+network_api_class = nova.network.neutronv2.api.API
 libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver
 ```
 
