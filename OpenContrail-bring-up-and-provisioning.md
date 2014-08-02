@@ -24,6 +24,9 @@ If rabbitmq is being used for openstack, we recommend that one uses the same ser
 
 Servers running control-node components should be time synchronized.
 
+#### OpenStack APIs using SSL
+If the OpenStack API services that Contrail uses are wrapped in SSL, you will need to ensure that the CA certificate is installed on the contrail node(s). This can be done by adding the certificate to the `python-certifi` module's `cacert.pem` file, which on Ubuntu 12.04 is located at `/usr/lib/python2.7/dist-packages/certifi/cacert.pem`.
+
 ### Processes
 #### ifmap-server
 ##### Install
