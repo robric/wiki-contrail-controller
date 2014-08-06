@@ -12,7 +12,7 @@ In order to use the new system, you need to
     2. Select (add if necessary) preferred email address to be same as the one used in your [github] (github.com/Junuper) and launch-pad
 3. Add your ssh public keys
 
-## Code review process
+### Code review process
 1. repo init, repo sync etc.
 2. cd controller (e.g.)
 3. git review -s (Only required, when you need to do 'git review' for the first time in this git repo)
@@ -36,7 +36,7 @@ If works correctly, a review entry is created in [review server](review.opencont
 
 Some one should review and (optionally some one else) must approve the changes. If jenkins job verification also succeeds, the changes get automatically merged and pushed out to [github repo](github.com/Juniper/contrail-controller)
 
-# Interdependent changes across different projects (git repos)
+## Interdependent changes across different projects (git repos)
 If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. In such cases, please follow this process.
 
 o Make your changes and do 'git review' for all the change sets necessary.
