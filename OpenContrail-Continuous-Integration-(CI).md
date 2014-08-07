@@ -67,7 +67,7 @@ IOW, we follow what CI is doing for all other independent commits, thus keeping 
 5. How to find out which unit test failure caused the Zuul build failure?
 The link seems to be broken. For example, https://jenkins.opencontrail.org/job/ci-contrail-controller-unittest/611/ is not working
 
-****eg. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.
+### eg. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.
 
 git clone git@github.com:rombie/contrail-controller.git contrail-controller            
 cd contrail-controller                                                                    
