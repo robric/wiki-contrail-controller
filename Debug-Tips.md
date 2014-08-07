@@ -31,3 +31,9 @@ default-domain:default-project:default-virtual-network 3795cb36-1338-4292-936a-5
 default-domain:default-project:ip-fabric 8adc0fdd-674f-44cd-ac1b-87854dd0ec87
 default-domain:demo:right 6884a3b2-cfbe-4fff-88bb-52ef36146e0e
 ```
+
+# Discovery Service
+
+Check ip for clients
+
+curl "http://node_ip:5998/clients.json" | python -mjson.tool
