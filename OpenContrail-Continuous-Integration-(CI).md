@@ -39,14 +39,13 @@ Some one should review and (optionally some one else) must approve the changes. 
 ## Interdependent changes across different projects (git repos)
 If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. In such cases, please follow this process.
 
-o Make your changes and do 'git review' for all the change sets necessary.
-o Get your changes reviewed and approved
-o Stand alone changes, which does not break (build and tests) automatically will get merged via the usual CI process
-o Run single node sanity tests (fab run_sanity:ci_sanity) using your image in both centos and in ubuntu
-   (External to Juniper folks can request assistance from ci-admin@opencontrail.org for this part)
-o Email the test results URL and all review entry URLs to ci-admin@opencontrail.org with a request to merge the changes
-o For controller project, one has to run and send "scons test" result output as well. (exit code must be 0).
-o CI Team can then do the needful to get the changes merged together.
+* Make your changes and do 'git review' for all the change sets necessary.
+* Get your changes reviewed and approved
+* Stand alone changes, which does not break (build and tests) automatically will get merged via the usual CI process
+* Run single node sanity tests (fab run_sanity:ci_sanity) using your image in both centos and in ubuntu (External to Juniper folks can request assistance from ci-admin@opencontrail.org for this part)
+* Email the test results URL and all review entry URLs to ci-admin@opencontrail.org with a request to merge the changes
+* For controller project, one has to run and send "scons test" result output as well. (exit code must be 0).
+* CI Team can then do the needful to get the changes merged together.
 
 IOW, we follow what CI is doing for all other independent commits, thus keeping the build sane.
 
