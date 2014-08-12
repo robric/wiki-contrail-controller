@@ -3,7 +3,7 @@ The following are the DHCP options, their options names and expected values to b
  DHCP Code  DHCP opt_name                          DHCP opt_value
 
    1        subnet-mask                            Single IP
-   2        ime-offset                             32-bit signed int
+   2        time-offset                            32-bit signed int
    3        routers                                1+ IP
    4        time-servers                           1+ IP
    5        name-servers                           1+ IP
