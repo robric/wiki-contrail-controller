@@ -1,4 +1,4 @@
-The following are the DHCP options, their options names and expected values to be used in the --extra-dhcp-opts option for port-create (neutron). The opt_name field can have either the DHCP code or the DHCP name specified below for the corresponding code.
+The following are the DHCP options, their options names and expected values to be used in the --extra-dhcp-opts option for port-create (neutron). The opt_name field can have either the DHCP code or the DHCP name specified below for the corresponding code. Support is available from R1.10 onwards.
 
  DHCP Code  DHCP opt_name                          DHCP opt_value
 
