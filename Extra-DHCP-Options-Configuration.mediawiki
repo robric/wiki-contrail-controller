@@ -1,6 +1,6 @@
 The following are the DHCP options, their options names and expected values in the option values in the neutron --extra-dhcp-opts options for port-create
 
-DHCP Code  DHCP opt_name                           DHCP opt_value                           Remarks
+ DHCP Code  DHCP opt_name                           DHCP opt_value
    1        subnet-mask                             Single IP
    2        ime-offset                              32 bit signed integer
    3        routers                                 One or more IP
@@ -97,53 +97,53 @@ DHCP Code  DHCP opt_name                           DHCP opt_value               
   97        machine-id                              String
   98        user-auth                               String
   99        geoconf-civic                           Byte Array                         Send encoded data
- 100        ieee-1003-1-tz                            String
- 101        ref-tz-db                                 String
- 112        netinfo-server-address                    String
- 113        netinfo-server-tag                        One or more IP
- 114        default-url                               String
- 116        auto-configure                            Bool (0 or 1)
- 117        name-search                               16 bit unsigned integer array
- 118        subnet-selection                          Single IP
- 119        domain-search                             Domain Name
- 120        sip-servers                               Byte Array                         Send encoded data
- 121        classless-static-routes                   Multiples of <subnet/plen, gw>
- 122        dhcp-ccc                                  Byte Array                         Send encoded data
- 123        dhcp-geoconf                              Byte Array                         Send encoded data
- 124        vendor-class-identifier                   Byte Array                         Send encoded data
- 125        vivso                                     Byte Array                         Send encoded data
- 128        tftp-server                               One or more IP
- 129        pxe-vendor-specific-129                   String
- 130        pxe-vendor-specific-130                   String
- 131        pxe-vendor-specific-131                   String
- 132        pxe-vendor-specific-132                   String
- 133        pxe-vendor-specific-133                   String
- 134        pxe-vendor-specific-134                   String
- 135        pxe-vendor-specific-135                   String
- 136        pana-agent                                One or more IP
- 137        lost-server                               Byte Array                         Send encoded data
- 138        capwap-ac-v4                              One or more IP
- 139        dhcp-mos                                  Byte Array                         Send encoded data
- 140        dhcp-fqdn-mos                             Byte Array                         Send encoded data
- 141        sip-ua-config-domain                      Byte Array                         Send encoded data
- 142        andsf-servers                             One or more IP
- 144        dhcp-geoloc                               Byte Array                         Send encoded data
- 145        force-renew-nonce-cap                     Byte Array                         Send encoded data
- 146        rdnss-selection                           Byte Array                         Send encoded data
- 150        tftp-server-address                       One or more IP
- 151        status-code                               Byte followed by a String
- 152        dhcp-base-time                            Unsigned 32-bit integer
- 153        dhcp-state-start-time                     Unsigned 32-bit integer
- 154        dhcp-query-start-time                     Unsigned 32-bit integer
- 155        dhcp-query-end-time                       Unsigned 32-bit integer
- 156        dhcp-state                                Byte
- 157        data-source                               Byte
- 158        pcp-server                                Byte Array                         Send encoded data
- 208        dhcp-pxe-magic                            Unsigned 32-bit integer
- 209        config-file                               String
- 210        path-prefix                               String
- 211        reboot-time                               Unsigned 32-bit integer
- 212        dhcp-6rd                                  Byte Array                         Send encoded data
- 213        dhcp-access-domain                        Byte Array
- 220        subnet-allocation                         Byte Array                         Send encoded data
- 221        dhcp-vss                                  Byte followed by a String
+ 100        ieee-1003-1-tz                          String
+ 101        ref-tz-db                               String
+ 112        netinfo-server-address                  String
+ 113        netinfo-server-tag                      One or more IP
+ 114        default-url                             String
+ 116        auto-configure                          Bool (0 or 1)
+ 117        name-search                             16 bit unsigned integer array
+ 118        subnet-selection                        Single IP
+ 119        domain-search                           Domain Name
+ 120        sip-servers                             Byte Array                         Send encoded data
+ 121        classless-static-routes                 Multiples of <subnet/plen, gw>
+ 122        dhcp-ccc                                Byte Array                         Send encoded data
+ 123        dhcp-geoconf                            Byte Array                         Send encoded data
+ 124        vendor-class-identifier                 Byte Array                         Send encoded data
+ 125        vivso                                   Byte Array                         Send encoded data
+ 128        tftp-server                             One or more IP
+ 129        pxe-vendor-specific-129                 String
+ 130        pxe-vendor-specific-130                 String
+ 131        pxe-vendor-specific-131                 String
+ 132        pxe-vendor-specific-132                 String
+ 133        pxe-vendor-specific-133                 String
+ 134        pxe-vendor-specific-134                 String
+ 135        pxe-vendor-specific-135                 String
+ 136        pana-agent                              One or more IP
+ 137        lost-server                             Byte Array                         Send encoded data
+ 138        capwap-ac-v4                            One or more IP
+ 139        dhcp-mos                                Byte Array                         Send encoded data
+ 140        dhcp-fqdn-mos                           Byte Array                         Send encoded data
+ 141        sip-ua-config-domain                    Byte Array                         Send encoded data
+ 142        andsf-servers                           One or more IP
+ 144        dhcp-geoloc                             Byte Array                         Send encoded data
+ 145        force-renew-nonce-cap                   Byte Array                         Send encoded data
+ 146        rdnss-selection                         Byte Array                         Send encoded data
+ 150        tftp-server-address                     One or more IP
+ 151        status-code                             Byte followed by a String
+ 152        dhcp-base-time                          Unsigned 32-bit integer
+ 153        dhcp-state-start-time                   Unsigned 32-bit integer
+ 154        dhcp-query-start-time                   Unsigned 32-bit integer
+ 155        dhcp-query-end-time                     Unsigned 32-bit integer
+ 156        dhcp-state                              Byte
+ 157        data-source                             Byte
+ 158        pcp-server                              Byte Array                         Send encoded data
+ 208        dhcp-pxe-magic                          Unsigned 32-bit integer
+ 209        config-file                             String
+ 210        path-prefix                             String
+ 211        reboot-time                             Unsigned 32-bit integer
+ 212        dhcp-6rd                                Byte Array                         Send encoded data
+ 213        dhcp-access-domain                      Byte Array
+ 220        subnet-allocation                       Byte Array                         Send encoded data
+ 221        dhcp-vss                                Byte followed by a String
