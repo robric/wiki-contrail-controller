@@ -1,3 +1,4 @@
+The following are the DHCP options, their options names and expected values in the option values in the neutron --extra-dhcp-opts options for port-create
 
 DHCP Code  DHCP opt_name                           DHCP opt_value                           Remarks
    1        subnet-mask                             Single IP
