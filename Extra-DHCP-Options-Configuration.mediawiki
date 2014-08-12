@@ -63,7 +63,7 @@ The following are the DHCP options, their options names and expected values in t
   60        class-id                                String
   61        dhcp-client-identifier                  Byte followed by a String
   62        nwip-domain                             String
-  63        nwip-suboptions                         Byte Array (Send encoded data)
+  63        nwip-suboptions                         Byte Array (encode data)
   64        nisplus-domain                          String
   65        nisplus-servers                         One or more IP
   66        tftp-server-name                        String
@@ -77,18 +77,18 @@ The following are the DHCP options, their options names and expected values in t
   74        irc-server                              One or more IP
   75        streettalk-server                       One or more IP
   76        streettalk-directory-assistance-server  One or more IP
-  77        user-class                              Byte Array (Send encoded data)
+  77        user-class                              Byte Array (encode data)
   78        slp-directory-agent                     Byte followed by one or more IP
   79        slp-service-scope                       Byte followed by a String
   80        rapid-commit                            No data
   81        client-fqdn                             Byte Array (Sent by clients)
-  83        storage-ns                              Byte Array (Send encoded data)
+  83        storage-ns                              Byte Array (encode data)
   85        nds-servers                             One or more IP
-  86        nds-tree-name                           Byte Array (Send encoded data)
-  87        nds-context                             Byte Array (Send encoded data)
-  88        bcms-controller-names                   Byte Array (Send encoded data)
-  89        bcms-controller-address                 Byte Array (Send encoded data)
-  90        dhcp-auth                               Byte Array (Send encoded data)
+  86        nds-tree-name                           Byte Array (encode data)
+  87        nds-context                             Byte Array (encode data)
+  88        bcms-controller-names                   Byte Array (encode data)
+  89        bcms-controller-address                 Byte Array (encode data)
+  90        dhcp-auth                               Byte Array (encode data)
   91        dhcp-client-last-time                   32-bit uint
   92        associated-ip                           One or more IP
   93        system-architecture                     16-bit uint
@@ -96,7 +96,7 @@ The following are the DHCP options, their options names and expected values in t
   95        ldap-servers                            One or more IP
   97        machine-id                              String
   98        user-auth                               String
-  99        geoconf-civic                           Byte Array (Send encoded data)
+  99        geoconf-civic                           Byte Array (encode data)
  100        ieee-1003-1-tz                          String
  101        ref-tz-db                               String
  112        netinfo-server-address                  String
@@ -106,12 +106,12 @@ The following are the DHCP options, their options names and expected values in t
  117        name-search                             16-bit uint array
  118        subnet-selection                        Single IP
  119        domain-search                           Domain Name
- 120        sip-servers                             Byte Array (Send encoded data)
+ 120        sip-servers                             Byte Array (encode data)
  121        classless-static-routes                 Multiples of <subnet/plen, gw>
- 122        dhcp-ccc                                Byte Array (Send encoded data)
- 123        dhcp-geoconf                            Byte Array (Send encoded data)
- 124        vendor-class-identifier                 Byte Array (Send encoded data)
- 125        vivso                                   Byte Array (Send encoded data)
+ 122        dhcp-ccc                                Byte Array (encode data)
+ 123        dhcp-geoconf                            Byte Array (encode data)
+ 124        vendor-class-identifier                 Byte Array (encode data)
+ 125        vivso                                   Byte Array (encode data)
  128        tftp-server                             One or more IP
  129        pxe-vendor-specific-129                 String
  130        pxe-vendor-specific-130                 String
@@ -121,15 +121,15 @@ The following are the DHCP options, their options names and expected values in t
  134        pxe-vendor-specific-134                 String
  135        pxe-vendor-specific-135                 String
  136        pana-agent                              One or more IP
- 137        lost-server                             Byte Array (Send encoded data)
+ 137        lost-server                             Byte Array (encode data)
  138        capwap-ac-v4                            One or more IP
- 139        dhcp-mos                                Byte Array (Send encoded data)
- 140        dhcp-fqdn-mos                           Byte Array (Send encoded data)
- 141        sip-ua-config-domain                    Byte Array (Send encoded data)
+ 139        dhcp-mos                                Byte Array (encode data)
+ 140        dhcp-fqdn-mos                           Byte Array (encode data)
+ 141        sip-ua-config-domain                    Byte Array (encode data)
  142        andsf-servers                           One or more IP
- 144        dhcp-geoloc                             Byte Array (Send encoded data)
- 145        force-renew-nonce-cap                   Byte Array (Send encoded data)
- 146        rdnss-selection                         Byte Array (Send encoded data)
+ 144        dhcp-geoloc                             Byte Array (encode data)
+ 145        force-renew-nonce-cap                   Byte Array (encode data)
+ 146        rdnss-selection                         Byte Array (encode data)
  150        tftp-server-address                     One or more IP
  151        status-code                             Byte followed by a String
  152        dhcp-base-time                          32-bit uint
@@ -138,12 +138,12 @@ The following are the DHCP options, their options names and expected values in t
  155        dhcp-query-end-time                     32-bit uint
  156        dhcp-state                              Byte
  157        data-source                             Byte
- 158        pcp-server                              Byte Array (Send encoded data)
+ 158        pcp-server                              Byte Array (encode data)
  208        dhcp-pxe-magic                          32-bit uint
  209        config-file                             String
  210        path-prefix                             String
  211        reboot-time                             32-bit uint
- 212        dhcp-6rd                                Byte Array (Send encoded data)
+ 212        dhcp-6rd                                Byte Array (encode data)
  213        dhcp-access-domain                      Byte Array
- 220        subnet-allocation                       Byte Array (Send encoded data)
+ 220        subnet-allocation                       Byte Array (encode data)
  221        dhcp-vss                                Byte followed by a String
