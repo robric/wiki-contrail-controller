@@ -28,7 +28,7 @@ The following are the DHCP options, their options names and expected values in t
   25        path-mtu-plateau-table                  16-bit uint array
   26        interface-mtu                           16-bit uint
   27        all-subnets-local                       Bool (0 or 1)
-  28        broadcast-address                       Single IP                          Vrouter adds this
+  28        broadcast-address                       Single IP (Vrouter adds this)
   29        perform-mask-discovery                  Bool (0 or 1)
   30        mask-supplier                           Bool (0 or 1)
   31        router-discovery                        Bool (0 or 1)
