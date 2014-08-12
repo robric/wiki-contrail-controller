@@ -1,0 +1,149 @@
+`
+DHCP Code  DHCP opt_name                             DHCP opt_value                           Remarks
+   1        subnet-mask                               Single IP
+   2        ime-offset                                32 bit signed integer
+   3        routers                                   One or more IP
+   4        time-servers                              One or more IP
+   5        name-servers                              One or more IP
+   6        domain-name-servers                       One or more IP
+   7        log-servers                               One or more IP
+   8        quote-servers                             One or more IP
+   9        lpr-servers                               One or more IP
+  10        impress-servers                           One or more IP
+  11        resource-location-servers                 One or more IP
+  12        host-name                                 String
+  13        boot-size                                 16 bit unsigned integer
+  14        merit-dump                                String
+  15        domain-name                               String
+  16        swap-server                               Single IP
+  17        root-path                                 String
+  18        extension-path                            String
+  19        ip-forwarding                             Bool (0 or 1)
+  20        non-local-source-routing                  Bool (0 or 1)
+  21        policy-filter                             Multiples of two IPs
+  22        max-dgram-reassembly                      16 bit unsigned integer
+  23        default-ip-ttl                            Byte
+  24        path-mtu-aging-timeout                    Unsigned 32-bit integer
+  25        path-mtu-plateau-table                    16 bit unsigned integer array
+  26        interface-mtu                             16 bit unsigned integer
+  27        all-subnets-local                         Bool (0 or 1)
+  28        broadcast-address                         Single IP                          Vrouter adds this
+  29        perform-mask-discovery                    Bool (0 or 1)
+  30        mask-supplier                             Bool (0 or 1)
+  31        router-discovery                          Bool (0 or 1)
+  32        router-solicitation-address               Single IP
+  33        static-routes                             Multiples of two IPs
+  34        trailer-encapsulation                    Bool (0 or 1)
+  35        arp-cache-timeout                         Unsigned 32-bit integer
+  36        ieee802-3-encapsulation                   Bool (0 or 1)
+  37        default-tcp-ttl                           Byte
+  38        tcp-keepalive-interval                    Unsigned 32-bit integer
+  39        tcp-keepalive-garbage                     Bool (0 or 1)
+  40        nis-domain                                String
+  41        nis-servers                               One or more IP
+  42        ntp-servers                               One or more IP
+  43        vendor-encapsulated-options               String
+  44        netbios-name-servers                      One or more IP
+  45        netbios-dd-server                         One or more IP
+  46        netbios-node-type                         Byte
+  47        netbios-scope                             String
+  48        font-servers                              One or more IP
+  49        x-display-manager                         One or more IP
+  50        dhcp-requested-address                    Single IP
+  51        dhcp-lease-time                           Unsigned 32-bit integer            Vrouter adds this
+  52        dhcp-option-overload                      Byte
+  53        dhcp-message-type                         Byte                               Vrouter adds this
+  54        dhcp-server-identifier                    Single IP                          Vrouter adds this
+  55        dhcp-parameter-request-list               Byte Array
+  56        dhcp-message                              String
+  57        dhcp-max-message-size                     16 bit unsigned integer
+  58        dhcp-renewal-time                         Unsigned 32-bit integer
+  59        dhcp-rebinding-time                       Unsigned 32-bit integer
+  60        class-id                                  String
+  61        dhcp-client-identifier                    Byte followed by a String
+  62        nwip-domain                               String
+  63        nwip-suboptions                           Byte Array                         Send encoded data
+  64        nisplus-domain                            String
+  65        nisplus-servers                           One or more IP
+  66        tftp-server-name                          String
+  67        bootfile-name                             String
+  68        mobile-ip-home-agent                      Zero or more IP
+  69        smtp-server                               One or more IP
+  70        pop-server                                One or more IP
+  71        nntp-server                               One or more IP
+  72        www-server                                One or more IP
+  73        finger-server                             One or more IP
+  74        irc-server                                One or more IP
+  75        streettalk-server                         One or more IP
+  76        streettalk-directory-assistance-server    One or more IP
+  77        user-class                                Byte Array                         Send encoded data
+  78        slp-directory-agent                       Byte followed by one or more IP
+  79        slp-service-scope                         Byte followed by a String
+  80        rapid-commit                              No data
+  81        client-fqdn                               Byte Array                         Sent by clients
+  83        storage-ns                                Byte Array                         Send encoded data
+  85        nds-servers                               One or more IP
+  86        nds-tree-name                             Byte Array                         Send encoded data
+  87        nds-context                               Byte Array                         Send encoded data
+  88        bcms-controller-names                     Byte Array                         Send encoded data
+  89        bcms-controller-address                   Byte Array                         Send encoded data
+  90        dhcp-auth                                 Byte Array                         Send encoded data
+  91        dhcp-client-last-time                     Unsigned 32-bit integer
+  92        associated-ip                             One or more IP
+  93        system-architecture                       16 bit unsigned integer
+  94        interface-id                              Byte Array
+  95        ldap-servers                              One or more IP
+  97        machine-id                                String
+  98        user-auth                                 String
+  99        geoconf-civic                             Byte Array                         Send encoded data
+ 100        ieee-1003-1-tz                            String
+ 101        ref-tz-db                                 String
+ 112        netinfo-server-address                    String
+ 113        netinfo-server-tag                        One or more IP
+ 114        default-url                               String
+ 116        auto-configure                            Bool (0 or 1)
+ 117        name-search                               16 bit unsigned integer array
+ 118        subnet-selection                          Single IP
+ 119        domain-search                             Domain Name
+ 120        sip-servers                               Byte Array                         Send encoded data
+ 121        classless-static-routes                   Multiples of <subnet/plen, gw>
+ 122        dhcp-ccc                                  Byte Array                         Send encoded data
+ 123        dhcp-geoconf                              Byte Array                         Send encoded data
+ 124        vendor-class-identifier                   Byte Array                         Send encoded data
+ 125        vivso                                     Byte Array                         Send encoded data
+ 128        tftp-server                               One or more IP
+ 129        pxe-vendor-specific-129                   String
+ 130        pxe-vendor-specific-130                   String
+ 131        pxe-vendor-specific-131                   String
+ 132        pxe-vendor-specific-132                   String
+ 133        pxe-vendor-specific-133                   String
+ 134        pxe-vendor-specific-134                   String
+ 135        pxe-vendor-specific-135                   String
+ 136        pana-agent                                One or more IP
+ 137        lost-server                               Byte Array                         Send encoded data
+ 138        capwap-ac-v4                              One or more IP
+ 139        dhcp-mos                                  Byte Array                         Send encoded data
+ 140        dhcp-fqdn-mos                             Byte Array                         Send encoded data
+ 141        sip-ua-config-domain                      Byte Array                         Send encoded data
+ 142        andsf-servers                             One or more IP
+ 144        dhcp-geoloc                               Byte Array                         Send encoded data
+ 145        force-renew-nonce-cap                     Byte Array                         Send encoded data
+ 146        rdnss-selection                           Byte Array                         Send encoded data
+ 150        tftp-server-address                       One or more IP
+ 151        status-code                               Byte followed by a String
+ 152        dhcp-base-time                            Unsigned 32-bit integer
+ 153        dhcp-state-start-time                     Unsigned 32-bit integer
+ 154        dhcp-query-start-time                     Unsigned 32-bit integer
+ 155        dhcp-query-end-time                       Unsigned 32-bit integer
+ 156        dhcp-state                                Byte
+ 157        data-source                               Byte
+ 158        pcp-server                                Byte Array                         Send encoded data
+ 208        dhcp-pxe-magic                            Unsigned 32-bit integer
+ 209        config-file                               String
+ 210        path-prefix                               String
+ 211        reboot-time                               Unsigned 32-bit integer
+ 212        dhcp-6rd                                  Byte Array                         Send encoded data
+ 213        dhcp-access-domain                        Byte Array
+ 220        subnet-allocation                         Byte Array                         Send encoded data
+ 221        dhcp-vss                                  Byte followed by a String
+`
