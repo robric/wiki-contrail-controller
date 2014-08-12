@@ -1,6 +1,6 @@
-* DHCP Code  DHCP opt_name                             DHCP opt_value                           Remarks
-*   1        subnet-mask                               Single IP
-*   2        ime-offset                                32 bit signed integer
+`` DHCP Code  DHCP opt_name                             DHCP opt_value                           Remarks
+   1        subnet-mask                               Single IP
+   2        ime-offset                                32 bit signed integer
    3        routers                                   One or more IP
    4        time-servers                              One or more IP
    5        name-servers                              One or more IP
@@ -145,4 +145,4 @@
  213        dhcp-access-domain                        Byte Array
  220        subnet-allocation                         Byte Array                         Send encoded data
  221        dhcp-vss                                  Byte followed by a String
-> 
+``
