@@ -23,7 +23,12 @@ In order to use the new system, you need to
        git-hooks are setup to generate unique change-id with each commit
 4. Create a branch e.g. git checkout -b bugfix github/master (tracking github/master at github.com/juniper/...)
 5. Make your changes
-6. Commit (This has to be done, after git review -s is successfully complete only)
+6. git commit (This has to be done, after git review -s is successfully complete only)
+    Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced.
+    Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a artial fix and more work is needed.
+    Related-Bug: #1234567 -- use 'Related-Bug' if the commit is merely elated to the referenced bug.
+    Please add a bug id with the right keyword to your commit message on a separate line and gerrit will create a link to the correct bugid(s).
+
 7. If necessary: apt-get -y install git-review (or yum -y install git-review)
      Please see [this](https://bugs.launchpad.net/git-review/+bug/1337701) if you get a pkg_resources.DistributionNotFound error
 8. To backup your changes in your private repo (optional)
