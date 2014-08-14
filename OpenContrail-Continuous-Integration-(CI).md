@@ -23,7 +23,7 @@ In order to use the new system, you need to
        git-hooks are setup to generate unique change-id with each commit
 4. Create a branch e.g. git checkout -b bugfix github/master (tracking github/master at github.com/juniper/...)
 5. Make your changes
-6. git commit (This has to be done, after git review -s is successfully complete only)
+6. git commit and provide commit message (This has to be done, after git review -s is successfully complete only)
     Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced.
 
     Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a artial fix and more work is needed.
