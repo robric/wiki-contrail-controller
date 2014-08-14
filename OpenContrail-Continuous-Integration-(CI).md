@@ -25,8 +25,11 @@ In order to use the new system, you need to
 5. Make your changes
 6. git commit (This has to be done, after git review -s is successfully complete only)
     Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced.
+
     Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a artial fix and more work is needed.
+
     Related-Bug: #1234567 -- use 'Related-Bug' if the commit is merely elated to the referenced bug.
+
     Please add a bug id with the right keyword to your commit message on a separate line and gerrit will create a link to the correct bugid(s).
 
 7. If necessary: apt-get -y install git-review (or yum -y install git-review)
