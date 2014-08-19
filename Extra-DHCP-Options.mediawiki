@@ -1,8 +1,8 @@
-DHCP options can be configured using extra-dhcp-options option in the following Neutron command.
+DHCP options can be configured using extra-dhcp-options option in the following Neutron command. This support is available from R1.10 onwards.
 
 neutron port-create net1 --extra-dhcp-opt opt_name=<dhcp_option_name>,opt_value=<value>
 
-The following are the DHCP options, their options names and expected values to be used in the --extra-dhcp-opts option. The opt_name field can have either the DHCP code or the DHCP name specified below for the corresponding code. Support is available from R1.10 onwards.
+The following table lists the DHCP options, their options names and expected values to be used in the --extra-dhcp-opts option. The opt_name field can have either the DHCP code or the DHCP name specified below for the corresponding code.
 
  DHCP Code  DHCP opt_name                          DHCP opt_value
 
