@@ -40,6 +40,25 @@ Similarly, virtual DNS servers can be configured to forward requests to external
 
 Here, it is assumed that any firewalls present between external servers and control nodes are appropriately configured to allow DNS traffic.
 
+### Name resolution of link local services (R1.10 onwards)
+Contrail provides access to services running on the fabric infrastructure to the virtual machine instances, through the link local service configuration. The instances can reach these services using the configured link local IP address and port. This link local address can be resolved from the virtual instance using the service name used in the link local configuration. The service_name or service_name.<domain_name> can be used to resolve the name. This resolution will work in either the default DNS mode or in virtual DNS mode (DNS mode configured in IPAM).
+
+For example, when we have a "metadata" link local service configured, from the virtual instance metadata resolves to 169.254.169.254. 
+In case virtual DNS mode is configured, the domain configured for the virtual DNS server can also be appended to the name mean to be resolved. In the above example, if the virtual DNS domain name is juniper.net, then metadata.juniper.net also resolves to 169.245.169.254.
+Note that, metadata.<any_other_domain_name> will not resolve to this link local service.
+
+### Floating IP name resolution (R1.10 onwards)
+When running in the virtual DNS mode, floating IP addresses can be resolved in the virtual DNS server corresponding to the virtual network from which the floating IP is allocated.
+Name resolution of the floating IP addresses will be possible while the floating IP address is associated to an active virtual machine instance.
+
+The name to be used for the floating IP can be in one of the following formats
+* IP address in dashed notation (example, 10-1-1-2)
+* IP address in dashed notation appended with the tenant name (example, 10-1-1-2.public)
+* Instance name (name used while starting the virtual instance, example vm1)
+* Instance name appended with the tenant name (example, vm1.public)
+
+The format to be used can be configured in the virtual DNS server configuration, with default being IP address in dashed notation appended with the tenant name.
+
 ### Configuration
 Configuration can be done using the contrail webui as follows:
 
