@@ -54,7 +54,7 @@ If you have changes spread across different git repos, then CI cannot handle it,
 * Stand alone changes, which does not break (build and tests) automatically will get merged via the usual CI process
 * Run single node sanity tests (fab run_sanity:ci_sanity) using your image in both centos and in ubuntu (External to Juniper folks can request assistance from ci-admin@opencontrail.org for this part)
 * Email the test results URL and all review entry URLs to ci-admin@opencontrail.org with a request to merge the changes
-* For controller project, one has to run and send "scons test" result output as well. (exit code must be 0).
+* For controller project, one has to run and send "scons test" and (BUILD_ONLY=TRUE scons flaky-test) command output as well. (exit code must be 0 for both).
 * If some dependent commits are in git-repos which are not in CI, corresponding pull request URLs must also be present (for admin to merge at the right time)
 * CI Team can then do the needful to get the changes merged together.
 
