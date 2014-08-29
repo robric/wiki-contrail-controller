@@ -166,8 +166,82 @@ is given below.
 We can also obtain a specific process's state using the introspect mechanism. For e.g, contrail-control's process state is obtained using
 http://server-ip:8083/Snh_SandeshUVECacheReq?x=NodeStatus
 
-    root@a6s45:~# curl http://10.84.13.45:8083/Snh_SandeshUVECacheReq?x=NodeStatus
-    <?xml-stylesheet type="text/xsl" href="/universal_parse.xsl"?><__NodeStatusUVE_list type="slist"><NodeStatusUVE type="sandesh"><data type="struct" identifier="1"><NodeStatus><name type="string" identifier="1" key="ObjectBgpRouter">a6s45</name><process_status type="list" identifier="4" aggtype="union"><list type="struct" size="1"><ProcessStatus><module_id type="string" identifier="1">ControlNode</module_id><instance_id type="string" identifier="2">0</instance_id><state type="string" identifier="3">Functional</state><connection_infos type="list" identifier="4"><list type="struct" size="5"><ConnectionInfo><type type="string" identifier="1">IFMap</type><name type="string" identifier="2">IFMapServer</name><server_addrs type="list" identifier="3"><list type="string" size="1"><element>10.84.13.45:8443</element></list></server_addrs><status type="string" identifier="4">Up</status><description type="string" identifier="5">Connection with IFMap Server (irond)</description></ConnectionInfo><ConnectionInfo><type type="string" identifier="1">Collector</type><name type="string" identifier="2"></name><server_addrs type="list" identifier="3"><list type="string" size="1"><element>10.84.13.45:8086</element></list></server_addrs><status type="string" identifier="4">Up</status><description type="string" identifier="5">Established</description></ConnectionInfo><ConnectionInfo><type type="string" identifier="1">Discovery</type><name type="string" identifier="2">Collector</name><server_addrs type="list" identifier="3"><list type="string" size="1"><element>10.84.13.45:5998</element></list></server_addrs><status type="string" identifier="4">Up</status><description type="string" identifier="5">SubscribeResponse</description></ConnectionInfo><ConnectionInfo><type type="string" identifier="1">Discovery</type><name type="string" identifier="2">IfmapServer</name><server_addrs type="list" identifier="3"><list type="string" size="1"><element>10.84.13.45:5998</element></list></server_addrs><status type="string" identifier="4">Up</status><description type="string" identifier="5">SubscribeResponse</description></ConnectionInfo><ConnectionInfo><type type="string" identifier="1">Discovery</type><name type="string" identifier="2">xmpp-server</name><server_addrs type="list" identifier="3"><list type="string" size="1"><element>10.84.13.45:5998</element></list></server_addrs><status type="string" identifier="4">Up</status><description type="string" identifier="5">Publish Response - HeartBeat</description></ConnectionInfo></list></connection_infos><description type="string" identifier="5"></description></ProcessStatus></list></process_status></NodeStatus></data></NodeStatusUVE><SandeshUVECacheResp type="sandesh"><returned type="u32" identifier="1">1</returned><more type="bool" identifier="0">false</more></SandeshUVECacheResp></__NodeStatusUVE_list>
+
+    root@a6s10:~# curl -s http://10.84.13.10:8083/Snh_SandeshUVECacheReq?x=NodeStatus | xmllint --format -
+    <?xml version="1.0"?>
+    <?xml-stylesheet type="text/xsl" href="/universal_parse.xsl"?>
+    <__NodeStatusUVE_list type="slist">
+      <NodeStatusUVE type="sandesh">
+        <data type="struct" identifier="1">
+          <NodeStatus>
+            <name type="string" identifier="1" key="ObjectBgpRouter">a6s10</name>
+            <process_status type="list" identifier="4" aggtype="union">
+              <list type="struct" size="1">
+                <ProcessStatus>
+                  <module_id type="string" identifier="1">ControlNode</module_id>
+                  <instance_id type="string" identifier="2">0</instance_id>
+                  <state type="string" identifier="3">Functional</state>
+                  <connection_infos type="list" identifier="4">
+                    <list type="struct" size="5">
+                      <ConnectionInfo>
+                        <type type="string" identifier="1">IFMap</type>
+                        <name type="string" identifier="2">IFMapServer</name>
+                        <server_addrs type="list" identifier="3">
+                          <list type="string" size="1">
+                            <element>10.84.13.10:8443</element>
+                          </list>
+                        </server_addrs>
+                        <status type="string" identifier="4">Up</status>
+                        <description type="string" identifier="5">Connection with IFMap Server (irond)</description>
+                      </ConnectionInfo>
+                      <ConnectionInfo>
+                        <type type="string" identifier="1">Collector</type>
+                        <name type="string" identifier="2"/>
+                        <server_addrs type="list" identifier="3">
+                          <list type="string" size="1">
+                            <element>10.84.13.10:8086</element>
+                          </list>
+                        </server_addrs>
+                        <status type="string" identifier="4">Up</status>
+                        <description type="string" identifier="5">Established</description>
+                      </ConnectionInfo>
+                      <ConnectionInfo>
+                        <type type="string" identifier="1">Discovery</type>
+                        <name type="string" identifier="2">Collector</name>
+                        <server_addrs type="list" identifier="3">
+                          <list type="string" size="1">
+                            <element>10.84.13.10:5998</element>
+                          </list>
+                        </server_addrs>
+                        <status type="string" identifier="4">Up</status>
+                        <description type="string" identifier="5">SubscribeResponse</description>
+                      </ConnectionInfo>
+                      <ConnectionInfo>
+                        <type type="string" identifier="1">Discovery</type>
+                        <name type="string" identifier="2">IfmapServer</name>
+                        <server_addrs type="list" identifier="3">
+                          <list type="string" size="1">
+                            <element>10.84.13.10:5998</element>
+                          </list>
+                        </server_addrs>
+                        <status type="string" identifier="4">Up</status>
+                        <description type="string" identifier="5">SubscribeResponse</description>
+                      </ConnectionInfo>
+                    </list>
+                  </connection_infos>
+                  <description type="string" identifier="5"/>
+                </ProcessStatus>
+              </list>
+            </process_status>
+          </NodeStatus>
+        </data>
+      </NodeStatusUVE>
+      <SandeshUVECacheResp type="sandesh">
+        <returned type="u32" identifier="1">1</returned>
+        <more type="bool" identifier="0">false</more>
+      </SandeshUVECacheResp>
+    </__NodeStatusUVE_list>
+    root@a6s10:~#
 
 The above output is ProcessStatus of only one process - contrail-control vs. the earlier output that showed aggregated status of Control Node through its UVE.
 
