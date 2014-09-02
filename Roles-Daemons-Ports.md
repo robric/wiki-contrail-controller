@@ -7,7 +7,7 @@
 
   Every instance of a database node runs the following processes:
   + cassandra
-  + zookeeper (in future)
+  + zookeeper
 
 * Config Node
 
@@ -19,7 +19,6 @@
   + contrail-schema
   + contrail-svc-monitor
   + rabbitmq-server (this can optionally be located on an external server)
-  + zookeeper (will move to database node)
 
 * Control Node
 
