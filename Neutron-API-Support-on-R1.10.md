@@ -40,7 +40,8 @@ The plugin does not implement native Bulk/Pagination/Sort operations and relies 
 * #1354792 quota-list showing quota for "default-project" also
 * #1350460 For a router, adding extra routes are not supported
 * #1352221 For a port, port-binding extended attributes are not supported
-
+* #1364740 For SG, ICMP rule type and code is not respected
+* #1350460 neutron l3 router, extra route not supported
 
 ## Caveats ##
 
