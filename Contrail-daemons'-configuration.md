@@ -1,11 +1,9 @@
-Contrail Daemons' configuration files
-=====================================
+# Contrail Daemons' configuration files
 Most of the configuration files follow the stand ini file format, with
 name=value pairs divided into various appropriate sections. These values can
 be _overridden_ from command line as well.
 
-Contrail Daemon                  Default-configuration file
-===========================================================
+## Contrail Daemon                  Default-configuration file
 /usr/bin/contrail-collector      [/etc/contrail/contrail-collector.conf](https://github.com/Juniper/contrail-controller/blob/master/src/analytics/contrail-collector.conf)
 
 /usr/bin/contrail-control        [/etc/contrail/contrail-control.conf](https://github.com/Juniper/contrail-controller/blob/master/src/control-node/contrail-control.conf)
@@ -28,8 +26,7 @@ Contrail Daemon                  Default-configuration file
 
 /usr/bin/contrail-api            [/etc/contrail/contrail-api.conf](https://github.com/Juniper/contrail-controller/blob/master/src/config/api-server/contrail-api.conf)
 
-/usr/bin/contrail-nodemgr        [/etc/contrail/contrail-nodemgr-database.conf]
-
+/usr/bin/contrail-nodemgr        /etc/contrail/contrail-nodemgr-database.conf
 
 * Use --help to see various options accepted
 * A different configuration file can be provided using --conf_file=<config-file>
@@ -40,8 +37,7 @@ Contrail Daemon                  Default-configuration file
 * When changes are made to the configuration file, the process must be
   _restarted_. (e.g. service supervisord-control restart).
 
-When a contrail-package is installed via yum/dpkg, default configuration files
-are generated and placed under /etc/contrail/. unless one already exists.
+When a contrail-package is installed via yum/dpkg, default configuration files are generated and placed under /etc/contrail/. unless one already exists.
 
 **Precedence of configuration**
 As mentioned before, configuration takes into affect (after daemon restart) in the following order of preference (highest to lowest)
@@ -50,22 +46,17 @@ As mentioned before, configuration takes into affect (after daemon restart) in t
 * Configuration file
 * Default value (as shown in --help)
 
-Provisioning through fab
-========================
-When fab is used to provision various roles such as controller, compute, etc.
-appropriate configuration files (in ini format) are generated and placed in
-/etc/contrail/. in appropriate nodes, based on the topology file specified.
+## Provisioning through fab
+When fab is used to provision various roles such as controller, compute, etc. appropriate configuration files (in ini format) are generated and placed in /etc/contrail/. in appropriate nodes, based on the topology file specified.
 
-Transition from old configuration format to new ini based format
-================================================================
-Following scripts can be used to convert old configuration files into new ones
-with the ini format.
+## Transition from old configuration format to new ini based format
+Following scripts can be used to convert old configuration files into new ones with the ini format.
 
-/opt/contrail/contrail_installer/contrail_config_templates/collector.conf.sh
-/opt/contrail/contrail_installer/contrail_config_templates/control-node.conf.sh
-/opt/contrail/contrail_installer/contrail_config_templates/dns.conf.sh
-/opt/contrail/contrail_installer/contrail_config_templates/query-engine.conf.sh
-/opt/contrail/contrail_installer/contrail_config_templates/vrouter-agent.conf.sh
+* /opt/contrail/contrail_installer/contrail_config_templates/collector.conf.sh
+* /opt/contrail/contrail_installer/contrail_config_templates/control-node.conf.sh
+* /opt/contrail/contrail_installer/contrail_config_templates/dns.conf.sh
+* /opt/contrail/contrail_installer/contrail_config_templates/query-engine.conf.sh
+* /opt/contrail/contrail_installer/contrail_config_templates/vrouter-agent.conf.sh
 
 e.g. old configuration file /etc/contrail/control_param
 root@b6s23:~# cat /etc/contrail/control_param 
@@ -80,7 +71,6 @@ BGP_PORT=179
 CERT_OPTS=
 LOGFILE=--log-file=/var/log/contrail/control.log
 LOG_LOCAL=
-
 
 > /opt/contrail/contrail_installer/contrail_config_templates/control-node.conf.sh
 > cat /etc/contrail/contrail-control.conf
