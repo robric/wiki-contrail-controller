@@ -16,7 +16,7 @@ be _overridden_ from command line as well.
 * /usr/bin/contrail-api            [/etc/contrail/contrail-api.conf](https://github.com/Juniper/contrail-controller/blob/master/src/config/api-server/contrail-api.conf)
 * /usr/bin/contrail-nodemgr        /etc/contrail/contrail-nodemgr-database.conf
 
-## Notes ##
+### Notes ###
 * Use --help to see various options accepted
 * A different configuration file can be provided using --conf_file=<config-file>
 * Values from the config file can be overridden using command line option using
@@ -28,17 +28,17 @@ be _overridden_ from command line as well.
 
 When a contrail-package is installed via yum/dpkg, default configuration files are generated and placed under /etc/contrail/. unless one already exists.
 
-**Precedence of configuration**
+###Precedence of configuration###
 As mentioned before, configuration takes into affect (after daemon restart) in the following order of preference (highest to lowest)
 
 * Command line
 * Configuration file
 * Default value (as shown in --help)
 
-## Provisioning through fab
+### Provisioning through fab ###
 When fab is used to provision various roles such as controller, compute, etc. appropriate configuration files (in ini format) are generated and placed in /etc/contrail/. in appropriate nodes, based on the topology file specified.
 
-## Transition from old configuration format to new ini based format
+### Transition from old configuration format to new ini based format ###
 Following scripts can be used to convert old configuration files into new ones with the ini format.
 
 * /opt/contrail/contrail_installer/contrail_config_templates/collector.conf.sh
