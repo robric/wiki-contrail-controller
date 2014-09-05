@@ -47,7 +47,7 @@ Following scripts can be used to convert old configuration files into new ones w
 * /opt/contrail/contrail_installer/contrail_config_templates/query-engine.conf.sh
 * /opt/contrail/contrail_installer/contrail_config_templates/vrouter-agent.conf.sh
 
-<code>
+```conf
 e.g. old configuration file /etc/contrail/control_param
 root@b6s23:~# cat /etc/contrail/control_param 
 IFMAP_USER=192.168.68.1
@@ -97,4 +97,4 @@ LOG_LOCAL=
 # server_url= # Provided by discovery server, e.g. https://127.0.0.1:8443
   user=192.168.68.1
 
-</code>
+```
