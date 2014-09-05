@@ -38,10 +38,10 @@ The plugin does not implement native Bulk/Pagination/Sort operations and relies 
 * #1358212 Update on a port with fixed_ips attribute (subnet_id, ip_address) failed with internal server error
 * #1352657 Quota limits of max_dns_nameservers, max_subnet_host_routes, max_fixed_ips_per_port, max_routes are not supported
 * #1354792 quota-list showing quota for "default-project" also
-* #1350460 For a router, adding extra routes are not supported
 * #1352221 For a port, port-binding extended attributes are not supported
 * #1364740 For SG, ICMP rule type and code is not respected
 * #1350460 neutron l3 router, extra route not supported
+* #1365322 Assigning floating IP on VMs behind SNAT is not supported.
 
 ## Caveats ##
 
