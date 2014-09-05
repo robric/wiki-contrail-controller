@@ -18,8 +18,8 @@ be _overridden_ from command line as well.
 
 ### Notes ###
 * Use --help to see various options accepted
-* A different configuration file can be provided using --conf_file config-file option
-* Values from the config file can be overridden using command line option using ```--<SECTION>.<option>=<value> ``` format. e.g. --DEFAULT.log_level=DEBUG
+* A different configuration file can be provided using ``` --conf_file=config-file ``` option
+* Values from the config file can be overridden using command line option using ```--<SECTION>.<option>=<value>  format. e.g. --DEFAULT.log_level=DEBUG ```
 * Config values can be modified using this command: /usr/bin/openstack-config --set|--del config_file section [parameter] [value]
 * When changes are made to the configuration file, the process must be _restarted_. (e.g. service supervisord-control restart).
 
