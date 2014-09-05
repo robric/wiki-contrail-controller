@@ -1,5 +1,5 @@
 # Contrail Daemons' configuration files
-Most of the configuration files follow the stand ini file format, with
+Most of the configuration files follow the standard ini file format, with
 name=value pairs divided into various appropriate sections. These values can
 be _overridden_ from command line as well.
 
