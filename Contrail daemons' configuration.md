@@ -3,7 +3,6 @@ Most of the configuration files follow the stand ini file format, with
 name=value pairs divided into various appropriate sections. These values can
 be _overridden_ from command line as well.
 
-## Contrail Daemon                  Default-configuration file
 * /usr/bin/contrail-collector      [/etc/contrail/contrail-collector.conf](https://github.com/Juniper/contrail-controller/blob/master/src/analytics/contrail-collector.conf)
 * /usr/bin/contrail-control        [/etc/contrail/contrail-control.conf](https://github.com/Juniper/contrail-controller/blob/master/src/control-node/contrail-control.conf)
 * /usr/bin/contrail-vrouter-agent  [/etc/contrail/contrail-vrouter-agent.conf](https://github.com/Juniper/contrail-controller/blob/master/src/vnsw/agent/contrail-vrouter-agent.conf)
@@ -17,7 +16,7 @@ be _overridden_ from command line as well.
 * /usr/bin/contrail-api            [/etc/contrail/contrail-api.conf](https://github.com/Juniper/contrail-controller/blob/master/src/config/api-server/contrail-api.conf)
 * /usr/bin/contrail-nodemgr        /etc/contrail/contrail-nodemgr-database.conf
 
-## Tips ##
+## Notes ##
 * Use --help to see various options accepted
 * A different configuration file can be provided using --conf_file=<config-file>
 * Values from the config file can be overridden using command line option using
@@ -48,6 +47,7 @@ Following scripts can be used to convert old configuration files into new ones w
 * /opt/contrail/contrail_installer/contrail_config_templates/query-engine.conf.sh
 * /opt/contrail/contrail_installer/contrail_config_templates/vrouter-agent.conf.sh
 
+<code>
 e.g. old configuration file /etc/contrail/control_param
 root@b6s23:~# cat /etc/contrail/control_param 
 IFMAP_USER=192.168.68.1
@@ -96,3 +96,5 @@ LOG_LOCAL=
   password=192.168.68.1
 # server_url= # Provided by discovery server, e.g. https://127.0.0.1:8443
   user=192.168.68.1
+
+</code>
