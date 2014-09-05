@@ -45,11 +45,14 @@ The plugin does not implement native Bulk/Pagination/Sort operations and relies 
 
 ## Caveats ##
 
+External Gateway on a router is only of beta-quality in R1.10
+
 In the Contrail architecture these are the known incompatibilities with Neutron API.
 
 * Filtering based on any arbitrary key in resource is not supported - only by id, name and tenant_id are supported
 * To use a Floating IP it is not necessary to connect the 'public' subnet and 'private' subnet to a Neutron Router. The fact that a 'public' network is marked 'router:external' is sufficient for a Floating IP to be created/associated and packet forwarding to it will work.
 * The default values for quotas are sourced from /etc/contrail/contrail-api.conf instead of /etc/neutron/neutron.conf
+
 
 ## Tests ##
 
