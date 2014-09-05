@@ -45,6 +45,7 @@ Following scripts can be used to convert old configuration files into new ones w
 * /opt/contrail/contrail_installer/contrail_config_templates/query-engine.conf.sh
 * /opt/contrail/contrail_installer/contrail_config_templates/vrouter-agent.conf.sh
 
+```conf
 e.g. old configuration file /etc/contrail/control_param
 root@b6s23:~# cat /etc/contrail/control_param 
 IFMAP_USER=192.168.68.1
@@ -58,10 +59,10 @@ BGP_PORT=179
 CERT_OPTS=
 LOGFILE=--log-file=/var/log/contrail/control.log
 LOG_LOCAL=
-```
+
 > /opt/contrail/contrail_installer/contrail_config_templates/control-node.conf.sh
 > cat /etc/contrail/contrail-control.conf
-```conf
+
 #
 # Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
 #
