@@ -7,57 +7,48 @@ be _overridden_ from command line as well.
 Contrail Daemon                  Default-configuration file
 ===========================================================
 /usr/bin/contrail-collector      [/etc/contrail/contrail-collector.conf](https://github.com/Juniper/contrail-controller/blob/master/src/analytics/contrail-collector.conf)
-/usr/bin/contrail-control        [/etc/contrail/contrail-control.conf](https://github.com/Juniper/contrail-)controller/blob/master/src/control-node/contrail-control.conf
+
+/usr/bin/contrail-control        [/etc/contrail/contrail-control.conf](https://github.com/Juniper/contrail-controller/blob/master/src/control-node/contrail-control.conf)
 
 /usr/bin/contrail-vrouter-agent  [/etc/contrail/contrail-vrouter-agent.conf](https://github.com/Juniper/contrail-controller/blob/master/src/vnsw/agent/contrail-vrouter-agent.conf)
-                                 /etc/contrail/rpm_agent.conf
 
-/usr/bin/contrail-query-engine   /etc/contrail/contrail-query-engine.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/query_engine/contrail-query-engine.conf
+/usr/bin/contrail-query-engine   [/etc/contrail/contrail-query-engine.conf](https://github.com/Juniper/contrail-controller/blob/master/src/query_engine/contrail-query-engine.conf)
 
-/usr/bin/dnsd                    /etc/contrail/dns.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/dns/dns.conf
+/usr/bin/dnsd                    [/etc/contrail/dns.conf](https://github.com/Juniper/contrail-controller/blob/master/src/dns/dns.conf)
 
-/usr/bin/contrail-discovery      /etc/contrail/contrail-discovery.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/discovery/contrail-discovery.conf
+/usr/bin/contrail-discovery      [/etc/contrail/contrail-discovery.conf](https://github.com/Juniper/contrail-controller/blob/master/src/discovery/contrail-discovery.conf)
 
-/usr/bin/contrail-schema         /etc/contrail/schema_transformer.conf
-                                 https://github.com/Juniper/contrail-packaging/blob/master/common/control_files/schema_transformer.conf
+/usr/bin/contrail-schema         [/etc/contrail/schema_transformer.conf](https://github.com/Juniper/contrail-packaging/blob/master/common/control_files/schema_transformer.conf)
 
-/usr/bin/contrail-svc-monitor    /etc/contrail/svc_monitor.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/config/svc-monitor/svc-monitor.conf
+[/etc/contrail/contrail-schema.conf](https://github.com/Juniper/contrail-controller/blob/master/src/config/schema-transformer/contrail-schema.conf)
 
-/usr/bin/contrail-analytics-api  /etc/contrail/contrail-analytics-api.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/opserver/contrail-analytics-api.conf
+/usr/bin/contrail-svc-monitor    [/etc/contrail/svc_monitor.conf](https://github.com/Juniper/contrail-controller/blob/master/src/config/svc-monitor/svc-monitor.conf)
 
-/usr/bin/contrail-api            /etc/contrail/contrail-api.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/config/api-server/contrail-api.conf
+/usr/bin/contrail-analytics-api  [/etc/contrail/contrail-analytics-api.conf](https://github.com/Juniper/contrail-controller/blob/master/src/opserver/contrail-analytics-api.conf)
 
-/usr/bin/contrail-nodemgr        /etc/contrail/contrail-nodemgr-database.conf
+/usr/bin/contrail-api            [/etc/contrail/contrail-api.conf](https://github.com/Juniper/contrail-controller/blob/master/src/config/api-server/contrail-api.conf)
 
-<UNKNOWN>                        /etc/contrail/contrail-schema.conf
-                                 https://github.com/Juniper/contrail-controller/blob/master/src/config/schema-transformer/contrail-schema.conf
+/usr/bin/contrail-nodemgr        [/etc/contrail/contrail-nodemgr-database.conf]
 
-o Use --help to see various options accepted
-o A different configuration file can be provided using --conf_file=<config-file>
-o Values from the config file can be overridden using command line option using
+
+* Use --help to see various options accepted
+* A different configuration file can be provided using --conf_file=<config-file>
+* Values from the config file can be overridden using command line option using
     --<SECTION>.<option>=<value> format. e.g. --DEFAULT.log_level=DEBUG
-o Config values can be modified using the following command
+* Config values can be modified using the following command
   /usr/bin/openstack-config --set|--del config_file section [parameter] [value]
-o When changes are made to the configuration file, the process must be
+* When changes are made to the configuration file, the process must be
   _restarted_. (e.g. service supervisord-control restart).
 
 When a contrail-package is installed via yum/dpkg, default configuration files
 are generated and placed under /etc/contrail/. unless one already exists.
 
-Precedence of configuration
-===========================
-As mentioned before, configuration takes into affect (after daemon restart) in
-the following order of preference (highest to lowest)
+**Precedence of configuration**
+As mentioned before, configuration takes into affect (after daemon restart) in the following order of preference (highest to lowest)
 
-o Command line
-o Configuration file
-o Default value (as shown in --help)
+* Command line
+* Configuration file
+* Default value (as shown in --help)
 
 Provisioning through fab
 ========================
