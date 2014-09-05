@@ -59,9 +59,10 @@ BGP_PORT=179
 CERT_OPTS=
 LOGFILE=--log-file=/var/log/contrail/control.log
 LOG_LOCAL=
-
+```
 > /opt/contrail/contrail_installer/contrail_config_templates/control-node.conf.sh
 > cat /etc/contrail/contrail-control.conf
+```conf
 #
 # Copyright (c) 2014 Juniper Networks, Inc. All rights reserved.
 #
