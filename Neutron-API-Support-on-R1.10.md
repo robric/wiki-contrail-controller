@@ -27,7 +27,7 @@ The plugin does not implement native Bulk/Pagination/Sort operations and relies 
 ## Known Bugs ##
 
 * \#1352281 Status of resource doesn't reflect if resource is being actually used (eg. port status is ACTIVE upon creation). 
-* \#1349448 When gateway of subnet is in middle of subnet's cidr, the allocation pool attribute doesn't report 2 list elements(start-gw, gw+1,end). However, the gateway-ip will not be allocated to any VM port
+* \#1349448 When gateway of subnet is in middle of subnet's cidr, the allocation pool attribute doesn't report 2 list elements (start-gw, gw+1,end). However, the gateway-ip will not be allocated to any VM port
 * \#1352822,#1352281 Disabling admin state of resource is not supported on all resources.
 * \#1323204 Doing a interface-detach shuts down the VM
 * \#1351979 Updating allowed_address_pairs without any value or with action clear throws internal server
@@ -43,6 +43,7 @@ The plugin does not implement native Bulk/Pagination/Sort operations and relies 
 * \#1350460 neutron l3 router, extra route not supported
 * \#1365322 Assigning floating IP on VMs behind SNAT is not supported.
 
+Current list of known bugs in Contrail neutron API support can be found [here](http://bit.ly/1lHXzAf).
 ## Caveats ##
 
 External Gateway on a router is only of beta-quality in R1.10
@@ -60,4 +61,4 @@ Refer to
 
 https://github.com/Juniper/contrail-test/wiki/Running-Neutron-API-Tests
 
-https://github.com/Juniper/contrail-test/wiki/Running
+https://github.com/Juniper/contrail-test/wiki/Running-Neutron-Tempest-Tests
