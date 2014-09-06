@@ -24,7 +24,7 @@ The following Contrail specific extensions are implemented:
 
 For more information about using OpenStack Networking API v2.0 (Neutron), refer to [Official document ](http://docs.openstack.org/api/openstack-network/2.0/content/). and the [Neutron Wiki](http://wiki.openstack.org/wiki/Neutron).
 
-The plugin does not implement native Bulk/Pagination/Sort operations and relies on emulation provided by neutron common code. 
+Note that the plugin does not implement native Bulk/Pagination/Sort operations and relies on emulation provided by neutron common code. 
 
 ## Known Bugs ##
 
