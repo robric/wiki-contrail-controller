@@ -54,6 +54,7 @@ In the Contrail architecture these are the known incompatibilities with Neutron 
 
 * Filtering based on any arbitrary key in resource is not supported - only by id, name and tenant_id are supported
 * To use a Floating IP it is not necessary to connect the 'public' subnet and 'private' subnet to a Neutron Router. The fact that a 'public' network is marked 'router:external' is sufficient for a Floating IP to be created/associated and packet forwarding to it will work.
+* For networks with multiple subnets, when one of the subnets in network is attached to a router, all subnets on the network will be treated as having been attached to the router. 
 * The default values for quotas are sourced from /etc/contrail/contrail-api.conf instead of /etc/neutron/neutron.conf
 
 
