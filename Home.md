@@ -25,3 +25,4 @@ Features:
 * [Virtual DNS](Dns)
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
+* [Extra DHCP options configuration](Extra-DHCP-Options)
