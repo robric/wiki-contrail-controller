@@ -9,3 +9,6 @@ Architecture:
 
 Building opencontrail:
 * TODO
+
+R1.10 Notes:
+* [Neutron API compatibility]([[Neutron-API-Support-on-R1.10]])
