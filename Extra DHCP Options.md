@@ -3,7 +3,7 @@ DHCP options can be configured using extra-dhcp-options option in the following 
 `neutron port-create net1 --extra-dhcp-opts type=dict list=true opt_name='dhcp_option_name',opt_value='value'`
 
 The following table lists the DHCP options, their options names and expected values to be used in the --extra-dhcp-opts option. The opt_name field can have either the DHCP code or the DHCP name specified below for the corresponding code.
-
+```
  DHCP Code  DHCP opt_name                          DHCP opt_value
 
    1        subnet-mask                            Single IP
@@ -152,5 +152,5 @@ The following table lists the DHCP options, their options names and expected val
  213        dhcp-access-domain                     Byte Array
  220        subnet-allocation                      Byte Array (encode data)
  221        dhcp-vss                               Byte followed by a String
-
+```
 IP address should be in dotted IPv4 format.
