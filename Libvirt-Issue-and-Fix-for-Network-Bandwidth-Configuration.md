@@ -21,4 +21,4 @@ Libvirt – 0.10.2:
 https://bitbucket.org/contrail_admin/libvirt/commits/4e50747ce22b9532f75b48edb5d3d6feba962ecc  
 https://bitbucket.org/contrail_admin/libvirt/commits/a6aa7126d42994fd33ffe5c10f37e8ca765aaed2
 
-There is a launchpad bug (1367095) for the above issue.
+There is a launchpad bug (https://bugs.launchpad.net/opencontrail/+bug/1367095) for the above issue.
