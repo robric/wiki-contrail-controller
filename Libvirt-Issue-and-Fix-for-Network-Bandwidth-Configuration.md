@@ -22,4 +22,4 @@ https://bitbucket.org/contrail_admin/libvirt/commits/4e50747ce22b9532f75b48edb5d
 https://bitbucket.org/contrail_admin/libvirt/commits/a6aa7126d42994fd33ffe5c10f37e8ca765aaed2
 
 Here is a link to the Launchpad bug id for the above issue:  
-https://bugs.launchpad.net/opencontrail/+bug/1367095)
+https://bugs.launchpad.net/opencontrail/+bug/1367095
