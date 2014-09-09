@@ -3,7 +3,7 @@ Routes can be statically configured in a virtual-network to direct traffic to go
 For example in a virtual-network with subnet 10.0.0.0/24, all the traffic
 originating from a VM in virtual-network, destined to subnet 11.1.1.0/24 can be configured to go via a service appliance, using static route configured on a service VM interface.
 
-  VM2 (10.1.1.252)  <------->  VM1 (10.1.1.251)  <------->  Service VM (10.1.1.253)  
+    VM2 (10.1.1.252)  <------->  VM1 (10.1.1.251)  <------->  Service VM (10.1.1.253)  
 
 In the above diagram service VM interface has a static route configured to receive all traffic destined to subnet 11.1.1.0/24.  
 
