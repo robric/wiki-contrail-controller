@@ -16,7 +16,6 @@ Debug and Troubleshooting:
 * [VRouter-Agent introspect](Contrail-Vrouter-Agent---Introspect)
 * [Scenarios](Scenario-Troubleshooting)
 * [Simple Gateway](Simple-Gateway)
-* [Libvirt Issue] (Libvirt Issue and Fix for Network Bandwidth Configuration)
 
 R1.10 Notes:
 * [Neutron API compatibility](Neutron-API-Support-on-R1.10)
@@ -27,3 +26,4 @@ Features:
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
+* Network Rate Limiting Configuration (Configuring Network QoS Parameters)
