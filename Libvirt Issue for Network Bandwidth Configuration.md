@@ -20,5 +20,3 @@ https://bitbucket.org/contrail_admin/libvirt/commits/a6aa7126d42994fd33ffe5c10f3
 Libvirt – 0.10.2:
 https://bitbucket.org/contrail_admin/libvirt/commits/4e50747ce22b9532f75b48edb5d3d6feba962ecc
 https://bitbucket.org/contrail_admin/libvirt/commits/a6aa7126d42994fd33ffe5c10f37e8ca765aaed2
-
-The above patches have been submitted to upstream libvirt and the work is in progress to merge them. 
