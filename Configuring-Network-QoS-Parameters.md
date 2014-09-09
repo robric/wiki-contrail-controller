@@ -44,4 +44,4 @@ Once the nova flavor is configured for QoS, an instance may be created either vi
 ```
 ### Libvirt Issue and Workaround
 The stock libvirt doesn’t have support for rate limiting of ‘ethernet’ interface types.  The above xml settings of the vm network interface will not result in any tc qdisc settings for the tap device, `tapa3a0877f-61` in the host. So, the vm network traffic will not be throttled as per the above rate limiting configuration data. There is a launchpad bug id, which describes what fix needs to be applied to get it working. Here is a link to the Launchpad bug id for the above issue:  
-https://bugs.launchpad.net/opencontrail/+bug/1367095
+https://bugs.launchpad.net/juniperopenstack/+bug/1367095
