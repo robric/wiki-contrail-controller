@@ -16,7 +16,7 @@ Debug and Troubleshooting:
 * [VRouter-Agent introspect](Contrail-Vrouter-Agent---Introspect)
 * [Scenarios](Scenario-Troubleshooting)
 * [Simple Gateway](Simple-Gateway)
-* [Libvirt Issue for Network Bandwidth Configuration] (Libvirt Issue and Fix for Network Bandwidth Configuration)
+* [Libvirt Issue] (Libvirt Issue and Fix for Network Bandwidth Configuration)
 
 R1.10 Notes:
 * [Neutron API compatibility](Neutron-API-Support-on-R1.10)
