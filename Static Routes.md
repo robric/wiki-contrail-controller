@@ -1,4 +1,3 @@
-# Static Routes (on Virtual Machine Interface)
 Routes can be statically configured in a virtual-network to direct traffic to go via a service virtual machine. The configured static routes are distributed to other nodes via BGP, thus directing traffic through required virtual machine.  These routes are configured on a virtual machine’s interface.
 
 For example in a virtual-network with subnet 10.0.0.0/24, all the traffic
