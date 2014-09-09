@@ -26,4 +26,4 @@ Features:
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
-* Network Rate Limiting Configuration (Configuring Network QoS Parameters)
+* [Network Rate Limiting Configuration] (Configuring Network QoS Parameters)
