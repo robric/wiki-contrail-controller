@@ -39,15 +39,11 @@ On the cfgm node,
 
 `cd /opt/contrail/utils`
 
-`source /opt/contrail/api-venv/bin/activate`
-
 `python provision_static_route.py --prefix 11.1.1.0/24 --virtual_machine_id '4cf8bc4d-21e6-4555-9fe3-eaec454e9c3e' --virtual_machine_interface_ip 10.1.1.253 --route_table_name my_route_table2 --api_server_ip 10.204.217.7 --api_server_port 8082 --oper add --user admin --password contrail123 --tenant_name admin`
 
 You can add more than one route in the same route-table.
 
 To delete a static route, 
-
-`source /opt/contrail/api-venv/bin/activate`
 
 `python provision_static_route.py --prefix 11.1.1.0/24 --virtual_machine_id '4cf8bc4d-21e6-4555-9fe3-eaec454e9c3e' --virtual_machine_interface_ip 10.1.1.253 --route_table_name my_route_table2 --api_server_ip 10.204.217.7 --api_server_port 8082 --oper del --user admin --password contrail123 --tenant_name admin`
 
