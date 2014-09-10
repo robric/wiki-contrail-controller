@@ -5,7 +5,7 @@ Installation Guide:
 
 Architecture:
 
-* https://github.com/Juniper/contrail-controller/wiki/Roles-Daemons-Ports Ports and Daemons
+* [Roles, Daemons and Ports](Roles-Daemons-Ports)
 
 Opencontrail Development:
 * TODO
