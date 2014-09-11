@@ -49,8 +49,8 @@ Some one should review and (optionally some one else) must approve the changes. 
 ## Interdependent changes across different projects (git repos)
 If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. In such cases, please follow this process.
 
-* Make your changes and do 'git review' for all the change sets necessary.
-* **Please make sure that all new, modified and deleted files are add/deleted to/from git**
+* **Please make sure that all new, modified and deleted files are add/deleted to/from git before git commit**
+* Commit your changes and do 'git review' for all the change sets necessary.
 * Get your changes reviewed and approved
 * Stand alone changes, which does not break (build and tests) automatically will get merged via the usual CI process
 * Run single node sanity tests (fab run_sanity:ci_sanity) using your image in both centos and in ubuntu (External to Juniper folks can request assistance from ci-admin@opencontrail.org for this part)
