@@ -17,7 +17,7 @@ python /opt/contrail/utils/provision_linklocal.py --admin_user \<user\> --admin_
 On the VM, to set the date and time via NTP, run:
 `sudo ntpdate 169.254.169.254`
 
-### Listing configured linklocal services
+### Listing configured Linklocal services
 
 * via curl:
 
