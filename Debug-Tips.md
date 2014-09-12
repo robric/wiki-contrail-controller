@@ -1,4 +1,10 @@
-# VRouter management webpage
+## Useful Chrome Browser applications
+
+* [JSONViewer](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0CB4QFjAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fjsonview%2Fchklaanhfefbnpoihckbnefhakgolnmc%3Fhl%3Den&ei=okwSVNvNHoWuyATU8IDYCQ&usg=AFQjCNH3ET5JyRh_aKGH_G5Ws5MXENK5bA&sig2=pWaOq0PM1ptzGV5Mln3sZg&bvm=bv.75097201,d.aWw)
+* [Github Wiki Search](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&sqi=2&ved=0CCcQFjAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgithub-wiki-search%2Fgdifdhnjmjaidbajhapmbcbnoocoeooc%3Fhl%3Den&ei=zkwSVLqcHo2k8AXotIKIDA&usg=AFQjCNFUY7r_nIUR5aamJ5dLvSMOEHqWMQ&sig2=47EAGQ_pAiJFTsxqq6MOlg&bvm=bv.75097201,d.aWw)
+* [POSTMAN REST client](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0CB4QFjAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman-rest-client%2Ffdmmgilgnpjigdojojpjoooidkmcomcm%3Fhl%3Den&ei=8UwSVO3HAsmkyASY-4GoDg&usg=AFQjCNHaecLwAKk91gpdCY_y1x_ViIrHwQ&sig2=cFmqDhGUuPP_DTYV7-OErg&bvm=bv.75097201,d.aWw)
+
+## VRouter management webpage
 
 You can use access the VRouter management webpage on port 8085
 
@@ -18,7 +24,7 @@ Sandish message stats
 
 http://localhost:8085/Snh_SandeshMessageStatsReq?
 
-# Check Cassandra
+## Check Cassandra
 
 You can use this script
 
@@ -32,7 +38,7 @@ default-domain:default-project:ip-fabric 8adc0fdd-674f-44cd-ac1b-87854dd0ec87
 default-domain:demo:right 6884a3b2-cfbe-4fff-88bb-52ef36146e0e
 ```
 
-# Discovery Service
+## Discovery Service
 
 Check ip for clients
 
