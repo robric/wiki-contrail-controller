@@ -43,3 +43,13 @@ default-domain:demo:right 6884a3b2-cfbe-4fff-88bb-52ef36146e0e
 Check ip for clients
 
 curl "http://node_ip:5998/clients.json" | python -mjson.tool
+
+## Config daemon connection status
+
+* Api Server
+
+    `http://<config-node-ip>:8084/Snh_SandeshUVECacheReq?x=NodeStatus`
+
+* Schema Transformer
+
+    `http://<config-node-ip>:8087/Snh_SandeshUVECacheReq?x=NodeStatus`
