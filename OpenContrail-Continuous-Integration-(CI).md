@@ -76,7 +76,7 @@ IOW, we follow what CI is doing for all other independent commits, thus keeping 
     At the moment, it takes 4 to 5 hours. Work is in progress to speed this up, while at the same time add additional tests that run in parallel.
 
 5. How to flip a job so that jobs are restarted
-Either add a comment "recheck no bug" or "Abandon and Restore" review entry. 
+    Either add a comment "recheck no bug" or "Abandon and Restore" review entry. 
 
 **e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.**
 
