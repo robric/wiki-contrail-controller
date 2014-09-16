@@ -47,7 +47,7 @@ If works correctly, a review entry is created in [review server](review.opencont
 Some one should review and (optionally some one else) must approve the changes. If jenkins job verification also succeeds, the changes get automatically merged and pushed out to [github repo](github.com/Juniper/contrail-controller)
 
 ## Interdependent changes across different projects (git repos)
-If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. In such cases, please follow this process.
+If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. However, if you analyze carefully and submit smartly, you can feed changes to CI one at a time, with independent changes going in first, followed by dependent changes after the former gets merged. If that is not feasible, please follow this process.
 
 * **Please make sure that all new, modified and deleted files are add/deleted to/from git before git commit**
 * Commit your changes and do 'git review' for all the change sets necessary.
@@ -55,7 +55,7 @@ If you have changes spread across different git repos, then CI cannot handle it,
 * Stand alone changes, which does not break (build and tests) automatically will get merged via the usual CI process
 * Run single node sanity tests (fab run_sanity:ci_sanity) using your image in both centos and in ubuntu (External to Juniper folks can request assistance from ci-admin@opencontrail.org for this part)
 * Email the test results URL and all review entry URLs to ci-admin@opencontrail.org with a request to merge the changes
-* For controller project, one has to run and send "scons test" and (BUILD_ONLY=TRUE scons flaky-test) command output as well. (exit code must be 0 for both).
+* For controller project, one has to run and send "scons test" and (BUILD_ONLY=TRUE scons flaky-test) command output as well. (exit code must be 0 for both). (preferable to start with 'rm -rf $SANDBOX/build')
 * If some dependent commits are in git-repos which are not in CI, corresponding pull request URLs must also be present (for admin to merge at the right time)
 * CI Team can then do the needful to get the changes merged together.
 
