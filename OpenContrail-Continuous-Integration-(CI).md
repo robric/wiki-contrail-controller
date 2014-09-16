@@ -83,6 +83,10 @@ IOW, we follow what CI is doing for all other independent commits, thus keeping 
 
     Either add a comment "recheck no bug" or "Abandon and Restore" review entry. 
 
+6. **How to submit inter dependent changes spread across different git repos**
+  
+    Please see [above] (https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)#interdependent-changes-across-different-projects-git-repos)
+
 **e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.**
 
 git clone git@github.com:rombie/contrail-controller.git contrail-controller            
