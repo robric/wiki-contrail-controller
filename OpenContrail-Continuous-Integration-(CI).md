@@ -61,6 +61,25 @@ If you have changes spread across different git repos, then CI cannot handle it,
 
 IOW, we follow what CI is doing for all other independent commits, thus keeping the build sane.
 
+## CI Jobs failure debugging
+
+When ever a CI job fails, some of sort of debugging is required. If the failure is due to bugs/failures in CI infrastructure, CI team usually monitors and takes necessary action (such as jobs restart). Otherwise, following steps are recommended.
+
+1. Look at the job console output. Link to this is logged in the review entry and can be found in its audit trial.
+[Successful log example] (https://jenkins.opencontrail.org/job/ci-contrail-controller-systest/2248/console)
+[Failure log example] (https://jenkins.opencontrail.org/job/ci-contrail-controller-unittest/2223/console)
+
+2. If the trailing end of the console output does not given enough clue, please look at the entire console log (link at the beginning of the console tail output summary url)
+
+3. If it is build issue such as compiler error, the error as reported by the compiler is logged in the console. Using line number, error message, etc. usually the root cause can be found and fixed. In that case, please resubmit the fix as additional patch the same review entry (git commit --amend . and git review)
+
+4. If is is CI infra issue (say due to a flaky job), you can inform ci-admin@opencontrail.org optionally, flip the job (by adding "recheck no bug" comment to the review entry) or simply wait for the admin team to take necessary action
+
+5. If the issue cannot be figured out and further need to be debugged
+  -- If internal to Juniper networks, log on to the slave VM and debug in the sandbox (touch /root/ci_job_wait to stop the job from exiting.., service slave_start stop to stop new jobs from getting scheduled which wipes out the build sandbox). Please rm /root/ci_job_wait and service slave_start start after you are done with debugging so that the VM goes back into the pool and start serving new jobs.
+
+  -- If outside juniper, please email to ci-admin@opencontrail.org
+
 ## FAQ
 
 1. **Cannot git commit due to "missing change-id message"..**
