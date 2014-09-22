@@ -6,7 +6,7 @@ Installation Guide:
 Architecture:
 
 * [Roles, Daemons and Ports](Roles-Daemons-Ports)
-* [OpenContrail Internal Services(]OpenContrail-Internal-Services)
+* [OpenContrail Internal Services](OpenContrail-Internal-Services)
 
 Opencontrail Development:
 * TODO
