@@ -179,6 +179,7 @@ Run the following script on the compute node where the virtual gateway was creat
     # set PYTHONPATH appropriately (where InstanceService.py and ttypes.py are present). For example,
     export PYTHONPATH=/usr/lib/python2.7/dist-packages/nova_contrail_vif/gen_py/instance_service
     export PYTHONPATH=/usr/lib/python2.6/site-packages/contrail_vrouter_api/gen_py/instance_service
+
     `python /opt/contrail/utils/provision_vgw_interface.py --oper delete --interface vgw1 --subnets 20.30.40.0/24 30.40.50.0/24`
 
 If using a stateful client, send the ConnectForVirtualGateway thrift message to the vrouter agent when the client starts.
@@ -218,9 +219,12 @@ routes=8.8.8.0/24 9.9.9.0/24
 ## Dynamic Simple Gateway Configuration
 
 Run following command
+
  # set PYTHONPATH appropriately (where InstanceService.py and ttypes.py are present). For example,
+
  export PYTHONPATH=/usr/lib/python2.7/dist-packages/nova_contrail_vif/gen_py/instance_service
  export PYTHONPATH=/usr/lib/python2.6/site-packages/contrail_vrouter_api/gen_py/instance_service
+
 `python /opt/contrail/utils/provision_vgw_interface.py --oper create --interface vgw1 --subnets 192.168.1.0/24  --routes 8.8.8.0/24 9.9.9.0/24 --vrf default-domain:admin:net1:net1`
 
 ## Devstack Configuration
