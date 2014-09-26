@@ -1,8 +1,9 @@
 Welcome to the contrail-controller wiki!
 
-Installation Guide:
-* https://github.com/Juniper/contrail-controller/wiki/OpenContrail-bring-up-and-provisioning
-* [Install and Configure OpenContrail 1.06](Install-and-Configure-OpenContrail-1.06)
+Overview:
+* [Project Overview](https://github.com/Juniper/contrail-controller/wiki/Contrail:-Project-Overview)
+* [Installation and provisioning](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-bring-up-and-provisioning)
+* [Deploy OpenContrail 1.06](Install-and-Configure-OpenContrail-1.06)
 
 Architecture:
 
