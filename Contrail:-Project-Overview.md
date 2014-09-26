@@ -120,7 +120,7 @@ There is no restriction w.r.t code commit against bugs on any of these 2 launchp
 
 8. Do you support devstack?
 
-      Yes. To install devstack follow the guide here. TBD.
+      Yes. To install devstack follow the guide [here](https://github.com/Juniper/contrail-installer/blob/master/README.md).
 
 9. How closely do you track Upstream Openstack?
 
