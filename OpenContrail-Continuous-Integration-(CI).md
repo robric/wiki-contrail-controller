@@ -104,7 +104,7 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
   
     Please see [above] (https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)#interdependent-changes-across-different-projects-git-repos)
 
-	e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.**
+	e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.
 
     ```
     git clone git@github.com:rombie/contrail-controller.git contrail-controller            
