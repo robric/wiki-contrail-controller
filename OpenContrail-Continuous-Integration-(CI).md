@@ -1,6 +1,7 @@
 OpenContrail CI is now live. All commits to contrail-controller git repo will now have to go through CI. This process is very similar to [OpenStack](https://wiki.openstack.org/wiki/Gerrit_Workflow)'s. Pull requests are not longer used for contrail-controller git repo. Necessary .gitreview files are already in place in the repos that are administered through this CI infrastructure.
 
 [Presentation Slides](https://github.com/Juniper/contrail-infra-config/blob/master/setup/OpenContrailCI.pptx)
+
 [CI Project Status](https://github.com/Juniper/contrail-infra-config/blob/master/contrail-ci-todo.txt)
 
 In order to use the new system, you need to 
@@ -105,6 +106,7 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
 
 **e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.**
 
+```
 git clone git@github.com:rombie/contrail-controller.git contrail-controller            
 cd contrail-controller                                                                    
 git remote add github git@github.com:Juniper/contrail-controller                         
@@ -118,7 +120,7 @@ git push rombie R1.10
   Optionally (to backup), push your changes to your private repo
 git review      
   Submit changes to review.opencontrail.org                           
-
+```
 For all other Questions, please email to [ci-admin](mailto:ci-admin@opencontrail.org)
 
 Thank You.
