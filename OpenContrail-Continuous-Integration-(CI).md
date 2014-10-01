@@ -104,23 +104,23 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
   
     Please see [above] (https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)#interdependent-changes-across-different-projects-git-repos)
 
-**e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.**
+	e.g. Steps to clone a git repo off your private fork ("rombie" in this e.g.) and submit changes to review for contrail-packaging project to R1.10 branch.**
 
-```
-git clone git@github.com:rombie/contrail-controller.git contrail-controller            
-cd contrail-controller                                                                    
-git remote add github git@github.com:Juniper/contrail-controller                         
-git fetch github
-git checkout -b R1.10 github/R1.10
-git review -s
-   <Use the same user name that is selected in review.opencontrail.org>
-<make your changes>
-git commit -m "msg" .
-git push rombie R1.10
-  Optionally (to backup), push your changes to your private repo
-git review      
-  Submit changes to review.opencontrail.org                           
-```
+    ```
+    git clone git@github.com:rombie/contrail-controller.git contrail-controller            
+    cd contrail-controller                                                                    
+    git remote add github git@github.com:Juniper/contrail-controller                         
+    git fetch github
+    git checkout -b R1.10 github/R1.10
+    git review -s
+       <Use the same user name that is selected in review.opencontrail.org>
+    <make your changes>
+    git commit -m "msg" .
+    git push rombie R1.10
+      Optionally (to backup), push your changes to your private repo
+    git review      
+      Submit changes to review.opencontrail.org                           
+    ```
 For all other Questions, please email to [ci-admin](mailto:ci-admin@opencontrail.org)
 
 Thank You.
