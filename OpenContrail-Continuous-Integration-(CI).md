@@ -74,7 +74,17 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
 4. If is is CI infra issue (say due to a flaky job), you can inform ci-admin@opencontrail.org optionally, flip the job (by adding "recheck no bug" comment to the review entry) or simply wait for the admin team to take necessary action
 
 5. If the issue cannot be figured out and further need to be debugged
-  -- If internal to Juniper networks, log on to the slave VM and debug in the sandbox (touch /root/ci_job_wait to stop the job from exiting.., service slave_start stop to stop new jobs from getting scheduled which wipes out the build sandbox). Please rm /root/ci_job_wait and service slave_start start after you are done with debugging so that the VM goes back into the pool and start serving new jobs.
+  -- If internal to Juniper networks, 
+        log on to the slave VM and debug in the sandbox
+```
+        touch /root/ci_job_wait # to stop the job from exiting.., 
+        service slave_start stop # To stop new jobs from getting scheduled which wipes out the build sandbox).
+```
+        When _done_ with debugging,
+```
+            rm /root/ci_job_wait
+            service slave_start start # To place the VM goes back into the pool to start serving new jobs.
+```
 
   -- If outside juniper, please email to ci-admin@opencontrail.org
 
