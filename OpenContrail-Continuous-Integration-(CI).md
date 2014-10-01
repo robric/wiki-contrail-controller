@@ -121,8 +121,8 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
     git review      
       Submit changes to review.opencontrail.org                           
     ```
-For all other Questions, please email to [ci-admin](mailto:ci-admin@opencontrail.org)
+For all other questions, please email to [ci-admin](mailto:ci-admin@opencontrail.org)
 
-Thank You.
+Thank you.
 
 OpenContrail-CI-Team
