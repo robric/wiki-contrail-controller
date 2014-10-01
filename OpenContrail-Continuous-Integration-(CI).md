@@ -15,15 +15,15 @@ In order to use the new system, you need to
 3. Add your ssh public keys
 
 ### Code review process
-1. repo init, repo sync etc.
-2. cd controller (e.g.)
-3. git review -s (Only required, when you need to do 'git review' for the first time in this git repo)
+1. ```repo init, repo sync ``` etc.
+2. ``` cd controller ``` (e.g.)
+3. ```git review -s ```(Only required, when you need to do 'git review' for the first time in this git repo)
        It asks for username. You must use the one setup in STEP USER step above (at review.opencontrail.org)
        If keys are correct, it setups a remote named gerrit in your git config
        git-hooks are setup to generate unique change-id with each commit
-4. Create a branch e.g. git checkout -b bugfix github/master (tracking github/master at github.com/juniper/...)
+4. Create a branch e.g. ```git checkout -b ``` bugfix github/master (tracking github/master at github.com/juniper/...)
 5. Make your changes
-6. git commit and provide commit message (This has to be done, after git review -s is successfully complete only)
+6. ``` git commit ``` and provide commit message (This has to be done, after git review -s is successfully complete only)
     Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced.
 
     Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a artial fix and more work is needed.
@@ -32,15 +32,15 @@ In order to use the new system, you need to
 
     Please add a bug id with the right keyword to your commit message on a separate line and gerrit will create a link to the correct bugid(s).
 
-7. If necessary: apt-get -y install git-review (or yum -y install git-review)
+7. If necessary: ``` apt-get -y install git-review ``` (or ```yum -y install git-review```)
      Please see [this](https://bugs.launchpad.net/git-review/+bug/1337701) if you get a pkg_resources.DistributionNotFound error
 8. To backup your changes in your private repo (optional)
      Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo at github.com
-     git remote-add <ur-private-repo>
-     git push <ur-private-repo> bugfix
-9. run "git review"
+     ``` git remote-add <ur-private-repo>```
+     ``` git push <ur-private-repo> bugfix ```
+9. run ```git review```
 
-First time when you run "git review", it asks for the user name. Please use the same that you used in step USER above. But you should do "git review -s" first, which does the setup.
+First time when you run ```git review```, it asks for the user name. Please use the same that you used in step USER above. But you should do ```git review -s``` first, which does the setup.
 
 If works correctly, a review entry is created in [review server](review.opencontrail.org) Jenkins jobs are run to verify your changes. Jenkins master can be accessed at [jenkins](jenkins.opencontrail.org)
 
