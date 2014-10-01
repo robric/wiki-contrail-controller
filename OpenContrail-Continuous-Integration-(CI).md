@@ -78,9 +78,11 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
         log on to the slave VM and debug in the sandbox
 ```
         touch /root/ci_job_wait # to stop the job from exiting.., 
-        service slave_start stop # To stop new jobs from getting scheduled which wipes out the build sandbox).```
+        service slave_start stop # To stop new jobs from getting scheduled which wipes out the build sandbox).
+```
         When _done_ with debugging..
-            '''rm /root/ci_job_wait
+```
+            rm /root/ci_job_wait
             service slave_start start # To place the VM goes back into the pool to start serving new jobs.
 ```
 
