@@ -19,7 +19,7 @@ In order to use the new system, you need to
        It asks for username. You must use the one setup in STEP USER step above (at review.opencontrail.org)
        If keys are correct, it setups a remote named gerrit in your git config
        git-hooks are setup to generate unique change-id with each commit
-4. Create a branch e.g. ```git checkout -b ``` bugfix github/master (tracking github/master at github.com/juniper/...)
+4. Create a branch e.g. ```git checkout -b bugfix github/master``` (tracking github/master at github.com/juniper/...)
 5. Make your changes
 6. ``` git commit ``` and provide commit message (This has to be done, after git review -s is successfully complete only)
     Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced.
