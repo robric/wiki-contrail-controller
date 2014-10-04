@@ -73,7 +73,11 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
 
 4. If is is CI infra issue (say due to a flaky job), you can inform ci-admin@opencontrail.org optionally, flip the job (by adding "recheck no bug" comment to the review entry) or simply wait for the admin team to take necessary action
 
-5. If the issue cannot be figured out and further need to be debugged
+5. contrail-install-* image built is now archived in ubuntu-build02, e.g. /ci-admin/systest-images/2720,1/ci-contrail-packages-systest-ubuntu-precise-pangolin-havana/contrail-install-packages_1.20-4362~havana_all.deb
+If a job fails when running the image, one can load this image for testing in private environments.
+Note: This is only available for folks inside Juniper Networks. Also, if the job is flipped, this image is fetched and the tests are run (instead of rebuilding the image from scratch). This helps to expedite the jobs completion upon retries. 
+
+6. If the issue cannot be figured out and further need to be debugged
   -- If internal to Juniper networks, 
         log on to the slave VM and debug in the sandbox
 ```
