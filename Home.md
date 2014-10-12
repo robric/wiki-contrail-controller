@@ -12,7 +12,7 @@ Architecture:
 
 Opencontrail Development:
 * TODO
-* [Continuous Integration](OpenContrail-Continuous-Integration-(CI))
+* [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
 
 Debug and Troubleshooting:
 * [Tips](Debug-Tips)
