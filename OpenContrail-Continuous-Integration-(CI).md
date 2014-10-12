@@ -104,7 +104,7 @@ Note: This is only available for folks inside Juniper Networks. Also, if the job
 
 3. **How to submit a patch to an already submitted entry ?**
 
-    Please see OpenStack documentation. In short, checkout the previous entry changes (git review --download <review-entry-id>, make changes, git commit --amend, and git review again).  If the sandbox and branch where the original changes were made is still available, the first step (i.e. git review --download) can be skipped. Note that git-review fails if the change has been abandoned.
+    Please see OpenStack documentation. In short, checkout the previous entry changes (```git review --download <review-entry-id>```, make changes, ```git commit --amend```, and ```git review``` again).  If the sandbox and branch where the original changes were made is still available, the first step (i.e. git review --download) can be skipped. Note that git-review fails if the change has been abandoned.
 
 4. **How long does it take for the tests to complete ?**
 
