@@ -1,0 +1,1038 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:mv="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40"><head><meta name=Title content=""><meta name=Keywords content=""><meta http-equiv=Content-Type content="text/html; charset=macintosh"><meta name=ProgId content=Word.Document><meta name=Generator content="Microsoft Word 14"><meta name=Originator content="Microsoft Word 14"><link rel=File-List
+href="Process%20Management%20Infrastructure%20for%20OpenContrail_files/filelist.xml"><&#33;--[if gte mso 9]><xml><o:DocumentProperties><o:Author>Chandan Mishra</o:Author><o:LastAuthor>Chandan Mishra</o:LastAuthor><o:Revision>2</o:Revision><o:TotalTime>9</o:TotalTime><o:Created>2014-10-16T02:09:00Z</o:Created><o:LastSaved>2014-10-16T02:09:00Z</o:LastSaved><o:Pages>2</o:Pages><o:Words>949</o:Words><o:Characters>5415</o:Characters><o:Lines>45</o:Lines><o:Paragraphs>12</o:Paragraphs><o:CharactersWithSpaces>6352</o:CharactersWithSpaces><o:Version>14.0</o:Version></o:DocumentProperties><o:OfficeDocumentSettings><o:AllowPNG/></o:OfficeDocumentSettings></xml><&#33;[endif]--><link rel=themeData
+href="Process%20Management%20Infrastructure%20for%20OpenContrail_files/themedata.xml"><&#33;--[if gte mso 9]><xml><w:WordDocument><w:SpellingState>Clean</w:SpellingState><w:GrammarState>Clean</w:GrammarState><w:TrackMoves/><w:TrackFormatting/><w:PunctuationKerning/><w:ValidateAgainstSchemas/><w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid><w:IgnoreMixedContent>false</w:IgnoreMixedContent><w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText><w:DoNotPromoteQF/><w:LidThemeOther>EN-US</w:LidThemeOther><w:LidThemeAsian>JA</w:LidThemeAsian><w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript><w:Compatibility><w:BreakWrappedTables/><w:SnapToGridInCell/><w:WrapTextWithPunct/><w:UseAsianBreakRules/><w:DontGrowAutofit/><w:SplitPgBreakAndParaMark/><w:EnableOpenTypeKerning/><w:DontFlipMirrorIndents/><w:OverrideTableStyleHps/><w:UseFELayout/></w:Compatibility><m:mathPr><m:mathFont m:val="Cambria Math"/><m:brkBin m:val="before"/><m:brkBinSub m:val="&#45;-"/><m:smallFrac/><m:dispDef/><m:lMargin m:val="0"/><m:rMargin m:val="0"/><m:defJc m:val="centerGroup"/><m:wrapIndent m:val="1440"/><m:intLim m:val="subSup"/><m:naryLim m:val="undOvr"/></m:mathPr></w:WordDocument></xml><&#33;[endif]--><&#33;--[if gte mso 9]><xml><w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+LatentStyleCount="276"><w:LsdException Locked="false" Priority="0" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Normal"/><w:LsdException Locked="false" Priority="9" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="heading 1"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/><w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/><w:LsdException Locked="false" Priority="39" Name="toc 1"/><w:LsdException Locked="false" Priority="39" Name="toc 2"/><w:LsdException Locked="false" Priority="39" Name="toc 3"/><w:LsdException Locked="false" Priority="39" Name="toc 4"/><w:LsdException Locked="false" Priority="39" Name="toc 5"/><w:LsdException Locked="false" Priority="39" Name="toc 6"/><w:LsdException Locked="false" Priority="39" Name="toc 7"/><w:LsdException Locked="false" Priority="39" Name="toc 8"/><w:LsdException Locked="false" Priority="39" Name="toc 9"/><w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/><w:LsdException Locked="false" Priority="10" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Title"/><w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/><w:LsdException Locked="false" Priority="11" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/><w:LsdException Locked="false" Priority="22" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Strong"/><w:LsdException Locked="false" Priority="20" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/><w:LsdException Locked="false" Priority="59" SemiHidden="false"
+UnhideWhenUsed="false" Name="Table Grid"/><w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/><w:LsdException Locked="false" Priority="1" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading Accent 1"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List Accent 1"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid Accent 1"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/><w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/><w:LsdException Locked="false" Priority="34" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/><w:LsdException Locked="false" Priority="29" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Quote"/><w:LsdException Locked="false" Priority="30" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List Accent 1"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List Accent 1"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading Accent 2"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List Accent 2"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid Accent 2"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List Accent 2"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List Accent 2"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading Accent 3"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List Accent 3"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid Accent 3"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List Accent 3"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List Accent 3"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading Accent 4"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List Accent 4"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid Accent 4"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List Accent 4"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List Accent 4"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading Accent 5"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List Accent 5"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid Accent 5"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List Accent 5"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List Accent 5"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/><w:LsdException Locked="false" Priority="60" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Shading Accent 6"/><w:LsdException Locked="false" Priority="61" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light List Accent 6"/><w:LsdException Locked="false" Priority="62" SemiHidden="false"
+UnhideWhenUsed="false" Name="Light Grid Accent 6"/><w:LsdException Locked="false" Priority="63" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/><w:LsdException Locked="false" Priority="64" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/><w:LsdException Locked="false" Priority="65" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/><w:LsdException Locked="false" Priority="66" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/><w:LsdException Locked="false" Priority="67" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/><w:LsdException Locked="false" Priority="68" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/><w:LsdException Locked="false" Priority="69" SemiHidden="false"
+UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/><w:LsdException Locked="false" Priority="70" SemiHidden="false"
+UnhideWhenUsed="false" Name="Dark List Accent 6"/><w:LsdException Locked="false" Priority="71" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/><w:LsdException Locked="false" Priority="72" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful List Accent 6"/><w:LsdException Locked="false" Priority="73" SemiHidden="false"
+UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/><w:LsdException Locked="false" Priority="19" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/><w:LsdException Locked="false" Priority="21" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/><w:LsdException Locked="false" Priority="31" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/><w:LsdException Locked="false" Priority="32" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/><w:LsdException Locked="false" Priority="33" SemiHidden="false"
+UnhideWhenUsed="false" QFormat="true" Name="Book Title"/><w:LsdException Locked="false" Priority="37" Name="Bibliography"/><w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/></w:LatentStyles></xml><&#33;[endif]--><style><&#33;--
+/* Font Definitions */
+@font-face
+	{font-family:Times;
+	panose-1:2 0 5 0 0 0 0 0 0 0;
+	mso-font-charset:77;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"\FF2D\FF33 \660E\671D";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:128;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:128;
+	mso-generic-font-family:modern;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:128;
+	mso-generic-font-family:modern;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-520092929 1073786111 9 0 415 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1073743103 0 0 415 0;}
+@font-face
+	{font-family:"Lucida Grande";
+	panose-1:2 11 6 0 4 5 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-520090897 1342218751 0 0 447 0;}
+@font-face
+	{font-family:"Menlo Regular";
+	panose-1:2 11 6 9 3 8 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-436198657 -771687941 33554472 0 479 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	mso-style-next:Normal;
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#345A8A;
+	mso-themecolor:accent1;
+	mso-themeshade:181;
+	mso-font-kerning:0pt;
+	font-weight:bold;}
+h2
+	{mso-style-priority:9;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-style-next:Normal;
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:13.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	mso-style-type:export-only;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	mso-style-type:export-only;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Title Char";
+	mso-style-next:Normal;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:15.0pt;
+	margin-left:0in;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-bottom-alt:solid #4F81BD 1.0pt;
+	mso-border-bottom-themecolor:accent1;
+	padding:0in;
+	mso-padding-alt:0in 0in 4.0pt 0in;
+	font-size:26.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	mso-themecolor:followedhyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	font-family:"Lucida Grande";
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-priority:10;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Title;
+	mso-ansi-font-size:26.0pt;
+	mso-bidi-font-size:26.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#17365D;
+	mso-themecolor:text2;
+	mso-themeshade:191;
+	letter-spacing:.25pt;
+	mso-font-kerning:14.0pt;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:16.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#345A8A;
+	mso-themecolor:accent1;
+	mso-themeshade:181;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Balloon Text";
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Lucida Grande";
+	mso-ascii-font-family:"Lucida Grande";
+	mso-hansi-font-family:"Lucida Grande";}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"\FF2D\FF33 \660E\671D";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:691761968;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2093603610 67698711 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1
+	{mso-list-id:1684749390;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1422237446 67698711 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l2
+	{mso-list-id:1867938810;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2060222642 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l2:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l2:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><&#33;--[if gte mso 10]><style>
+/* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;}
+</style><&#33;[endif]--><&#33;--[if gte mso 9]><xml><o:shapedefaults v:ext="edit" spidmax="1026"/></xml><&#33;[endif]--><&#33;--[if gte mso 9]><xml><o:shapelayout v:ext="edit"><o:idmap v:ext="edit" data="1"/></o:shapelayout></xml><&#33;[endif]--></head><body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'><div class=WordSection1><div style='mso-element:para-border-div;border:none;border-bottom:solid #4F81BD 1.0pt;
+mso-border-bottom-themecolor:accent1;padding:0in 0in 4.0pt 0in'><p class=MsoTitle>Process Management Infrastructure for <span class=SpellE>OpenContrail</span></p></div><h1>Summary</h1><p class=MsoNormal>Various <span class=SpellE>OpenContrail</span> services (or
+their corresponding <span class=SpellE>linux</span> processes) need to be
+managed with respect to functions and events like:<br>
+a) starting/stopping/restarting<br>
+b) restarting in case of process crash/exit<br>
+c) monitoring status of the processes.</p><p class=MsoNormal>d) <span class=GramE>defining</span> event handlers to take
+care of process interdependencies</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>This document discusses a process management infrastructure
+using Supervisor package (http://www.supervisord.org).</p><h1>Why Supervisor package?</h1><p class=MsoNormal>We decided to use Supervisor as process management
+infrastructure instead of upstart or <span class=SpellE>systemd</span> because:</p><p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l0 level1 lfo3'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><&#33;[endif]>Platform-Independence: Supervisor package is
+written in python and works seamlessly on all flavors of <span class=SpellE>linux</span>
+(and non-<span class=SpellE>linux</span> systems as well).<span
+style="mso-spacerun:yes">&nbsp; </span>Using Supervisor package prevents us
+from rewriting policy files for process/service management (in Supervisor
+package .<span class=SpellE>ini</span> files) when moving to a new platform.</p><p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l0 level1 lfo3'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]>Extensibility: Supervisor package allows for external
+plugins that can be stand-alone programs that are fed process events. External
+plugins can extend the basic functionality provided by Supervisor package to do
+more useful functions. For e.g. <span class=SpellE>OpenContrail</span> software
+can have a Node Manager that can regularly log process states and core file
+information. More details on Node Manager software <span class=GramE>is</span>
+detailed in a later section. </p><p class=MsoListParagraphCxSpLast style='margin-left:1.0in;mso-add-space:auto;
+text-indent:-.25in;mso-list:l0 level2 lfo3'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><&#33;[endif]>There are other third-party plugins (whole
+library of them is listed on supervisord.org) which one can use based on the
+need. For e.g. there is a <span class=SpellE>Nagios</span> plugin to work with <span
+class=SpellE>Nagios</span> software.</p><h1>Launch Sequence</h1><p class=MsoNormal>In <span class=SpellE>OpenContrail</span>, a set of
+processes providing a related functionality is grouped together into an
+independent <span class=SpellE>nodetype</span>. For e.g. Analytics Node
+consists of contrail-collector, contrail-query-engine and contrail-analytics-<span
+class=SpellE>api</span>.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Independent <span class=SpellE>supervisord</span> instances
+are launched through upstart files for following <span class=SpellE>Nodetypes</span>:</p><p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l2 level1 lfo1'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=SpellE><span class=GramE>vrouter</span></span></p><p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l2 level1 lfo1'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=GramE>control</span></p><p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l2 level1 lfo1'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=GramE>analytics</span></p><p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l2 level1 lfo1'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=SpellE><span class=GramE>config</span></span></p><p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l2 level1 lfo1'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>5)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=SpellE><span class=GramE>webui</span></span></p><p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l2 level1 lfo1'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>6)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=GramE>database</span></p><p class=MsoListParagraphCxSpMiddle><o:p>&nbsp;</o:p></p><p class=MsoListParagraphCxSpMiddle style='margin-left:0in;mso-add-space:auto'>These
+<span class=SpellE>supervisord</span> instances in turn launch processes
+corresponding to the individual <span class=SpellE>OpenContrail</span>
+services. </p><p class=MsoListParagraphCxSpMiddle style='margin-left:0in;mso-add-space:auto'><o:p>&nbsp;</o:p></p><p class=MsoListParagraphCxSpLast style='margin-left:0in;mso-add-space:auto'>For
+e.g. <span class=SpellE>supervisord</span> instance for analytics launches
+contrail-collector, contrail-query-engine and contrail-analytics-<span
+class=SpellE>api</span> services.</p><h1>Files</h1><p class=MsoNormal>Upstart files for <span class=SpellE>supervisord</span>
+instances for different <span class=SpellE>nodetypes</span> are located in
+/etc/init/ directory. They are named<span style="mso-spacerun:yes">&nbsp;
+</span>“supervisor-&lt;<span class=SpellE>nodetype</span>&gt;<span class=GramE>.<span
+class=SpellE>conf</span></span>”.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>“<span class=SpellE><span class=GramE>supervisord</span></span>”
+<span class=SpellE>ini</span> files for different <span class=SpellE>OpenContrail</span>
+services are located in /<span class=SpellE>etc</span>/contrail/supervisor_&lt;<span
+class=SpellE>nodetype</span>&gt;_files/ directory.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>To let “service” command work, we have <span class=SpellE>init.d</span>
+files for both:</p><p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l1 level1 lfo2'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span></span><&#33;[endif]><span class=SpellE><span class=GramE>supervisord</span></span>
+instances of nodes:<span style="mso-spacerun:yes">&nbsp; </span>For e.g.
+“service<span style="mso-spacerun:yes">&nbsp; </span>supervisor-analytics
+restart” restarts all of the analytics services.</p><p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l1 level1 lfo2'><&#33;[if &#33;supportLists]><span
+style='mso-fareast-font-family:Cambria;mso-fareast-theme-font:minor-latin;
+mso-bidi-font-family:Cambria;mso-bidi-theme-font:minor-latin'><span
+style='mso-list:Ignore'>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><&#33;[endif]>Individual services: For e.g. “service
+contrail-collector restart” restarts contrail-collector service.<span
+style="mso-spacerun:yes">&nbsp; </span>These <span class=SpellE>init.d</span>
+files internally simply invoke “<span class=SpellE>supervisorctl</span>” (cli
+tool for <span class=SpellE>supervisord</span>) to restart/start/stop the
+service.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><h1>Handling Process Exits/Crashes</h1><p class=MsoNormal>When a service like contrail-collector that is part of
+analytics node crashes or exits, <span class=SpellE>supervisord</span> instance
+for the analytics node automatically restarts contrail-collector (<span
+class=SpellE>supervisord</span> .<span class=SpellE>ini</span> file for
+contrail-collector specifies the restart policy).</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>When <span class=SpellE>supervisord</span> instance of a <span
+class=SpellE>nodetype</span> itself dies down, the upstart file restarts that
+node. Do note that when the <span class=SpellE>supervisord</span> instance dies
+down all of the services in that node type also die down.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal><b><span style='font-size:16.0pt;font-family:Calibri;
+mso-ascii-theme-font:major-latin;mso-fareast-font-family:"\FF2D\FF33 \30B4\30B7\30C3\30AF";
+mso-fareast-theme-font:major-fareast;mso-hansi-theme-font:major-latin;
+mso-bidi-font-family:"Times New Roman";mso-bidi-theme-font:major-bidi;
+color:#345A8A;mso-themecolor:accent1;mso-themeshade:181'>Node Manager<o:p></o:p></span></b></p><p class=MsoNormal>Node manager reports the status of processes in a given Node
+type to the Analytics Node. This allows Analytics Node to provide API to give
+status of various <span class=SpellE>Nodetypes</span>.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Node manager collects information regarding the state of the
+processes using the event handler mechanism of <span class=SpellE>supervisord</span>.
+Node manager also takes special actions for some events as defined <span
+class=GramE>in a rules files</span>. An example rules file for Analytics Node
+is as follows:</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal><span class=GramE>{ &quot;</span>Rules&quot;: [</p><p class=MsoNormal><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>{&quot;<span class=SpellE><span class=GramE>processname</span></span>&quot;:
+&quot;contrail-query-engine&quot;, &quot;<span class=SpellE>process_state</span>&quot;:
+&quot;PROCESS_STATE_FATAL&quot;, &quot;action&quot;: &quot;service
+contrail-analytics-<span class=SpellE>api</span> stop&quot;},</p><p class=MsoNormal><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>{&quot;<span class=SpellE><span class=GramE>processname</span></span>&quot;:
+&quot;contrail-collector&quot;, &quot;<span class=SpellE>process_state</span>&quot;:
+&quot;PROCESS_STATE_STOPPED&quot;, &quot;action&quot;: &quot;<span
+class=SpellE>redis</span>-cli -n 1 <span class=SpellE>eval</span> \&quot;<span
+class=SpellE>redis.call</span>('<span class=SpellE>flushdb</span>'); redis.log(<span
+class=SpellE>redis.LOG_NOTICE,'EV_STOP</span> - <span class=SpellE>Nodemgr</span>
+Flushing <span class=SpellE>Redis</span> UVE')\&quot; 0&quot;},</p><p class=MsoNormal><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>..</span></p><p class=MsoNormal><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>]</p><p class=MsoNormal>}</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>As contrail-analytics-<span class=SpellE>api</span> requires
+contrail-query-engine to be running to provide API service, when contrail-query-engine
+dies, we would want to stop contrail-analytics-<span class=SpellE>api</span>
+too. The first rule above achieves the same.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><h1>Debugging and troubleshooting</h1><p class=MsoNormal>Do note that traditional usage of <span class=SpellE>linux</span>
+“service” command still works with Supervisor package based process management
+infrastructure. You can use service command to even start/stop/restart all
+services of a <span class=SpellE>nodetype</span> collectively.</p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Examples are shown below:</p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span
+style="mso-spacerun:yes">&nbsp;</span><span class=GramE><span style='font-size:
+11.0pt;font-family:"Menlo Regular";color:black'>root@a6s45</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>:~# service
+supervisor-analytics restart<span style="mso-spacerun:yes">&nbsp; </span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:red'>&lt;&lt;&lt;&lt;
+whole of analytics node restarted<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>supervisor</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-analytics
+stop/waiting<o:p></o:p></span></p><p class=MsoNormal><span class=GramE><span style='font-size:11.0pt;font-family:
+"Menlo Regular";color:black'>supervisor</span></span><span style='font-size:
+11.0pt;font-family:"Menlo Regular";color:black'>-analytics start/running,
+process 14624<o:p></o:p></span></p><p class=MsoNormal><span style='font-size:11.0pt;font-family:"Menlo Regular";
+color:black'><o:p>&nbsp;</o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>root@a6s45</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>:~# service
+contrail-query-engine restart<span style="mso-spacerun:yes">&nbsp; </span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:red'>&lt;&lt;&lt;&lt;
+contrail-query-engine restarted<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-query-engine:
+stopped<o:p></o:p></span></p><p class=MsoNormal><span class=GramE><span style='font-size:11.0pt;font-family:
+"Menlo Regular";color:black'>contrail</span></span><span style='font-size:11.0pt;
+font-family:"Menlo Regular";color:black'>-query-engine: started<o:p></o:p></span></p><p class=MsoNormal><span style='font-size:11.0pt;font-family:"Menlo Regular";
+color:black'><o:p>&nbsp;</o:p></span></p><p class=MsoNormal><span style='font-size:11.0pt;font-family:"Menlo Regular";
+color:black'><o:p>&nbsp;</o:p></span></p><p class=MsoNormal>One can also use “<span class=SpellE>supervisorctl</span>”
+command to connect to a <span class=SpellE>supervisord</span> instance for a <span
+class=SpellE>nodetype</span> and issue process control commands. </p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Examples are show below:</p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>root@a6s45</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>:~# <span
+class=SpellE>supervisorctl</span> -s unix:///tmp/supervisor_analytics.sock <o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-analytics-<span
+class=SpellE>api</span><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>RUNNING<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>pid</span> 14631, uptime 0:04:24<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-analytics-<span
+class=SpellE>nodemgr</span><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>RUNNING<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>pid</span> 14628, uptime 0:04:24<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-collector<span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>RUNNING<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>pid</span> 14629, uptime 0:04:24<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-query-engine<span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>RUNNING<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>pid</span> 18135, uptime 0:02:38<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>supervisor</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>&gt; restart contrail-collector<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-collector:
+stopped<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>contrail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>-collector:
+started<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>supervisor</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>&gt; help<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:11.0pt;
+font-family:"Menlo Regular";color:black'><o:p>&nbsp;</o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>default</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'> commands
+(type help &lt;topic&gt;):<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:11.0pt;
+font-family:"Menlo Regular";color:black'>=====================================<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>add</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>clear<span
+style="mso-spacerun:yes">&nbsp; </span><span class=SpellE>fg</span><span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>open<span style="mso-spacerun:yes">&nbsp; </span>quit<span
+style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>remove<span
+style="mso-spacerun:yes">&nbsp; </span>restart<span
+style="mso-spacerun:yes">&nbsp;&nbsp; </span>start<span
+style="mso-spacerun:yes">&nbsp;&nbsp; </span>stop<span
+style="mso-spacerun:yes">&nbsp; </span>update <o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>avail</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'><span
+style="mso-spacerun:yes">&nbsp; </span>exit<span
+style="mso-spacerun:yes">&nbsp;&nbsp; </span><span class=SpellE>maintail</span><span
+style="mso-spacerun:yes">&nbsp; </span><span class=SpellE>pid</span><span
+style="mso-spacerun:yes">&nbsp;&nbsp; </span>reload<span
+style="mso-spacerun:yes">&nbsp; </span>reread<span
+style="mso-spacerun:yes">&nbsp; </span>shutdown<span
+style="mso-spacerun:yes">&nbsp; </span>status<span
+style="mso-spacerun:yes">&nbsp; </span>tail<span
+style="mso-spacerun:yes">&nbsp; </span>version<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:11.0pt;
+font-family:"Menlo Regular";color:black'><o:p>&nbsp;</o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>supervisor</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>&gt; quit()<o:p></o:p></span></p><p class=MsoNormal style='mso-pagination:none;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 3.5in 280.0pt 308.0pt 336.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>root@a6s45</span></span><span
+style='font-size:11.0pt;font-family:"Menlo Regular";color:black'>:~# <o:p></o:p></span></p><p class=MsoNormal><span style='font-size:11.0pt;font-family:"Menlo Regular";
+color:black'><o:p>&nbsp;</o:p></span></p><h2>Log files</h2><p class=MsoNormal>Log files of individual services are present in /<span
+class=SpellE>var</span>/log/contrail.<span style="mso-spacerun:yes">&nbsp;
+</span>They are prefixed by the service name. For e.g. <span
+style="mso-spacerun:yes">&nbsp;</span><span style='mso-bidi-font-family:"Menlo Regular";
+color:black'>/<span class=SpellE>var</span>/log/contrail/contrail-collector-stdout.log
+is log file for “contrail-collector” service.<o:p></o:p></span></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Log files of <span class=SpellE>supervisord</span> instances
+are also present in /<span class=SpellE>var</span>/log/contrail. They are
+prefixed by <span class=SpellE>supervisord</span>. For e.g. <span
+style='mso-bidi-font-family:"Menlo Regular";color:black'>/<span class=SpellE>var</span>/log/contrail/supervisord-analytics.log
+is log file for the <span class=SpellE>supervisord</span> instance for the
+analytics <span class=SpellE>nodetype</span>.</span></p><p class=MsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
