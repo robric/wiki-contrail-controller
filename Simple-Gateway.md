@@ -147,61 +147,51 @@ We can select some or all of the compute node to be configured as vgw. To do so 
 
 **Sample**:
 
-`env.roledefs = {`
+env.roledefs = {
+    'all': [host1, host2, host3, host4, host5, host6],
+    'cfgm': [host1, host2, host3],
+    'openstack': [host2],
+    'webui': [host3],
+    'control': [host1, host3],
+    'compute': [host4, host5, host6],
+    'vgw': [host4, host5], >>>>>>>>>Add section VGW in one or multiple compute node
+    'collector': [host1, host3],
+    'database': [host1],
+    'build': [host_build],
+}
 
-    `'all': [host1, host2, host3, host4, host5, host6],`
+env.vgw = {
 
-    `'cfgm': [host1, host2, host3],`
+          host4: {
 
-    `'openstack': [host2],`
+                 'vgw1': {
 
-    `'webui': [host3],`
+                             'vn':'default-domain:admin:public:public', 
 
-    `'control': [host1, host3],`
+                             'ipam-subnets': ['10.204.220.128/29', '10.204.220.136/29']
 
-    `'compute': [host4, host5, host6],`
+                             'gateway-routes': ['8.8.8.0/24', '1.1.1.0/24']
 
-    `'vgw': [host4, host5], >>>>>>>>>Add section VGW in one or multiple compute node`
+                          },
 
-    `'collector': [host1, host3],`
+                 'vgw2':{
 
-    `'database': [host1],`
+                              'vn':'default-domain:admin:public1:public1', 
 
-    `'build': [host_build],`
-`}`
+                              'ipam-subnets': ['10.204.220.144/29']}},
+          host5: {
 
-`env.vgw = { `
+                 'vgw2':{
 
-          `host4: {`
+                              'vn':'default-domain:admin:public1:public1', 
 
-                 `'vgw1': {`
+                              ipam-subnets': ['10.204.220.144/29']
 
-                             `'vn':'default-domain:admin:public:public', `
+                        }
 
-                             `'ipam-subnets': ['10.204.220.128/29', '10.204.220.136/29']`
-
-                             `'gateway-routes': ['8.8.8.0/24', '1.1.1.0/24']`
-
-                          `},`
-
-                 `'vgw2':{`
-
-                              `'vn':'default-domain:admin:public1:public1', `
-
-                              `'ipam-subnets': ['10.204.220.144/29']}},`
-          `host5: {`
-
-                 `'vgw2':{`
-
-                              `'vn':'default-domain:admin:public1:public1', `
-
-                              `'ipam-subnets': ['10.204.220.144/29']`
-
-                        `}`
-
-                 `}`
-          `} `
-`}`
+                 }
+          } 
+}
 
 Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
 
