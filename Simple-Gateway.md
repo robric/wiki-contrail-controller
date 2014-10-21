@@ -159,6 +159,8 @@ env.roledefs = {
     'database': [host1],
     'build': [host_build],
 }
+***
+
 
 env.vgw = {
 
@@ -315,3 +317,6 @@ The devices in fabric network must be configured with static routes for 192.168.
 ### Packets are reaching compute node, but are not routed from host-os to VM.
 
 Check if the firewall_driver in /etc/nova/nova.conf file is set to nova.virt.libvirt.firewall.IptablesFirewallDriver. This will enable IPTables which can discard packet. Either disable IPTables during runtime or alternatively set firewall_driver to nova.virt.firewall.NoopFirewallDriver by setting LIBVIRT_FIREWALL_DRIVER=nova.virt.firewall.NoopFirewallDriver in localrc
+***
+
+***
