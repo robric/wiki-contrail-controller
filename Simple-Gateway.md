@@ -147,7 +147,7 @@ We can select some or all of the compute node to be configured as vgw. To do so 
 
 **Sample**:
 
-`env.roledefs = {
+env.roledefs = {
     'all': [host1, host2, host3, host4, host5, host6],
 
     'cfgm': [host1, host2, host3],
@@ -167,9 +167,7 @@ We can select some or all of the compute node to be configured as vgw. To do so 
     'database': [host1],
 
     'build': [host_build],
-
  }
-
 env.vgw = {
 
           host4: {
@@ -201,7 +199,7 @@ env.vgw = {
 
                  }
           } 
-}`
+}
 
 Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
 
