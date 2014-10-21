@@ -146,16 +146,27 @@ While provisioning setup using fab, we can provision virtual gateway by enabling
 We can select some or all of the compute node to be configured as vgw. To do so in env.roledefs along with other role definition we need add vgw roles. We can select a subset or complete set of compute node to become vgw. 
 
 env.roledefs = {
+
     'all': [host1, host2, host3, host4, host5, host6],
+
     'cfgm': [host1, host2, host3],
+
     'openstack': [host2],
+
     'webui': [host3],
+
     'control': [host1, host3],
+
     'compute': [host4, host5, host6],
+
     'vgw': [host4, host5], >>>>>>>>>Add section VGW in one or multiple compute node
+
     'collector': [host1, host3],
+
     'database': [host1],
+
     'build': [host_build],
+
 }
 
 Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
@@ -167,7 +178,7 @@ env.vgw = {host4: {'vgw1':{'vn':'default-domain:admin:public:public', 'ipam-subn
           }  
 
 Definition for the Key used
--------------------------------------
+
 vgw<number>: This is the interface name is going to get configured on the server. 
 vn: Virtual Network fully qualified name. This particular VN will be used by VGW .
 ipam-subnets: Subnets used by vn. It can be single or multiple
