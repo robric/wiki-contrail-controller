@@ -44,6 +44,8 @@ If works correctly, a review entry is created in [review server](review.opencont
 
 Some one should review and (optionally some one else) must approve the changes. If jenkins job verification also succeeds, the changes get automatically merged and pushed out to [github repo](github.com/Juniper/contrail-controller)
 
+For certain release branches such as R1.10, review entry can only be approved by the release team. Please send email to ci-admin@opencontrail.org in such cases describing your case and requesting for approval.
+
 ## Interdependent changes across different projects (git repos)
 If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. However, if you analyze carefully and submit smartly, you can feed changes to CI one at a time, with independent changes going in first, followed by dependent changes after the former gets merged. If that is not feasible, please follow this process.
 
@@ -113,6 +115,10 @@ Note: This is only available for folks inside Juniper Networks. Also, if the job
 5. **How to flip a job so that jobs are restarted**
 
     Either add a comment "recheck no bug" or "Abandon and Restore" review entry. 
+
+6. ** Cannot 'approve' review entries in certain branches such as R.10
+
+    Commits to release branches are now selectively throttled. Please send email to ci-admin@opencontrail.org describing your case, to get necessary approval
 
 6. **How to submit inter dependent changes spread across different git repos**
   
