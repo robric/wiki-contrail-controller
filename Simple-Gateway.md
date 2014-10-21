@@ -174,8 +174,11 @@ env.roledefs = {
 Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
 
 **Sample:**
+
 env.vgw = {host4: {'vgw1':{'vn':'default-domain:admin:public:public', 'ipam-subnets': ['10.204.220.128/29', '10.204.220.136/29']},
+
                    'vgw2':{'vn':'default-domain:admin:public1:public1', 'ipam-subnets': ['10.204.220.144/29']}},
+
            host5: {'vgw2':{'vn':'default-domain:admin:public1:public1', 'ipam-subnets': ['10.204.220.144/29']}}
           }  
 
