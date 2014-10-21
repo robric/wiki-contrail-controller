@@ -148,8 +148,8 @@ We can select some or all of the compute node to be configured as vgw. To do so 
 **Sample**:
 
 `env.roledefs = {`
-    ``'all': [host1, host2, host3, host4, host5, host6],``
-    ``'cfgm': [host1, host2, host3],``
+    `'all': [host1, host2, host3, host4, host5, host6],`
+    `'cfgm': [host1, host2, host3],`
     `'openstack': [host2],`
     `'webui': [host3],`
     `'control': [host1, host3],`
