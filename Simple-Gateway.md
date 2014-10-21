@@ -139,7 +139,41 @@ Packets between the FABRIC and default-domain:admin:net1:net1
 
 # Configuration
 
-Simple Gateway can be configured with 3 different options.
+Simple Gateway can be configured with 4 different options.
+
+## Configuring VGW during provisioning using fab.
+While provisioning setup using fab, we can provision virtual gateway by enabling the knob in testbed file.
+We can select some or all of the compute node to be configured as vgw. To do so in env.roledefs along with other role definition we need add vgw roles. We can select a subset or complete set of compute node to become vgw. 
+
+env.roledefs = {
+    'all': [host1, host2, host3, host4, host5, host6],
+    'cfgm': [host1, host2, host3],
+    'openstack': [host2],
+    'webui': [host3],
+    'control': [host1, host3],
+    'compute': [host4, host5, host6],
+    'vgw': [host4, host5], >>>>>>>>>Add section VGW in one or multiple compute node
+    'collector': [host1, host3],
+    'database': [host1],
+    'build': [host_build],
+}
+
+Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
+
+Sample:
+env.vgw = {host4: {'vgw1':{'vn':'default-domain:admin:public:public', 'ipam-subnets': ['10.204.220.128/29', '10.204.220.136/29']},
+                   'vgw2':{'vn':'default-domain:admin:public1:public1', 'ipam-subnets': ['10.204.220.144/29']}},
+           host5: {'vgw2':{'vn':'default-domain:admin:public1:public1', 'ipam-subnets': ['10.204.220.144/29']}}
+          }  
+
+Definition for the Key used
+-------------------------------------
+vgw<number>: This is the interface name is going to get configured on the server. 
+vn: Virtual Network fully qualified name. This particular VN will be used by VGW .
+ipam-subnets: Subnets used by vn. It can be single or multiple
+gateway-routes: If any route is present then only those routes will be published by VGW or Default route (0.0.0.0) will be published
+
+Once this above configuration is present, while executing fab setup_all, this will provision VGW.
 
 ## Static Gateway using contrail-vrouter-agent.conf file
 
