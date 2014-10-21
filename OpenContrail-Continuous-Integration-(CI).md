@@ -116,11 +116,11 @@ Note: This is only available for folks inside Juniper Networks. Also, if the job
 
     Either add a comment "recheck no bug" or "Abandon and Restore" review entry. 
 
-6. ** Cannot 'approve' review entries in certain branches such as R.10
+6. ** Cannot 'approve' review entries in certain branches such as R.10 **
 
     Commits to release branches are now selectively throttled. Please send email to ci-admin@opencontrail.org describing your case, to get necessary approval
 
-6. **How to submit inter dependent changes spread across different git repos**
+7. **How to submit inter dependent changes spread across different git repos**
   
     Please see [above] (https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)#interdependent-changes-across-different-projects-git-repos)
 
