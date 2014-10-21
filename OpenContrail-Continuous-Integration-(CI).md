@@ -116,7 +116,7 @@ Note: This is only available for folks inside Juniper Networks. Also, if the job
 
     Either add a comment "recheck no bug" or "Abandon and Restore" review entry. 
 
-6. ** Cannot 'approve' review entries in certain branches such as R.10 **
+6. **Cannot 'approve' review entries in certain branches such as R.10**
 
     Commits to release branches are now selectively throttled. Please send email to ci-admin@opencontrail.org describing your case, to get necessary approval
 
