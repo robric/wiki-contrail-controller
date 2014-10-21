@@ -168,6 +168,7 @@ env.roledefs = {
 
     'build': [host_build],
  }
+
 env.vgw = {
 
           host4: {
@@ -201,8 +202,6 @@ env.vgw = {
           } 
 }
 
-Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
-
 **Definition for the Key used**
 
 **vgw<number>**: This is the interface name is going to get configured on the server.
@@ -212,6 +211,12 @@ Now once the vgw is mentioned in role defination, it will expect below mentioned
 **ipam-subnets**: Subnets used by vn. It can be single or multiple
 
 **gateway-routes**: If any route is present then only those routes will be published by VGW or Default route (0.0.0.0) will be published
+
+As per the above configuration, from the list of 3 compute nodes (host4,host5 and host6), 2 of them (host4 and host5) picked up for configuring VGW. 
+In host4, Two VGW interface is configured with named vgw1 and vgw2. They are associated with virtual network public and public1 respectively.
+Key 'ipam-subnets' represent the subnets used by each virtual network. 
+Same VGW interface   can be configured in different compute node. But they need to be associated with same virtual network. In the above example vgw2 is configured in 2 host, host4 and host5. In both the cases they are associated with same virtual network.  
+Key 'gateway-routes' is an optional parameter. If 'gateway-routes' is configured, corresponding vgw will only publish list of routes mentioned in the list. 
 
 
 Once this above configuration is present, while executing fab setup_all, this will provision VGW.
