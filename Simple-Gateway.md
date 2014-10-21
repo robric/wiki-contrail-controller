@@ -145,6 +145,8 @@ Simple Gateway can be configured with 4 different options.
 While provisioning setup using fab, we can provision virtual gateway by enabling the knob in testbed file.
 We can select some or all of the compute node to be configured as vgw. To do so in env.roledefs along with other role definition we need add vgw roles. We can select a subset or complete set of compute node to become vgw. 
 
+**Sample**:
+
 env.roledefs = {
 
     'all': [host1, host2, host3, host4, host5, host6],
@@ -171,18 +173,22 @@ env.roledefs = {
 
 Now once the vgw is mentioned in role defination, it will expect below mentioned configuration in testbed file to configure virtual gateway. 
 
-Sample:
+**Sample:**
 env.vgw = {host4: {'vgw1':{'vn':'default-domain:admin:public:public', 'ipam-subnets': ['10.204.220.128/29', '10.204.220.136/29']},
                    'vgw2':{'vn':'default-domain:admin:public1:public1', 'ipam-subnets': ['10.204.220.144/29']}},
            host5: {'vgw2':{'vn':'default-domain:admin:public1:public1', 'ipam-subnets': ['10.204.220.144/29']}}
           }  
 
-Definition for the Key used
+**Definition for the Key used**
 
-vgw<number>: This is the interface name is going to get configured on the server. 
-vn: Virtual Network fully qualified name. This particular VN will be used by VGW .
-ipam-subnets: Subnets used by vn. It can be single or multiple
-gateway-routes: If any route is present then only those routes will be published by VGW or Default route (0.0.0.0) will be published
+**vgw<number>**: This is the interface name is going to get configured on the server.
+ 
+**vn**: Virtual Network fully qualified name. This particular VN will be used by VGW .
+
+**ipam-subnets**: Subnets used by vn. It can be single or multiple
+
+**gateway-routes**: If any route is present then only those routes will be published by VGW or Default route (0.0.0.0) will be published
+
 
 Once this above configuration is present, while executing fab setup_all, this will provision VGW.
 
