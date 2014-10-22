@@ -146,3 +146,4 @@ For all other questions, please email to [ci-admin](mailto:ci-admin@opencontrail
 Thank you.
 
 OpenContrail-CI-Team
+[ci-admin only wiki](https://junipernetworks.sharepoint.com/teams/mvp/Contrail/Contrail%20Wiki/Contrail%20CI.aspx)
