@@ -112,7 +112,7 @@ This process listens to configuration changes done by user (higher-level constru
 
 #### Service Monitor
 
-This process listens to configuration changes of service-template and service-instance and spawns and monitors virtual machines for services like firewall, analyzer etc. It uses nova API to spawn the virtual machines. In multi-node deployments it works in Active/Backup mode.
+This process listens to configuration changes of service-template and service-instance and spawns and monitors virtual machines for services like firewall, analyzer etc. It uses nova API to spawn the virtual machines. In multi-node deployments it works in Active/Backup mode. This daemon also syncs the keystone tenants to contrail which will show up in http://contoller-ip:8082/projects
 
 + **Service Name** - contrail-svc-monitor
 + **Ports**
