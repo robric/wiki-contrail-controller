@@ -147,29 +147,30 @@ We can select some or all of the compute node to be configured as vgw. To do so 
 
 **Sample**:
 
-env.roledefs = {
-    'all': [host1, host2, host3, host4, host5, host6],
+    env.roledefs = {
 
-    'cfgm': [host1, host2, host3],
+        'all': [host1, host2, host3, host4, host5, host6],
 
-    'openstack': [host2],
+        'cfgm': [host1, host2, host3],
 
-    'webui': [host3],
+        'openstack': [host2],
 
-    'control': [host1, host3],
+        'webui': [host3],
 
-    'compute': [host4, host5, host6],
+        'control': [host1, host3],
 
-    'vgw': [host4, host5], >>>>>>>>>Add section VGW in one or multiple compute node
+        'compute': [host4, host5, host6],
 
-    'collector': [host1, host3],
+        'vgw': [host4, host5], >>>>>>>>>Add section VGW in one or multiple compute node
 
-    'database': [host1],
+        'collector': [host1, host3],
 
-    'build': [host_build],
- }
+        'database': [host1],
 
-env.vgw = {
+        'build': [host_build],
+    }
+
+    env.vgw = {
 
           host4: {
 
@@ -200,7 +201,7 @@ env.vgw = {
 
                  }
           } 
-}
+    }
 
 **Definition for the Key used**
 
@@ -267,7 +268,7 @@ If using a stateful client, send the ConnectForVirtualGateway thrift message to 
 **Note:**
 If the vrouter agent restarts or if  the compute node reboots, it is expected that the client will reconfigure again
 
-## Static Gateway in devstack
+## Option 4. Static Gateway in devstack
 
 Simple Gateway uses following configuration parameters in the devstack "localrc" file. The routes given below in example are derived from the configuration parameters given below.
  
