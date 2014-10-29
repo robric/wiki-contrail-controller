@@ -141,7 +141,7 @@ Packets between the FABRIC and default-domain:admin:net1:net1
 
 Simple Gateway can be configured with 4 different options.
 
-## Configuring VGW during provisioning using fab.
+## Option 1. Configuring VGW during provisioning using fab.
 While provisioning setup using fab, we can provision virtual gateway by enabling the knob in testbed file.
 We can select some or all of the compute node to be configured as vgw. To do so in env.roledefs along with other role definition we need add vgw roles. We can select a subset or complete set of compute node to become vgw. 
 
@@ -221,7 +221,7 @@ Key 'gateway-routes' is an optional parameter. If 'gateway-routes' is configured
 
 Once this above configuration is present, while executing fab setup_all, this will provision VGW.
 
-## Static Gateway using contrail-vrouter-agent.conf file
+## Option 2. Static Gateway using contrail-vrouter-agent.conf file
 
 One or more Gateway Interfaces can be configured in contrail-vrouter-agent.conf file. Each Gateway Interface can take following parameters,
 
@@ -232,7 +232,7 @@ One or more Gateway Interfaces can be configured in contrail-vrouter-agent.conf 
 
 Any change in gateway configuration will be effective on next restart of agent.
 
-## Dynamic Simple Gateway
+## Option 3. Dynamic Simple Gateway
 From R1.1, Virtual Gateway can be created & deleted dynamically by sending thrift messages to the vrouter agent. The following thrift messages are defined:
 
  1. AddVirtualGateway to add a virtual gateway
