@@ -1,4 +1,4 @@
-Welcome to the contrail-controller wiki!
+Welcome to the Opencontrail wiki!
 
 Overview:
 * [Project Overview](https://github.com/Juniper/contrail-controller/wiki/Contrail:-Project-Overview)
