@@ -71,7 +71,7 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
 
 2. If the trailing end of the console output does not given enough clue, please look at the entire console log (link at the beginning of the console tail output summary url)
 
-3. If it is build issue such as compiler error, the error as reported by the compiler is logged in the console. Using line number, error message, etc. usually the root cause can be found and fixed. In that case, please resubmit the fix as additional patch the same review entry (git commit --amend . and git review)
+3. If it is build issue such as compiler error, the error as reported by the compiler is logged in the console. Using line number, error message, etc. usually the root cause can be found and fixed. In that case, please resubmit the fix as additional patch the same review entry ```(git commit --amend . and git review)```
 
 4. If is is CI infra issue (say due to a flaky job), you can inform ci-admin@opencontrail.org optionally, flip the job (by adding "recheck no bug" comment to the review entry) or simply wait for the admin team to take necessary action
 
