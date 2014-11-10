@@ -156,92 +156,92 @@ The following table lists the DHCP options, their options names and expected val
 IP address should be in dotted IPv4 format.
 
 
-The following options are used in IPv6 case.
+The following options are used in IPv6 case. Here, IPv6 address should be in v6 format.
 ```
 DHCPv6 opt_name	         DHCPv6 opt_value
 	
-v6-preference	           Byte
+v6-preference              Byte
 v6-rapid-commit            No Data
-v6-user-class	           Byte Array (encode data)
-v6-vendor-class	           Byte Array (encode data)
-v6-vendor-opts	           Byte Array (encode data)
-v6-interface-id	           Byte Array (encode data)
-v6-reconf-msg	           Byte
-v6-reconf-accept	   No Data
-v6-sip-server-names	   Domain Names (list)
-v6-sip-server-addresses	   1+ IPv6
-v6-name-servers	           1+ IPv6
-v6-domain-search	   Domain Names (list)
-v6-ia-pd	           Byte Array (encode data)
-v6-ia-prefix	           Byte Array (encode data)
-v6-nis-servers	           1+ IPv6
-v6-nisp-servers	           1+ IPv6
-v6-nis-domain-name	   Domain Name
-v6-nisp-domain-name	   Domain Name
-v6-sntp-servers	           1+ IPv6
-v6-info-refresh-time	   Unsigned 32-bit int
-v6-bcms-server-d	   Domain Names (list)
-v6-bcms-server-a	   1+ IPv6
-v6-geoconf-civic	   Byte Array (encode data)
-v6-remote-id	           Byte Array (encode data)
-v6-subscriber-id	   Byte Array (encode data)
-v6-client-fqdn	           Byte followed by Domain Name
-v6-pana-agent	           1+ IPv6
-v6-posiz-timezone	   String
-v6-tzdc-timezone	   String
-v6-ero	                   16-bit uint array
-v6-lq-query	           Byte Array (encode data)
-v6-client-data	           Byte Array (encode data)
-v6-clt-time	           Unsigned 32-bit int
-v6-lq-relay-data	   Byte Array (encode data)
-v6-lq-client-link	   1+ IPv6
-mip6-hnidf	           Domain Name
-mip6-vdinf	           Byte Array (encode data)
-v6-lost	                   Domain Name
-v6-capwap-ac	           1+ IPv6
-v6-relay-id	           Byte Array (encode data)
-v6-address-mos	           Byte Array (encode data)
-v6-fqdn-mos	           Byte Array (encode data)
-v6-ntp-server	           Byte Array (encode data)
-v6-access-domain	   Domain Name
-v6-sip-ua-cs-list	   Domain Names (list)
-v6-bootfile-url	           String
-v6-bootfile-param	   Byte Array (encode data)
-v6-client-arch-type	   16-bit uint array
-v6-nii	                   Byte Array (encode data)
-v6-geolocation	           Byte Array (encode data)
-v6-aftr-name	           Domain Name
+v6-user-class              Byte Array (encode data)
+v6-vendor-class            Byte Array (encode data)
+v6-vendor-opts             Byte Array (encode data)
+v6-interface-id            Byte Array (encode data)
+v6-reconf-msg              Byte
+v6-reconf-accept           No Data
+v6-sip-server-names        Domain Names (list)
+v6-sip-server-addresses    1+ IPv6
+v6-name-servers            1+ IPv6
+v6-domain-search           Domain Names (list)
+v6-ia-pd                   Byte Array (encode data)
+v6-ia-prefix               Byte Array (encode data)
+v6-nis-servers             1+ IPv6
+v6-nisp-servers            1+ IPv6
+v6-nis-domain-name         Domain Name
+v6-nisp-domain-name        Domain Name
+v6-sntp-servers            1+ IPv6
+v6-info-refresh-time       Unsigned 32-bit int
+v6-bcms-server-d           Domain Names (list)
+v6-bcms-server-a           1+ IPv6
+v6-geoconf-civic           Byte Array (encode data)
+v6-remote-id               Byte Array (encode data)
+v6-subscriber-id           Byte Array (encode data)
+v6-client-fqdn             Byte followed by Domain Name
+v6-pana-agent              1+ IPv6
+v6-posiz-timezone          String
+v6-tzdc-timezone           String
+v6-ero                     16-bit uint array
+v6-lq-query                Byte Array (encode data)
+v6-client-data             Byte Array (encode data)
+v6-clt-time                Unsigned 32-bit int
+v6-lq-relay-data           Byte Array (encode data)
+v6-lq-client-link          1+ IPv6
+mip6-hnidf                 Domain Name
+mip6-vdinf                 Byte Array (encode data)
+v6-lost                    Domain Name
+v6-capwap-ac               1+ IPv6
+v6-relay-id                Byte Array (encode data)
+v6-address-mos             Byte Array (encode data)
+v6-fqdn-mos                Byte Array (encode data)
+v6-ntp-server              Byte Array (encode data)
+v6-access-domain           Domain Name
+v6-sip-ua-cs-list          Domain Names (list)
+v6-bootfile-url            String
+v6-bootfile-param          Byte Array (encode data)
+v6-client-arch-type        16-bit uint array
+v6-nii                     Byte Array (encode data)
+v6-geolocation             Byte Array (encode data)
+v6-aftr-name               Domain Name
 v6-erp-local-domain-name   Domain Name
-v6-rsoo	                   Byte Array (encode data)
-v6-pd-exclude	           Byte Array (encode data)
-v6-vss	                   Byte Array (encode data)
-mip6-idinf	           Byte Array (encode data)
-mip6-udinf	           Byte Array (encode data)
-mip6-hnp	           Byte Array (encode data)
-mip6-haa	           Single IPv6
-mip6-haf	           Domain Name
-v6-rdnss-selection	   Byte Array (encode data)
-v6-krb-principal-name	   Byte Array (encode data)
-v6-krb-realm-name	   Byte Array (encode data)
+v6-rsoo                    Byte Array (encode data)
+v6-pd-exclude              Byte Array (encode data)
+v6-vss                     Byte Array (encode data)
+mip6-idinf                 Byte Array (encode data)
+mip6-udinf                 Byte Array (encode data)
+mip6-hnp                   Byte Array (encode data)
+mip6-haa                   Single IPv6
+mip6-haf                   Domain Name
+v6-rdnss-selection         Byte Array (encode data)
+v6-krb-principal-name      Byte Array (encode data)
+v6-krb-realm-name          Byte Array (encode data)
 v6-krb-default-realm-name  Byte Array (encode data)
-v6-krb-kdc	           Byte Array (encode data)
+v6-krb-kdc                 Byte Array (encode data)
 v6-client-linklayer-addr   Byte Array (encode data)
-v6-link-address	           Single IPv6
-v6-radius	           Byte Array (encode data)
-v6-sol-max-rt	           Unsigned 32-bit int
-v6-inf-max-rt	           Unsigned 32-bit int
-v6-addrsel	           Byte Array (encode data)
-v6-addrsel-table	   Byte Array (encode data)
-v6-pcp-server	           1+ IPv6
-v6-dhcpv4-msg	           Byte Array (encode data)
+v6-link-address            Single IPv6
+v6-radius                  Byte Array (encode data)
+v6-sol-max-rt              Unsigned 32-bit int
+v6-inf-max-rt              Unsigned 32-bit int
+v6-addrsel                 Byte Array (encode data)
+v6-addrsel-table           Byte Array (encode data)
+v6-pcp-server              1+ IPv6
+v6-dhcpv4-msg              Byte Array (encode data)
 v6-dhcpv4-o-dhcpv6-server  Byte Array (encode data)
-v6-s46-rule	           Byte Array (encode data)
-v6-s46-br	           Single IPv6
-v6-s46-dmr	           Byte Array (encode data)
-v6-s46-v4v6bind	           Byte Array (encode data)
-v6-s46-portparams	   Byte Array (encode data)
-v6-s46-cont-mape	   Byte Array (encode data)
-v6-s46-cont-mapt	   Byte Array (encode data)
-v6-s46-cont-lw	           Byte Array (encode data)
-v6-address-andsf	   1+ IPv6
+v6-s46-rule                Byte Array (encode data)
+v6-s46-br                  Single IPv6
+v6-s46-dmr                 Byte Array (encode data)
+v6-s46-v4v6bind            Byte Array (encode data)
+v6-s46-portparams          Byte Array (encode data)
+v6-s46-cont-mape           Byte Array (encode data)
+v6-s46-cont-mapt           Byte Array (encode data)
+v6-s46-cont-lw             Byte Array (encode data)
+v6-address-andsf           1+ IPv6
 ```
