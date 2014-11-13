@@ -273,8 +273,7 @@ Monitor all analytics services in this node, send all stats to collector.
 ##3.1 Cassandra
 * For Configuration related keyspaces[TBD: enumerate], replication factor = cluster size. Write and Read consistency levels are Quorum. With 2n+1 cluster/replication-factor, reads are consistent. Survive the loss of n nodes. Really read from and write to n+1 nodes (quorum). Each node holds 100% of data. So strict consistency.
 * For Analytics related keyspaces[TBD: enumerate], replication factor = 2. Write and Read consistency is Single. So eventual consistency.
-* See http://www.ecyrd.com/cassandracalculator/
-
+* See http://www.ecyrd.com/cassandracalculator/ for more details regarding consistency.
 
 ##3.2 Database Node Manager
 Monitor all database services in this node, send all stats to collector.
@@ -288,12 +287,12 @@ Monitor all database services in this node, send all stats to collector.
 
 #### Schema Transformer
 * Master election
-* Allocate route target.
+* Allocate shared resources e.g. route-target values(0-2^16-1), virtual-network IDs[TBD:values], security-group IDs[TBD:values]
+* Security group ID and virtual network ID used by BGP/XMPP.
 
 #### Configuration API Server
-* Allocate IP address.
+* Allocate IP address in subnet.
 * Check fq-name in case 2 objects are created with the same name in fly.
-* Security group ID and virtual network ID used by BGP/XMPP.
 
 #### Service Monitor
 * Master election
@@ -309,7 +308,7 @@ Monitor all database services in this node, send all stats to collector.
 * Port:
   * 179: BGP
   * 5269: XMPP server for vRouter agent to connect to
-  * 8083: introspec for debugging
+  * 8083: introspect for debugging
 
 #### Discovery
 * Read: Receive info of requested services.
@@ -319,7 +318,7 @@ Monitor all database services in this node, send all stats to collector.
 * Read: Receive configurations published by configuration API server.
 * Write: Subscribe to receive configurations.
 
-#### vRouger Agent
+#### vRouter Agent
 * Read: Receive XMPP messages.
 * Write: Send XMPP messages.
 
@@ -371,7 +370,7 @@ Monitor all control services in this node, send all stats to collector.
 
 #### Discovery
 * Read: Receive info of requested services.
-* Write: Request service info, eg. control server.
+* Write: Request service info, e.g. control server.
 
 #### Control
 * Read: XMPP messages.
