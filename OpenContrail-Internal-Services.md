@@ -7,7 +7,7 @@
 * Storage: Configurations in Cassandra
 * Port:
   * 8082: REST API for reading and writing configuration
-  * 8084: introspec for debugging
+  * 8084: introspect for debugging
 
 #### Cassandra
 * Read: Read configuration.
@@ -23,37 +23,39 @@
 
 #### Collector
 * Read: None
-* Write: Send positive (updates) and negtive (error, failures) logs, and running stats.
+* Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 #### Discovery
 * Read: Get info of other services, like collector.
-* Write: Register itself and IF-MAP server. Send heatbeat. Send request for other services.
+* Write: Register itself and IF-MAP server. Send heartbeat. Send request for other services.
 
 
 ##1.2 Discovery
 * Mode: Active/Active
 * Configuration: /etc/contrail/contrail-discovery.conf
 * Log: Defined in configuration
-* Storage: Registration of services in Zookeeper
+* Storage: Registration of services in Cassandra (prior to 1.1 in Zookeeper)
 * Port:
   * 5998: REST API for register and request services
 
 #### Other Services
-* Read: Recive registration (with VIP in HA case), service request and heartbeat.
+* Read: Receive registration (with VIP in HA case), service request and heartbeat.
 * Write: Send requested service info.
 
 #### Collector
 * Read: None
-* Write: Send positive (updates) and negtive (error, failures) logs, and running stats.
+* Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 
 ##1.3 Schema Transformer
 * Mode: Active/Passive
 * Configuration: /etc/contrail/contrail-schema.conf
 * Log: Defined in configuration
-* Storage: Unique items from Zookeeper, eg. route target
+* Storage: 
+  + Non-UUID Unique items from Zookeeper, eg. route-target numbers, virtual-network-ids, security-group-ids.
+  + Private persistent data in Cassandra.
 * Port:
-  * 8087: introspec for debugging
+  * 8087: introspect for debugging
 
 #### IF-MAP Server
 * Read: Receive configuration published by configuration API server.
@@ -65,20 +67,26 @@
 
 #### Zookeeper
 * Read: None
-* Write: Register, first register, first being active. A callback is invoked if it is active. All other instances of schema transformer are passive and stuck at callback. Once the active one is down, one of the passive will be waked up by callback. Only the active schema transformer connects to IF-MAP server on port 8443.
+* Write: Register, first register, first being active(aka master election recipe). A callback is invoked if it is active. All other instances of schema transformer are passive and stuck at callback. Once the active one is down, one of the passive will be woken up by callback. Only the active schema transformer connects to local IF-MAP server on port 8443.
+
+#### Cassandra
+* Read: On startup to rebuild internal state from previous run
+* Write: Data associated with User and System objects that are specific to schema transformer and that need to survive restarts
 
 #### Collector
 * Read: None
-* Write: Send positive (updates) and negtive (error, failures) logs, and running stats.
+* Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 
 ##1.4 Service Monitor
 * Mode: Active/Passive
 * Configuration: /etc/contrail/svc-monitor.conf
 * Log: Defined in configuration
-* Storage: Zookeeper
+* Storage:
+  + Zookeeper for master election recipe (see schema-transformer section). 
+  + Cassandra for private persistent data
 * Port:
-  * 8088: introspec for debugging
+  * 8088: introspect for debugging
 
 #### IF-MAP Server
 * Read: Receive configuration published by configuration API server.
@@ -92,15 +100,22 @@
 * Read: None
 * Write: Register, first register, first being active. A callback is invoked if it is active. All other instances of schema transformer are passive and stuck at callback. Once the active one is down, one of the passive will be waked up by callback.
 
+#### Cassandra
+* Read: On startup to rebuild internal state from previous run
+* Write: Data associated with User and System objects that are specific to service monitor and that need to survive restarts
+
 #### Collector
 * Read: None
 * Write: Send positive (updates) and negtive (error, failures) logs, and running stats.
 
+#### Nova-API
+* Read: For monitoring service-instance's VM state.
+* Write: For (re)launching service-instance VM.
 
 ##1.5 IF-MAP Server
 * Configuration: /etc/ifmap-server/
 * Log: Defined in configuration. /var/log/contrail/ifmap-server*.log
-* Storage: Published configurations in memory
+* Storage: Published configurations in-memory
 * Port:
   * 8443
 
@@ -137,11 +152,11 @@
 
 
 ##1.7 Configuration Node Manager (server layer)
-Monitor all config services in this node, send all stats to collector.
+Monitor all config services in this node, send all stats and process status to collector.
 
 #### Collector
 * Read: None
-* Write: Send positive (updates) and negtive (error, failures) logs, and running stats.
+* Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 
 ##1.8 User Configuration Flow
@@ -171,7 +186,7 @@ Schema Transformer
 * Storage: Analytics info in Cassandra
 * Port:
   * 8081: REST API for querying analytics info
-  * 8090: introspec for debugging
+  * 8090: introspect for debugging
 
 #### Cassandra
 * Read: Read logs (UVEs can be read as format of log)
@@ -181,7 +196,7 @@ Schema Transformer
 * Read: Read UVEs from Redis on all analytics nodes and aggregate them, and logs published by query engine.
 * Write: Subscribe to receive logs published by query engine.
 
-#### Query Enine
+#### Query Engine
 * Read: None
 * Write: Send queries.
 
@@ -197,10 +212,10 @@ Schema Transformer
 * Storage: Analytics info in Redis and Cassandra
 * Port:
   * 8086: collect analytics info
-  * 8089: introspec for debugging
+  * 8089: introspect for debugging
 
 #### Other Services (Generators)
-* Read: Receive UVEs and logs from all gnerators (services).
+* Read: Receive UVEs and logs from all generators (services).
 * Write: None
 
 #### Redis Server
@@ -256,7 +271,9 @@ Monitor all analytics services in this node, send all stats to collector.
 #3 Database
 
 ##3.1 Cassandra
-Cluster size is the same as Replication factor. Write and read levels are Quorum. With 2n+1 cluster/replication-factor, reads are consistent. Survive the loss of n nodes. Really read from and write to n+1 nodes (quorum). Each node holds 100% of data.
+* For Configuration related keyspaces[TBD: enumerate], replication factor = cluster size. Write and Read consistency levels are Quorum. With 2n+1 cluster/replication-factor, reads are consistent. Survive the loss of n nodes. Really read from and write to n+1 nodes (quorum). Each node holds 100% of data. So strict consistency.
+* For Analytics related keyspaces[TBD: enumerate], replication factor = 2. Write and Read consistency is Single. So eventual consistency.
+* See http://www.ecyrd.com/cassandracalculator/
 
 
 ##3.2 Database Node Manager
