@@ -360,7 +360,8 @@ password=control-node-<N>
 ```
 
 * N should be the instance-id (e.g. 1, 2, ...)
-* each username/password has to be defined in in /etc/ifmap-server/basicauthusers.properties and ifmap-server restarted
+* Each username/password has to be defined in in /etc/ifmap-server/basicauthusers.properties and ifmap-server restarted
+* Each control-node must have a unique username when it connects to the ifmap-server as an ifmap-client; control-nodes default to connecting to ifmap-server via discovery; in this case all control-nodes should have unique ifmap client ids.
 
 #### Running
 ```
