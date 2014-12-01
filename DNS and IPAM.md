@@ -1,3 +1,5 @@
+
+
 Four DNS modes are supported in the system, IPAM configuration can select the DNS mode required.
 
 ## 1. None
@@ -116,3 +118,15 @@ Operational virtual DNS servers and the configured DNS records on the control no
 DNS query and response traces can be seen on the compute node at:
 
 `http://<compute node ip>:8085/Snh_SandeshTraceRequest?x=DnsBind`
+
+## Mapping to Neutron Resources and API
+
+While the network resource in Neutron maps to virtual-network in Contrail, network-ipam and virtual-DNS are resources introduced by Contrail. 
+
+virtual-DNS object has domain as parent and network-ipam has project as parent. So:
+
+    virtual-network ==refers-to==> network-ipam ==refers-to==> virtual-DNS
+
+The Contrail API server on first start creates a `default-network-ipam` object in the configuration database under the `default-domain` -> `default-project` hierarchy (referred further as global `default-network-ipam`). Using Contrail API hooks mechanism it is possible to also automatically create `default-network-ipam` object within a newly created project a `default-virtual-DNS` object within a newly created domain and link them to provide vDNS functionality.
+
+Whenever a new virtual-network is created, the Contrail Neutron plugin will link it to the project specific `default-network-ipam` and if that doesn't exist it will link it to the global `default-network-ipam`.
