@@ -11,7 +11,6 @@ Architecture:
 * [OpenContrail Internal Services](OpenContrail-Internal-Services)
 
 Opencontrail Development:
-* TODO
 * [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
 
 Debug and Troubleshooting:
@@ -25,7 +24,7 @@ R1.10 Notes:
 * [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
 
 Features:
-* [Virtual DNS](Dns)
+* [Virtual DNS and IPAM](Dns)
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
