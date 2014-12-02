@@ -1,5 +1,4 @@
 
-
 Four DNS modes are supported in the system, IPAM configuration can select the DNS mode required.
 
 ## 1. None
@@ -121,7 +120,7 @@ DNS query and response traces can be seen on the compute node at:
 
 ## Mapping to Neutron Resources and API
 
-While the network resource in Neutron maps to virtual-network in Contrail, network-ipam and virtual-DNS are resources introduced by Contrail. network-ipam is also defined as a Neutron extension and can be used via Neutron API as Horizon does it [here.](https://github.com/Juniper/contrail-horizon/blob/b79deaf9302673c01e1e6d01373b94808c15b2b0/openstack_dashboard/dashboards/project/networking/ipam/forms.py#L109). virtual-DNS will also be added as a Neutron extension in future.
+While the core network resource in Neutron maps to virtual-network in Contrail, network-ipam and virtual-DNS are resources introduced by Contrail. network-ipam is also defined as a Neutron extension and can be used via Neutron API as Horizon does it [here.](https://github.com/Juniper/contrail-horizon/blob/b79deaf9302673c01e1e6d01373b94808c15b2b0/openstack_dashboard/dashboards/project/networking/ipam/forms.py#L109). virtual-DNS will also be added as a Neutron extension in future.
 
 virtual-DNS object has domain as parent and network-ipam has project as parent. So:
 
