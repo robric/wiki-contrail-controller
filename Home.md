@@ -24,7 +24,7 @@ R1.10 Notes:
 * [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
 
 Features:
-* [Virtual DNS and IPAM](Dns)
+* [Virtual DNS and IPAM](DNS-and-IPAM)
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
