@@ -121,12 +121,12 @@ DNS query and response traces can be seen on the compute node at:
 
 ## Mapping to Neutron Resources and API
 
-While the network resource in Neutron maps to virtual-network in Contrail, network-ipam and virtual-DNS are resources introduced by Contrail. 
+While the network resource in Neutron maps to virtual-network in Contrail, network-ipam and virtual-DNS are resources introduced by Contrail. network-ipam is also defined as a Neutron extension and can be used via Neutron API as Horizon does it [here.](https://github.com/Juniper/contrail-horizon/blob/b79deaf9302673c01e1e6d01373b94808c15b2b0/openstack_dashboard/dashboards/project/networking/ipam/forms.py#L109). virtual-DNS will also be added as a Neutron extension in future.
 
 virtual-DNS object has domain as parent and network-ipam has project as parent. So:
 
     virtual-network ==refers-to==> network-ipam ==refers-to==> virtual-DNS
 
-The Contrail API server on first start creates a `default-network-ipam` object in the configuration database under the `default-domain` -> `default-project` hierarchy (referred further as global `default-network-ipam`). Using Contrail API hooks mechanism it is possible to also automatically create `default-network-ipam` object within a newly created project a `default-virtual-DNS` object within a newly created domain and link them to provide vDNS functionality.
+The Contrail API server on first start creates a `default-network-ipam` object in the configuration database under the `default-domain` -> `default-project` hierarchy (referred further as global `default-network-ipam`). Using Contrail API hooks mechanism it is possible to also automatically create `default-network-ipam` object within a newly created project and `default-virtual-DNS` object within a newly created domain and link them to provide vDNS functionality.
 
 Whenever a new virtual-network is created, the Contrail Neutron plugin will link it to the project specific `default-network-ipam` and if that doesn't exist it will link it to the global `default-network-ipam`.
