@@ -480,12 +480,17 @@ service contrail-vrouter-agent start
 apt-get install neutron-plugin-contrail
 ```
 ### Config
-- neutron.conf
+- neutron.conf (<= R1.06)
 ```
 core_plugin = neutron_plugin_contrail.plugins.opencontrail.contrailplugin.ContrailPlugin
-api_extensions_path = extensions:/usr/lib/python2.7/dist-packages/neutron_plugin_contrail/extensions
+api_extensions_path = /usr/lib/python2.7/dist-packages/neutron_plugin_contrail/extensions
 ```
 
+- neutron.conf (>= R1.2/master)
+```
+core_plugin = neutron_plugin_contrail.plugins.opencontrail.contrail_plugin.NeutronPluginContrailCoreV2
+api_extensions_path = /usr/lib/python2.7/dist-packages/neutron_plugin_contrail/extensions
+```
 - /etc/neutron/plugins/opencontrail/ContrailPlugin.ini
 ```
 [APISERVER]
