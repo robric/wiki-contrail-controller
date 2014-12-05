@@ -47,7 +47,11 @@ Some one should review and (optionally some one else) must approve the changes. 
 For certain release branches such as R1.10, review entry can only be approved by the release team. Please send email to ci-admin@opencontrail.org in such cases describing your case and requesting for approval.
 
 ## Interdependent changes across different projects (git repos)
-If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. However, if you analyze carefully and submit smartly, you can feed changes to CI one at a time, with independent changes going in first, followed by dependent changes after the former gets merged. If that is not feasible, please follow this process.
+If you have changes spread across different git repos, then CI cannot handle it, as it does so with only one git repo at a time. However, if you analyze carefully and submit smartly, you can feed changes to CI one at a time, with independent changes going in first, followed by dependent changes after the former gets merged.
+
+To break mutual dependency in packaging rpms with other repos, you can place this in the spec file temporarily "%define _unpackaged_files_terminate_build 0" (And later remove it after the changes get merged with a new review entry)
+
+If that is not feasible, please follow this process.
 
 * **Please make sure that all new, modified and deleted files are add/deleted to/from git before git commit**
 * Commit your changes and do 'git review' for all the change sets necessary.
