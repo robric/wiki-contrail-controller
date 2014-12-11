@@ -18,7 +18,7 @@ Debug and Troubleshooting:
 * [Tips](Debug-Tips)
 * [VRouter-Agent introspect](Contrail-Vrouter-Agent---Introspect)
 * [Scenarios](Scenario-Troubleshooting)
-* [Removing + Adding DB node](Remove_Adding_DB_Node)
+* [Removing + Adding DB node](Removing_Adding_DB_Node)
 
 Features:
 * [Simple Gateway](Simple-Gateway)
