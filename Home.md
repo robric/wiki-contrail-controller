@@ -14,6 +14,7 @@ Opencontrail Development:
 * [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
 
 Debug and Troubleshooting:
+* [Checklist](Debug-Checklist)
 * [Tips](Debug-Tips)
 * [VRouter-Agent introspect](Contrail-Vrouter-Agent---Introspect)
 * [Scenarios](Scenario-Troubleshooting)
