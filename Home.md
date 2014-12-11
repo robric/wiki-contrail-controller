@@ -18,16 +18,17 @@ Debug and Troubleshooting:
 * [Tips](Debug-Tips)
 * [VRouter-Agent introspect](Contrail-Vrouter-Agent---Introspect)
 * [Scenarios](Scenario-Troubleshooting)
-* [Simple Gateway](Simple-Gateway)
-
-R1.10 Notes:
-* [Neutron API compatibility](Neutron-API-Support-on-R1.10)
-* [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
+* [Removing + Adding DB node](Remove_Adding_DB_Node)
 
 Features:
+* [Simple Gateway](Simple-Gateway)
 * [Virtual DNS and IPAM](DNS-and-IPAM)
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
 * [Network Rate Limiting Configuration] (https://techwiki.juniper.net/Documentation/Contrail/Contrail_Controller_Feature_Guide/Configuration/Configuring_Network_QoS_Parameters_in_VM)
 * [VPC API support](VPC-API-support)
+
+R1.10 Notes:
+* [Neutron API compatibility](Neutron-API-Support-on-R1.10)
+* [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
