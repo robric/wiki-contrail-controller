@@ -1,6 +1,6 @@
 ## Step 0 - Prerequisites
 
-* Ensure on all servers disk is not exhausted.
+* Ensure on all servers disk on ****all partitions**** are not exhausted.
 
     ``df -kh``
 
