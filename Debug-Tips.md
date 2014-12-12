@@ -5,7 +5,12 @@
 * [POSTMAN REST client](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0CB4QFjAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman-rest-client%2Ffdmmgilgnpjigdojojpjoooidkmcomcm%3Fhl%3Den&ei=8UwSVO3HAsmkyASY-4GoDg&usg=AFQjCNHaecLwAKk91gpdCY_y1x_ViIrHwQ&sig2=cFmqDhGUuPP_DTYV7-OErg&bvm=bv.75097201,d.aWw)
 * [Vim in TextArea - write more wiki!](https://chrome.google.com/webstore/detail/wasavi/dgogifpkoilgiofhhhodbodcfgomelhe)
 
-## Use [contrail-logs](Using-contrail-logs-to-debug-Contrail) to gather details when UI access is not possible
+## Text-only tools when UI is not accessible
+* [contrail-logs](Using-contrail-logs-to-debug-Contrail) to gather details when UI access is not possible
+* To view xml output with indentation
+````
+    curl -q http://<url e.g. localhost:8085/SnhItfReq?> | python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read();print xml.dom.minidom.parseString(s).toprettyxml()' | less
+````
 
 ## VRouter management webpage
 
@@ -15,15 +20,15 @@ http://localhost:8085/
 
 Here is some useful webpages.
 
-List of VRFs. 
+### List of VRFs. 
 
 http://localhost:8085/Snh_VrfListReq?name=
 
-You can click link in ucindex to see routes
+### You can click link in ucindex to see routes
 
 http://localhost:8085/Snh_Inet4UcRouteReq?x=8
 
-Sandish message stats
+### Sandesh message stats
 
 http://localhost:8085/Snh_SandeshMessageStatsReq?
 
