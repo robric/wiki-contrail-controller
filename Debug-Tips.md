@@ -9,7 +9,14 @@
 * [contrail-logs](Using-contrail-logs-to-debug-Contrail) to gather details when UI access is not possible
 * To view xml output with indentation
 ````
-    curl -q http://<url e.g. localhost:8085/SnhItfReq?> | python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read();print xml.dom.minidom.parseString(s).toprettyxml()' | less
+    curl -sq http://localhost:8085/Snh_ItfReq? | python -c 'import sys;import xml.dom.minidom;s=sys.stdin.read();print xml.dom.minidom.parseString(s).toprettyxml()' | less
+````
+* To locate particular stanza based on child value 
+    + (for e.g. interface stanza based on name of vhost0, port uuid or vm uuid)
+````
+    (export KEY=name VAL=vhost0; curl -s -q http://localhost:8085/Snh_ItfReq? | python -c 'import sys, os;from lxml import etree as et;s=sys.stdin.read();root=et.fromstring(s); print et.tostring(root.xpath(".//%s[text()=\"%s\"]/.." %(os.environ["KEY"], os.environ["VAL"]))[0], pretty_print=True)')
+    (export KEY=uuid VAL=29ec90f1-c637-4cc8-8edb-125ce3dcc0f9; curl -s -q http://localhost:8085/Snh_ItfReq? | python -c 'import sys, os;from lxml import etree as et;s=sys.stdin.read();root=et.fromstring(s); print et.tostring(root.xpath(".//%s[text()=\"%s\"]/.." %(os.environ["KEY"], os.environ["VAL"]))[0], pretty_print=True)')
+    (export KEY=vm_uuid VAL=a607ec69-95e9-4f8a-9d29-f6632e66fd76; curl -s -q http://localhost:8085/Snh_ItfReq? | python -c 'import sys, os;from lxml import etree as et;s=sys.stdin.read();root=et.fromstring(s); print et.tostring(root.xpath(".//%s[text()=\"%s\"]/.." %(os.environ["KEY"], os.environ["VAL"]))[0], pretty_print=True)')
 ````
 
 ## VRouter management webpage
