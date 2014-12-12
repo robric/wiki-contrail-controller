@@ -3,7 +3,7 @@
 * [JSONViewer](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0CB4QFjAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fjsonview%2Fchklaanhfefbnpoihckbnefhakgolnmc%3Fhl%3Den&ei=okwSVNvNHoWuyATU8IDYCQ&usg=AFQjCNH3ET5JyRh_aKGH_G5Ws5MXENK5bA&sig2=pWaOq0PM1ptzGV5Mln3sZg&bvm=bv.75097201,d.aWw)
 * [Github Wiki Search](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&sqi=2&ved=0CCcQFjAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgithub-wiki-search%2Fgdifdhnjmjaidbajhapmbcbnoocoeooc%3Fhl%3Den&ei=zkwSVLqcHo2k8AXotIKIDA&usg=AFQjCNFUY7r_nIUR5aamJ5dLvSMOEHqWMQ&sig2=47EAGQ_pAiJFTsxqq6MOlg&bvm=bv.75097201,d.aWw)
 * [POSTMAN REST client](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0CB4QFjAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman-rest-client%2Ffdmmgilgnpjigdojojpjoooidkmcomcm%3Fhl%3Den&ei=8UwSVO3HAsmkyASY-4GoDg&usg=AFQjCNHaecLwAKk91gpdCY_y1x_ViIrHwQ&sig2=cFmqDhGUuPP_DTYV7-OErg&bvm=bv.75097201,d.aWw)
-* [Vim in TextArea - write more wiki!](https://chrome.google.com/webstore/detail/wasavi/dgogifpkoilgiofhhhodbodcfgomelhe)
+* [Vim in TextArea with ctrl+enter - write more wiki!](https://chrome.google.com/webstore/detail/wasavi/dgogifpkoilgiofhhhodbodcfgomelhe)
 
 ## Text-only tools when GUI is not accessible
 * [contrail-logs](Using-contrail-logs-to-debug-Contrail) to gather details when UI access is not possible
