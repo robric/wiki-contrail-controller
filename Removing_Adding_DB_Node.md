@@ -5,8 +5,8 @@
 * Fixup cassandra data directories symlinks to right partition (if different than default)
 * Start cassandra service, wait for ``nodetool netstats`` to show ``NORMAL`` status
 * Remove old cassandra node
-* Generic information (we use vnodes) to [add a node](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) and [remove a node] (http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_remove_node_t.html)
-
+* Generic information (we use vnodes) to [add a cassandra node](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) and [remove a cassandra node.] (http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_remove_node_t.html)
+* Information for [add and remove of zookeeper node.](http://stackoverflow.com/questions/11375126/zookeeper-adding-peers-dynamically)
 ## Details
 
 The description below assumes a testbed that had 3 DB nodes (host1,host2,host3 in testbed.py of fab) where host3 is to be replaced by a new DB node. For zookeeper purposes this will be with a new server id 4.
