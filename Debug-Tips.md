@@ -4,6 +4,8 @@
 * [Github Wiki Search](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&sqi=2&ved=0CCcQFjAB&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgithub-wiki-search%2Fgdifdhnjmjaidbajhapmbcbnoocoeooc%3Fhl%3Den&ei=zkwSVLqcHo2k8AXotIKIDA&usg=AFQjCNFUY7r_nIUR5aamJ5dLvSMOEHqWMQ&sig2=47EAGQ_pAiJFTsxqq6MOlg&bvm=bv.75097201,d.aWw)
 * [POSTMAN REST client](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&sqi=2&ved=0CB4QFjAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman-rest-client%2Ffdmmgilgnpjigdojojpjoooidkmcomcm%3Fhl%3Den&ei=8UwSVO3HAsmkyASY-4GoDg&usg=AFQjCNHaecLwAKk91gpdCY_y1x_ViIrHwQ&sig2=cFmqDhGUuPP_DTYV7-OErg&bvm=bv.75097201,d.aWw)
 
+## Use [contrail-logs](Using-contrail-logs-to-debug-Contrail) to gather details when UI access is not possible
+
 ## VRouter management webpage
 
 You can use access the VRouter management webpage on port 8085
