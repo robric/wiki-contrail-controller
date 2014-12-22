@@ -19,7 +19,10 @@ Debug and Troubleshooting:
 * [VRouter-Agent introspect](Contrail-Vrouter-Agent---Introspect)
 * [Virtual DNS](vDNS-Debugging)
 * [Scenarios](Scenario-Troubleshooting)
+
+Maintenance Procedures:
 * [Removing + Adding DB node](Removing_Adding_DB_Node)
+* [Adding and Removing a hypervisor/compute node](Adding_Removing_Compute_Node)
 
 Features:
 * [Simple Gateway](Simple-Gateway)
