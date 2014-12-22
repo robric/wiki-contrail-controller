@@ -12,6 +12,7 @@ Architecture:
 
 Opencontrail Development:
 * [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
+* [Code submission + review checklist](Code-Review-Checklist)
 
 Debug and Troubleshooting:
 * [Checklist](Debug-Checklist)
