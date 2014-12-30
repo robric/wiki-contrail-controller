@@ -24,6 +24,7 @@ Debug and Troubleshooting:
 Maintenance Procedures:
 * [Removing + Adding DB node](Removing_Adding_DB_Node)
 * [Adding and Removing a hypervisor/compute node](Adding_Removing_Compute_Node)
+* [Increasing Limits (nfiles/nprocs) for a service](Increasing_Service_Limits)
 
 Features:
 * [Simple Gateway](Simple-Gateway)
