@@ -25,6 +25,7 @@ Maintenance Procedures:
 * [Removing + Adding DB node](Removing_Adding_DB_Node)
 * [Adding and Removing a hypervisor/compute node](Adding_Removing_Compute_Node)
 * [Increasing Limits (nfiles/nprocs) for a service](Increasing_Service_Limits)
+* [Analytics DB usage and purge](https://github.com/Juniper/contrail-controller/wiki/Contrail-Analytics-DB-data-purge)
 
 Features:
 * [Simple Gateway](Simple-Gateway)
