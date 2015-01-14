@@ -4,6 +4,8 @@ OpenContrail CI is now live. All commits to contrail-controller git repo will no
 
 [CI Project Status](https://github.com/Juniper/contrail-infra-config/blob/master/contrail-ci-todo.txt)
 
+[CI Related Bugs](https://bugs.launchpad.net/juniperopenstack/+bugs?field.searchtext=&orderby=-importance&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=any&field.assignee=&field.bug_reporter=&field.bug_commenter=&field.subscriber=&field.structural_subscriber=&field.tag=ci+&field.tags_combinator=ANY&field.has_cve.used=&field.omit_dupes.used=&field.omit_dupes=on&field.affects_me.used=&field.has_patch.used=&field.has_branches.used=&field.has_branches=on&field.has_no_branches.used=&field.has_no_branches=on&field.has_blueprints.used=&field.has_blueprints=on&field.has_no_blueprints.used=&field.has_no_blueprints=on&search=Search)
+
 In order to use the new system, you need to 
 
 1. Login to [review](review.opencontrail.org) using your launchpad open id
