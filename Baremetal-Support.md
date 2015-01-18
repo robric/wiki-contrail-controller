@@ -29,17 +29,26 @@ In "Configure - Physical Devices - Interfaces" page, add the logical interfaces 
 Fab scripts are provided to provision a TSN. The following changes are required in your testbed.py:
 1. In env.roledefs, add hosts for 'tsn' and 'toragent' roles. The TSN node should also be configured in 'compute' role as well.
 1. Add the TOR agent configuration as follows:
-    env.tor_agent = {                                                                  
-                     host2: [{                                                                      
-                              'tor_ip':'<ip address>',      # IP address of the TOR                                    
-                              'tor_id':'<1>',               # Numeric value to uniquely identify the TOR                                                
-                              'tor_type':'ovs',             # always ovs                                     
-                              'tor_ovs_port':'9999',        # the TCP port to connect on the TOR                                     
-                              'tor_ovs_protocol':'tcp',     # always tcp, for now                                     
-                              'tor_tsn_ip':'<ip address>'   # IP address of the TSN for this TOR                                    
-                      }]                                                                     
-    }
+    `
 
+        env.tor_agent = {
+
+                host2: [{
+
+                        'tor_ip':'<ip address>',      # IP address of the TOR                                    
+
+                        'tor_id':'<1>',               # Numeric value to uniquely identify the TOR                                                
+
+                        'tor_type':'ovs',             # always ovs                                     
+
+                        'tor_ovs_port':'9999',        # the TCP port to connect on the TOR                                     
+
+                        'tor_ovs_protocol':'tcp',     # always tcp, for now                                     
+
+                        'tor_tsn_ip':'<ip address>'   # IP address of the TSN for this TOR
+                }]
+        }
+    `
 Use the tasks add_tsn and add_tor_agent to provision the TSN and TOR Agents.
 
 ## Prior Configuration required on QFX5100
@@ -47,10 +56,12 @@ Use the tasks add_tsn and add_tor_agent to provision the TSN and TOR Agents.
 * Enable OVSDB
 * Set the connection protocol 
 * Indicate the interfaces that will be managed via OVSDB
-* Configure switch options with VTEP source (in the example below, we configured it to be lo0.0 – need to ensure that this address is reachable from TSN node)
+* Configure switch options with VTEP source (in the example below, lo0.0 is used – ensure that this address is reachable from TSN node)
 
-set interfaces lo0 unit 0 family inet address <router-id-reachable-on-ip-fabric>
-set switch-options ovsdb-managed
-set switch-options vtep-source-interface lo0.0
-set protocols ovsdb passive-connection protocol tcp port <port-number>
-set protocols ovsdb interfaces <interfaces-to-be-managed-by-ovsdb>
+> 
+* set interfaces lo0 unit 0 family inet address <router-id-reachable-on-ip-fabric>
+* set switch-options ovsdb-managed
+* set switch-options vtep-source-interface lo0.0
+* set protocols ovsdb passive-connection protocol tcp port <port-number>
+* set protocols ovsdb interfaces <interfaces-to-be-managed-by-ovsdb>
+> 
