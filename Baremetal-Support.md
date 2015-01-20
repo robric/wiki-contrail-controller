@@ -147,33 +147,38 @@ The following are the typical configuration items in a Tor Agent config file.
 
 > 
 [DEFAULT]
-
+> 
 agent_name = noded2-1    # Name (formed with hostname and TOR id from below)
+>
 agent_mode = tor         # Agent mode 
+>
 http_server_port=9010    # Port on which Introspect access is available
-
+>
 [DISCOVERY]
-
+>
 server=<ip>              # IP address of discovery server
-
+>
 [TOR]
-
+>
 tor_ip=<ip>              # IP address of the TOR to manage
+>
 tor_id=1                 # Identifier for ToR. TOR Agent subscribes 
                          # to ifmap-configuration with this name
+>
 tor_type=ovs             # ToR management scheme - only “ovs” is supported
+>
 tor_ovs_protocol=tcp     # IP-Transport protocol used to connect to TOR
+>
 tor_ovs_port=port        # OVS server port number on the ToR
+>
 tsn_ip=<ip>              # IP address of the TSN
 > 
 
 ## Contrail REST API
 
-> 
-
 * Physical Router
 
-{
+    {
               u'physical-router': {
     u'physical_router_management_ip': u'100.100.100.100',
     u'virtual_router_refs': [],
@@ -209,11 +214,11 @@ tsn_ip=<ip>              # IP address of the TSN
     'display_name': u'test-router',
     u'physical_router_dataplane_ip': u'101.1.1.1'
              }
-}
+    }
 
 * Physical Interface
 
-{
+    {
       u'physical-interface': {
     u'parent_type': u'physical-router',
     'id_perms': {
@@ -240,11 +245,11 @@ tsn_ip=<ip>              # IP address of the TSN
     u'name': u'ge-0/0/1',
     'display_name': u'ge-0/0/1'
       }
-}
+    }
 
 * Logical Interface
 
-{
+    {
       u'logical-interface': {
     u'fq_name': [
       u'default-global-system-config',
@@ -284,5 +289,4 @@ u'to': [
     'display_name': u'ge-0/0/1.0',
     u'name': u'ge-0/0/1.0'
       }
-}
-> 
+    }
