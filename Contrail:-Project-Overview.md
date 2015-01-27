@@ -64,9 +64,9 @@ After that one can submit the patch to [review.opencontrail.org](https://review.
 
 Examples:
 
-Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced
-Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a partial fix and more work is needed
-Related-Bug: #1234567 -- use 'Related-Bug' if the commit is merely related to the referenced bug
+* Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced
+* Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a partial fix and more work is needed
+* Related-Bug: #1234567 -- use 'Related-Bug' if the commit is merely related to the referenced bug
 
 Note that when you mention Closes-Bug in the review request for a series, only that particular series which the bug is fixed for will get updated to "Fix committed". If the bug doesn't have the series in question, it doesn't get updated.
 
