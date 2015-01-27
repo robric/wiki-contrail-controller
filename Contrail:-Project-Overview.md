@@ -51,14 +51,15 @@ Note: All the code is distributed with Apache 2.0 license.
 ###### Submitting patches ######
 
 Developers can upstream their patches via OpenContrail CI process. The tools and workflow is similar to that in Openstack project. To get started:
+
 1. Sign the [contributor agreement](https://secure.echosign.com/public/hostedForm?formid=6G36BHPX974EXY)
 2. Have a Launchpad ID
 
-After that one can submit the patch to [review.opencontrail.org](https://review.opencontrail.org) by following the [CI document](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI). The CI tool enables code review and runs test script. After passing these steps code will be merged automatically to mainline.
+After that one can submit the patch to [review.opencontrail.org](https://review.opencontrail.org) by following the [CI document](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)). The CI tool enables code review and runs test script. After passing these steps code will be merged automatically to mainline.
 
 ###### Guidelines for Commit Logs ######
 
-These are based on https://wiki.openstack.org/wiki/Gerrit_Workflow#Committing_Changes
+These are based on [Gerrit commit guidelines](https://wiki.openstack.org/wiki/Gerrit_Workflow#Committing_Changes)
 
 1. Start commit message with a short (~50 characters) 1-line summary paragraph i.e. a single very brief line (no period at end) followed by a blank line. Rest of the commit log can be zero or more paragraphs. Each line within a paragraph should be <= 72 characters.
 
