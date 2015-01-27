@@ -58,24 +58,22 @@ After that one can submit the patch to [review.opencontrail.org](https://review.
 
 ###### Guidelines for Commit Logs ######
 
+These are based on https://wiki.openstack.org/wiki/Gerrit_Workflow#Committing_Changes
+
 1. Start commit message with a short (~50 characters) 1-line summary paragraph i.e. a single very brief line (no period at end) followed by a blank line. Rest of the commit log can be zero or more paragraphs. Each line within a paragraph should be <= 72 characters.
 
-2. Include a launchpad bug number by adding a Closes-Bug: #NNNNNN line somewhere in the commit message, typically just before/after the Change-Id line.  Doing so provides very nice integration between launchpad and github. Other useful keywords are Partial-Bug and Related-Bug. Be sure to add a space after the colon - the integration doesn't work otherwise.
-
-Examples:
+2. Include a launchpad bug number by adding a Closes-Bug: #NNNNNN line somewhere in the commit message, typically just before/after the Change-Id line.  Other useful keywords are Partial-Bug and Related-Bug.  Using these keywords provides really nice integration between launchpad and github.  The review contains a link to the bug and the bug activity log is automatically updated with detailed review information.  Further, the status of the bug gets updated to "Fix committed" when Closes-Bug is used.
 
 * Closes-Bug: #1234567 -- use 'Closes-Bug' if the commit is intended to fully fix and close the bug being referenced
 * Partial-Bug: #1234567 -- use 'Partial-Bug' if the commit is only a partial fix and more work is needed
 * Related-Bug: #1234567 -- use 'Related-Bug' if the commit is merely related to the referenced bug
 
+The # is optional but be sure to add a space after the colon - the integration doesn't work otherwise.
+
 Note that when you mention Closes-Bug in the review request for a series, only that particular series which the bug is fixed for will get updated to "Fix committed". If the bug doesn't have the series in question, it doesn't get updated.
 
-See the following review and bug for an example of the integration:
-
-https://review.opencontrail.org/#/c/5179/
-https://bugs.launchpad.net/juniperopenstack/+bug/1398635
-
 ###### Documentation ######
+
 Here are the pointers to Contrail documents:
 * Contrail architecture document is at [http://opencontrail.org/ebook/](http://opencontrail.org/ebook/)
 * JuniperOpenstack user guide & release notes are hosted on [techwiki](http://techwiki.juniper.net/Documentation/Contrail)
