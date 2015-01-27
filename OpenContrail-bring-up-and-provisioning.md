@@ -396,11 +396,16 @@ alias bridge off
 ```
 
 ### Config
-- /etc/nova/nova.conf
+- /etc/nova/nova.conf (<= icehouse)
 ```
 [DEFAULT]
 network_api_class = nova.network.neutronv2.api.API
 libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver
+```
+- /etc/nova/nova.conf (>= juno)
+```
+[DEFAULT]
+network_api_class = nova_contrail_vif.contrailvif.ContrailNetworkAPI
 ```
 
 - Example /etc/network/interfaces (<= R1.06)
