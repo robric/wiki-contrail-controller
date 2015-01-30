@@ -32,7 +32,7 @@ $ sudo apt-get install contrail-config
 * IP-MAP Server  
   Add username and password for the user of control.
   ```
-  $ echo "api-server:api-server" | sudo tee -a /etc/ifmap-server/basicauthusers.properties
+  $ echo "control:control" | sudo tee -a /etc/ifmap-server/basicauthusers.properties
   $ sudo service ifmap-server restart
   ```
 
