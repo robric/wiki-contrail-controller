@@ -80,7 +80,7 @@ In "Configure - Physical Devices - Interfaces" page, add the logical interfaces 
 
 TSN can be provisioned using Fab scripts. The following changes are required in the testbed.py:
 1. In env.roledefs, hosts for 'tsn' and 'toragent' roles have to be added. The TSN node should also be configured in 'compute' role as well.
-1. The TOR agent configuration should be added as below.
+2. The TOR agent configuration should be added as below. The TOR Agent node should also be configured in 'compute' role as well.
     `
 
         env.tor_agent = {
@@ -91,13 +91,17 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
 
                         'tor_id':'<1>',               # Numeric value to uniquely identify the TOR                                                
 
-                        'tor_type':'ovs',             # always ovs                                     
+                        'tor_type':'ovs',             # Always ovs                                     
 
-                        'tor_ovs_port':'9999',        # the TCP port to connect on the TOR                                     
+                        'tor_ovs_port':'9999',        # The TCP port to connect on the TOR                                     
 
-                        'tor_ovs_protocol':'tcp',     # always tcp, for now                                     
+                        'tor_ovs_protocol':'tcp',     # Always tcp, for now                                     
 
                         'tor_tsn_ip':'<ip address>'   # IP address of the TSN for this TOR
+                        'tor_tsn_name': '<name>' ,    # Name of the TSN node
+                        'tor_name':'<switch name>',   # Name of the TOR switch  
+                        'tor_tunnel_ip':'ip address', # IP address for Data tunnel endpoint  
+                        'tor_vendor_name':'Juniper'   #  Vendor name for TOR Switch  
                 }]
         }
     `
