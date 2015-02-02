@@ -98,9 +98,13 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         'tor_ovs_protocol':'tcp',     # Always tcp, for now                                     
 
                         'tor_tsn_ip':'<ip address>'   # IP address of the TSN for this TOR
+
                         'tor_tsn_name': '<name>' ,    # Name of the TSN node
+
                         'tor_name':'<switch name>',   # Name of the TOR switch  
+
                         'tor_tunnel_ip':'ip address', # IP address for Data tunnel endpoint  
+
                         'tor_vendor_name':'Juniper'   #  Vendor name for TOR Switch  
                 }]
         }
