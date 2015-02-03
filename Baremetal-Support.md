@@ -99,7 +99,7 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
 
                         'tor_ovs_protocol':'tcp',     # Always tcp, for now                                     
 
-                        'tor_tsn_ip':'<ip address>'   # IP address of the TSN for
+                        'tor_tsn_ip':'<ip address>',  # IP address of the TSN for
                                                       #  this TOR
 
                         'tor_tsn_name': '<name>' ,    # Name of the TSN node
