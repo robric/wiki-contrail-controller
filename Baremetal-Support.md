@@ -79,7 +79,9 @@ In "Configure - Physical Devices - Interfaces" page, add the logical interfaces 
 ## Provisioning
 
 TSN can be provisioned using Fab scripts. The following changes are required in the testbed.py:
+
 1. In env.roledefs, hosts for 'tsn' and 'toragent' roles have to be added. The TSN node should also be configured in 'compute' role as well.
+
 2. The TOR agent configuration should be added as below. The TOR Agent node should also be configured in 'compute' role as well.
     `
 
@@ -131,6 +133,10 @@ The following configuration has to be done on a QFX5100 beforehand.
 * set protocols ovsdb passive-connection protocol tcp port <port-number>
 * set protocols ovsdb interfaces <interfaces-to-be-managed-by-ovsdb>
 > 
+
+## Caveats
+
+It is not possible to configure both tagged and untagged logical ports on the same QFX physical port via OVSDB. So, this configuration should not be done.
 
 ## Debug
 
