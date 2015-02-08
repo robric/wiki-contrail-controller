@@ -36,6 +36,14 @@ Features:
 * [Network Rate Limiting Configuration] (https://techwiki.juniper.net/Documentation/Contrail/Contrail_Controller_Feature_Guide/Configuration/Configuring_Network_QoS_Parameters_in_VM)
 * [VPC API support](VPC-API-support)
 
-R1.10 Notes:
-* [Neutron API compatibility](Neutron-API-Support-on-R1.10)
-* [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
+Release specific Notes:
+* R1.10
+  + [Neutron API compatibility](Neutron-API-Support-on-R1.10)
+  + [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
+
+* R2.0
+  + For build 22 and below, to enable sslv3 with ifmap, comment the following in `/etc/java-7-openjdk/security/java.security` and `service supervisor-config restart`
+
+        ``
+jdk.tls.disabledAlgorithms=SSLv3
+        ``
