@@ -10,36 +10,36 @@ To forward traffic, vRouter needs interfaces, which it calls as 'VrouterInterFac
 
 The ‘vif’ command can be used to see the interfaces that the vRouter is aware of. A typical invocation of the command is with the '--list' option.
 
-bash$ vif --list
-Vrouter Interface Table
+bash$ vif --list  
+Vrouter Interface Table  
 
-Flags: P=Policy, X=Cross Connect, S=Service Chain, Mr=Receive Mirror
-       Mt=Transmit Mirror, Tc=Transmit Checksum Offload, L3=Layer 3, L2=Layer 2
-       D=DHCP, Vp=Vhost Physical, Pr=Promiscuous, Vnt=Native Vlan Tagged
-       Mnp=No MAC Proxy
-
-vif0/0      OS: eth0 (Speed 1000, Duplex 1)
-            Type:Physical HWaddr:00:25:90:c3:08:68 IPaddr:0
-            Vrf:0 Flags:L3L2Vp MTU:1514 Ref:22
-            RX packets:2664341  bytes:702708970 errors:0
-            TX packets:1141456  bytes:234609942 errors:0
-
-vif0/1      OS: vhost0
-            Type:Host HWaddr:00:25:90:c3:08:68 IPaddr:0
-            Vrf:0 Flags:L3L2 MTU:1514 Ref:3
-            RX packets:716612  bytes:155442906 errors:0
-            TX packets:2248399  bytes:552491888 errors:0
-
-vif0/2      OS: pkt0
-            Type:Agent HWaddr:00:00:5e:00:01:00 IPaddr:0
-            Vrf:65535 Flags:L3 MTU:1514 Ref:2
-            RX packets:450524  bytes:94618532 errors:0
-            TX packets:437968  bytes:66753290 errors:0
-
-vif0/3      OS: tap519615d8-a2
-            Type:Virtual HWaddr:00:00:5e:00:01:00 IPaddr:0
-            Vrf:1 Flags:PL3L2 MTU:9160 Ref:6
-            RX packets:134  bytes:15697 errors:0
-            TX packets:8568  bytes:945944 errors:0
+Flags: P=Policy, X=Cross Connect, S=Service Chain, Mr=Receive Mirror  
+       Mt=Transmit Mirror, Tc=Transmit Checksum Offload, L3=Layer 3, L2=Layer 2  
+       D=DHCP, Vp=Vhost Physical, Pr=Promiscuous, Vnt=Native Vlan Tagged  
+       Mnp=No MAC Proxy  
+  
+vif0/0OS: eth0 (Speed 1000, Duplex 1)  
+            Type:Physical HWaddr:00:25:90:c3:08:68 IPaddr:0  
+            Vrf:0 Flags:L3L2Vp MTU:1514 Ref:22  
+            RX packets:2664341  bytes:702708970 errors:0  
+            TX packets:1141456  bytes:234609942 errors:0  
+  
+vif0/1      OS: vhost0  
+            Type:Host HWaddr:00:25:90:c3:08:68 IPaddr:0  
+            Vrf:0 Flags:L3L2 MTU:1514 Ref:3  
+            RX packets:716612  bytes:155442906 errors:0  
+            TX packets:2248399  bytes:552491888 errors:0  
+  
+vif0/2      OS: pkt0  
+            Type:Agent HWaddr:00:00:5e:00:01:00 IPaddr:0  
+            Vrf:65535 Flags:L3 MTU:1514 Ref:2  
+            RX packets:450524  bytes:94618532 errors:0  
+            TX packets:437968  bytes:66753290 errors:0  
+  
+vif0/3      OS: tap519615d8-a2  
+            Type:Virtual HWaddr:00:00:5e:00:01:00 IPaddr:0  
+            Vrf:1 Flags:PL3L2 MTU:9160 Ref:6  
+            RX packets:134  bytes:15697 errors:0  
+            TX packets:8568  bytes:945944 errors:0  
 
 
