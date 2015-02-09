@@ -11,7 +11,6 @@ To forward traffic, vRouter needs interfaces, which it calls as 'VrouterInterFac
 The ‘vif’ command can be used to see the interfaces that the vRouter is aware of. A typical invocation of the command is with the '--list' option.
 
 bash$ vif --list
-
 Vrouter Interface Table
 
 Flags: P=Policy, X=Cross Connect, S=Service Chain, Mr=Receive Mirror
