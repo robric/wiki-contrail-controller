@@ -1,0 +1,101 @@
+1.0 Introduction  
+  
+vRouter is the component that takes packets from VMs and forwards them to their destinations. In this effort, vRouter depends on the vRouter agent to make sense of the overall topology, understand the various policies that govern the communication between VMs and finally to program them in vRouter in a way vRouter understands. 
+  
+vRouter has a few fundamental data structures that abstracts out the various communication paths. So, we have 'interface', 'flow', 'route' and 'nexthop' (all well known terms in networking) that enables vRouter to push packets to their eventual destinations. In addition, vRouter also has a reasonably good statistics support that can help understand and debug packet paths. This guide will detail the various command line utilities provided by the vRouter package that can be used to display all these data structures and make sense of the behavior that one sees in a compute node.  
+  
+2.0 Interface  
+  
+To forward traffic, vRouter needs interfaces, which it calls as 'VrouterInterFace' (or 'vif' in short). Please note that just having the interfaces in the OS (Linux) is not sufficient for forwarding. The relevant interfaces have to be added to vRouter so that it can make use of those interfaces. Typically, the creation of these interfaces and addition are handled by components such as 'nova-compute' and the vRouter-agent.
+
+The ‘vif’ command can be used to see the interfaces that the vRouter is aware of. A typical invocation of the command is with the '--list' option.
+----
+bash$ vif --list  
+Vrouter Interface Table  
+
+Flags: P=Policy, X=Cross Connect, S=Service Chain, Mr=Receive Mirror  
+       Mt=Transmit Mirror, Tc=Transmit Checksum Offload, L3=Layer 3, L2=Layer 2  
+       D=DHCP, Vp=Vhost Physical, Pr=Promiscuous, Vnt=Native Vlan Tagged  
+       Mnp=No MAC Proxy  
+  
+vif0/0      OS: eth0 (Speed 1000, Duplex 1)  
+            Type:Physical HWaddr:00:25:90:c3:08:68 IPaddr:0  
+            Vrf:0 Flags:L3L2Vp MTU:1514 Ref:22  
+            RX packets:2664341  bytes:702708970 errors:0  
+            TX packets:1141456  bytes:234609942 errors:0  
+  
+vif0/1      OS: vhost0  
+            Type:Host HWaddr:00:25:90:c3:08:68 IPaddr:0  
+            Vrf:0 Flags:L3L2 MTU:1514 Ref:3  
+            RX packets:716612  bytes:155442906 errors:0  
+            TX packets:2248399  bytes:552491888 errors:0  
+  
+vif0/2      OS: pkt0  
+            Type:Agent HWaddr:00:00:5e:00:01:00 IPaddr:0  
+            Vrf:65535 Flags:L3 MTU:1514 Ref:2  
+            RX packets:450524  bytes:94618532 errors:0  
+            TX packets:437968  bytes:66753290 errors:0  
+  
+vif0/3      OS: tap519615d8-a2  
+            Type:Virtual HWaddr:00:00:5e:00:01:00 IPaddr:0  
+            Vrf:1 Flags:PL3L2 MTU:9160 Ref:6  
+            RX packets:134  bytes:15697 errors:0  
+            TX packets:8568  bytes:945944 errors:0  
+
+----
+
+The first few lines print the expansion of the various flags that are used in the utility. In the below explanation, please note that ingress denotes packets that ingress vRouter and egress denotes packets that egress vRouter, and packets ingress or egress vRouter through interfaces.
+
+P=Policy  
+
+All traffic that comes to vRouter from this interface will be subjected to policy.  
+  
+X=Cross Connect  
+
+All traffic that comes to this interface will be sent to the corresponding cross connect interface without subjecting them to internal table lookups. This flag will typically be seen on the 'vhost' interface and the corresponding physical interface, when vRouter agent dies and there is nobody to populate the tables, in which case we would like the management traffic to continue working.  
+
+S=Service Chain  
+
+This interface is a transparent service chain interface. Transparent service chain interfaces have a specific way of determining the VRF to which the traffic belongs.
+  
+Mr=Receive Mirror  
+
+All packets that ingresses this interface will be mirrored  
+
+Mt=Transmit Mirror  
+
+All packets that egresses this interface will be mirrored  
+  
+Tc=Transmit Checksum Offload  
+
+This interface is capable of doing transmit checksum offload  
+
+L3=Layer 3  
+
+Packets passing through this interface can be subjected to layer 3 processing  
+
+L2=Layer 2   
+
+Packets passing through this interface can be subjected to layer 2 processing  
+
+D=DHCP  
+
+DHCP is enabled on this interface (no longer used)  
+
+Vp=Vhost Physical  
+
+This interface is a physical interface with a corresponding vhost interface
+
+Pr=Promiscuous  
+
+Packets that ingresses this interface can have macs that do not belong to this interface  
+
+Vnt=Native Vlan Tagged  
+
+Untagged packets belong to default vlan  
+
+Mnp=No MAC Proxy  
+
+ARP requests that ingresses this interface will not be proxied except for requests to some special addresses  
+
+  
