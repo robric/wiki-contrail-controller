@@ -8,7 +8,7 @@ We provide four TTL parameters defined as below in /etc/contrail/contrail-collec
 * analytics_flowdata_ttl -- ttl for flow data,
 * analytics_data_ttl -- for messages and object logs
 
-TTL is specified in number of hours and a typical configuration could be
+TTL is specified in number of hours and a typical configuration in /etc/contrail/contrail-collector.conf could be
 analytics_data_ttl=48  
 analytics_config_audit_ttl=168  
 analytics_statistics_ttl=24  
