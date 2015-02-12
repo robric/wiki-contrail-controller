@@ -14,7 +14,7 @@ Opencontrail Development:
 * [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
 * [Code submission + review checklist](Code-Review-Checklist)
 
-Installation:  
+Provisioning:  
 * [TTL configuration for Analytics](TTL-configuration-for-analytics-data)
 
 Debug and Troubleshooting:
