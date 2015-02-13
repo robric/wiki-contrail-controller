@@ -38,7 +38,7 @@ In order to use the new system, you need to
      Fork off [Juniper/contrail-controller] (github.com/Juniper/contrail-controller) into your private repo at github.com
      ``` git remote-add <ur-private-repo>```
      ``` git push <ur-private-repo> bugfix ```
-9. run ```git review```
+9. run ```git review``` Check that review is uploaded [here](https://review.opencontrail.org/#/q/status:open,n,z).
 
 First time when you run ```git review```, it asks for the user name. Please use the same that you used in step USER above. But you should do ```git review -s``` first, which does the setup.
 
