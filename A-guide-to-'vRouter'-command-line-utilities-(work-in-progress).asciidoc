@@ -10,6 +10,26 @@ vRouter has a few fundamental data structures that abstracts out the various com
   
 To forward traffic, vRouter needs interfaces, which it calls as 'VrouterInterFace' (or 'vif' in short). Please note that just having the interfaces in the OS (Linux) is not sufficient for forwarding. The relevant interfaces have to be added to vRouter so that it can make use of those interfaces. Typically, the creation of these interfaces and addition are handled by components such as 'nova-compute' and the vRouter-agent.
 
+===== *2.1 Usage*
+
+----
+
+vif [--create <intf_name> --mac <mac>]
+           [--add <intf_name> --mac <mac> --vrf <vrf>
+                --type [vhost|agent|physical|virtual]
+                --xconnect <physical interface name>
+                --policy, --vhost-phys, --dhcp-enable]]
+           [--delete <intf_id>]
+           [--get <intf_id>][--kernel]
+           [--set <intf_id> --vlan <vlan_id> --vrf <vrf_id>]
+           [--list]
+           [--help]
+----
+
+'vif --help' can be used at any time to dump the usage of the command.
+
+===== *2.2 list*
+
 The ‘vif’ command can be used to see the interfaces that the vRouter is aware of. A typical invocation of the command is with the '--list' option.
 ----
 bash$ vif --list  
@@ -46,11 +66,11 @@ vif0/3      OS: tap519615d8-a2
 
 ----
 
-===== *2.1 Output Structure*
+===== *2.2.1 Output Structure*
 
 The command output gives everything that one would expect to get out of an interface listing, including statistics, flags and the type of interface. Individual fields are explained in detail below.
 
-===== *2.1.1 Flags*
+===== *2.2.1.1 Flags*
 
 The first few lines print the expansion of the various flags that are used in the utility. In the below explanation, please note that ingress denotes packets that ingress vRouter and egress denotes packets that egress vRouter, and packets ingress or egress vRouter through interfaces.  
 
@@ -93,17 +113,17 @@ Untagged packets belong to default vlan
 'Mnp=No MAC Proxy' +  
 ARP requests that ingresses this interface will not be proxied except for requests to some special addresses  
 
-===== *2.1.2 Name*
+===== *2.2.1.2 Name*
 
 Individual interface listing starts with the string 'vifX/Y'. 'X' stands for router id. As of current versions, this field will always be zero. 'Y' stands for the interface index within the module. So, in 'vif0/1', 1 is the interface index of that vif inside the vRouter module.
 
-===== *2.1.3 OS Name*
+===== *2.2.1.3 OS Name*
 
 The operating system visible name of the interface. 'ethX', 'pktX', 'tapX', 'vhostX', 'pXpYpZ' or 'pXpY' are some of the most common names that you will find in this field. However, names are only limited by OS and can be anything that OS allows.
 
 For physical interfaces, the speed and duplex settings of the interface is also displayed if the link is up.
 
-===== *2.1.4 Type*
+===== *2.2.1.4 Type*
 
 vRouter has multiple interface types. Based on the interface type packet processing might differ. For e.g.: packets from physical interface might need to go through different kind of processing compared to packets from VM. The various interface types that vRouter is aware of are: +
 
@@ -125,27 +145,69 @@ Interfaces of type 'Physical' will be the actual NICs that are present in the co
 'Stats' +
 Dummy interfaces that just hold statistics
 
-===== *2.1.5 HWAddr*
+===== *2.2.1.5 HWAddr*
 
 'HWaddr' is the mac address of that 'vif' that is configured by the agent. This address need not be the actual mac address that one will see in the 'ifconfig' output, since the address is used as an aid in packet transportation.
 
-===== *2.1.6 IPaddr*
+===== *2.2.1.6 IPaddr*
 
 This field indicates the IP address that is configured on that interface. Absence of this address need not really indicate a problem. As of this release, this field is only used as store for agent to aid in DHCP processing.
 
-===== *2.1.7 Vrf*
+===== *2.2.1.7 Vrf*
 
 This field indicates the 'vrf' to which the interface belongs to. As a broad representation, vrf in most cases indicates the virtual network to which the interface belongs to, and hence packet transportation will happen in that network. In the forwarding path, 'vrf' is just one of the many programmable entities that can be used cleverly to achieve forwarding functionality. 
 
-===== *2.1.8 MTU*
+===== *2.2.1.8 MTU*
 
 This field is not used (could be used in the future)
 
-===== *2.1.9 Ref*
+===== *2.2.1.9 Ref*
 
 The number of references to this interface by other data structures of vRouter. The interface will not go away till all references drop to 1 (which is a self reference). This field is useful only for debugging problems. 
 
-===== *2.1.10 Statistics*
+===== *2.2.1.10 Statistics*
 
 The statistics lines are self explanatory. 'RX' indicates packets/bytes that are received by vRouter on this interface whereas 'TX' indicates packets/bytes that are sent out on this interface by vRouter.
+
+===== *2.3 get*
+
+Instead of listing all the available interfaces, one can dump only a specific interface, if the interface index is known.
+
+----
+
+# vif --get 5
+Vrouter Interface Table
+
+Flags: P=Policy, X=Cross Connect, S=Service Chain, Mr=Receive Mirror
+       Mt=Transmit Mirror, Tc=Transmit Checksum Offload, L3=Layer 3, L2=Layer 2
+       D=DHCP, Vp=Vhost Physical, Pr=Promiscuous, Vnt=Native Vlan Tagged
+       Mnp=No MAC Proxy
+
+vif0/5      OS: tapd61b62dc-69
+            Type:Virtual HWaddr:00:00:5e:00:01:00 IPaddr:0
+            Vrf:1 Flags:PL3L2 MTU:9160 Ref:6
+            RX packets:488  bytes:57691 errors:0
+            TX packets:31485  bytes:3476558 errors:0
+
+----
+
+The output format remains the same as for the '--list' option.
+
+===== *2.4 create*
+
+The '--create' option can be used to create vhost type interfaces in the host kernel. 
+
+----
+
+# vif --create vhost1 --mac 00:00:00:01:02:03
+# ifconfig vhost1
+vhost1    Link encap:Ethernet  HWaddr 00:00:00:01:02:03  
+          BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+----
+
 
