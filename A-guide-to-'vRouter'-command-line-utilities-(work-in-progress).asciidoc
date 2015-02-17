@@ -210,4 +210,18 @@ vhost1    Link encap:Ethernet  HWaddr 00:00:00:01:02:03
 
 ----
 
+This is how 'vhost0' is created.
+
+===== *2.5 add*
+
+Just creating an interface using '--create' will not be of any use. To send receive traffic, the interface will have to be added to vRouter. One adds an interface to the vRouter with the '--add' option.
+
+----
+
+# vif --add vhost1 --mac 00:00:00:01:02:03 --vrf 3 --type vhost --xconnect eth1
+#
+
+----
+
+To add an interface to vRouter, one will have to specify the 'vrf' to which the interface belongs to. One also will have to specify the type of the interface (as explained earlier, type can be 'vhost', 'physical', 'virtual', etc.:). '--xconnect' option is specific for 'vhost' type interface. It just specifies the physical interface to which this 'vhost' interface has to be associated to. This is just an added information to the vRouter to help it route packets to the physical interface in case the agent keeps crashing or is not in a sane state and vRouter does not have any information to forward packets. The '--xconnect' option is optional.
 
