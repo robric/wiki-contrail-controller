@@ -51,3 +51,35 @@ The driver is configured using the `resource` field in the ceilometer pipeline c
 
 ## Enhancements to OpenContrail Ceilometer Driver Implementation
 The driver will be enhanced to support populating the above proposed traffic statistics meters for floating IPs and virtual networks. For these meters, only the address of the analytics API server is needed from the `resources` URL above and rest of the URL parameters like `resource` will be ignored. For the floating IPs meters, the driver will query neutron to obtain the list of floating IPs and extract the virtual machines/instances associated with the floating IPs. It will then query the OpenContrail analytics REST API server to extract the floating IP statistics associated with those virtual machines and floating IPs and populate the meters. Similarly for the virtual network meters, the driver will query neutron/nova to obtain the list of networks and then query the OpenContrail analytics REST API server to extract the inter and intra virtual network statistics and populate the meters. 
+
+For example, following is the `ceilometer meter-list` output for the floating IP meters:
+
+    +-------------------------------+------------+-----------+-----------------------------------------------------------------------+----------------------------------+----------------------------------+
+    | Name                          | Type       | Unit      | Resource ID                                                            | User ID                          | Project ID                       |
+    +-------------------------------+------------+-----------+-----------------------------------------------------------------------+----------------------------------+----------------------------------+
+    | ip.floating.receive.bytes     | cumulative | B         | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.receive.bytes     | cumulative | B         | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+    | ip.floating.receive.packets   | cumulative | packet    | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.receive.packets   | cumulative | packet    | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+    | ip.floating.transmit.bytes    | cumulative | B         | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.transmit.bytes    | cumulative | B         | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+    | ip.floating.transmit.packets  | cumulative | packet    | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.transmit.packets  | cumulative | packet    | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+
+The Resource ID in the meters above refers to the floating IP. Following is the `ceilometer resource-show -r 451c93eb-e728-4ba1-8665-6e7c7a8b49e2` output:
+
+    +-------------+-------------------------------------------------------------------------+
+    | Property    | Value                                                                   |
+    +-------------+-------------------------------------------------------------------------+
+    | metadata    | {u'router_id': u'None', u'status': u'ACTIVE', u'tenant_id':             |
+    |             | u'ceed483222f9453ab1d7bcdd353971bc', u'floating_network_id':            |
+    |             | u'6d0cca50-4be4-4b49-856a-6848133eb970', u'fixed_ip_address':           |
+    |             | u'2.2.2.4', u'floating_ip_address': u'3.3.3.4', u'port_id': u'c6ce2abf- |
+    |             | ad98-4e56-ae65-ab7c62a67355', u'id':                                    |
+    |             | u'451c93eb-e728-4ba1-8665-6e7c7a8b49e2', u'device_id':                  |
+    |             | u'00953f62-df11-4b05-97ca-30c3f6735ffd'}                                |
+    | project_id  | None                                                                    |
+    | resource_id | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                    |
+    | source      | openstack                                                               |
+    | user_id     | None                                                                    |
+    +-------------+-------------------------------------------------------------------------+
