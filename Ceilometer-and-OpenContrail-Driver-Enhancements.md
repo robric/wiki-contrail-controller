@@ -32,7 +32,7 @@ The driver can be configured to populate these meters with the following options
 The driver is configured using the `resource` field in the ceilometer pipeline configuration file - `pipeline.yaml`. For example, the below configuration in `pipeline.yaml` will configure the driver to populate the meters with the floating IP statistics for all virtual machines with destination virtual network `default-domain:demo:vn3-public`
 
     sources:
-        - name: network_source
+        - name: oc_source
           interval: 600
           meters:
             - "switch.port.receive.packets"
