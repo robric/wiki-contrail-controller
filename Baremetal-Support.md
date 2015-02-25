@@ -110,7 +110,9 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
 
                         'tor_tunnel_ip':'ip address', # IP address for Data tunnel
                                                       #  endpoint  
-
+                
+                        'tor_http_server_port': <port number>, # HTTP server port. 
+                                                           
                         'tor_vendor_name':'Juniper'   #  Vendor name for TOR Switch  
                 }]
         }
