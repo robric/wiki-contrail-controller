@@ -126,7 +126,15 @@ Note: This is only available for folks inside Juniper Networks. Also, if the job
 
     Commits to release branches are now selectively throttled. Please send email to ci-admin@opencontrail.org describing your case, to get necessary approval
 
-7. **How to submit inter dependent changes spread across different git repos**
+7. **How to backport already merged change (which would be in github.com/...) to a different branch**
+    Checkout a new branch of the desired target branch, cherry-pick the commit and do git-review.
+    ```git fetch github
+       git checkout -b R2.1 github/R2.1
+       git cherry-pick <desired-commit>
+       git review
+    ```
+
+8. **How to submit inter dependent changes spread across different git repos**
   
     Please see [above] (https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)#interdependent-changes-across-different-projects-git-repos)
 
