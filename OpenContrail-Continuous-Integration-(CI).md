@@ -128,10 +128,11 @@ Note: This is only available for folks inside Juniper Networks. Also, if the job
 
 7. **How to backport already merged change (which would be in github.com/...) to a different branch**
     Checkout a new branch of the desired target branch, cherry-pick the commit and do git-review.
-    ```git fetch github
-       git checkout -b R2.1 github/R2.1
-       git cherry-pick <desired-commit>
-       git review
+    ```
+git fetch github
+git checkout -b R2.1 github/R2.1
+git cherry-pick <desired-commit>
+git review
     ```
 
 8. **How to submit inter dependent changes spread across different git repos**
