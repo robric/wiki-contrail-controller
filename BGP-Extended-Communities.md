@@ -24,6 +24,8 @@ The expectation is that the user can allocate and manage numbers smaller than 80
 
 Advertising the list of security-group ids with routes in this manner allows for fully distributed enforcement of security-group rules.  There's no need for global re-compilation of IP based rules whenever a security-group is associated with a new port/virtual-machine-interface.
 
+The Security Group extended community is currently not standardized and uses type/subtype 0x8004.
+
 ### Origin VN
 
 A Two-Octet AS Specific origin VN extended community is generated for each virtual-network object.  The Global Administrator is set to the AS Number configured for the Contrail cluster. The Local Administrator field is set to a per-VN unique number that is 1 and higher.
@@ -32,6 +34,10 @@ This extended community is used to convey the original virtual-network in which 
 
 If a route is originated from a vRouter, it's straightforward to determine the origin VN for the route.  In case of routes received from a DC GW or from another Contrail cluster, the Control Nodes determine the origin VN based on the route targets in the route.
 
+The Origin VN extended community is currently not standardized and uses type/subtype 0x8071.
+
 ### MAC Mobility
+
+This extended community is used to carry a sequence number for L2 and L3 routes originated by vRouters.  It helps determine the correct location of a MAC/IP when the virtual-machine moves from one vRouter to another.
 
 The MAC Mobility extended community is defined in [RFC 7432](https://tools.ietf.org/html/rfc7432#page-18).
