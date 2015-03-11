@@ -8,9 +8,13 @@ A Two-Octet AS Specific Route Target extended community is also generated for ea
 
 The expectation is that the user can allocate and manage numbers smaller than 8000000 when they need to co-ordinate the allocation of targets between a Contrail cluster and DC GW Routers or between 2 or more Contrail clusters.
 
+The Route Target extended community is defined in [RFC 4360](https://tools.ietf.org/html/rfc4360).
+
 ### Encapsulation
 
 This opaque extended community is used to indicate the list of encapsulation protocol that can be used for sending packets from an ingress router to an egress vRouter. The encapsulation extended community with one or more tunnel types is attached to routes advertised by a vRouter. It is assumed that all vRouters and DC GWs can send and receive MPLS in GRE. Other possible tunnel types are MPLS in UDP (can be used for both L2 and L3 routes) and VXLAN (only for L2 routes).
+
+The Encapsulation extended community is defined in [RFC 5512](https://tools.ietf.org/html/rfc5512#page-9).
 
 ### Security Group
 
