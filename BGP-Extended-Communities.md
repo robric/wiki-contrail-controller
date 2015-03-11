@@ -38,6 +38,6 @@ The Origin VN extended community is currently not standardized and uses type/sub
 
 #### MAC Mobility
 
-This extended community is used to carry a sequence number for L2 and L3 routes originated by vRouters.  It helps determine the correct location of a MAC/IP when the virtual-machine moves from one vRouter to another.
+This extended community is used to carry a sequence number for L2 and L3 routes originated by vRouters.  It helps determine the correct location of a MAC/IP when the virtual-machine moves from one vRouter to another.  Note that the EVPN specification describes the use of this extended community for L2 routes, but Contrail also uses it for L3 routes.
 
 The MAC Mobility extended community is defined in [RFC 7432](https://tools.ietf.org/html/rfc7432#page-18).
