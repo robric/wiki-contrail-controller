@@ -178,7 +178,7 @@ This process is responsible to run OVSDB protocol between ToR and Contrail. Mult
 
 The service name is suffixed by the instance-id.
 
-By default, the introspect service for contrail-tor-agent is run on port <9010 + instance-id>. The port however, can be overridden in the fab file.
+By default, the introspect service for contrail-tor-agent is run on port (9010 + instance-id). The port however, can be overridden in the fab file.
 
 + **Service Name** - contrail-tor-agent
 + **Ports**
