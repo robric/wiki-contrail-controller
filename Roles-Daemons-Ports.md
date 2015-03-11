@@ -170,3 +170,16 @@ This process acts a registry for all contrail services. It exposes a REST API th
 + **Service Name** - contrail-vrouter
 + **Ports**
   * 8085
+  * 9090 : Port for communication between VRouter agent and nova-compute
+
+### Contrail ToR Agent
+
+This process is responsible to run OVSDB protocol between ToR and Contrail. Multiple contrail-tor-agent can be run on a single node. Each contrail-tor-agent can manage a single ToR and is given an instance-id.
+
+The service name is suffixed by the instance-id.
+
+By default, the introspect service for contrail-tor-agent is run on port <9010 + instance-id>. The port however, can be overridden in the fab file.
+
++ **Service Name** - contrail-tor-agent
++ **Ports**
+  * 9010 + <instance-id>
