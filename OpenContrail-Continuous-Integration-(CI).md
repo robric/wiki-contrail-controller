@@ -77,6 +77,11 @@ When ever a CI job fails, some of sort of debugging is required. If the failure 
 
 2. If the trailing end of the console output does not given enough clue, please look at the entire console log (link at the beginning of the console tail output summary url)
 
+3. For failed builds, contents of VM system config and log dirs are collected: /var/log; /etc; /opt/contrail/utils; and /root/contrail-test/logs. These are made available in the *userContent* area of jenkins.opencontrail.org and can be accessed via browser. The general format is:  
+    `http://jenkins.opencontrail.org/userContent/$JOB_NAME/$JOB_NUM`  
+The actual location will appear very close to the bottom of the console log. Look for the string *VM system log files*. Here is an example from the console log of a failed systest run on ubuntu12 :  
+`2015-03-17 13:52:07 VM system log files: http://jenkins.opencontrail.org/userContent/ci-contrail-fabric-utils-systest-ubuntu-precise-pangolin-havana/1055`
+
 3. If it is build issue such as compiler error, the error as reported by the compiler is logged in the console. Using line number, error message, etc. usually the root cause can be found and fixed. In that case, please resubmit the fix as additional patch the same review entry ```(git commit --amend . and git review)```
 
 4. If is is CI infra issue (say due to a flaky job), you can inform ci-admin@opencontrail.org optionally, flip the job (by adding "recheck no bug" comment to the review entry) or simply wait for the admin team to take necessary action
