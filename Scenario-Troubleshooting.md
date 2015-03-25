@@ -1,14 +1,18 @@
 ### VM doesn't have link-local (169.254.x.x) address upon boot
-1. check on hypervisor 8085/Snh_ItfReq to see if config is missing (i.e. state in ERROR, vn-null etc.).
 
-   if missing, config has not come from controller
+       1. check on hypervisor 8085/Snh_ItfReq to see if config is missing (i.e. state in ERROR, vn-null etc.).
 
-     a. check api-server 8082/virtual-machine-interface/<uuid> if routing_instance_refs are present
+       if missing, config has not come from controller
+
+       a. check api-server 8082/virtual-machine-interface/<uuid> if routing_instance_refs are present
 
           if missing,
             a. check if contrail-schema is running on atleast one controller
                  if running
-                   a. check if VMI present in ifmap on all controllers via ifmap localhost 8443 visual visual | grep <vmi-uuid>
+                   a. check if VMI present in ifmap on all controllers via 
+
+                          ifmap-view localhost 8443 visual visual | grep <vmi-name>
+
                         if missing in ifmap,
                           a. check if rabbitmq is clustered fine and all api servers are connected to it.
                           b. check contrail-api introspect port (8084) for rest/db/messagebus/ifmap traces
