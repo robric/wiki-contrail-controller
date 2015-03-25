@@ -18,7 +18,12 @@
                           b. check contrail-api introspect port (8084) for rest/db/messagebus/ifmap traces
                         else
                           a. need to check why contrail-schema didnt establish link between VMI to RI maybe check /var/log/contrail/schema.err
-                          b. check contrail-logs --object-types config --object-values followed by --object-id
+                          b. check 
+                              contrail-logs --object-type config --object-values 
+
+                             followed by 
+
+                              contrail-logs --object-type config --object-id <id from above>
                  else
                    a. check last log from contrail to stdout + log file
                    b. check connection status http://<config-node-where-schema-active>:8084/Snh_SandeshUVECacheReq?x=NodeStatus
