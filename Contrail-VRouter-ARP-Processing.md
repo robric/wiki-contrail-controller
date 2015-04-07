@@ -138,7 +138,7 @@ Composite-NH in turn will contain following sub-Composite NH
   contains list of ToR managed by this TSN.
 
 <H2>ARP Forwarding</H2>
-ARP Flooding is initiated only when ARP packet is received on fabric interface.
+ARP Forwarding is initiated only when ARP packet is received on fabric interface.
 An ARP packet is received on Fabric as a result of ARP Flooding initiated from
 one of the compute nodes. In ARP Forwarding, the compute node is one of the
 intermediate nodes in the broadcast tree for virtual network.
@@ -239,6 +239,6 @@ routed.
 
 Contrail-Vrouter-Agent will treat this case as inter-vn traffic set.
 
-<H2>Baremetal Servers</H2>
-All ARP broadcast packets from Barementals are received by the TSN node first.
-The TSN node treats Barementals as a Virtual-Machine connected locally.
+<H2>Baremetal Servers (BMS)</H2>
+All ARP broadcast packets from BMSs are received by the TSN node first.
+The TSN node treats BMSs as a Virtual-Machine connected locally.
