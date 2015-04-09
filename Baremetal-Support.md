@@ -96,10 +96,11 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
 
                         'tor_type':'ovs',             # Always ovs                                     
 
-                        'tor_ovs_port':'9999',        # The TCP port to connect
-                                                      #  on the TOR                                     
+                        'tor_ovs_port':'9999',        # The TCP port to connect on the TOR (when protocol is tcp);
+                                                      # or ssl port on which TOR Agent is listening,
+                                                      # to which TOR connects (pssl)                                     
 
-                        'tor_ovs_protocol':'tcp',     # Always tcp, for now                                     
+                        'tor_ovs_protocol':'tcp',     # tcp or pssl                                     
 
                         'tor_tsn_ip':'<ip address>',  # IP address of the TSN for
                                                       #  this TOR
@@ -113,7 +114,11 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                 
                         'tor_http_server_port': <port number>, # HTTP server port. 
                                                            
-                        'tor_vendor_name':'Juniper'   #  Vendor name for TOR Switch  
+                        'tor_vendor_name':'Juniper',   #  Vendor name for TOR Switch.
+
+                        'ca_cert_file':'/root/cacert.pem', # location of CA certificate (for pssl)
+                                                           # this is the cert with which TOR side
+                                                           # certificates are signed.  
                 }]
         }
     `
@@ -134,6 +139,7 @@ The following configuration has to be done on a QFX5100 beforehand.
 * set switch-options vtep-source-interface lo0.0
 * set protocols ovsdb passive-connection protocol tcp port <port-number>
 * set protocols ovsdb interfaces <interfaces-to-be-managed-by-ovsdb>
+* set protocols ovsdb controller <tor-agent-ip> protocol ssl port <tor-agent-port>
 > 
 
 ## Caveats
@@ -147,6 +153,7 @@ On the QFX, the following commands show the OVSDB configuration.
 * 	show ovsdb logical-switch
 * 	show ovsdb interface
 * 	show ovsdb mac
+* 	show ovsdb controller
 * 	show vlans
 
 Introspect on TOR agent and TSN nodes show the configuration and operational state of these modules.
@@ -192,8 +199,16 @@ tor_ovs_protocol=tcp     # IP-Transport protocol used to connect to TOR
 tor_ovs_port=port        # OVS server port number on the ToR
 >
 tsn_ip=<ip>              # IP address of the TSN
-> 
-
+>
+# Path to ssl certificate for tor-agent, needed for pssl
+ssl_cert=/etc/contrail/ssl/certs/tor.1.cert.pem
+>
+# Path to ssl private-key for tor-agent, needed for pssl
+ssl_privkey=/etc/contrail/ssl/private/tor.1.privkey.pem
+>
+# Path to ssl cacert for tor-agent, needed for pssl
+ssl_cacert=/etc/contrail/ssl/certs/cacert.pem
+>
 ## Contrail REST API
 
 * Physical Router
