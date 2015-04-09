@@ -1,8 +1,10 @@
+# Overview
 With release 2.2 of Contrail Cloud, OpenStack Ceilometer is installed and enabled by default on the following OpenStack release and OS combination when the Contrail Cloud is installed and provisioned using Fabric:
 
 1. OpenStack release icehouse on Ubuntu 12.04.3 LTS, Ubuntu 14.04.1 LTS, and Redhat Enterprise Linux Server 7.0
 2. OpenStack release juno on Ubuntu 14.04.1 LTS
- 
+
+# Ceilometer Details 
 As per the OpenStack Wiki, Ceilometer is used to reliably collect measurements of the utilization of the physical and virtual resources comprising deployed clouds, persist these data for subsequent retrieval and analysis, and trigger actions when defined criteria are met. For more information about Ceilometer, please check the official [OpenStack Ceilometer Wiki](https://wiki.openstack.org/wiki/Ceilometer).
 
 The Ceilometer architecture consists of:
@@ -16,23 +18,24 @@ The Ceilometer architecture consists of:
 
 For more information about Ceilometer architecture, please check the official [Ceilometer Architecture Docs](http://docs.openstack.org/developer/ceilometer/architecture.html)
 
-The above services are named slightly differently on Ubuntu and RHEL Server 7.0.
+# Verification of Ceilometer operation
+The Ceilometer services are named slightly differently on Ubuntu and RHEL Server 7.0.
 
 On Ubuntu, the service names are:
 
-1. Polling agent - `ceilometer-agent-central`
-2. Notification agent - `ceilometer-agent-notification`
-3. Collector - `ceilometer-collector`
-4. API server - `ceilometer-api`
-5. Alarming - `ceilometer-alarm-evaluator` and `ceilometer-alarm-notifier`
+1. _Polling agent_ - `ceilometer-agent-central`
+2. _Notification agent_ - `ceilometer-agent-notification`
+3. _Collector_ - `ceilometer-collector`
+4. _API server_ - `ceilometer-api`
+5. _Alarming_ - `ceilometer-alarm-evaluator` and `ceilometer-alarm-notifier`
 
 On RHEL Server 7.0, the service names are:
 
-1. Polling agent - `openstack-ceilometer-central`
-2. Notification agent - `openstack-ceilometer-notification`
-3. Collector - `openstack-ceilometer-collector`
-4. API server - `openstack-ceilometer-api`
-5. Alarming - `openstack-ceilometer-alarm-evaluator` and `openstack-ceilometer-alarm-notifier`
+1. _Polling agent_ - `openstack-ceilometer-central`
+2. _Notification agent_ - `openstack-ceilometer-notification`
+3. _Collector_ - `openstack-ceilometer-collector`
+4. _API server_ - `openstack-ceilometer-api`
+5. _Alarming_ - `openstack-ceilometer-alarm-evaluator` and `openstack-ceilometer-alarm-notifier`
 
 
 To verify the Ceilometer installation, users can verify that the Ceilometer processes are up and running using the `openstack-status` command. For example, running `openstack-status` on an all-in-one node running Ubuntu 14.04.1 LTS with release 2.2 of Contrail Cloud installed will give the following output: 
