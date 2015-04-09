@@ -202,14 +202,11 @@ tor_ovs_port=port        # OVS server port number on the ToR
 >
 tsn_ip=<ip>              # IP address of the TSN
 >
-# Path to ssl certificate for tor-agent, needed for pssl
-ssl_cert=/etc/contrail/ssl/certs/tor.1.cert.pem
+ssl_cert=/etc/contrail/ssl/certs/tor.1.cert.pem # Path to ssl certificate for tor-agent, needed for pssl
 >
-# Path to ssl private-key for tor-agent, needed for pssl
-ssl_privkey=/etc/contrail/ssl/private/tor.1.privkey.pem
+ssl_privkey=/etc/contrail/ssl/private/tor.1.privkey.pem # Path to ssl private-key for tor-agent, needed for pssl
 >
-# Path to ssl cacert for tor-agent, needed for pssl
-ssl_cacert=/etc/contrail/ssl/certs/cacert.pem
+ssl_cacert=/etc/contrail/ssl/certs/cacert.pem # Path to ssl cacert for tor-agent, needed for pssl
 >
 ## Contrail REST API
 
