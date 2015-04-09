@@ -92,35 +92,34 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         'tor_ip':'<ip address>',      # IP address of the TOR                                    
 
                         'tor_id':'<1>',               # Numeric value to uniquely
-                                                      #  identify the TOR                                                
+                                                      # identify the TOR                                                
 
                         'tor_type':'ovs',             # Always ovs                                     
 
-                        'tor_ovs_port':'9999',        # The TCP port to connect on the
-                                                      # TOR (when protocol is tcp);
-                                                      # or ssl port on which TOR Agent is
-                                                      # listening, to which TOR connects (pssl)                                     
-
                         'tor_ovs_protocol':'tcp',     # tcp or pssl                                     
 
+                        'tor_ovs_port':'9999',        # The TCP port to connect
+                                                      # on the TOR (protocol = tcp);
+                                                      # or ssl port on which TOR Agent
+                                                      # listens, to which TOR connects (pssl)                                     
+
                         'tor_tsn_ip':'<ip address>',  # IP address of the TSN for
-                                                      #  this TOR
+                                                      # this TOR
 
                         'tor_tsn_name': '<name>' ,    # Name of the TSN node
 
                         'tor_name':'<switch name>',   # Name of the TOR switch  
 
                         'tor_tunnel_ip':'ip address', # IP address for Data tunnel
-                                                      #  endpoint  
+                                                      # endpoint  
                 
                         'tor_http_server_port': <port number>, # HTTP server port. 
                                                            
-                        'tor_vendor_name':'Juniper',   #  Vendor name for TOR Switch.
+                        'tor_vendor_name':'Juniper',   # Vendor name for TOR Switch.
 
-                        'ca_cert_file':'/root/cacert.pem', # location of CA certificate
-                                                           # (for pssl); this is the cert
-                                                           # with which TOR side
-                                                           # certificates are signed.  
+                        'ca_cert_file':'/root/cacert.pem',
+                        # location of CA certificate (for pssl); this is the cert
+                        # with which TOR side certificates are signed.  
                 }]
         }
     `
