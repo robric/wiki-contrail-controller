@@ -96,9 +96,10 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
 
                         'tor_type':'ovs',             # Always ovs                                     
 
-                        'tor_ovs_port':'9999',        # The TCP port to connect on the TOR (when protocol is tcp);
-                                                      # or ssl port on which TOR Agent is listening,
-                                                      # to which TOR connects (pssl)                                     
+                        'tor_ovs_port':'9999',        # The TCP port to connect on the
+                                                      # TOR (when protocol is tcp);
+                                                      # or ssl port on which TOR Agent is
+                                                      # listening, to which TOR connects (pssl)                                     
 
                         'tor_ovs_protocol':'tcp',     # tcp or pssl                                     
 
@@ -116,8 +117,9 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                                                            
                         'tor_vendor_name':'Juniper',   #  Vendor name for TOR Switch.
 
-                        'ca_cert_file':'/root/cacert.pem', # location of CA certificate (for pssl)
-                                                           # this is the cert with which TOR side
+                        'ca_cert_file':'/root/cacert.pem', # location of CA certificate
+                                                           # (for pssl); this is the cert
+                                                           # with which TOR side
                                                            # certificates are signed.  
                 }]
         }
