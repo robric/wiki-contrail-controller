@@ -85,8 +85,31 @@ Further, users can issue the ceilometer meter-list command on the OpenStack cont
 
 ## Contrail Ceilometer Plugin
 
-The Contrail Ceilometer Plugin adds capability to meter the traffic statistics of floating IPs in Ceilometer. It adds the meters `ip.floating.receive.bytes`, `ip.floating.receive.packets`, `ip.floating.transmit.bytes`, `ip.floating.transmit.packets` for each floating IP resource in Ceilometer. 
+The Contrail Ceilometer Plugin adds capability to meter the traffic statistics of floating IPs in Ceilometer. It adds the following meters for each floating IP resource in Ceilometer.
 
-The Contrail Ceilometer Plugin configuration is done in the /etc/ceilometer/pipeline.yaml automatically when Contrail Cloud is installed.
+    ip.floating.receive.bytes
+    ip.floating.receive.packets
+    ip.floating.transmit.bytes
+    ip.floating.transmit.packets 
 
+The Contrail Ceilometer Plugin configuration is done in the `/etc/ceilometer/pipeline.yaml` when Contrail Cloud is installed by the Fabric provisioning scripts.
 
+The following configuration is added to the file:
+
+    sources:
+        - name: contrail_source
+          interval: 600
+          meters:
+            - "ip.floating.receive.packets"
+            - "ip.floating.transmit.packets"
+            - "ip.floating.receive.bytes"
+            - "ip.floating.transmit.bytes"
+          resources:
+              - contrail://<IP-address-of-Contrail-Analytics-Node>:8081
+          sinks:
+            - contrail_sink
+    sinks:
+        - name: contrail_sink
+          publishers:
+            - rpc://
+          transformers:
