@@ -4,12 +4,14 @@ With release 2.2 of Contrail Cloud, OpenStack Ceilometer is installed and enable
 1. OpenStack release icehouse on Ubuntu 12.04.3 LTS, Ubuntu 14.04.1 LTS, and Redhat Enterprise Linux (RHEL) Server 7.0
 2. OpenStack release juno on Ubuntu 14.04.1 LTS, and Redhat Enterprise Linux (RHEL) Server 7.0
 
+**Note**: Ceilometer services are only installed on the first OpenStack controller node and have not been tested with HA currently
+
 ## Ceilometer Details 
 As per the OpenStack Wiki, Ceilometer is used to reliably collect measurements of the utilization of the physical and virtual resources comprising deployed clouds, persist these data for subsequent retrieval and analysis, and trigger actions when defined criteria are met. For more information about Ceilometer, please check the official [OpenStack Ceilometer Wiki](https://wiki.openstack.org/wiki/Ceilometer).
 
 The Ceilometer architecture consists of:
 
-1. **Polling agent** which is designed to poll OpenStack services and build Meters. 
+1. **Polling agent** which is designed to poll OpenStack services and build Meters. The polling agents are also run on the compute nodes in addition to the OpenStack controller. 
 2. **Notification agent** which is designed to listen to notifications on message queue and convert them to Events and Samples.
 3. **Collector** which is designed to gather and record event and metering data created by notification and polling agents.
 4. **API server** that provides a REST API to query and view data recorded by collector service.
@@ -23,7 +25,7 @@ The Ceilometer services are named slightly differently on Ubuntu and RHEL Server
 
 On Ubuntu, the service names are:
 
-1. **Polling agent** - `ceilometer-agent-central`
+1. **Polling agent** - `ceilometer-agent-central` and `ceilometer-agent-compute`
 2. **Notification agent** - `ceilometer-agent-notification`
 3. **Collector** - `ceilometer-collector`
 4. **API server** - `ceilometer-api`
@@ -31,7 +33,7 @@ On Ubuntu, the service names are:
 
 On RHEL Server 7.0, the service names are:
 
-1. **Polling agent** - `openstack-ceilometer-central`
+1. **Polling agent** - `openstack-ceilometer-central` and `openstack-ceilometer-compute`
 2. **Notification agent** - `openstack-ceilometer-notification`
 3. **Collector** - `openstack-ceilometer-collector`
 4. **API server** - `openstack-ceilometer-api`
@@ -160,3 +162,21 @@ The `ceilometer statistics` and `ceilometer sample-list` output for the meter `i
     | 9cf76844-8f09-4518-a09e-e2b8832bf894 | ip.floating.receive.packets | cumulative | 208.0  | packet | 2015-02-18T21:48:30.469000 |
     | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2 | ip.floating.receive.packets | cumulative | 325.0  | packet | 2015-02-18T21:48:28.354000 |
     | 9cf76844-8f09-4518-a09e-e2b8832bf894 | ip.floating.receive.packets | cumulative | 0.0    | packet | 2015-02-18T21:38:30.350000 |
+
+## Ceilometer Installation and Provisioning
+Ceilometer controller services are installed and provisioned automatically as part of OpenStack controller node and the compute agent service as part of the compute node.
+
+The following Fabric tasks are added to facilitate the installation and provisioning:
+
+`fab install_ceilometer` - Install Ceilometer packages on the OpenStack controller node
+
+`fab install_ceilometer_compute` - Install Ceilometer packages on the compute node
+
+`fab setup_ceilometer` - Provision Ceilometer controller services on the OpenStack controller node
+
+`fab setup_ceilometer_compute` - Provision Ceilometer compute agent on the compute node
+
+`fab install_contrail_ceilometer_plugin` - Install Contrail Ceilometer plugin package on the OpenStack controller node
+
+**Note:** These are automatically called as part of `fab install_openstack`, `fab setup_openstack` for the OpenStack controller node, and as part of `fab install_vrouter`, `fab setup_vrouter` for the compute node
+  
