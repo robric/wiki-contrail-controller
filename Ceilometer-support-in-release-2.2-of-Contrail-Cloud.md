@@ -113,3 +113,50 @@ The following configuration is added to the file:
           publishers:
             - rpc://
           transformers:
+
+For example, following is the `ceilometer meter-list` output for the floating IP meters:
+
+    +-------------------------------+------------+-----------+-----------------------------------------------------------------------+----------------------------------+----------------------------------+
+    | Name                          | Type       | Unit      | Resource ID                                                            | User ID                          | Project ID                       |
+    +-------------------------------+------------+-----------+-----------------------------------------------------------------------+----------------------------------+----------------------------------+
+    | ip.floating.receive.bytes     | cumulative | B         | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.receive.bytes     | cumulative | B         | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+    | ip.floating.receive.packets   | cumulative | packet    | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.receive.packets   | cumulative | packet    | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+    | ip.floating.transmit.bytes    | cumulative | B         | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.transmit.bytes    | cumulative | B         | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+    | ip.floating.transmit.packets  | cumulative | packet    | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                  | None                             | None                             |
+    | ip.floating.transmit.packets  | cumulative | packet    | 9cf76844-8f09-4518-a09e-e2b8832bf894                                  | None                             | None                             |
+
+The Resource ID in the meters above refers to the floating IP. Following is the `ceilometer resource-show -r 451c93eb-e728-4ba1-8665-6e7c7a8b49e2` output:
+
+    +-------------+-------------------------------------------------------------------------+
+    | Property    | Value                                                                   |
+    +-------------+-------------------------------------------------------------------------+
+    | metadata    | {u'router_id': u'None', u'status': u'ACTIVE', u'tenant_id':             |
+    |             | u'ceed483222f9453ab1d7bcdd353971bc', u'floating_network_id':            |
+    |             | u'6d0cca50-4be4-4b49-856a-6848133eb970', u'fixed_ip_address':           |
+    |             | u'2.2.2.4', u'floating_ip_address': u'3.3.3.4', u'port_id': u'c6ce2abf- |
+    |             | ad98-4e56-ae65-ab7c62a67355', u'id':                                    |
+    |             | u'451c93eb-e728-4ba1-8665-6e7c7a8b49e2', u'device_id':                  |
+    |             | u'00953f62-df11-4b05-97ca-30c3f6735ffd'}                                |
+    | project_id  | None                                                                    |
+    | resource_id | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2                                    |
+    | source      | openstack                                                               |
+    | user_id     | None                                                                    |
+    +-------------+-------------------------------------------------------------------------+
+
+The `ceilometer statistics` and `ceilometer sample-list` output for the meter `ip.floating.receive.packets` are shown below:
+
+    +--------+----------------------------+----------------------------+-------+-----+-------+--------+----------------+------------+----------------------------+----------------------------+
+    | Period | Period Start               | Period End                 | Count | Min | Max   | Sum    | Avg            | Duration   | Duration Start             | Duration End               |
+    +--------+----------------------------+----------------------------+-------+-----+-------+--------+----------------+------------+----------------------------+----------------------------+
+    | 0      | 2015-02-13T19:50:40.795000 | 2015-02-13T19:50:40.795000 | 2892  | 0.0 | 325.0 | 1066.0 | 0.368603042877 | 439069.674 | 2015-02-13T19:50:40.795000 | 2015-02-18T21:48:30.469000 |
+    +--------+----------------------------+----------------------------+-------+-----+-------+--------+----------------+------------+----------------------------+----------------------------+ 
+
+    +--------------------------------------+-----------------------------+------------+--------+--------+----------------------------+
+    | Resource ID                          | Name                        | Type       | Volume | Unit   | Timestamp                  |
+    +--------------------------------------+-----------------------------+------------+--------+--------+----------------------------+
+    | 9cf76844-8f09-4518-a09e-e2b8832bf894 | ip.floating.receive.packets | cumulative | 208.0  | packet | 2015-02-18T21:48:30.469000 |
+    | 451c93eb-e728-4ba1-8665-6e7c7a8b49e2 | ip.floating.receive.packets | cumulative | 325.0  | packet | 2015-02-18T21:48:28.354000 |
+    | 9cf76844-8f09-4518-a09e-e2b8832bf894 | ip.floating.receive.packets | cumulative | 0.0    | packet | 2015-02-18T21:38:30.350000 |
