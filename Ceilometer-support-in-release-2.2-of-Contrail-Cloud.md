@@ -164,7 +164,10 @@ The `ceilometer statistics` and `ceilometer sample-list` output for the meter `i
     | 9cf76844-8f09-4518-a09e-e2b8832bf894 | ip.floating.receive.packets | cumulative | 0.0    | packet | 2015-02-18T21:38:30.350000 |
 
 ## Ceilometer Installation and Provisioning
-Ceilometer controller services are installed and provisioned automatically as part of OpenStack controller node and the compute agent service as part of the compute node.
+There are 2 scenarios for contrail ceilometer plugin installation.  
+1. If the user is installing their own openstack distribution, they can install contrail ceilometer plugin on the openstack controller node.  
+2. When using Contrail Cloud services, Ceilometer controller services are installed and provisioned automatically as part of OpenStack controller node and the compute agent service as part of the compute node.  
+
 
 The following Fabric tasks are added to facilitate the installation and provisioning:
 
