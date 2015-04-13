@@ -200,7 +200,9 @@ The output should show one or more entries for: ApiServer, IfmapServer, Collecto
 Cassandra cluster addresses can be provided as space separated list of <ip>:<port>, e.g '10.10.10.10:9160 10.10.10.11:9160', to the analytics processes through the respective dot conf file.
 
 #### redis (>= 2.6.13)
-The redis-server version should be (>= 2.6.13). It is expected 2 instances of redis-server are instantiated on the local node that are used by analytics processes [this is done by creating redis-uve.conf and redis-query.conf with appropriate parameters]. The ports are configurable through dot conf file, with defaults being 6380 and 6381.
+The redis-server version should be (>= 2.6.13). 
+By default, the default redis port (6379) is used.
+We do not rely on the redis DB being persisted to disk.
 
 ### Processes
 #### contrail-collector
@@ -235,8 +237,8 @@ analytics database
 # server=0.0.0.0
 
 [REDIS]
-# port=6381
-# server=127.0.0.1
+port=6379
+server=127.0.0.1
 ```
 
 #### contrail-query-engine
@@ -268,8 +270,8 @@ contrail-query-engine is the helper process in the analytics node to do queries 
 # server=127.0.0.1 # discovery_server IP address
 
 [REDIS]
-# port=6380
-# server=127.0.0.1
+  port=6379
+  server=127.0.0.1
 ```
 #### contrail-analytics-api
 contrail-analytics-api is the operation REST API server and provides operational state and the historic data through REST API
@@ -293,8 +295,8 @@ contrail-analytics-api is the operation REST API server and provides operational
 
 [REDIS]
 #server=127.0.0.1
-#redis_server_port=6381
-#redis_query_port=6380
+redis_server_port = 6379
+redis_query_port = 6379
 ```
 
 ### Diagnostics
