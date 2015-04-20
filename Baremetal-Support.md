@@ -143,12 +143,12 @@ The following configuration has to be done on a QFX5100 beforehand.
 * Configure switch options with VTEP source (in the example below, lo0.0 is used – ensure that this address is reachable from TSN node)
 
 > 
-* set interfaces lo0 unit 0 family inet address <router-id-reachable-on-ip-fabric>
+* set interfaces lo0 unit 0 family inet address \<router-id-reachable-on-ip-fabric\>
 * set switch-options ovsdb-managed
 * set switch-options vtep-source-interface lo0.0
-* set protocols ovsdb passive-connection protocol tcp port <port-number>
-* set protocols ovsdb interfaces <interfaces-to-be-managed-by-ovsdb>
-* set protocols ovsdb controller <tor-agent-ip> protocol ssl port <tor-agent-port>
+* set protocols ovsdb passive-connection protocol tcp port \<port-number\>
+* set protocols ovsdb interfaces \<interfaces-to-be-managed-by-ovsdb\>
+* set protocols ovsdb controller \<tor-agent-ip\> protocol ssl port \<tor-agent-port\>
 > 
 
 ## Caveats
