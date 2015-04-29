@@ -37,7 +37,7 @@ JuniperOpenstack is based on Ubuntu cloud archive openstack packages with fixes/
 
 At this time, CentOS and its variant are not distributed as part of JuniperOpenstack. These are available as Contrail networking product, with the expectation that it will be integrated with third party openstack distributions. More specifically, components that are part of JuniperOpenstack (eg. storage, Openstack HA, and Server Manager) are not supported for CentOS target. Having said that we maintain exact feature and performance parity on CentOS wrt Contrail networking features.
 
-More details on the release content of JuniperOpenstack can be found at [http://techwiki.juniper.net](http://http://techwiki.juniper.net/Documentation/Contrail).
+More details on the release content of JuniperOpenstack can be found at [http://techwiki.juniper.net](http://techwiki.juniper.net/Documentation/Contrail).
 
 - - -
 
