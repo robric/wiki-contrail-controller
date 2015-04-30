@@ -15,6 +15,7 @@ It also implements the following standard/upstreamed Neutron extensions:
 * Per-tenant Quota
 * Allowed Address Pair
 * Load Balancer As a Service
+* Source-NAT (router-gateway-set)
 
 The following Contrail specific extensions are implemented:
 
