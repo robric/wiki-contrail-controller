@@ -11,11 +11,10 @@ The Opencontrail Neutron plugin provides an implementation for the following cor
 It also implements the following standard/upstreamed Neutron extensions:
 
 * Security Group
-* Router/Floating IP
+* Router/Floating IP/Source-NAT(router-gateway-set)
 * Per-tenant Quota
 * Allowed Address Pair
 * Load Balancer As a Service
-* Source-NAT (router-gateway-set)
 
 The following Contrail specific extensions are implemented:
 
