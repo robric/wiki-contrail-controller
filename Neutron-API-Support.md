@@ -14,6 +14,7 @@ It also implements the following standard/upstreamed Neutron extensions:
 * Router/Floating IP
 * Per-tenant Quota
 * Allowed Address Pair
+* Load Balancer As a Service
 
 The following Contrail specific extensions are implemented:
 
@@ -26,7 +27,7 @@ For more information about using OpenStack Networking API v2.0 (Neutron), refer 
 
 Note that the plugin does not implement native Bulk/Pagination/Sort operations and relies on emulation provided by neutron common code. 
 
-## Known Bugs ##
+## Known Bugs in R1.10 ##
 
 * \#1352281 Status of resource doesn't reflect if resource is being actually used (eg. port status is ACTIVE upon creation). 
 * \#1349448 When gateway of subnet is in middle of subnet's cidr, the allocation pool attribute doesn't report 2 list elements (start-gw, gw+1,end). However, the gateway-ip will not be allocated to any VM port
