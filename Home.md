@@ -42,7 +42,7 @@ Features:
 
 Release specific Notes:
 * R1.10
-  + [Neutron API compatibility](Neutron-API-Support-on-R1.10)
+  + [Neutron API compatibility](Neutron-API-Support)
   + [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
 
 * R2.0
