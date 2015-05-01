@@ -80,7 +80,7 @@ This process serves the Openstack Networking(neutron) API. It connects to contra
 
 + **Service Name** - neutron-server
 + **Ports**
-  * 9696 - public port
+  * 9696 - public port (haproxy fronend port. Backend port is 9697)
 
 #### API server
 
@@ -95,6 +95,7 @@ This process exposes a REST-based interface for Contrail API. It also:
   * 8082 - public port (accessible with credentials in auth mode)
   * 8095 - debug port (accessible only on localhost in auth mode)
   * 8084 - Introspect port
+8082 is a haproxy frontend port. The corresponding backend port is 9100
 
 #### IFMAP server
 
@@ -125,7 +126,7 @@ This process acts a registry for all contrail services. It exposes a REST API th
 
 + **Service Name** - contrail-discovery
 + **Ports**
-  * 5998 - public port
+  * 5998 - public port (haproxy frontend port. Backend port is 9110 )
 
 ### Analytics Node
 #### Analytics REST API Server
