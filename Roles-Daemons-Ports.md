@@ -160,10 +160,11 @@ This process acts a registry for all contrail services. It exposes a REST API th
 + **ports**
   * 8083 - introspect
   * 5269 - XMPP port
-### dnsd
+### contrail-dns
 + **Service Name** - contrail-dns
 + **ports**
-  * 8093 - DNS service
+  * 8092 - introspect for DNS
+  * 8093 - XMPP for DNS service
 
 ## VRouter Role
 ### VRouter agent
