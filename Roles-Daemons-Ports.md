@@ -53,12 +53,30 @@ The sections below mention the functionality of the processes in each node and h
 ### Openstack Role
 #### Nova
 ##### API
++ **ports**
+  * 8773 - EC2 API
+  * 8774 - Openstack API
+  * 8775 - Metadata port 
+
+##### nova-novncproxy
++ **ports**
+  * 5999 
+
 ##### Scheduler
 ##### Conductor
 
+#### Cinder
++ **ports** 
+  * 8776 - Cinder API
+
 #### Glance
 ##### API
++ **ports** 
+  * 9292 - Glance API
+
 ##### Registry
++ **ports** 
+  * 9191 - Glance API
 
 #### Keystone
 + **ports**
