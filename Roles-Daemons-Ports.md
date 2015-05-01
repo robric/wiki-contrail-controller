@@ -31,7 +31,8 @@
 
   Every instance of a compute node runs the following processes:
   + nova-compute
-  + contrail-vrouter
+  + contrail-vrouter-agent
+  + contrail-tor-agent instances are run on need basis, to manage TORs via OVS (one instance per TOR).
 
 * Analytics Node
 
