@@ -40,13 +40,14 @@
   + contrail-collector
   + contrail-analytics-api
   + contrail-query-engine (query engine)
+  + contrail-snmp-collector
+  + contrail-topology
 
 * WebUI Node
 
   Every instance of a Web UI node runs the following processes:
   + contrail-webui
   + contrail-webui-middleware
-  + redis-webui
 
 The sections below mention the functionality of the processes in each node and how their connectivity.
 
@@ -158,6 +159,10 @@ This process acts a registry for all contrail services. It exposes a REST API th
   * 8086 - public port
 
 ### Query Engine
+
+### Contrail SNMP Collector
+
+### Contrail Topology
 
 ## WEBUI Role
 ### webui
