@@ -153,55 +153,67 @@ This process acts a registry for all contrail services. It exposes a REST API th
 + **Ports**
   * 8081 - public port
 
-### Collector
+#### Collector
 + **Service Name** - contrail-collector
 + **Ports**
   * 8086 - public port
 
-### Query Engine
+#### Query Engine
 + **Service Name** - contrail-query-engine
 
-### Contrail SNMP Collector
+#### Contrail SNMP Collector
 + **Service Name** - contrail-snmp-collector
 
-### Contrail Topology
+#### Contrail Topology
 + **Service Name** - contrail-topology
 
-## WEBUI Role
-### webui
+#### Redis Server
++ **Service Name** - redis
+
+### WEBUI Role
+#### webui
 + **Service Name** - contrail-webui
 + **ports**
   * 8080 - http port redirects to https
   * 8143 - https port
-### webui-middleware
+
+#### webui-middleware
 + **Service Name** - contrail-webui-middleware
 
-## Database Role
-### cassandra
+#### Redis Server
++ **Service Name** - redis
+
+### Database Role
+#### cassandra
 + **Service Name** - contrail-database
 + **ports**
   * 9160 - thrift port
 
-## Control Role
-### control-node
+#### zookeeper
++ **Service Name** - zookeeper
++ **ports**
+  * 2181 - listen port
+
+### Control Role
+#### control-node
 + **Service Name** - contrail-control
 + **ports**
   * 8083 - introspect
   * 5269 - XMPP port
-### contrail-dns
+#### contrail-dns
 + **Service Name** - contrail-dns
 + **ports**
   * 8092 - introspect for DNS
   * 8093 - XMPP for DNS service
 
-## VRouter Role
-### VRouter agent
+### VRouter Role
+#### VRouter agent
 + **Service Name** - contrail-vrouter
 + **Ports**
   * 8085
   * 9090 : Port for communication between VRouter agent and nova-compute
 
-### Contrail ToR Agent
+#### Contrail ToR Agent
 
 This process is responsible to run OVSDB protocol between ToR and Contrail. Multiple contrail-tor-agent can be run on a single node. Each contrail-tor-agent can manage a single ToR and is given an instance-id.
 
