@@ -76,7 +76,39 @@ In "Configure - Physical Devices - Physical Routers" page, create an entry for t
 
 In "Configure - Physical Devices - Interfaces" page, add the logical interfaces to be configured on the TOR. Please note that the Name of the logical interface should match the name on the TOR (eg, ge-0/0/0.10). Other logical interface configurations like Vlan id, Mac address and IP address of the baremetal server and the virtual network it belongs to can be configured here.
 
-## Provisioning
+# HA Solution for TOR Agent
+
+When a TOR is managed through OVSDB via a TOR-Agent on Contrail, high availability of this solution would require support of TOR-Agent redundancy. If the TOR-Agent responsible for a TOR is unable to act as the TOR’s vRouter agent due to any failure condition in the network or the node then another TOR-Agent needs to take over and manage the TOR.
+
+This is achieved using HA-proxy. HA-proxy is a reliable solution that offers high availability and proxy for TCP applications. An SSL connection is initiated from the TOR to the TOR-agent via HA Proxy. The TOR will be connected to exactly one active TOR-Agent at any given point.
+
+The TOR connects to the HA Proxy, which is configured to use one of the TOR-Agents on the two TSNs. An SSL connection is established from the TOR to the TOR-Agent. The Active TOR-Agent (one having the SSL connection established with) will be responsible for advertising routes from the TOR using BGP EVPN to the Contrail Controller. The TOR-Agent also programs routes learnt via EVPN over XMPP southbound into OVSDB on the TOR. The Active TOR agent also advertises the multicast route (ff:ff:ff:ff:ff:ff) to the TOR. It ensures that there is only one multicast route in OVSDB, pointing to its TSN (this is programmed in OVSDB upon connection setup). 
+
+Note that both the TOR Agents receive the same configuration from the control node. Also, the routes are synced via BGP.
+
+Once the SSL connection is established, Keepalive messages are exchanged between the TOR and the TOR-Agent. Keepalive messages are sent from either end and are responded from the other end. When any message exchange is seen on the connection, keepalive message is skipped for that interval. It is recommended that a shorter value for keepalive timeout is configured on the TOR side (5 sec) as compared to the TOR-Agent side (10 sec). When the TOR side sees that keepalive failed, it closes the current SSL session and tries to re-connect. When the TOR-Agent side sees that keepalive failed, it also closes the SSL session and retracts the routes exported to control node. So, by keeping the TOR side keep alive smaller, a new session gets established to the other TOR-Agent, while the earlier TOR-Agent takes more time to retract the routes it exported. This way, the routes from the new TOR-Agent are added before the older ones are retracted, thus ensuring ongoing traffic is not impacted.
+
+## Failure Scenario
+
+If the node on which the TOR-Agent is running goes down / fails or if the TOR-Agent crashes or when there is a network or other issue due to which the HA Proxy cannot communicate with the TOR-Agent, a new SSL connection from the TOR is established to the other TOR-Agent. 
+
+Once connection is established to the new TOR Agent, TOR-Agent updates the multicast route in OVSDB to point its TSN, gets all the OVSDB entries, audits the data with the configuration available with it and updates the database. Entries from OVSDB local table are exported to control node from the TOR-Agent.
+
+Even when SSL connection goes down, the TOR-Agent retains the routes exported to the control node till the TOR-Agent side keepalive timer expires. Once this timer expires, the routes exported are retracted. By configuring a suitable value for this keepalive timer, routes can be retained through the switchover, ensuring that ongoing sessions aren’t dropped.
+
+As the configuration and routes from control node are already synced to the new TSN as well, it can act on the broadcast traffic from the TOR immediately. Service impact will be only for the time taken for SSL connection setup and programming of multicast route in OVSDB.
+
+## Redundancy for HA Proxy
+
+In a high available configuration, multiple HA Proxy nodes will be configured, with VRRP running between them. The TORs will be configured to use the virtual IP address of these HA Proxy nodes, to make the SSL connection to its controller. The active TCP connections will go to the virtual IP Master node, which proxies them to the chosen TOR-Agents. This is done in round-robin order and can be controlled through the configuration of the HA Proxy.
+
+In case of a failure in the HA Proxy node, a standby node becomes the virtual IP Master and will setup the connections to the TOR-Agents. The SSL connections will be re-established and a similar scenario as explained in the previous section will be seen.
+
+## Configuration for TOR-Agent HA
+
+To get the required configuration downloaded from control node to the TSN Agent and to TOR Agent, prouter node has to be linked to the required vrouter nodes (representing the two TOR-Agents and the TSN) in the configuration. 
+
+# Provisioning
 
 TSN can be provisioned using Fab scripts. The following changes are required in the testbed.py:
 
@@ -93,7 +125,7 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         'tor_ip':'<ip address>',                                    
 
                         # Numeric value to uniquely identify the TOR
-                        'tor_id':'<1>',                                                
+                        'tor_id':'<id - a number>',                                                
 
                         # Always ovs
                         'tor_type':'ovs',                                     
@@ -104,7 +136,7 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         # The TCP port to connect on the TOR (protocol = tcp);
                         # or ssl port on which TOR Agent listens, to which
                         # TOR connects (protocol = pssl) 
-                        'tor_ovs_port':'9999',                                   
+                        'tor_ovs_port':'<port>',                                   
 
                         # IP address of the TSN for this TOR
                         'tor_tsn_ip':'<ip address>',
@@ -124,14 +156,29 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         # Vendor name for TOR Switch.       
                         'tor_vendor_name':'Juniper',
 
-                        # location of CA certificate (for pssl); this is the cert
-                        # with which TOR side certificates are signed.
+                        # IP of the TOR agent where redundant TOR Agent will
+                        # run. Required only in HA setups.
+                        'standby_tor_agent_ip':'<ip address>',
+
+                        # tor_id of the same TOR on the redundant node.
+                        # Required only in HA setups.
+                        'standby_tor_agent_tor_id':'<tor id>',
+
+                        # Port number used for OVS by the redundant TOR agent.
+                        # Required only in HA setups.
+                        'standby_tor_agent_tor_ovs_port':'<ovs port>',
+
+                        # Location of CA certificate (for pssl); this is the cert
+                        # with which TOR side certificates are signed. Required
+                        # only in case of pssl protocol
                         'ca_cert_file':'/root/cacert.pem',
 
                 }]
         }
     `
-Use the tasks add_tsn and add_tor_agent to provision the TSN and TOR Agents.
+Use the fab tasks add_tsn and add_tor_agent to provision the TSN and TOR Agents.
+Another fab task, setup_haproxy_config, can be used to provision HA Proxy.
+Note that fab setup_all would provision appropriately when run with the updated testbed.
 
 ## Prior Configuration required on QFX5100
 
@@ -141,6 +188,7 @@ The following configuration has to be done on a QFX5100 beforehand.
 * Set the connection protocol 
 * Indicate the interfaces that will be managed via OVSDB
 * Configure switch options with VTEP source (in the example below, lo0.0 is used – ensure that this address is reachable from TSN node)
+* In case of pssl, update the controller details. When HA proxy is used, use the address of the HA Proxy node and use the vIP when VRRP is used between multiple nodes running HA Proxy.
 
 > 
 * set interfaces lo0 unit 0 family inet address \<router-id-reachable-on-ip-fabric\>
@@ -208,6 +256,8 @@ tor_ovs_protocol=tcp     # IP-Transport protocol used to connect to TOR
 tor_ovs_port=port        # OVS server port number on the ToR
 >
 tsn_ip=<ip>              # IP address of the TSN
+>
+tor_keepalive_interval=10000 # keepalive timer in ms
 >
 ssl_cert=/etc/contrail/ssl/certs/tor.1.cert.pem # Path to ssl certificate for tor-agent, needed for pssl
 >
