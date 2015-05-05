@@ -159,10 +159,13 @@ This process acts a registry for all contrail services. It exposes a REST API th
   * 8086 - public port
 
 ### Query Engine
++ **Service Name** - contrail-query-engine
 
 ### Contrail SNMP Collector
++ **Service Name** - contrail-snmp-collector
 
 ### Contrail Topology
++ **Service Name** - contrail-topology
 
 ## WEBUI Role
 ### webui
