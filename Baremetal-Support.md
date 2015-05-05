@@ -199,6 +199,17 @@ The following configuration has to be done on a QFX5100 beforehand.
 * set protocols ovsdb controller \<tor-agent-ip\> protocol ssl port \<tor-agent-port\>
 > 
 
+* When using SSL to connect, CA-signed certificates have to be copied to /var/db/certs directory in the QFX. One way to get these is using the following (run on any server). 
+
+>
+* apt-get install openvswitch-common
+* ovs-pki init
+* ovs-pki req+sign vtep
+* scp vtep-cert.pem root@<tor-ip>:/var/db/certs
+* scp vtep-privkey.pem root@<tor-ip>:/var/db/certs
+* cacert.pem file will be available in /var/lib/openvswitch/pki/switchca, when the above are done. This is the file to be provided in the above testbed (for ca_cert_file).
+>
+ 
 ## Caveats
 
 It is not possible to configure both tagged and untagged logical ports on the same QFX physical port via OVSDB. So, this configuration should not be done.
