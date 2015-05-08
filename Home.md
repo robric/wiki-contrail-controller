@@ -29,6 +29,7 @@ Maintenance Procedures:
 * [Adding and Removing a hypervisor/compute node](Adding_Removing_Compute_Node)
 * [Increasing Limits (nfiles/nprocs) for a service](Increasing_Service_Limits)
 * [Analytics DB usage and purge](Contrail-Analytics-DB-data-purge)
+* [Enabling kernel core dump on ubuntu](https://github.com/Juniper/contrail-vrouter/wiki/Enabling-kernel-core-dump-on-Ubuntu)
 
 Features:
 * [Simple Gateway](Simple-Gateway)
