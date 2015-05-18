@@ -94,11 +94,13 @@ JuniperOpenstack follows continuous integration development model. It has a mino
 We tag the branch (ie., each repo) with the release tag. e.g., for release 1.06 and 1.10 we tagged the branches with v1.06 and v1.10 respectively. The corresponding packages are available on OpenContrail launchpad PPA as stable opencontrail packages. These packages are available [here](https://launchpad.net/~opencontrail/+archive/ubuntu/ppa). Peridically good working versions are also uploaded from mainline at snapshot area [here](https://launchpad.net/~opencontrail/+archive/ubuntu/snapshots). The installation instruction for OpenContrail packages can be found on this [wiki](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-bring-up-and-provisioning). These packages are community supoprted via mailing lists as indicated above. 
 
 ######Bug tracking: ######
-Bug trakcing on this project is done publically on Launchpad. Two Launchpad IDs (aka projects) are maintained for this project, [JuniperOpenstack](https://launchpad.net/juniperopenstack) and [OpenContrail](https://launchpad.net/opencontrail). Bugs found during internal testing of JuniperOpenstack, are tracked at JuniperOpenstack project. All the bugs are made public, unless they have proprietary customer information. By default only Juniper Engineering team can create issues on this project. Anyone can add his/her ID to track a particular bug(s). Launchpad will generate email update for any change on these bugs.
+Bug tracking on this project is done publicly on Launchpad. Two Launchpad IDs (aka projects) are maintained for this project, [JuniperOpenstack](https://launchpad.net/juniperopenstack) and [OpenContrail](https://launchpad.net/opencontrail). Bugs found during internal testing of JuniperOpenstack, are tracked at JuniperOpenstack project. All the bugs are made public, unless they have proprietary customer information. By default only Juniper Engineering team can create issues on this project. Anyone can add his/her ID to track a particular bug(s). Launchpad will generate email update for any change on these bugs.
 
-'OpenContrail' project account is meant to track community reported bugs. By default these bugs are public. No special priviledge is needed to create a bug on this project. Optionally user can cross link these public bugs to make it dependent on JuniperOpenstack project and vice versa.
+'OpenContrail' project account is meant to track community reported bugs. By default these bugs are public. No special privilege is needed to create a bug on this project. Optionally user can cross link these public bugs to make it dependent on JuniperOpenstack project and vice versa.
 
 There is no restriction w.r.t code commit against bugs on any of these 2 launchpad projects.
+
+Details for bug management is described [here](https://github.com/Juniper/contrail-controller/wiki/Bug-management).
 
 - - -
 
