@@ -1,8 +1,7 @@
 ## Overview
-With release 2.2 of Contrail Cloud, OpenStack Ceilometer is installed and enabled by default on the following OpenStack release and OS combination when the Contrail Cloud is installed and provisioned using Fabric:
+With release 2.2 of Contrail Cloud, OpenStack Ceilometer is supported on the following OpenStack release and OS combination when the Contrail Cloud is installed and provisioned using Fabric by setting option enable_ceilometer = True in the testbed.py:
 
-1. OpenStack release icehouse on Ubuntu 12.04.3 LTS, Ubuntu 14.04.1 LTS, and Redhat Enterprise Linux (RHEL) Server 7.0
-2. OpenStack release juno on Ubuntu 14.04.1 LTS, and Redhat Enterprise Linux (RHEL) Server 7.0
+1. OpenStack release juno on Ubuntu 14.04.1 LTS
 
 **Note**: Ceilometer services are only installed on the first OpenStack controller node and have not been tested with HA currently
 
