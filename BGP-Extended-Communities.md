@@ -12,7 +12,7 @@ The Route Target extended community is defined in [RFC 4360](https://tools.ietf.
 
 #### Encapsulation
 
-This opaque extended community is used to indicate the list of encapsulation protocols that can be used to send packets from an ingress router to an egress vRouter. The encapsulation extended community with one or more tunnel types is attached to routes advertised by a vRouter. It is assumed that all vRouters and DC GWs can send and receive MPLS in GRE. Other possible tunnel types are MPLS in UDP (can be used for both L2 and L3 routes) and VXLAN (only for L2 routes).
+This opaque extended community is used to indicate the list of encapsulation protocols that can be used to send packets from an ingress router to an egress vRouter. The encapsulation extended community with one or more tunnel types is attached to routes advertised by a vRouter. It is assumed that all vRouters and DC GWs can send and receive MPLS in GRE. Other possible tunnel types are MPLS-in-UDP (can be used for both L2 and L3 routes) and VXLAN (only for L2 routes).
 
 The Encapsulation extended community is defined in [RFC 5512](https://tools.ietf.org/html/rfc5512#page-9). The [IANA registry for tunnel types](http://www.iana.org/assignments/bgp-parameters/bgp-parameters.xhtml#tunnel-types) contains the current list of defined types. Tunnel types supported by Contrail are GRE (2), MPLS-in-UDP (13) and VXLAN (8). Additionally, the value 37001 (0x9089) is used as a pre-standard code point for MPLS-in-UDP.
 
