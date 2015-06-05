@@ -53,3 +53,6 @@ Release specific Notes:
         ``
 jdk.tls.disabledAlgorithms=SSLv3
         ``
+
+* R2.20
+  + [Addition of Interface UVEs](Creation-of-Virtual-Machine-Interface-UVE-and-changes-wrt-interface-statistics-collection)
