@@ -1,4 +1,4 @@
-# Addition of new Interface UVEs
+# Addition of Virtual Machine Interface UVE, Logical Interface UVE and Physical Interface UVE
 Starting from Release R2.20 the following new UVEs are added, which will be
 sent from contrail-vrouter-agent. These new UVEs correspond to VM interfaces,
 logical interfaces and physical interfaces. Prior to R2.20, these were sent
