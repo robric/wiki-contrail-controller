@@ -72,7 +72,7 @@ Broadcast traffic from the virtual instances in the OpenContrail cluster are sen
 
 Contrail WebUI can be used to configure a TOR switch and interfaces on the switch.
 
-In "Configure - Physical Devices - Physical Routers" page, create an entry for the TOR switch, providing the TOR's IP address, VTEP address. The TSN and TOR agent addresses for this TOR should also be configured here.
+In "Configure - Physical Devices - Physical Routers" page, create an entry for the TOR switch, providing the TOR's IP address, VTEP address. The TSN and TOR agent addresses for this TOR should also be configured here. The router name used should match the hostname on the TOR.
 
 In "Configure - Physical Devices - Interfaces" page, add the logical interfaces to be configured on the TOR. Please note that the Name of the logical interface should match the name on the TOR (eg, ge-0/0/0.10). Other logical interface configurations like Vlan id, Mac address and IP address of the baremetal server and the virtual network it belongs to can be configured here.
 
@@ -125,7 +125,12 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         'tor_ip':'<ip address>',                                    
 
                         # Numeric value to uniquely identify the TOR
-                        'tor_id':'<id - a number>',                                                
+                        'tor_agent_id':'<id - a number>',                                                
+
+                        # Unique name for TOR Agent. This is an optional field.
+                        # If this is not specified, name used will be 
+                        # <hostname>-<tor_agent_id>
+                        'tor_agent_name':'nodexx-1',
 
                         # Always ovs
                         'tor_type':'ovs',                                     
@@ -144,40 +149,55 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
                         # Name of the TSN node
                         'tor_tsn_name': '<name>' ,
 
-                        # Name of the TOR switch
+                        # Name of the TOR switch, should match the hostname on the TOR
                         'tor_name':'<switch name>',  
 
                         # IP address for Data tunnel endpoint
                         'tor_tunnel_ip':'ip address',  
                 
                         # HTTP server port
-                        'tor_http_server_port': <port number>, 
+                        'tor_agent_http_server_port': <port number>, 
                                                     
                         # Vendor name for TOR Switch.       
                         'tor_vendor_name':'Juniper',
 
-                        # IP of the TOR agent where redundant TOR Agent will
-                        # run. Required only in HA setups.
-                        'standby_tor_agent_ip':'<ip address>',
-
-                        # tor_id of the same TOR on the redundant node.
-                        # Required only in HA setups.
-                        'standby_tor_agent_tor_id':'<tor id>',
-
-                        # Port number used for OVS by the redundant TOR agent.
-                        # Required only in HA setups.
-                        'standby_tor_agent_tor_ovs_port':'<ovs port>',
-
-                        # Location of CA certificate (for pssl); this is the cert
-                        # with which TOR side certificates are signed. Required
-                        # only in case of pssl protocol
-                        'ca_cert_file':'/root/cacert.pem',
-
+                        # Product name of TOR switch. This is an optional field.
+                        'tor_product_name':'QFX5100',
                 }]
         }
+
+          # Path where the CA certificate file is stored on the node where fab is run.
+          # Fab copies the file to node where TOR agent is run.
+          # This is optional and is required only when tor_ovs_protocol is pssl.
+          # The certificates on the TOR should be signed using this CA cert.
+        env.ca_cert_file = '/root/file.pem'
+
     `
-Use the fab tasks add_tsn and add_tor_agent to provision the TSN and TOR Agents.
-Another fab task, setup_haproxy_config, can be used to provision HA Proxy.
+
+The following fab tasks can be used to provision the TSN and TOR Agents.
+
+1. add_tsn : Provision all the TSNs given in the testbed.
+
+2. add_tor_agent : Add all the tor-agents given in the testbed.
+
+3. add_tor_agent_by_id : Add the specified tor-agent (identified by tor_agent_id).
+
+4. add_tor_agent_by_index : Add the specified tor-agent (identified by index/position in testbed).
+
+5. add_tor_agent_by_index_range : Add a group of tor-agents (identified by indices in testbed).
+
+6. delete_tor_agent : Remove all tor-agents in all nodes.
+
+7. delete_tor_agent_node : Remove all tor-agents in specified node. 
+
+8. delete_tor_agent_by_id : Remove the specified tor-agent (identified by tor-id).
+
+9. delete_tor_agent_by_index : Remove the specified tor-agent (identified by index/position in testbed).
+
+10. delete_tor_agent_by_index_range : Remove a group of tor-agents (identified by indices in testbed)
+
+11. setup_haproxy_config : provision HA Proxy.
+
 Note that fab setup_all would provision appropriately when run with the updated testbed.
 
 ## Prior Configuration required on QFX5100
