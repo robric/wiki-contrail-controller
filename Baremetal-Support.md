@@ -180,23 +180,33 @@ The following fab tasks can be used to provision the TSN and TOR Agents.
 
 2. add_tor_agent : Add all the tor-agents given in the testbed.
 
-3. add_tor_agent_by_id : Add the specified tor-agent (identified by tor_agent_id).
+3. add_tor_agent_node : Add all tor-agents in specified node. 
+   Eg. fab add_tor_agent_node:root@10.204.10.10
 
-4. add_tor_agent_by_index : Add the specified tor-agent (identified by index/position in testbed).
+4. add_tor_agent_by_id : Add the specified tor-agent (identified by tor_agent_id).
+   Eg. fab add_tor_agent_by_id:1,root@10.204.10.10
 
-5. add_tor_agent_by_index_range : Add a group of tor-agents (identified by indices in testbed).
+5. add_tor_agent_by_index : Add the specified tor-agent (identified by index/position in testbed).
+   Eg. fab add_tor_agent_by_index:0,root@10.204.10.10
 
-6. delete_tor_agent : Remove all tor-agents in all nodes.
+6. add_tor_agent_by_index_range : Add a group of tor-agents (identified by indices in testbed).
+   Eg. fab add_tor_agent_by_index_range:0-2,root@10.204.10.10
 
-7. delete_tor_agent_node : Remove all tor-agents in specified node. 
+7. delete_tor_agent : Remove all tor-agents in all nodes.
 
-8. delete_tor_agent_by_id : Remove the specified tor-agent (identified by tor-id).
+8. delete_tor_agent_node : Remove all tor-agents in specified node. 
+   Eg. fab delete_tor_agent_node:root@10.204.10.10
 
-9. delete_tor_agent_by_index : Remove the specified tor-agent (identified by index/position in testbed).
+9. delete_tor_agent_by_id : Remove the specified tor-agent (identified by tor-id).
+   Eg. fab delete_tor_agent_by_id:2,root@10.204.10.10
 
-10. delete_tor_agent_by_index_range : Remove a group of tor-agents (identified by indices in testbed)
+10. delete_tor_agent_by_index : Remove the specified tor-agent (identified by index/position in testbed).
+    Eg. fab delete_tor_agent_by_index:0,root@10.204.10.10
 
-11. setup_haproxy_config : provision HA Proxy.
+11. delete_tor_agent_by_index_range : Remove a group of tor-agents (identified by indices in testbed)
+    Eg. fab delete_tor_agent_by_index_range:0-2,root@10.204.10.10
+
+12. setup_haproxy_config : provision HA Proxy.
 
 Note that fab setup_all would provision appropriately when run with the updated testbed.
 
