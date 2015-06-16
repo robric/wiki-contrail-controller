@@ -115,6 +115,9 @@ TSN can be provisioned using Fab scripts. The following changes are required in 
 1. In env.roledefs, hosts for 'tsn' and 'toragent' roles have to be added. The TSN node should also be configured in 'compute' role as well.
 
 2. The TOR agent configuration should be added as below. The TOR Agent node should also be configured in 'compute' role as well.
+
+3. Two TOR agents provisioned on different hosts are considered redundant to each other if the tor_name and tor_ovs_port in their respective configurations are the same. Note that this means the TOR agents will be listening on the same port for SSL connection on both the nodes.
+
     `
 
         env.tor_agent = {
