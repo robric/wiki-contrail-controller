@@ -180,5 +180,7 @@ The following Fabric tasks are added to facilitate the installation and provisio
 
 `fab install_contrail_ceilometer_plugin` - Install Contrail Ceilometer plugin package on the OpenStack controller node
 
+`fab setup_contrail_ceilometer_plugin` - Provision Contrail Ceilometer plugin package on the OpenStack controller node
+
 **Note:** These are automatically called as part of `fab install_openstack`, `fab setup_openstack` for the OpenStack controller node, and as part of `fab install_vrouter`, `fab setup_vrouter` for the compute node
   
