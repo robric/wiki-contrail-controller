@@ -86,7 +86,7 @@ The TOR connects to the HA Proxy, which is configured to use one of the TOR-Agen
 
 Note that both the TOR Agents receive the same configuration from the control node. Also, the routes are synced via BGP.
 
-Once the SSL connection is established, Keepalive messages are exchanged between the TOR and the TOR-Agent. Keepalive messages are sent from either end and are responded from the other end. When any message exchange is seen on the connection, keepalive message is skipped for that interval. It is recommended that a shorter value for keepalive timeout is configured on the TOR side (5 sec) as compared to the TOR-Agent side (10 sec). When the TOR side sees that keepalive failed, it closes the current SSL session and tries to re-connect. When the TOR-Agent side sees that keepalive failed, it also closes the SSL session and retracts the routes exported to control node. So, by keeping the TOR side keep alive smaller, a new session gets established to the other TOR-Agent, while the earlier TOR-Agent takes more time to retract the routes it exported. This way, the routes from the new TOR-Agent are added before the older ones are retracted, thus ensuring ongoing traffic is not impacted.
+Once the SSL connection is established, Keepalive messages are exchanged between the TOR and the TOR-Agent. Keepalive messages are sent from either end and are responded from the other end. When any message exchange is seen on the connection, keepalive message is skipped for that interval. When the TOR side sees that keepalive failed, it closes the current SSL session and tries to re-connect. When the TOR-Agent side sees that keepalive failed, it also closes the SSL session. Upon SSL session closure, the TOR Agent retracts the routes exported to control node.
 
 ## Failure Scenario
 
@@ -94,13 +94,13 @@ If the node on which the TOR-Agent is running goes down / fails or if the TOR-Ag
 
 Once connection is established to the new TOR Agent, TOR-Agent updates the multicast route in OVSDB to point its TSN, gets all the OVSDB entries, audits the data with the configuration available with it and updates the database. Entries from OVSDB local table are exported to control node from the TOR-Agent.
 
-Even when SSL connection goes down, the TOR-Agent retains the routes exported to the control node till the TOR-Agent side keepalive timer expires. Once this timer expires, the routes exported are retracted. By configuring a suitable value for this keepalive timer, routes can be retained through the switchover, ensuring that ongoing sessions aren’t dropped.
+When SSL connection goes down, the TOR-Agent retracts the routes exported. Also, if the XMPP connection between TOR-Agent and Control node also goes down, control node immediately removes the routes exported by the TOR-Agent. In this scenario, the entries from OVSDB local table are retracted and then added back from the new TOR-Agent. In this scenario, we could see disruption in ongoing sessions.
 
-As the configuration and routes from control node are already synced to the new TSN as well, it can act on the broadcast traffic from the TOR immediately. Service impact will be only for the time taken for SSL connection setup and programming of multicast route in OVSDB.
+As the configuration and routes from control node are already synced to the new TSN as well, it can act on the broadcast traffic from the TOR immediately. Service impact will be only for the time taken for SSL connection setup and programming of multicast and unicast routes in OVSDB.
 
 ## Redundancy for HA Proxy
 
-In a high available configuration, multiple HA Proxy nodes will be configured, with VRRP running between them. The TORs will be configured to use the virtual IP address of these HA Proxy nodes, to make the SSL connection to its controller. The active TCP connections will go to the virtual IP Master node, which proxies them to the chosen TOR-Agents. This is done in round-robin order and can be controlled through the configuration of the HA Proxy.
+In a high available configuration, multiple HA Proxy nodes will be configured, with VRRP running between them. The TORs will be configured to use the virtual IP address of these HA Proxy nodes, to make the SSL connection to its controller. The active TCP connections will go to the virtual IP Master node, which proxies them to the chosen TOR-Agents. A TOR-Agent among the two nodes is chosen based on lower number of connections from HA Proxy to that node and can be controlled through the configuration of the HA Proxy.
 
 In case of a failure in the HA Proxy node, a standby node becomes the virtual IP Master and will setup the connections to the TOR-Agents. The SSL connections will be re-established and a similar scenario as explained in the previous section will be seen.
 
