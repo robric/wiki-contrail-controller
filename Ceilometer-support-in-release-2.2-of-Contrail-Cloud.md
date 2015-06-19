@@ -1,5 +1,5 @@
 ## Overview
-With release 2.2 of Contrail Cloud, OpenStack Ceilometer is supported on the following OpenStack release and OS combination when the Contrail Cloud is installed and provisioned using Fabric by setting option enable_ceilometer = True in the testbed.py:
+With release 2.2 of Contrail Cloud, OpenStack Ceilometer is supported on the following OpenStack release and OS combination when the Contrail Cloud is installed and provisioned using Fabric or Server Manager by setting option enable_ceilometer = True:
 
 1. OpenStack release juno on Ubuntu 14.04.1 LTS
 
