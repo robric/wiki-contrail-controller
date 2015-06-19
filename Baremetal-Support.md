@@ -54,7 +54,7 @@ The TOR Agent receives the EVPN entries (routes) for the virtual networks in whi
 
 MAC addresses learnt in the TOR switch in different logical switches (entries from local table in OVSDB) are propagated to the TOR Agent. TOR Agent exports them to the control node in the corresponding EVPN tables, which are further distributed to other controllers and subsequently to compute nodes and other EVPN nodes in the cluster.
 
-The TSN node receives the replication tree for each virtual network from the control node. It adds the required TOR addresses to the same, forming its complete replication tree. The other compute nodes also receive the replication tree from the control node and this tree includes the TSN node.
+The TSN node receives the replication tree for each virtual network from the control node. The other compute nodes also receive the replication tree from the control node and this tree includes the TSN node.
 
 ## Data Plane
 
