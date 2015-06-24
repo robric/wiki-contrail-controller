@@ -5,6 +5,7 @@
        if missing, config has not come from controller
 
        a. check api-server 8082/virtual-machine-interface/<uuid> if routing_instance_refs are present
+          eg: curl -u admin:secret123 http://localhost:8095/virtual-machine-interface/39f49c43-e6fc-471b-ac1d-5cf3c6317221 | python -m json.tool > /tmp/vmis ( Here '39f49c43-e6fc-471b-ac1d-5cf3c6317221' is the interface which we got from step 1. for whom ERROR state was seen)
 
           if missing,
             a. check if contrail-schema is running on atleast one controller
