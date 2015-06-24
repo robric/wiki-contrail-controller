@@ -70,8 +70,10 @@ These are based on [Gerrit commit guidelines](https://wiki.openstack.org/wiki/Ge
 * Related-Bug: #1234567 -- use 'Related-Bug' if the commit is merely related to the referenced bug
 
 The # is optional but be sure to add a space after the colon - the integration doesn't work otherwise.
+A single commit should not normally be used to fix unrelated bugs.  In cases where a single commit does address multiple (related) bugs, one of the above keywords must be used for each bug.
 
-Note that when you mention Closes-Bug in the review request for a series, only that particular series which the bug is fixed for will get updated to "Fix committed". If the bug doesn't have the series in question, it doesn't get updated.
+Note that when you mention Partial-Bug/Closes-Bug in the review request for a series, only that particular series which the bug is fixed for will get updated to "In Progress"/"Fix committed". If the bug doesn't have the series in question, it doesn't get updated.
+
 
 ###### Documentation ######
 
