@@ -1,6 +1,6 @@
 ### VM doesn't have link-local (169.254.x.x) address upon boot
 
-       1. check on hypervisor 8085/Snh_ItfReq to see if config is missing (i.e. state in ERROR, vn-null etc.).
+       1. check on hypervisor 8085/Snh_ItfReq to see if config is missing (i.e. state in ERROR, vn-null etc.)[ eg: http://10.92.249.119:8085/Snh_ItfReq?name= 10.92.249.119 is one of my hypervisor's ip]
 
        if missing, config has not come from controller
 
@@ -8,14 +8,14 @@
           eg: curl -u admin:secret123 http://localhost:8095/virtual-machine-interface/39f49c43-e6fc-471b-ac1d-5cf3c6317221 | python -m json.tool > /tmp/vmis ( Here '39f49c43-e6fc-471b-ac1d-5cf3c6317221' is the interface which we got from step 1. for whom ERROR state was seen)
 
           if missing,
-            a. check if contrail-schema is running on atleast one controller
+            a. check if contrail-schema is running on atleast one controller( cmd: contrail-status )
                  if running
                    a. check if VMI present in ifmap on all controllers via 
 
                           ifmap-view localhost 8443 visual visual | grep <vmi-name>
 
                         if missing in ifmap,
-                          a. check if rabbitmq is clustered fine and all api servers are connected to it.
+                          a. check if rabbitmq is clustered fine and all api servers are connected to it.( cmd: rabbitmqctl cluster_status)
                           b. check contrail-api introspect port (8084) for rest/db/messagebus/ifmap traces
                         else
                           a. need to check why contrail-schema didnt establish link between VMI to RI maybe check /var/log/contrail/schema.err
