@@ -263,6 +263,8 @@ The TSN module is like any other contrail-vrouter-agent on a compute node, with 
 
 The port on which TOR agent Introspect access is available will be present in the config file provided to contrail-tor-agent. This provides the OVSDB data available through the client interface, apart from the other data available in a Contrail Agent.
 
+## Debug FAQ
+
 * TOR Agent is not coming up : Check the TOR Agent configuration file. In case pssl is specified, check that the certificate files are specified and are present on the node.
 
 * SSL connection is not established : Check the controller configuration on the TOR. It should either point to the node where HA Proxy is run or directly to the node where TOR Agent is running.
