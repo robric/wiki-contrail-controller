@@ -229,7 +229,7 @@ The following configuration has to be done on a QFX5100 beforehand.
 * set switch-options vtep-source-interface lo0.0
 * set protocols ovsdb passive-connection protocol tcp port \<port-number\>
 * set protocols ovsdb interfaces \<interfaces-to-be-managed-by-ovsdb\>
-* set protocols ovsdb controller \<tor-agent-ip\> protocol ssl port \<tor-agent-port\>
+* set protocols ovsdb controller \<tor-agent-ip\> inactivity-probe-duration 10000 protocol ssl port \<tor-agent-port\>
 > 
 
 * When using SSL to connect, CA-signed certificates have to be copied to /var/db/certs directory in the QFX. One way to get these is using the following (run on any server). 
@@ -262,6 +262,18 @@ Introspect on TOR agent and TSN nodes show the configuration and operational sta
 The TSN module is like any other contrail-vrouter-agent on a compute node, with Introspect access available on port 8085 by default. Operational data like interfaces, VN and VRF information along with the routes can be checked here.
 
 The port on which TOR agent Introspect access is available will be present in the config file provided to contrail-tor-agent. This provides the OVSDB data available through the client interface, apart from the other data available in a Contrail Agent.
+
+* TOR Agent is not coming up : Check the TOR Agent configuration file. In case pssl is specified, check that the certificate files are specified and are present on the node.
+
+* SSL connection is not established : Check the controller configuration on the TOR. It should either point to the node where HA Proxy is run or directly to the node where TOR Agent is running.
+If the connection is getting established and getting closed, check that the certificate files in TOR are correct, signed with the ca-cert file provided to the TOR-Agent. In case TOR-Agent is re-provisioned, it is possible that the certificates on the TOR-Agent are updated and the QFX is expecting the older one - remove /var/db/certs/ca-cert.pem on the QFX in such a case.
+
+* OVSDB is not getting updated : Check that the router name specified in Contrail matches the hostname on the TOR. Note that in case of QFX VC configuration, all QFX nodes are expected to have the same hostname.
+
+* Scale configuration : Check the limits configured on the TSN node using ``vrouter --info`` and verify that these limits are appropriate. If required, update them by having /etc/modprobe.d/vrouter.conf with the following and restarting the node:
+``options vrouter vr_mpls_labels=131072 vr_nexthops=131072 vr_vrfs=65536 vr_bridge_entries=262144 ``
+
+* Scale configuration : With high MAC count on the TOR, if the SSL connection to the TOR-Agent is flapping, check if the keepalive timer requires tuning. In /etc/contrail/contrail-tor-agent-<xx>.conf file, option tor_keepalive_interval can be set to desired value. Check that inactivity-probe-duration is specified while configuring the controller on the QFX.
 
 ## Changes in the Configuration file to the Agent
 
