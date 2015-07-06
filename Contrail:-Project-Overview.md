@@ -91,7 +91,7 @@ To get support on Contrail, join the mailing list as indicated in [http://openco
 ####Project Management ####
 
 ######Official releases: ######
-JuniperOpenstack follows continuous integration development model. It has a minor release every 2 months. The schedule and branch information of the project is maintained on [launchpad](https://launchpad.net/juniperopenstack). The top level branch diagram shows 'milestone' and 'series'. Depending on release content we do maintenance release on a branch, as needed. This is updated on launchpad as soon as the plan is in place.
+JuniperOpenstack follows continuous integration development model. It has a minor release every 2-4 months. The schedule and branch information of the project is maintained on [launchpad](https://launchpad.net/juniperopenstack). The top level branch diagram shows 'milestone' and 'series'. Depending on release content we do maintenance release on a branch, as needed. This is updated on launchpad as soon as the plan is in place.
 
 We tag the branch (ie., each repo) with the release tag. e.g., for release 1.06 and 1.10 we tagged the branches with v1.06 and v1.10 respectively. The corresponding packages are available on OpenContrail launchpad PPA as stable opencontrail packages. These packages are available [here](https://launchpad.net/~opencontrail/+archive/ubuntu/ppa). Peridically good working versions are also uploaded from mainline at snapshot area [here](https://launchpad.net/~opencontrail/+archive/ubuntu/snapshots). The installation instruction for OpenContrail packages can be found on this [wiki](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-bring-up-and-provisioning). These packages are community supoprted via mailing lists as indicated above. 
 
