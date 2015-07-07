@@ -213,6 +213,21 @@ The following fab tasks can be used to provision the TSN and TOR Agents.
 
 Note that fab setup_all would provision appropriately when run with the updated testbed.
 
+## Adding ToR agents or TSN node to an existing setup
+
+On the new node, install contrail-install-packages and run /opt/contrail/contrail_packages/setup.sh  
+Populate testbed.py to reflect this new node with tor-agent/tsn info  
+From /opt/contrail/utils on config node, for each new node xyz :   
+
+    fab upgrade_kernel_node:root@xyz
+    fab setup_interface_node:root@xyz
+    fab install_only_vrouter_node:no,root@xyz
+    fab setup_only_vrouter_node:no,no,root@xyz
+    fab add_tor_agent:False
+    fab add_tsn:False
+
+Then run /etc/contrail/compute_reboot on the new node which will initiate a reboot of the node  
+
 ## Prior Configuration required on QFX5100
 
 The following configuration has to be done on a QFX5100 beforehand.
