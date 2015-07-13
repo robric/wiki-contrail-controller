@@ -200,7 +200,7 @@ This process acts a registry for all contrail services. It exposes a REST API th
 + **ports**
   * 8083 - introspect
   * 5269 - XMPP port
-#### contrail-dns
+  * 5222 - TLS based XMPP port
 + **Service Name** - contrail-dns
 + **ports**
   * 8092 - introspect for DNS
