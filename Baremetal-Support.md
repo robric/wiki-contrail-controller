@@ -220,6 +220,7 @@ Populate testbed.py to reflect this new node with tor-agent/tsn info
 From /opt/contrail/utils on config node, for each new node xyz :   
 
     fab upgrade_kernel_node:root@xyz
+    Reboot the node so that it boots with the new kernel version
     fab setup_interface_node:root@xyz
     fab install_only_vrouter_node:no,root@xyz
     fab setup_only_vrouter_node:no,no,root@xyz
