@@ -16,29 +16,14 @@ Contrail Vrouter Agent Introspect on a compute node can be accessed via HTTP on 
 
 * services.xml provides stats and packet dumps for control packets like DHCP, DNS, ARP, ICMP.
 
-Below is a brief description about various next-hop contrail vrouter agent uses.
-1> Interface next-hop
-    Destination VM is reachable locally on the compute node,
-    tap interface on which packet has to sent for given destination address is also printed
-    along with this next hop.
+Below is a brief description of various next-hop types contrail vrouter agent uses.
 
-2> Tunnel next-hop
-    Destination address is reachable on a remote compute node, hence packet would
-    be encapsulated and sent to remote compute node where given destination VM is present
+* **Interface** - Destination VM is reachable locally on the compute node, tap interface on which packet has to sent for given destination address is also printed along with this next hop.
 
-3> Resolve next-hop
-   Destination route pointing such a nexthop, would result in ARP.
-   For example lets assume IP address of compute node is 1.1.1.1/24, then
-   a route 1.1.1.0/24 would be added pointing to a resolve NH, and any
-   packet hitting this route would result in ARP.
+* **Tunnel** - Destination address is reachable on a remote compute node, hence packet would be encapsulated and sent to remote compute node where given destination VM is present
 
-4> Receive next-hop
-   Destination route pointing to such a next-hop would be consumed by host.
-   If compute node IP address is 1.1.1.1/24, then a 1.1.1.1/32 route would
-   installed pointing to receive NH, and so that packets would be accepted and processed
-   by host.
+* **Resolve** - Destination route pointing such a nexthop, would result in ARP. For example lets assume IP address of compute node is 1.1.1.1/24, then a route 1.1.1.0/24 would be added pointing to a resolve NH, and any packet hitting this route would result in ARP.
 
-5> Composite next-hop
-   Usually mulicast route points to such a next-hop, composite next hop
-   would in turn consist of multiple tunnel and interface next hop to which
-   packet would be replicated to.
+* **Receive** - Destination route pointing to such a next-hop would be consumed by host. If compute node IP address is 1.1.1.1/24, then a 1.1.1.1/32 route would installed pointing to receive NH, and so that packets would be accepted and processed by host.
+
+* **Composite** - Usually multicast route points to such a next-hop, composite next hop would in turn consist of multiple tunnel and interface next hop to which packet would be replicated to.
