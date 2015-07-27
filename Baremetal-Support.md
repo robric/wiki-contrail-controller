@@ -229,6 +229,15 @@ From /opt/contrail/utils on config node, for each new node xyz :
 
 Then run /etc/contrail/compute_reboot on the new node which will initiate a reboot of the node  
 
+## Regenerate Contrail SSL certificates
+In case the SSL certificate used on the Contrail side needs to be regenerated, the following steps can be followed:
+* Remove existing SSL certificates (rm /etc/contrail/ssl/certs/tor.<tor-id>.cert.pem /etc/contrail/ssl/private/tor.<tor-id>.privkey.pem) on the TSN node (both TSN nodes in case of HA configuration).
+* fab add_tor_agent (this will re-generate the tor-agent configuration file as well as the SSL certificates - if the testbed.py is latest and no other changes were done in the tor-agent configuration file, this step would be fine. Otherwise, get new certificates using the below command. In case it is created using the command below, the generated files have to be copied to the second TSN node as well, in case of HA configuration.
+
+`openssl req -new -x509 -days 3650 -text -sha256 -newkey rsa:4096 -nodes -subj "/C=US/ST=Global/O=juniper" -keyout /etc/contrail/ssl/private/tor.<tor-id>.privkey.pem -out /etc/contrail/ssl/certs/tor.<tor-id>.cert.pem`
+* Restart contrail-tor-agent
+* Remove the file /var/db/certs/cacert.pem file on the QFX.
+
 ## Prior Configuration required on QFX5100
 
 The following configuration has to be done on a QFX5100 beforehand.
