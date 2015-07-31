@@ -300,6 +300,12 @@ If the connection is getting established and getting closed, check that the cert
 * Scale configuration : Check the limits configured on the TSN node using ``vrouter --info`` and verify that these limits are appropriate. If required, update them by having /etc/modprobe.d/vrouter.conf with the following and restarting the node:
 ``options vrouter vr_mpls_labels=131072 vr_nexthops=131072 vr_vrfs=65536 vr_bridge_entries=262144 ``
 
+Calculate these as follows:
+>         * mpls_labels = (max number of VNs * 3) + 4000
+>         * nexthops = (max number of VNs * 4) + number of TORs + number of compute nodes + 100
+>         * vrfs = Max number of VNs
+>         * macs = Maximum number of MACs in a VN
+
 * Scale configuration : With high MAC count on the TOR, if the SSL connection to the TOR-Agent is flapping, check if the keepalive timer requires tuning. In /etc/contrail/contrail-tor-agent-<xx>.conf file, option tor_keepalive_interval can be set to desired value. Check that inactivity-probe-duration is specified while configuring the controller on the QFX.
 
 ## Changes in the Configuration file to the Agent
