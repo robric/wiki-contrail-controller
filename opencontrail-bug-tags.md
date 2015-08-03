@@ -14,6 +14,7 @@
 | horizon | Horizon plugins |
 | neutronapi | Neutron API compatibility issues. |
 | openstack | |
+| packaging | Packaging (debian/redhat) issues. |
 | regression | |
 | releasenote | Bugs that require a release note. |
 | security-group | |
