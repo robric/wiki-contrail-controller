@@ -20,9 +20,12 @@ The following could be used to derive the values:
 * bridge entries / macs = Maximum number of MACs in a VN
 * Flow table is hashed based on flow tuple. When flow bucket is full, new entries are added to overflow table. It is recommended not to increase the overflow table size as it could impact performance.
 
-Some of the parameters can be provisioned during setup via fab, using the following testbed configuration.
+Some of these parameters can be provisioned during setup via fab, using the following testbed configuration.
 
-`env.vrouter_module_params = {
-     host4:{'mpls_labels':'196000', 'nexthops':'521000', 'vrfs':'65536', 'macs':'1000000'},
-     host5:{'mpls_labels':'196000', 'nexthops':'521000', 'vrfs':'65536', 'macs':'1000000'}
-}`
+> env.vrouter_module_params = {
+>
+>     host4:{'mpls_labels':'196000', 'nexthops':'521000', 'vrfs':'65536', 'macs':'1000000'},
+>
+>     host5:{'mpls_labels':'196000', 'nexthops':'521000', 'vrfs':'65536', 'macs':'1000000'}
+>
+>}
