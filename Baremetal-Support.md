@@ -211,7 +211,7 @@ The following fab tasks can be used to provision the TSN and TOR Agents.
 
 12. setup_haproxy_config : provision HA Proxy.
 
-Note that fab setup_all would provision appropriately when run with the updated testbed.
+Note that fab setup_all would provision appropriately when run with the updated testbed. Also, nova-compute will not be installed on the tsn nodes. To be able to launch VMs, one needs to use additional compute nodes which are not tor-agents/TSNs
 
 ## Adding ToR agents or TSN node to an existing setup
 
