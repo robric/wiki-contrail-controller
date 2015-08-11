@@ -63,6 +63,8 @@ Start all Contrail services (check contrail-status) <br>
 
 From config node, add neutron service and endpoint on the new keystone IP (10.204.216.173 below)
 setup-quantum-in-keystone --ks_server_ip     10.204.216.173 --quant_server_ip  10.204.216.184 --tenant           admin --user             admin --password         contrail123 --svc_password     contrail123 --svc_tenant_name  service --root_password    None --region_name RegionOne
+On the new Keystone server, make sure that endpoints for nova, glance, cinder services are pointing to the right URLs. (keystone endpoint-list)
+
 
 Update testbed.py to refer to the new keystone IP (env.keystone section) <br>
 Run fab prov_control_bgp , prov_external_bgp, prov_metadata_services, prov_encap_type, 
