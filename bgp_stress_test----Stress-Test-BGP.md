@@ -1,3 +1,7 @@
+scons -u --optimization=production src/bgp:bgp_stress_test
+
+build/production/test/bgp_stress_test -help
+
 **BgpStressTest**
 
 Use this test to stress test control-node in unit-test environment by feeding various test events randomly.
@@ -126,7 +130,7 @@ Usage:
 2. Tweak scheduler policy to better parallelization across mock agents' IO and xmpp_state_machine tasks
 3. Apply info gained here in Becca's scale test (which is now already under QA) In there, multiple bgp_stress_test instances can be run in different test server systems
 
-## Test enhancements
+## Test enhancements (TODO, Not prioritized)
 1. Add more features to get more coverage
     1. Static routes
     2. Service Chanining
