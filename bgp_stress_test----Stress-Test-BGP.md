@@ -116,9 +116,10 @@ Usage:
 1. Majority of the time, CPU cycles were spent either during xml generation at control-node or received xml parsing in mock agents (Verified by gprof)
 2. Most of the xml parsing cycles in boost/pugi xml and regex parse code
 3. If generated xml is not parsed (--no-agents-updates-processing), tests run almost 10 times faster. Since one bgp_stress_test process simultes 100s of agents on a single system, they are starved for CPUs (Confirmed by top output, most of the CPUs were running at more than 70%)
-4.Since this test only scenarion, one can use --no-agents-updates-processing and get around this bottle-neck backtrace at random times initially indicated lot of time spent in MergeUpdate(). After test was modified to first subscribe, wait and then start advertising, this went away, though the time taken for the entire test remained roughly the same. As gprof indicated, most of the time is spent in crunching either generating xmls or parsing received xml. More of the latter, as number of routes received is O(nagents^2)
-5. Also ran the test under valgrind (with lesser scale) and did not find any issue or memory leak
-6. Ran with larger socket buffer (64K) which resulted in 5% or so improvement only (Default sizes are in /proc/sys/net/ipv4/tcp_rmem and /proc/sys/net/ipv4/tcp_wmem)
+4. Since this test only scenario, one can use --no-agents-updates-processing and get around this bottle-neck backtrace at random times initially indicated lot of time spent in MergeUpdate(). After test was modified to first subscribe, wait and then start advertising, this went away, though the time taken for the entire test remained roughly the same.
+5. As gprof indicated, most of the time is spent in crunching either generating xmls or parsing received xml. More of the latter, as number of routes received is O(nagents^2)
+6. Also ran the test under valgrind (with lesser scale) and did not find any issue or memory leak
+7. Ran with larger socket buffer (64K) which resulted in 5% or so improvement only (Default sizes are in /proc/sys/net/ipv4/tcp_rmem and /proc/sys/net/ipv4/tcp_wmem)
 
 ## Future considerations
 1. If deemed necessary, optimize xml parsing code in production code
