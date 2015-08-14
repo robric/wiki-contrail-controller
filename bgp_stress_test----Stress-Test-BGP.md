@@ -1,28 +1,24 @@
-BgpStressTest
-===============
-Use this test to stress test control-node in unit-test environment by 
-feeding various test events randomly.
+**BgpStressTest**
 
-Many events are supported such as add bgp route, add xmpp route, 
-bring up/down bgp/xmpp peer, etc.
+Use this test to stress test control-node in unit-test environment by feeding various test events randomly.
 
-By default, test feeds events randomly. To reproduce crashes, 
-events can be fed through a file (- for stdin). Simply grep "Feed " from 
-the test output, and feed those lines back to replay the events.
+Many events are supported such as add bgp route, add xmpp route, bring up/down bgp/xmpp peer, etc.
 
-Events can be retrieved from core-file generated from bgp_stress_test
-using this bash function.
+By default, test feeds events randomly. To reproduce crashes, events can be fed through a file (- for stdin). Simply grep "Feed " from the test output, and feed those lines back to replay the events.
 
+Events can be retrieved from core-file generated from bgp_stress_test using this bash function.
+
+```
 get_events () { # Input is the core file
    gdb --batch --eval-command="print BgpStressTestEvent::d_events_played_list_" build/debug/bgp/test/bgp_stress_test $1 | \grep \$1 | sed 's/",\?/\n/g' | \grep Feed
 }
 Those events can be played back as shown below.
     get_events() <core-file> | build/debug/bgp/test/bgp_stress_test --feed-events -
-
+```
 Scaling
 =======
 Tweak nagents, npeers, nroutes, ninstances, ntargets as desired
-
+```
 Use --no-agents-updates-processing option
 Tune following environment variables: e.g.
 TCP_SESSION_SOCKET_BUFFER_SIZE=65536 CONCURRENCY_CHECK_DISABLE=TRUE BGP_KEEPALIVE_SECONDS=30000 XMPP_KEEPALIVE_SECONDS=30000 CONTRAIL_UT_TEST_TIMEOUT=3000 WAIT_FOR_IDLE=320 TASK_UTIL_WAIT_TIME=10000 TASK_UTIL_RETRY_COUNT=250000 BGP_STRESS_TEST_SUITE=1 NO_HEAPCHECK=TRUE LOG_DISABLE=TRUE
@@ -115,53 +111,32 @@ Usage:
   --xmpp-server arg (=127.0.0.1)        set xmpp server IP address
   --xmpp-source arg (=127.0.0.1)        set xmpp connection source IP address
   --xmpp-auth-enabled                   Enable/Disable Xmpp Authentication
+```
+## Notes from performance/scale testing
+1. Majority of the time, CPU cycles were spent either during xml generation at control-node or received xml parsing in mock agents (Verified by gprof)
+2. Most of the xml parsing cycles in boost/pugi xml and regex parse code
+3. If generated xml is not parsed (--no-agents-updates-processing), tests run almost 10 times faster. Since one bgp_stress_test process simultes 100s of agents on a single system, they are starved for CPUs (Confirmed by top output, most of the CPUs were running at more than 70%)
+4.Since this test only scenarion, one can use --no-agents-updates-processing and get around this bottle-neck backtrace at random times initially indicated lot of time spent in MergeUpdate(). After test was modified to first subscribe, wait and then start advertising, this went away, though the time taken for the entire test remained roughly the same. As gprof indicated, most of the time is spent in crunching either generating xmls or parsing received xml. More of the latter, as number of routes received is O(nagents^2)
+5. Also ran the test under valgrind (with lesser scale) and did not find any issue or memory leak
+6. Ran with larger socket buffer (64K) which resulted in 5% or so improvement only (Default sizes are in /proc/sys/net/ipv4/tcp_rmem and /proc/sys/net/ipv4/tcp_wmem)
 
-Notes from performance/scale testing
-====================================
-o Majority of the time, CPU cycles were spent either during xml generation
-  at control-node or received xml parsing in mock agents (Verified by gprof)
-o Most of the xml parsing cycles in boost/pugi xml and regex parse code
-o If generated xml is not parsed (--no-agents-updates-processing), tests run almost
-  10 times faster.
-    Since one bgp_stress_test process simultes 100s of agents on a single system,
-    they are starved for CPUs (Confirmed by top output, most of the CPUs were
-    running at more than 70%)
-o Since this test only scenarion, one can use --no-agents-updates-processing and get
-  around this bottle-neck
-o backtrace at random times initially indicated lot of time spent in MergeUpdate().
-  After test was modified to first subscribe, wait and then start advertising, this
-  went away, though the time taken for the entire test remained roughly the same.
-  As gprof indicated, most of the time is spent in crunching either generating xmls or
-  parsing received xml. More of the latter, as number of routes received is O(nagents^2)
-o Also ran the test under valgrind (with lesser scale) and did not find any issue or
-  memory leak
-o Ran with larger socket buffer (64K) which resulted in 5% or so improvement only
-  (Default sizes are in /proc/sys/net/ipv4/tcp_rmem and /proc/sys/net/ipv4/tcp_wmem)
+## Future considerations
+1. If deemed necessary, optimize xml parsing code in production code
+2. Tweak scheduler policy to better parallelization across mock agents' IO and xmpp_state_machine tasks
+3. Apply info gained here in Becca's scale test (which is now already under QA) In there, multiple bgp_stress_test instances can be run in different test server systems
 
-Future considerations
-=====================
-o If deemed necessary, optimize xml parsing code in production code
-o Tweak scheduler policy to better parallelization across mock agents'
-  IO and xmpp_state_machine tasks
-o Apply info gained here in Becca's scale test (which is now already under QA)
-  In there, multiple bgp_stress_test instances can be run in different test server
-  systems
+## Test enhancements
+1. Add more features to get more coverage
+    1. Static routes
+    2. Service Chanining
+    3. Feed config through ifmap (Code is there)
+    4. EVPN
+    5. Multicast, etc.
+2. Treshold to test data set to avoid it getting too low (Though adds and deletes are generated randomly)
+3. Do not advertise every agent route to every other agent, by not subscribing every agent to every instance. Use a configurable percentag instead
 
-Test enhancements
-=================
-o Add more features to get more coverage
-    o Static routes
-    o Service Chanining
-    o Feed config through ifmap (Code is there)
-    o EVPN
-    o Multicast, etc.
-o Treshold to test data set to avoid it getting too low (Though adds and deletes are
-  generated randomly)
-o Do not advertise every agent route to every other agent, by not subscribing every
-  agent to every instance. Use a configurable percentag instead
-
-gperf analysis
-==============
+## gperf analysis
+```
 time   seconds   seconds    calls  ms/call  ms/call  name
  25.76      0.34     0.34  3080544     0.00     0.00  pugi::impl::(anonymous namespace)::append_node(pugi::xml_node_struct*, pugi::impl::(anonymous namespace)::xml_allocator&, pugi::xml_node_type)
   8.71      0.46     0.12    27635     0.00     0.01  boost::re_detail::perl_matcher<__gnu_cxx::__normal_iterator<char const*, std::string>, std::allocator<boost::sub_match<__gnu_cxx::__normal_iterator<char const*, std::string> > >, boost::regex_traits<char, boost::cpp_regex_traits<char> > >::find_restart_any()
@@ -178,3 +153,4 @@ time   seconds   seconds    calls  ms/call  ms/call  name
   1.52      0.86     0.02  6981105     0.00     0.00  pugi::xml_node::next_sibling() const
   1.52      0.88     0.02   158205     0.00     0.00  autogen::TunnelEncapsulationListType::XmlParse(pugi::xml_node const&)
 [..clipped..]
+```
