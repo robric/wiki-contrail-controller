@@ -6,7 +6,7 @@ The following table lists the DHCP options, their options names and expected val
 ```
  DHCP Code  DHCP opt_name                          DHCP opt_value
 
-   1        subnet-mask                            Single IP
+   1        subnet-mask                            Single IP (Vrouter overrides)
    2        time-offset                            32-bit signed int
    3        routers                                1+ IP
    4        time-servers                           1+ IP
@@ -56,7 +56,7 @@ The following table lists the DHCP options, their options names and expected val
   48        font-servers                           1+ IP
   49        x-display-manager                      1+ IP
   50        dhcp-requested-address                 Single IP
-  51        dhcp-lease-time                        32-bit uint (Vrouter overrides)
+  51        dhcp-lease-time                        32-bit uint
   52        dhcp-option-overload                   Byte
   53        dhcp-message-type                      Byte (Vrouter overrides)
   54        dhcp-server-identifier                 Single IP (Vrouter overrides)
