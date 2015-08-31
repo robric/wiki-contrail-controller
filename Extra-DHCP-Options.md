@@ -48,7 +48,7 @@ The following table lists the DHCP options, their options names and expected val
   40        nis-domain                             String
   41        nis-servers                            1+ IP
   42        ntp-servers                            1+ IP
-  43        vendor-encapsulated-options            String
+  43        vendor-encapsulated-options            Byte Array (encode data)
   44        netbios-name-servers                   1+ IP
   45        netbios-dd-server                      1+ IP
   46        netbios-node-type                      Byte
@@ -65,8 +65,8 @@ The following table lists the DHCP options, their options names and expected val
   57        dhcp-max-message-size                  16-bit uint
   58        dhcp-renewal-time                      32-bit uint
   59        dhcp-rebinding-time                    32-bit uint
-  60        class-id                               String
-  61        dhcp-client-identifier                 Byte followed by a String
+  60        class-id                               Byte Array (encode data)
+  61        dhcp-client-identifier                 Byte Array (encode data)
   62        nwip-domain                            String
   63        nwip-suboptions                        Byte Array (encode data)
   64        nisplus-domain                         String
@@ -84,7 +84,7 @@ The following table lists the DHCP options, their options names and expected val
   76        streettalk-directory-assistance-server 1+ IP
   77        user-class                             Byte Array (encode data)
   78        slp-directory-agent                    Byte followed by 1+ IP
-  79        slp-service-scope                      Byte followed by a String
+  79        slp-service-scope                      Byte Array (encode data)
   80        rapid-commit                           No data
   81        client-fqdn                            Byte Array (Sent by clients)
   83        storage-ns                             Byte Array (encode data)
@@ -99,7 +99,7 @@ The following table lists the DHCP options, their options names and expected val
   93        system-architecture                    16-bit uint
   94        interface-id                           Byte Array
   95        ldap-servers                           1+ IP
-  97        machine-id                             String
+  97        machine-id                             Byte Array (encode data)
   98        user-auth                              String
   99        geoconf-civic                          Byte Array (encode data)
  100        ieee-1003-1-tz                         String
@@ -118,13 +118,13 @@ The following table lists the DHCP options, their options names and expected val
  124        vendor-class-identifier                Byte Array (encode data)
  125        vivso                                  Byte Array (encode data)
  128        tftp-server                            1+ IP
- 129        pxe-vendor-specific-129                String
- 130        pxe-vendor-specific-130                String
- 131        pxe-vendor-specific-131                String
- 132        pxe-vendor-specific-132                String
- 133        pxe-vendor-specific-133                String
- 134        pxe-vendor-specific-134                String
- 135        pxe-vendor-specific-135                String
+ 129        pxe-vendor-specific-129                Byte Array (encode data)
+ 130        pxe-vendor-specific-130                Byte Array (encode data)
+ 131        pxe-vendor-specific-131                Byte Array (encode data)
+ 132        pxe-vendor-specific-132                Byte Array (encode data)
+ 133        pxe-vendor-specific-133                Byte Array (encode data)
+ 134        pxe-vendor-specific-134                Byte Array (encode data)
+ 135        pxe-vendor-specific-135                Byte Array (encode data)
  136        pana-agent                             1+ IP
  137        lost-server                            Byte Array (encode data)
  138        capwap-ac-v4                           1+ IP
@@ -151,7 +151,7 @@ The following table lists the DHCP options, their options names and expected val
  212        dhcp-6rd                               Byte Array (encode data)
  213        dhcp-access-domain                     Byte Array
  220        subnet-allocation                      Byte Array (encode data)
- 221        dhcp-vss                               Byte followed by a String
+ 221        dhcp-vss                               Byte Array (encode data)
 ```
 IP address should be in dotted IPv4 format.
 
