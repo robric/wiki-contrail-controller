@@ -114,7 +114,7 @@ Details for bug management is described [here](https://github.com/Juniper/contra
     
 2. What tests do you run before code gets merged via Contrail CI?
 
-   Contrail CI is evolving continuously. Currently it does build for CentOS, Ubuntu 12.04 & 14.04. It runs Unit tests on those builds. Then it installs JuniperOpenstack and runs few basic tests covering basic functionality around Virtual network, policies and packet forwarding. For more detail refer to this [document](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)).
+   Contrail CI is evolving continuously. Currently it does build for CentOS, Ubuntu 12.04 & 14.04. It runs Unit tests on those builds. Then it installs Contrail Cloud and runs few basic tests covering basic functionality around Virtual network, policies and packet forwarding. For more detail refer to this [document](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)).
 
 3. I am an application developer. Where can I find documentation on Contrail APIs?
 
@@ -126,7 +126,7 @@ Details for bug management is described [here](https://github.com/Juniper/contra
    
 5. Why did Juniper chose Ubuntu as opposed to CentOS for Contrail Cloud?
 
-   This is mainly because CentOS kernel version for long time was quite old. After CentOS 7.0 is out this concern is no longer there. So, depending on interest, JuniperOpenstack could be productized on CentOS as well. 
+   This is mainly because CentOS kernel version for long time was quite old. After CentOS 7.0 is out this concern is no longer there. So, depending on interest, Contrail Cloud could be productized on CentOS as well. 
    
 6. Why does Juniper distribute OpenStack packages with Contrail Cloud on CentOS too?
 
@@ -138,7 +138,7 @@ Details for bug management is described [here](https://github.com/Juniper/contra
     
 7. Can I only deploy Contrail packages from Contrail cloud bundle?
 
-     Yes, abosoltely. Many of our customer have live deployment on Contrail packages. Customers are free to chose alternate solutions/sources for non networking features included in JuniperOpenstack.
+     Yes, abosoltely. Many of our customer have live deployment on Contrail packages. Customers are free to chose alternate solutions/sources for non networking features included in Contrail Cloud.
 
 8. Do you support devstack?
 
