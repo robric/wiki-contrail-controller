@@ -6,16 +6,16 @@ This document is meant to be the overview of the project to developers and users
 
 This document covers following topics:
 
-* Launchpad projects: OpenContrail vs JuniperOpenstack
+* Launchpad projects: OpenContrail vs Contrail Cloud (previously called JuniperOpenstack)
 * Project Management
 * Developer resources.
 * FAQs
 
 - - -
 
-####OpenContrail vs JuniperOpenstack ####
+####OpenContrail vs Contrail Cloud/Contrail Networking ####
 
-OpenContrail (or Contrail) provides virtual network functionality based on open protocols and Rest APIs. It consists of following major components (aka roles): 
+OpenContrail provides virtual network functionality based on open protocols and Rest APIs. OpenContrail and Contrail Networking is identical in feature set. OpenContrail is freely available on Launchpad. Contrail Networking and Contrail Cloud is commercial supported product from Juniper. Contrail Networking consists of following major components (aka roles): 
 
 * Virtual Network Controller (VNC): SDN controller based on BGP/L3VPN.
 * Configuration Node: Manages contrail configuration and exposes north bound REST APIs (VNC API). Neutron v2 APIs are also supported.
@@ -25,7 +25,7 @@ OpenContrail (or Contrail) provides virtual network functionality based on open 
 
 OpenContrail can be integrated with Openstack and other orchestration systems. Currently this is actively maintained for Openstack. Beta level support is available for Cloudstack.
 
-JuniperOpenstack is a distribution of OpenStack by Juniper that is used by Juniper Private Cloud, Juniper's NFV Solution for Service Provider Market, OpenContrail build system, and OpenContrail test system. In addition to Contrail networking this includes following components:
+Contrail Cloud is a distribution of OpenStack by Juniper that is used by Juniper Private Cloud, Juniper's NFV Solution for Service Provider Market. In addition to Contrail networking this includes following components:
 
 * Block and Object storage.
 * Installation, provisioning and monitoring of cluster.
@@ -33,18 +33,18 @@ JuniperOpenstack is a distribution of OpenStack by Juniper that is used by Junip
 * High availability for Openstack.
 * Other features to ease the deployment and operation of cloud.
 
-JuniperOpenstack is based on Ubuntu cloud archive openstack packages with fixes/extension as needed. Its bundled with all the dependent packages and installation scripts. Note that Ubuntu Cloud archive has additonal openstack packages which may not be qualified for JuniperOpenstack and so will not be part of the release. That does not mean those package cannot be installed on top of Juniper's distribution.
+Contrail Cloud is based on Ubuntu cloud archive openstack packages with fixes/extension as needed. Its bundled with all the dependent packages and installation scripts. Note that Ubuntu Cloud archive has additonal openstack packages which may not be qualified for Contrail Cloud and so will not be part of the release. That does not mean those package cannot be installed on top of Juniper's distribution.
 
-At this time, CentOS and its variant are not distributed as part of JuniperOpenstack. These are available as Contrail networking product, with the expectation that it will be integrated with third party openstack distributions. More specifically, components that are part of JuniperOpenstack (eg. storage, Openstack HA, and Server Manager) are not supported for CentOS target. Having said that we maintain exact feature and performance parity on CentOS wrt Contrail networking features.
+At this time, CentOS and its variant are not distributed as part of Contrail Cloud. These are available as Contrail networking product, with the expectation that it will be integrated with third party openstack distributions. More specifically, components that are part of Contrail Cloud (eg. storage, Openstack HA, and Server Manager) are not supported for CentOS target. Having said that we maintain exact feature and performance parity on CentOS wrt Contrail networking features.
 
-More details on the release content of JuniperOpenstack can be found at [http://techwiki.juniper.net](http://techwiki.juniper.net/Documentation/Contrail).
+More details on the release content of Contrail Cloud can be found at [http://techwiki.juniper.net](http://techwiki.juniper.net/Documentation/Contrail).
 
 - - -
 
 ####Developer Resources ####
 
 ###### Code Repositories: ######
-Entire Contrail code, test scripts and features available as part of JuniperOpenstack are available in public at [GitHub](https://github.com/Juniper?query=). The developers are recommended to use android repo tool to create the development environment. The manifest files for OpenContrail is published at https://github.com/Juniper/contrail-vnc. For more information on building the OpenContrail packages refer to this [document](http://juniper.github.io/contrail-vnc/README.html).
+Entire Contrail code, test scripts and features available as part of Contrail Cloud are available in public at [GitHub](https://github.com/Juniper?query=). The developers are recommended to use android repo tool to create the development environment. The manifest files for OpenContrail is published at https://github.com/Juniper/contrail-vnc. For more information on building the OpenContrail packages refer to this [document](http://juniper.github.io/contrail-vnc/README.html).
 
 Note: All the code is distributed with Apache 2.0 license.
 
@@ -79,7 +79,7 @@ Note that when you mention Partial-Bug/Closes-Bug in the review request for a se
 
 Here are the pointers to Contrail documents:
 * Contrail architecture document is at [http://opencontrail.org/ebook/](http://opencontrail.org/ebook/)
-* JuniperOpenstack user guide & release notes are hosted on [techwiki](http://techwiki.juniper.net/Documentation/Contrail)
+* Contrail Cloud / Contrail Networking user guide & release notes are hosted on [techwiki](http://techwiki.juniper.net/Documentation/Contrail)
 * Developer contributed wiki on Contrail internals, installations etc are hosted on [GitHub](https://github.com/Juniper/contrail-controller/wiki)
 * Community contributed blogs on Contrail features & capabilities are at [http://opencontrail.org/blog/](http://opencontrail.org/blog/)
 
@@ -91,12 +91,12 @@ To get support on Contrail, join the mailing list as indicated in [http://openco
 ####Project Management ####
 
 ######Official releases: ######
-JuniperOpenstack follows continuous integration development model. It has a minor release every 2-4 months. The schedule and branch information of the project is maintained on [launchpad](https://launchpad.net/juniperopenstack). The top level branch diagram shows 'milestone' and 'series'. Depending on release content we do maintenance release on a branch, as needed. This is updated on launchpad as soon as the plan is in place.
+Contrail Cloud follows continuous integration development model. It has a minor release every 2-4 months. The schedule and branch information of the project is maintained on [launchpad](https://launchpad.net/juniperopenstack). The top level branch diagram shows 'milestone' and 'series'. Depending on release content we do maintenance release on a branch, as needed. This is updated on launchpad as soon as the plan is in place.
 
 We tag the branch (ie., each repo) with the release tag. e.g., for release 1.06 and 1.10 we tagged the branches with v1.06 and v1.10 respectively. The corresponding packages are available on OpenContrail launchpad PPA as stable opencontrail packages. These packages are available [here](https://launchpad.net/~opencontrail/+archive/ubuntu/ppa). Peridically good working versions are also uploaded from mainline at snapshot area [here](https://launchpad.net/~opencontrail/+archive/ubuntu/snapshots). The installation instruction for OpenContrail packages can be found on this [wiki](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-bring-up-and-provisioning). These packages are community supoprted via mailing lists as indicated above. 
 
 ######Bug tracking: ######
-Bug tracking on this project is done publicly on Launchpad. Two Launchpad IDs (aka projects) are maintained for this project, [JuniperOpenstack](https://launchpad.net/juniperopenstack) and [OpenContrail](https://launchpad.net/opencontrail). Bugs found during internal testing of JuniperOpenstack, are tracked at JuniperOpenstack project. All the bugs are made public, unless they have proprietary customer information. By default only Juniper Engineering team can create issues on this project. Anyone can add his/her ID to track a particular bug(s). Launchpad will generate email update for any change on these bugs.
+Bug tracking on this project is done publicly on Launchpad. Two Launchpad IDs (aka projects) are maintained for this project, [Contrail Cloud](https://launchpad.net/juniperopenstack) and [OpenContrail](https://launchpad.net/opencontrail). Bugs found during internal testing of Contrail Cloud/Contrail Network, are tracked at JuniperOpenstack project. All the bugs are made public, unless they have proprietary customer information. By default only Juniper Engineering team can create issues on this project. Anyone can add his/her ID to track a particular bug(s). Launchpad will generate email update for any change on these bugs.
 
 'OpenContrail' project account is meant to track community reported bugs. By default these bugs are public. No special privilege is needed to create a bug on this project. Optionally user can cross link these public bugs to make it dependent on JuniperOpenstack project and vice versa.
 
@@ -108,7 +108,7 @@ Details for bug management is described [here](https://github.com/Juniper/contra
 
 #### FAQs ####
 
-1. Do we have all code distributed as part of JuniperOpenstack in public?
+1. Do we have all code distributed as part of Contrail Cloud available in public?
 
 	Yes, including test suites. Juniper developers also develop on the opensource repos like any other developer in the community.
     
@@ -122,21 +122,21 @@ Details for bug management is described [here](https://github.com/Juniper/contra
    
 4. Why is 'xyz' feature supported on Ubuntu but not on CentOS?
 
-   In general all contrail networking feature are supported on both platforms. Some of features specific to JuniperOpenstack distribution are only qualified on Ubuntu. This is mainly to reduce the test matrix. The missing features can be integrated on CentOS as well starting from Open Source code. An example of such feature is 'Openstack HA'.
+   In general all contrail networking feature are supported on both platforms. Some of features specific to Contrail Cloud distribution are only qualified on Ubuntu. This is mainly to reduce the test matrix. The missing features can be integrated on CentOS as well starting from Open Source code. An example of such feature is 'Openstack HA'.
    
-5. Why did Juniper chose Ubuntu as opposed to CentOS for JuniperOpenstack?
+5. Why did Juniper chose Ubuntu as opposed to CentOS for Contrail Cloud?
 
    This is mainly because CentOS kernel version for long time was quite old. After CentOS 7.0 is out this concern is no longer there. So, depending on interest, JuniperOpenstack could be productized on CentOS as well. 
    
-6. Why does Juniper distribute OpenStack packages with JuniperOpenstack on CentOS too?
+6. Why does Juniper distribute OpenStack packages with Contrail Cloud on CentOS too?
 
 	For CentOS we distribute minimal working openstack pakcages so CentOS version of Contrail could be deployed for POCs. CentOS customers should deploy only the 'Contrail' packages from the bundle. 
 
-6. What are high level content of JuniperOpenstack distribution. How can I get those?
+6. What are high level content of Contrail Cloud distribution. How can I get those?
 
-	JuniperOpenstack distribution is available from Juniper. If you are interested in evaluation, pl get in touch with the support team. The bundle includes provisioning scripts, contrail and openstack packages qualified by Juniper. Also, all the dependent package to install these on base OS version (CentOS or Ubuntu) is included. For more details on installation please refer to [http://techwiki.juniper.net](http://techwiki.juniper.net/Documentation/Contrail).
+	Contrail Cloud distribution is available from Juniper. If you are interested in evaluation, pl get in touch with the support team. The bundle includes provisioning scripts, contrail and openstack packages qualified by Juniper. Also, all the dependent package to install these on base OS version (CentOS or Ubuntu) is included. For more details on installation please refer to [http://techwiki.juniper.net](http://techwiki.juniper.net/Documentation/Contrail).
     
-7. Can I only deploy Contrail packages from JuniperOpenstack bundle?
+7. Can I only deploy Contrail packages from Contrail cloud bundle?
 
      Yes, abosoltely. Many of our customer have live deployment on Contrail packages. Customers are free to chose alternate solutions/sources for non networking features included in JuniperOpenstack.
 
@@ -146,4 +146,4 @@ Details for bug management is described [here](https://github.com/Juniper/contra
 
 9. How closely do you track Upstream Openstack?
 
-      We support upstream Openstack on JuniperOpenstack release within 6 weeks of upstream release. Contrail networking support is released earlier as beta for customers who want to integrate Contrail with latest openstack sooner.
+      We support upstream Openstack on Contrail Cloud release within 6 weeks of upstream release. Contrail networking support is released earlier as beta for customers who want to integrate Contrail with latest openstack sooner.
