@@ -3,6 +3,9 @@ DHCP options can be configured using extra-dhcp-options option in the following 
 `neutron port-create net1 --extra-dhcp-opts type=dict list=true opt_name='dhcp_option_name',opt_value='value'`
 
 The following table lists the DHCP options, their options names and expected values to be used in the --extra-dhcp-opts option. The opt_name field can have either the DHCP code or the DHCP name specified below for the corresponding code.
+
+From R2.21, an additional field (dhcp-option-value-bytes) is added to DhcpOptionType to take the option value in bytes (in decimal). This value can be set using VNC API and can be used with options having option value as a String (see below). The bytes that need to be sent for the DHCP option can be set in this field, space separated and in decimal. For example, to send value 1 followed by TEST in option 43, set dhcp-option-value-bytes for option 43 to "01 84 69 83 84" (84, 69, 83 and 84 being ascii for TEST). For options where dhcp-option-value-bytes is used, it takes higher precedence than dhcp-option-value.
+
 ```
  DHCP Code  DHCP opt_name                          DHCP opt_value
 
@@ -48,7 +51,7 @@ The following table lists the DHCP options, their options names and expected val
   40        nis-domain                             String
   41        nis-servers                            1+ IP
   42        ntp-servers                            1+ IP
-  43        vendor-encapsulated-options            Byte Array (encode data)
+  43        vendor-encapsulated-options            String
   44        netbios-name-servers                   1+ IP
   45        netbios-dd-server                      1+ IP
   46        netbios-node-type                      Byte
@@ -65,8 +68,8 @@ The following table lists the DHCP options, their options names and expected val
   57        dhcp-max-message-size                  16-bit uint
   58        dhcp-renewal-time                      32-bit uint
   59        dhcp-rebinding-time                    32-bit uint
-  60        class-id                               Byte Array (encode data)
-  61        dhcp-client-identifier                 Byte Array (encode data)
+  60        class-id                               String
+  61        dhcp-client-identifier                 String
   62        nwip-domain                            String
   63        nwip-suboptions                        Byte Array (encode data)
   64        nisplus-domain                         String
@@ -84,7 +87,7 @@ The following table lists the DHCP options, their options names and expected val
   76        streettalk-directory-assistance-server 1+ IP
   77        user-class                             Byte Array (encode data)
   78        slp-directory-agent                    Byte followed by 1+ IP
-  79        slp-service-scope                      Byte Array (encode data)
+  79        slp-service-scope                      String
   80        rapid-commit                           No data
   81        client-fqdn                            Byte Array (Sent by clients)
   83        storage-ns                             Byte Array (encode data)
@@ -118,13 +121,13 @@ The following table lists the DHCP options, their options names and expected val
  124        vendor-class-identifier                Byte Array (encode data)
  125        vivso                                  Byte Array (encode data)
  128        tftp-server                            1+ IP
- 129        pxe-vendor-specific-129                Byte Array (encode data)
- 130        pxe-vendor-specific-130                Byte Array (encode data)
- 131        pxe-vendor-specific-131                Byte Array (encode data)
- 132        pxe-vendor-specific-132                Byte Array (encode data)
- 133        pxe-vendor-specific-133                Byte Array (encode data)
- 134        pxe-vendor-specific-134                Byte Array (encode data)
- 135        pxe-vendor-specific-135                Byte Array (encode data)
+ 129        pxe-vendor-specific-129                String
+ 130        pxe-vendor-specific-130                String
+ 131        pxe-vendor-specific-131                String
+ 132        pxe-vendor-specific-132                String
+ 133        pxe-vendor-specific-133                String
+ 134        pxe-vendor-specific-134                String
+ 135        pxe-vendor-specific-135                String
  136        pana-agent                             1+ IP
  137        lost-server                            Byte Array (encode data)
  138        capwap-ac-v4                           1+ IP
@@ -151,7 +154,7 @@ The following table lists the DHCP options, their options names and expected val
  212        dhcp-6rd                               Byte Array (encode data)
  213        dhcp-access-domain                     Byte Array
  220        subnet-allocation                      Byte Array (encode data)
- 221        dhcp-vss                               Byte Array (encode data)
+ 221        dhcp-vss                               String
 ```
 IP address should be in dotted IPv4 format.
 
