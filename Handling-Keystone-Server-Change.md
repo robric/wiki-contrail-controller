@@ -35,7 +35,7 @@ In /etc/nova/nova.conf, set neutron_admin_auth_url
 
 In /etc/contrail/vnc_api_lib.ini, set AUTHN_SERVER 
 
-In /etc/contrail/contrail-keystone-auth.conf, set memcache_servers to the new IP
+In /etc/contrail/contrail-keystone-auth.conf, set memcache_servers to the newIP:port and auth_host to the new Keystone IP
 
 In /etc/contrail/ctrl-details, set CONTROLLER to new keystone ip
 
