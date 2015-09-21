@@ -17,6 +17,7 @@ Opencontrail Development:
 
 Provisioning:  
 * [TTL configuration for Analytics](TTL-configuration-for-analytics-data)
+* [Module Parameters for vRouter](Vrouter-Module-Parameters)
 
 Debug and Troubleshooting:
 * [Checklist](Debug-Checklist)
@@ -38,6 +39,8 @@ Features:
 * [Virtual DNS and IPAM](DNS-and-IPAM)
 * [Layer2 EVPN](EVPN)
 * [Link Local Services](Link-local-services)
+* [Metadata Service][Metadata-service)
+* [DHCP options](DHCP-Options)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
 * [Network Rate Limiting Configuration] (https://techwiki.juniper.net/Documentation/Contrail/Contrail_Controller_Feature_Guide/Configuration/Configuring_Network_QoS_Parameters_in_VM)
 * [VPC API support](VPC-API-support)
