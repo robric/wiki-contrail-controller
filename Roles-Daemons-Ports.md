@@ -19,6 +19,7 @@
   + contrail-schema
   + contrail-svc-monitor
   + rabbitmq-server (this can optionally be located on an external server)
+  + contrail-vcenter-plugin (optional)
 
 * Control Node
 
@@ -146,6 +147,14 @@ This process acts a registry for all contrail services. It exposes a REST API th
 + **Service Name** - contrail-discovery
 + **Ports**
   * 5998 - public port (haproxy frontend port. Backend port is 9110 )
+
+#### vCenter Plugin
+
+This process integrates Contrail controller with VMware vCenter as the orchestrator. 
+
++ **Service Name** - contrail-vcenter-plugin
++ **Ports**
+  * 8777 - HTTP Introspect port.
 
 ### Analytics Node
 #### Analytics REST API Server
