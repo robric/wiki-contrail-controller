@@ -6,7 +6,16 @@
 
 * Ensure time is synchronized on all servers with ntp.
 
-* Collect output of ``contrail-status`` on all nodes
+* Collect output of ``contrail-status`` on all nodes  
+contrail-status first checks if a process is running, and if it is, it does introspect into the process to get it's functionality status, and outputs the 'aggregate' status. The states displayed are
+
+  * active - if the process is running and functional [internal state is good]
+  * inactive - stopped by user
+  * failed - process exited too quickly and not restarted
+  * initializing - if the process is running, but internal state is not yet functional.  
+When a process shows _initializing_, then it is not in fully functional mode. Most likely
+reason would be it's not able to connect to one of its servers. Further information can be obtained using introspect into the process as explained at  
+https://github.com/Juniper/contrail-controller/wiki/Monitoring-of-contrail-node-status-and-contrail-process'-status
 
 ## If floating-ip is not reachable
 
