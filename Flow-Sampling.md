@@ -14,4 +14,5 @@ Each flow is subjected to the following algorithm, at regular intervals, to deci
     4. We generate a random number less than sampling threshold.
     5. If bytes during the interval is less than the random number then the flow sample is not exported.
     6. Otherwise, the flow sample is exported after normalizing the bytes during the interval and packets. Normalization is done by dividing bytes during the interval and packets during the interval with probability. This normalization is used as a heuristic to account for statistics when flow samples are dropped.
-    7. The actual flow-export-rate will be close to the configured configured export rate and whenever there is larger deviation, the sampling threshold is adjusted to bring the actual flow export rate close to configured flow export rate.
+
+The actual flow-export-rate will be close to the configured configured export rate and whenever there is larger deviation, the sampling threshold is adjusted to bring the actual flow export rate close to configured flow export rate.
