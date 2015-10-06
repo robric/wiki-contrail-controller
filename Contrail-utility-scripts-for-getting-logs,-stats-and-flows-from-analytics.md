@@ -172,7 +172,7 @@ generic stats are provided using the virtual tables whose schemas are provided t
 * View (name, SUM(if_stats.in_bytes)) tuple, which will give total in_bytes of each virtual machine interface, over a period of 1h covering 11h back to 10h back.  
 `contrail-stats --table UveVMInterfaceAgent.if_stats --select "SUM(if_stats.in_bytes)" name --where name="*" --start-time now-11h --end-time now-10h`
 
-## contrail-flows
+# contrail-flows
 contrail-flows is used to flow record information from the contrail analytics.
 
 > root@a7s30:~# contrail-flows --help  
@@ -199,7 +199,7 @@ contrail-flows is used to flow record information from the contrail analytics.
 >   --tunnel-info         Show flow tunnel information (default: False)  
 >   --verbose             Show internal information (default: False)  
 
-# contrail-flows examples
+## contrail-flows examples
 * View all active flows over the default period [last 10 minutes]  
 `contrail-flows`
 
