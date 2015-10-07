@@ -17,6 +17,12 @@ When a process shows _initializing_, then it is not in fully functional mode. Mo
 reason would be it's not able to connect to one of its servers. Further information can be obtained using introspect into the process as explained at  
 https://github.com/Juniper/contrail-controller/wiki/Monitoring-of-contrail-node-status-and-contrail-process'-status
 
+* `initializing (NTP state unsynchronized.)`  
+contrail controller requires all the servers to be in NTP synchronized state. The nodemgr starts monitoring the ntp state few minutes after it is up and reports if the NTP is not synchronized. It determines this by using 'ntpq -p' output. You should verify that
+ * ntpd is installed and running
+ * ntp server is configured in /etc/ntp.conf
+ * 'ntqp -q' shows ntp is in sync
+
 ## If floating-ip is not reachable
 
 * Ensure the project has a ingress security group rule to allow from 0.0.0.0/0
