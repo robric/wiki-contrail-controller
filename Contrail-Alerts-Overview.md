@@ -96,3 +96,8 @@ The following built-in node alerts are supported and can be retrieved using APIs
         PartialSysinfoAnalytics: "Basic System Information is absent for this node in CollectorState.build_info",
         ProcessConnectivity: "Process(es) are reporting non-functional components in NodeStatus.process_status"
     },
+    
+    database-node: {
+        ProcessStatus: "NodeMgr reports abnormal status for process(es) in NodeStatus.process_info",
+        ProcessConnectivity: "Process(es) are reporting non-functional components in NodeStatus.process_status"
+    },
