@@ -19,7 +19,7 @@ For example, for sandesh `systemlog` message `TcpServerMessageLog` the documenta
         4: string Message;
     }
 
-### ## Guidelines for adding documentation to the sandesh files
+### Guidelines for adding documentation to the sandesh files
 1. Any documentation is enclosed in `/**` `*/` comments.
 2. Documentation about a sandesh message precedes the sandesh definition in the file and is indicated using `/**` `*/`. 
 3. Developers can add general free-form documentation for a sandesh preceding the `@` words. 
