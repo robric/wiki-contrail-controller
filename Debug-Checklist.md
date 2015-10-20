@@ -23,6 +23,11 @@ contrail controller requires all the servers to be in NTP synchronized state. Th
  * ntp server is configured in /etc/ntp.conf
  * 'ntqp -q' shows ntp is in sync
 
+NTP can be configured using fabric by adding a NTP server hostname to the fabric `testbed.py` file and then provisioning using fabric. For example, to use _ntp.juniper.net_ as NTP server, the following can be added to the `testbed.py` file
+
+`env.ntp_server = 'ntp.juniper.net'`
+
+
 ## If floating-ip is not reachable
 
 * Ensure the project has a ingress security group rule to allow from 0.0.0.0/0
