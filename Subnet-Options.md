@@ -6,7 +6,9 @@ Subnets can be created and deleted in a Virtual Network, each having its own att
 
 ***
 * A default gateway for the subnet can be set explicitly, can be left to be allocated by Contrail, or can be disabled.
-* 'default-gateway' is the corresponding field in ipam-subnets. When default gateway is to be disabled, set this field to 0.0.0.0. 
+* 'default-gateway' is the corresponding field in ipam-subnets.
+* When default gateway is to be disabled, set this field to 0.0.0.0.
+* When the field is not set, Contrail allocates an address from the subnet as the default gateway.
 * Neutron commands <br>
 `     neutron subnet-create test-vn 10.0.0.0/24 --gateway 10.0.0.1`<br>
 `     neutron subnet-create test-vn 10.0.0.0/24 --no-gateway`
@@ -48,7 +50,7 @@ Subnets can be created and deleted in a Virtual Network, each having its own att
 ***
 * To update routes in the VM, host routes can be defined.
 * Set of prefix and next-hop address for the prefix can be configured, which are then sent to the VM as classless static route option in DHCP response. 
-* These can be configured as extra-dhcp-opts (see above) or in host-routes field in ipam-subnets. 
+* These can be configured as part of DHCP options (see above) or in host-routes field in ipam-subnets. 
 * Neutron command <br>
 `     neutron subnet-create test-vn 10.0.0.0/24 --host_routes type=dict list=true destination=10.0.1.0/24,nexthop=10.0.0.3`
 
@@ -67,14 +69,31 @@ Subnets can be created and deleted in a Virtual Network, each having its own att
 * Name servers for the subnet can be explicitly set.
 * These are set using the DHCP option 'domain-name-servers' to the required address list (see DHCP options above).
 * To disable DNS name servers in the subnet, set the DHCP option 'domain-name-servers' to 0.0.0.0.
-* If this option is not set, the VM receives the service address as the DNS name server and contrail-vrouter-agent provides the DNS service for the subnet.
+* If this option is not set, the VM receives the service address (see below) as the DNS name server and contrail-vrouter-agent provides the DNS service for the subnet.
 * Neutron command <br>
-`     neutron subnet-create test-vn 10.0.0.0/24 --dns_nameservers list=true 8.8.8.7 8.8.8.8`
+`     neutron subnet-create test-vn 10.0.0.0/24 --dns_nameservers list=true 8.8.8.7 8.8.8.8` <br>
+`     neutron subnet-create test-vn 10.0.0.0/24 --dns_nameservers list=true 0.0.0.0    # disable DNS` 
 
 <br>
 8. Service Address
 
 ***
 * In every subnet, one address is reserved for Gateway (when enabled) and another is reserved for Services. This Services address is used as the DHCP server address and can be seen in all the DHCP responses.
-* The same address is also used as the DNS server address for the subnet if DNS name server is not configured explicitly. In such a case, this address will be sent as domain-name-server in the DHCP response.
+* The same address is also used as the DNS server address for the subnet if DNS name server is not configured. In such a case, this address will be sent as domain-name-server in DHCP response to the VM.
 * 'dns-server-address' is the corresponding field in ipam-subnets. If not set, this address will be auto-allocated from the subnet (typically .2 address from the subnet).
+
+
+## Disabling Gateway
+Gateway, DHCP service and DNS service can be enabled and disabled independently. When Gateway is disabled in the subnet, Contrail can still provide the DHCP and DNS service. If another VM will serve as the Gateway, configure that VMs address in the 'routers' DHCP option, with Gateway disabled in the subnet. VMs in the subnet will receive this address as the gateway address in their DHCP responses from contrail-vrouter-agent. The service address will be the DHCP server and DNS server address.
+
+If host routes are also configured on the subnet, the default route is expected to be added as part of the host route configuration. The 'router' option will not be included in this case (RFC3442) and hence default route has to be part of host routes.
+
+
+## Disabling DNS
+If DNS is not disabled, the service address of the subnet is used as the DNS server. The DNS requests to this address will be served by contrail-vrouter-agent. DNS configuration in the IPAM is explained here : https://github.com/Juniper/contrail-controller/wiki/DNS-and-IPAM.
+
+To disable DNS, configure dhcp-option-list to have "0.0.0.0" against "domain-name-servers". In this case, the DHCP response from contrail-vrouter-agent will not contain the 'domain-name-servers' option.
+
+
+## Disabling DHCP
+If DHCP is disabled in the subnet, the broadcast DHCP requests will be flooded in the virtual-network. A DHCP server in the virtual network has to provide the DHCP service in this case. The virtual network may be configured in l2-only mode. L2 only mode is not a recommended mode of operation - the impact on other services needs to be understood completely.
