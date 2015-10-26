@@ -90,7 +90,7 @@ If host routes are also configured on the subnet, the default route is expected 
 
 
 ## Disabling DNS
-If DNS is not disabled, the service address of the subnet is used as the DNS server. The DNS requests to this address will be served by contrail-vrouter-agent. DNS configuration in the IPAM is explained here : https://github.com/Juniper/contrail-controller/wiki/DNS-and-IPAM.
+If DNS is not disabled and not configured in the DHCP options, the service address of the subnet is used as the DNS server. The DNS requests to this address will be served by contrail-vrouter-agent. DNS configuration in the IPAM is explained here : https://github.com/Juniper/contrail-controller/wiki/DNS-and-IPAM.
 
 To disable DNS, configure dhcp-option-list to have "0.0.0.0" against "domain-name-servers". In this case, the DHCP response from contrail-vrouter-agent will not contain the 'domain-name-servers' option.
 
