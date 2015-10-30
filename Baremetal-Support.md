@@ -302,7 +302,7 @@ If the connection is getting established and getting closed, check that the cert
 
 Calculate these as follows:
 > * mpls_labels = (max number of VNs * 3) + 4000
-> * nexthops = (max number of VNs * 4) + number of TORs + number of compute nodes + 100
+> * nexthops = (max number of VNs * 4) + (number of VM interfaces on the compute node * 5) + number of TORs + (number of compute nodes * 2) + 100
 > * vrfs = Max number of VNs
 > * macs = Maximum number of MACs in a VN
 
