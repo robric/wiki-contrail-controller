@@ -154,7 +154,7 @@ This process integrates Contrail controller with VMware vCenter as the orchestra
 
 + **Service Name** - contrail-vcenter-plugin
 + **Ports**
-  * 8777 - HTTP Introspect port.
+  * 8234 - HTTP Introspect port.
 
 ### Analytics Node
 #### Analytics REST API Server
