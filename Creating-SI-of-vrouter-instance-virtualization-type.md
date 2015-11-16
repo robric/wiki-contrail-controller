@@ -45,8 +45,8 @@ service_virtualization_type and vrouter_instance_type. First must be equal to th
 For more reference (especially how to create XML configuration) check libvirt documentation.
 
 Example XML configuration:
-`  <domain type='kvm' id='2'>`
-      `<name>name</name>`
+`  <domain type='kvm' id='2'>
+      <name>name</name>
       `<memory unit='MB'>1024</memory>`
       `<currentMemory unit='MB'>1024</currentMemory>`
       `<vcpu placement='static'>1</vcpu>`
