@@ -91,7 +91,7 @@ Example XML configuration:
       </features>
     </domain>`
 
-Note that <interface> nodes will be added by vrouter-agent!
+Note that interface nodes will be added by vrouter-agent!
 For the XML above make sure image is stored in provided directory (/var/lib/libvirt/images/...) before creating service instance
 
 ## Creating service instance
