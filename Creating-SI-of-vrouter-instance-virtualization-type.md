@@ -1,4 +1,6 @@
-# Since version R2.2 contrail-controller supports two vrouter instance types of vrouter-instance: docker and libvirt-qemu.
+# Service instances of vrouter instance type
+
+Since version R2.2 contrail-controller supports two vrouter instance types of vrouter-instance: docker and libvirt-qemu.
 
 ## Introduction:
 
