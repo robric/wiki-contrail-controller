@@ -45,51 +45,51 @@ service_virtualization_type and vrouter_instance_type. First must be equal to th
 For more reference (especially how to create XML configuration) check libvirt documentation.
 
 Example XML configuration:
-`  <domain type='kvm' id='2'>
+`<domain type='kvm' id='2'>
       <name>name</name>
-      `<memory unit='MB'>1024</memory>`
-      `<currentMemory unit='MB'>1024</currentMemory>`
-      `<vcpu placement='static'>1</vcpu>`
-      `<resource>`
-          `<partition>/machine</partition>`
-      `</resource>`
-      `<os>`
-          `<type arch='x86_64' machine='pc-1.0'>hvm</type>`
-          `<boot dev='hd'/>`
-      `</os>`
-      `<clock offset='utc'/>`
-      `<on_poweroff>destroy</on_poweroff>`
-      `<on_reboot>restart</on_reboot>`
-      `<on_crash>destroy</on_crash>`
-      `<devices>`
-          `<emulator>/usr/bin/qemu-system-x86_64</emulator>`
-          `<disk type='file' device='disk'>`
-              `<driver name='qemu' type='qcow2'/>`
-              `<source file='/var/lib/libvirt/images/image_filename.img'/>`
-              `<target dev='vda' bus='virtio'/>`
-          `</disk>`
-          `<controller type='virtio-serial' index='0' ports='16' vectors='4'/>`
-          `<controller type='ide' index='0'>`
-              `<alias name='ide0'/>`
-              `<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>`
-          `</controller>`
-          `<controller type='pci' index='0' model='pci-root'></controller>`
-          `<memballoon model='virtio'>`
-              `<alias name='balloon0'/>`
-              `<address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>`
-          `</memballoon>`
-          `<serial type='pty'>`
-              `<target port='0'/>`
-          `</serial>`
-          `<console type='pty'>`
-              `<target type='serial' port='0'/>`
-          `</console>`
-      `</devices>`
-      `<seclabel type='none'/>`
-      `<features>`
-          `<acpi/>`
-      `</features>`
-    `</domain>`
+      <memory unit='MB'>1024</memory>
+      <currentMemory unit='MB'>1024</currentMemory>
+      <vcpu placement='static'>1</vcpu>
+      <resource>
+          <partition>/machine</partition>
+      </resource>
+      <os>
+          <type arch='x86_64' machine='pc-1.0'>hvm</type>
+          <boot dev='hd'/>
+      </os>
+      <clock offset='utc'/>
+      <on_poweroff>destroy</on_poweroff>
+      <on_reboot>restart</on_reboot>
+      <on_crash>destroy</on_crash>
+      <devices>
+          <emulator>/usr/bin/qemu-system-x86_64</emulator>
+          <disk type='file' device='disk'>
+              <driver name='qemu' type='qcow2'/>
+              <source file='/var/lib/libvirt/images/image_filename.img'/>
+              <target dev='vda' bus='virtio'/>
+          </disk>
+          <controller type='virtio-serial' index='0' ports='16' vectors='4'/>
+          <controller type='ide' index='0'>
+              <alias name='ide0'/>
+              <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+          </controller>
+          <controller type='pci' index='0' model='pci-root'></controller>
+          <memballoon model='virtio'>
+              <alias name='balloon0'/>
+              <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+          </memballoon>
+          <serial type='pty'>
+              <target port='0'/>
+          </serial>
+          <console type='pty'>
+              <target type='serial' port='0'/>
+          </console>
+      </devices>
+      <seclabel type='none'/>
+      <features>
+          <acpi/>
+      </features>
+    </domain>`
 
 Note that <interface> nodes will be added by vrouter-agent!
 For the XML above make sure image is stored in provided directory (/var/lib/libvirt/images/...) before creating service instance
