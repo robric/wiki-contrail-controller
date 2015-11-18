@@ -1,18 +1,18 @@
 # Service instances of vrouter instance type
 
-Since version R2.2 contrail-controller supports two vrouter instance types of vrouter-instance: docker and libvirt-qemu.
+Since version R2.2 contrail-controller supports two types of vrouter-instance: docker and libvirt-qemu.
 
 ## Introduction:
 
 In most cases service instances are created by Nova, but OpenContrail also has such a capability. Virtual machines can also be created by vrouter-agent directly on device. At this moment two options are supported: docker and libvirt-qemu.
 
-OpenContrail has a component (svc-monitor) that handles create/update/delete operations for service instances (SI). svc-monitor will use different manager for particular SI depending on service virtualization type (this parameter is included in service template). Depending on value of this param, svc-monitor will choose different component responsible for creating/updating/deleting particular service. It could be Nova, but it can also be vrouter-agent.
+OpenContrail has a component (svc-monitor) that handles create/update/delete operations for service instances (SI). svc-monitor will use proper manager for particular SI depending on service virtualization type (this parameter is included in service template). Depending on value of this param, svc-monitor will choose different component responsible for creating/updating/deleting particular service. It could be Nova, but it can also be vrouter-agent.
 
-Vrouter-agent contains Instance Manager, which handles create/update/delete events for service instances. This manager can create virtual machine (locally!) using docker or libvirt-qemu (at this moment those two adapters are supported). Instance Manager picks up proper adapter depending on another parameter in service template (service instance type).
+Vrouter-agent contains Instance Manager, which handles create/update/delete events for service instances. This manager can create virtual machine (locally!) using docker or libvirt-qemu (at this moment those two adapters are supported). Instance Manager selects proper adapter depending on another parameter passed in service template (service_instance_type).
 
 ### Pre-requirements for docker:
 1. Make sure docker is installed, running and is capable to create container on vrouter.
-2. Make sure proper image is stored into local docker's image base or is available on the public.
+2. Make sure proper image is stored into local docker's image database or is available on the public.
 
 ### Pre-requirements for libvirt-qemu:
 1. Make sure libvirt-bin is installed, running and is capable to create virtual machine on vrouter.
@@ -103,6 +103,10 @@ You must know that:
 
 2. Content of &lt;name&gt; node will be also modified: Vrouter-agent will append first 5 letters of virtual machine UUID.
 
+3. File "/var/lib/libvirt/images/image_filename.img" must exist before you create service instance!
+
+4. XML above will work only if add only if your SI has only one interface! Add mode <interface> nodes if you need more.
+
 ## Creating service instance
 
 In order to create such a service instance (docker or libvirt-qemu), execute this command:
@@ -112,3 +116,5 @@ In order to create such a service instance (docker or libvirt-qemu), execute thi
 This command will create one virtual machine on specified vrouter (look at virtual_router_id param).
 
 scale_out parameter is ignored
+
+All commands are just examples.
