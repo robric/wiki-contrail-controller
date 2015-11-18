@@ -99,9 +99,9 @@ Example XML configuration:
 
 You must know that:
 
-1. Notice that <interface> node does not contain <mac> and <target> nodes. Vrouter-agent will append them itself.
+1. Notice that &lt;interface&gt; node does not contain &lt;mac&gt; and &lt;target&gt; nodes. Vrouter-agent will append them itself.
 
-2. Content of <name> node will be also modified: Vrouter-agent will append first 5 letters of virtual machine UUID.
+2. Content of &lt;name&gt; node will be also modified: Vrouter-agent will append first 5 letters of virtual machine UUID.
 
 ## Creating service instance
 
