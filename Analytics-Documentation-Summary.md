@@ -52,13 +52,13 @@ where: [[{"value": "default-domain:admin:vn1", "op": 1, "suffix": null, "name": 
 
 Tables of most interest and their corresponding frequency are as below
 
-The following info is collected every 60 seconds  
+**The following info is collected every 60 seconds**  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.AnalyticsCpuState.cpu_info_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.ConfigCpuState.cpu_info_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.ControlCpuState.cpu_info_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.ComputeCpuState.cpu_info_  
 
-The below stats are collected every 30 seconds  
+**The below stats are collected every 30 seconds**  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.UveVirtualNetworkAgent.vn_stats_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.VirtualMachineStats.cpu_stats_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/table/StatTable.UveVMInterfaceAgent.fip_diff_stats_  
