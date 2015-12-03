@@ -2,7 +2,7 @@ When a virtual machine sends or receives IP traffic, forward and reverse flow en
 
 When the hash bucket is full, entries are created in an overflow table. In earlier releases, the overflow table was a global table, which will be searched sequentially. From R2.22, the overflow entries are maintained as a list against the hash bucket.
 
-The maximum number of flow table and overflow table entries are 512K and 8K respectively, by default. These can be modified by configuring them as vrouter module parameters – vr_flow_entries and vr_oflow_entries (see https://github.com/Juniper/contrail-controller/wiki/Vrouter-Module-Parameters).
+The default number of flow table and overflow table entries are 512K and 8K respectively. These can be modified by configuring them as vrouter module parameters – vr_flow_entries and vr_oflow_entries (see https://github.com/Juniper/contrail-controller/wiki/Vrouter-Module-Parameters).
 
 ## Flow aging
 Flows are aged out based on inactivity for a specific period of time. By default, the timeout value is 180 seconds. This can be modified by configuring flow_cache_timeout under the DEFAULT section in contrail-vrouter-agent.conf file.
