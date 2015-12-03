@@ -10,7 +10,7 @@ Flows are aged out based on inactivity for a specific period of time. By default
 ## TCP State based flow handling
 From release 2.22 onwards, vRouter monitors TCP flows to identify entries that can be reused without going through the standard aging cycle. All flow entries that correspond to TCP flows that have seen a connection tear down, be it through the standard TCP closure cycle (FIN/ACK-FIN/ACK) or the RST indicator, is torn down by vRouter and is available for use by other new qualified flows that needs new entries immediately. vRouter also keeps track of connection establishment cycle and exports necessary information to vRouter-agent (such as SYN/ACK and a digested Established flag) so that vRouter-agent can tear down flows that don't see a full connection cycle.
 
-Flows that vRouter identifies as reuse candidates, more precisely 'Eviction Candidates' are marked so in the flow entry. Such flows will get to 'Evicted' states eventually when they become available for other new flows to be reused. Such a two step transition is followed so that the flow entry remains valid through the time the packet reaches the destination and not get remapped to another flow entry in the interim.
+Flows that vRouter identifies as reuse candidates, more precisely 'Eviction Candidates', are marked so in the flow entry. Such flows will get to 'Evicted' states eventually when they become available for other new flows to be reused. Such a two step transition is followed so that the flow entry remains valid through the time the packet reaches the destination and not get remapped to another flow entry in the interim.
 
 
 ## Protocol based flow aging
