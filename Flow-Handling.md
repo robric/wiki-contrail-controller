@@ -8,7 +8,10 @@ The default number of flow table and overflow table entries are 512K and 8K resp
 Flows are aged out based on inactivity for a specific period of time. By default, the timeout value is 180 seconds. This can be modified by configuring flow_cache_timeout under the DEFAULT section in contrail-vrouter-agent.conf file.
 
 ## TCP State based flow handling
-From R2.22, vrouter handles flow setup and tear down for TCP connections based on the TCP state machine. Vrouter maintains the TCP state on the flows, based on the SYN and FIN packets. When connection close is identified, the flow is evicted.
+From release 2.22 onwards, vRouter monitors TCP flows to identify entries that can be reused without going through the standard aging cycle. All TCP flows that has seen a connection tear down, be it the standard TCP closure cycle (FIN/ACK-FIN/ACK) or the RST indicator, is torn down by vRouter and is available for use by other new qualified flows immediately. vRouter also keeps track of connection establishment cycle and exports necessary information to vRouter-agent (such as SYN/ACK and a digested Established flag) so that vRouter-agent can tear down flows that don't see a full connection cycle.
+
+Flows that vRouter identifies as reuse candidates, more precisely 'Eviction Candidates' are marked so in the flow entry. Such flows will get to 'Evicted' states eventually when they become available for other new flows to be reused. Such a two step transition is followed so that the flow entry remains valid through the time the packet reaches the destination and not get remapped to another flow entry in the interim.
+
 
 ## Protocol based flow aging
 While TCP flows are now deleted based on TCP state, it is sometimes required to age out specific protocol flows more aggressively. One example could be when a DNS server is run in one VM, a number of flows would be set up for DNS, a pair of flows to serve each query. As the flows are no longer required once the query is served, timeout could be lower for these flows. To handle these cases, protocol based flow aging is supported from R2.22, where in the aging timeout can be configured per protocol. All other protocols continue to use the default aging timeout.  
