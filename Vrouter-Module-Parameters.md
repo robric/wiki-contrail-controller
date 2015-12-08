@@ -15,7 +15,7 @@ The currently configured limits can be seen using `vrouter --info`. These can be
 
 The following could be used to derive the values:
 * vrfs = Max number of VNs
-* mpls_labels = (max number of VM interfaces * 2) + (4 * max number of VRFs) <br> = (L2, L3 labels for each interface) + (per VRF labels for (control node 1 + control node 2 + EVPN + VRF NH)
+* mpls_labels = (max number of VM interfaces * 2) + (4 * max number of VRFs) <br> = (L2, L3 labels for each interface) + (per VRF labels for (control node 1 + control node 2 + EVPN + VRF NH)) <br> For TSN, the number of VM interfaces need not be taken into consideration.
 * nexthops = (max number of VNs * 4) + (max number of interfaces on the node * 5) + number of TORs + number of compute nodes + 100
 * bridge entries / macs = Maximum number of MACs in a VN
 * Flow table is hashed based on flow tuple. When flow bucket is full, new entries are added to overflow table. It is recommended not to increase the overflow table size as it could impact performance.
