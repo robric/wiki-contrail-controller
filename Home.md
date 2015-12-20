@@ -45,6 +45,7 @@ Features:
 * [Network Rate Limiting Configuration] (https://techwiki.juniper.net/Documentation/Contrail/Contrail_Controller_Feature_Guide/Configuration/Configuring_Network_QoS_Parameters_in_VM)
 * [VPC API support](VPC-API-support)
 * [Support for Baremetal](Baremetal-Support)
+* [Configuring Contrail SSL with Openstack] (https://github.com/Juniper/contrail-controller/wiki/Configuring-Contrail-SSL-with-Openstack)
 
 Release specific Notes:
 * R1.10
