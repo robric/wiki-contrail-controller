@@ -60,7 +60,7 @@ This example uses self signed certificates)
     keyfile=/etc/contrail/ssl/apiserver.key
     cafile=/etc/contrail/ssl/apiserver_ca.pem
 *NOTE: The keystone server uses the hostname, this is important because the keystone certs are generated for the hostname, not IP.*
-# HAproxy
+# Contrail API and Neutron server SSL termination in HAproxy
 ## Ensure that the contrail-api sections look similar to this:
     frontend  contrail-api
         bind *:8082 ssl crt /etc/contrail/ssl/contrailbundle.pem
