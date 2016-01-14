@@ -225,6 +225,8 @@ From /opt/contrail/utils on config node, for each new node xyz :
     fab install_only_vrouter_node:no,root@xyz
     fab setup_only_vrouter_node:no,no,root@xyz
     fab add_tor_agent:False
+    fab setup_haproxy_config
+    (the above step of setup_haproxy_config is required only for HA mode)
     fab add_tsn:False
 
 Then run /etc/contrail/compute_reboot on the new node which will initiate a reboot of the node  
