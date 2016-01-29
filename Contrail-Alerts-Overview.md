@@ -56,6 +56,8 @@ This will give a list of all alarms in the system.
 This allows the user to acknowledge an alarm.
 Acknowledged/un-acknowledged alarms can be queried specifically by using the URL Query Parameter “ackFilt=True” or “ackFilt=False” with APIs #1 and #2 above.  
  
+## Analytics APIs for SSE streams:
+
 4. GET _http://\<analytics-ip\>:\<rest-api-port\>/analytics/uve-stream?tablefilt=control-node_  
 This provides a SSE-based stream of UVE updates for Control Node alarms.
 This is available for all UVE table-types. If the “tablefilt” URL Query parameter is not provided, all UVEs will be seen.
