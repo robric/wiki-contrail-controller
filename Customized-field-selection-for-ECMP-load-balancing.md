@@ -11,7 +11,7 @@ Instead of providing a feature to select pre-configured subsets of the 5 tuples 
 
 e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ![ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
-## Applicability
+### Applicability
 This feature is mainly applicable in scenarios where in multiple ECMP paths exist for a destination. Typically these paths point ingress service instance nodes, which could be running any where in the contrail cloud. Following steps can be followed to create a setup with ECMP over service chains
 
 1. Create necessary virtual networks to interconnect using service-chaining (with ecmp load-balancing). During creation, select appropriate fields to hash during ECMP load balancing as shown in the picture earlier.
