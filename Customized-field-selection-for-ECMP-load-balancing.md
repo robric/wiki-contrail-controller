@@ -9,6 +9,6 @@ Typically this feature is useful whenever packets originated from a particular s
 
 Instead of providing a feature to select pre-configured subsets of the 5 tuples to use during ecmp forwarding, a general feature to select necessary fields directly by the users themselves has been provided in 3.0 release.
 
-e.g. ECMP fields can be selected from contrail web UI at virtual-network level as shown in this picture
+e.g. ECMP fields can be selected from contrail web UI at virtual-network level as shown in this picture ![ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
 
