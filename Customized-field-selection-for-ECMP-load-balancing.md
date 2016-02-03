@@ -11,5 +11,6 @@ Instead of providing a feature to select pre-configured subsets of the 5 tuples 
 
 e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ![ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
-
+## Applicability
+This feature is mainly applicable in scenarios where in multiple ECMP paths exist for a destination. Typically these paths point ingress service instance nodes, which could be running any where in the contrail cloud. 
 
