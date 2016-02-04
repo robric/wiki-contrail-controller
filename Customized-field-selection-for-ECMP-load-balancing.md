@@ -9,7 +9,7 @@ Typically this feature is useful whenever packets originated from a particular s
 
 Instead of providing a feature to select pre-configured subsets of the 5 tuples to use during ecmp forwarding, a general feature to select necessary fields directly by the users themselves has been provided in 3.0 release.
 
-e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ![ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
+e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ![ECMP Fields Selection under VN](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
 If configured for the VirtualNetwork, all traffic destined to that VM will get the customized hash field selection during forwarding over ECMP paths (by vrouters). This may not be desirable in all cases. This could potentially skew all traffic destined to that destination network over a smaller set of paths across the ip-fabric, even in case of no-ecmp at the ingress. (Because, the outer UDP source port of the nested tunneled packet would get a hashed source port, based only based on the configured ecmp fields)
 
@@ -17,7 +17,7 @@ Instead, in a more practical scenario in which, flows between a pair of source a
 
 Note: At the moment, from the contrail UI, one cannot apply this configuration directly over the service's left or right interface. Instead, one should go to the ports section under networking and configure ecmp fields selection for each of the instantiated service instances' VMIs explicitly.
 
-[ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
+[ECMP Fields Selection under VMI](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
 
 
 
