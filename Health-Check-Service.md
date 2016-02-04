@@ -10,7 +10,7 @@ HealthCheck Object has the following properties associated to it
       - delay            # delay between to health check attempts  
       - timeout          # timeout for single health check attempt  
       - max-retries      # number of retries to attempt before declaring a failure  
-      - http-method      # HTTP method to be used valid only for monitor-type(HTTP) (currently not supported)  
+      - http-method      # HTTP method valid only for monitor-type(HTTP) (currently not supported)  
       - url-path         # url string for HTTP, destination IP for all other cases    
       - expected-codes   # expected exit codes (currently not supported)  
 >  
