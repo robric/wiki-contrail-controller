@@ -17,7 +17,7 @@ Instead, in a more practical scenario in which, flows between a pair of source a
 
 Note: At the moment, from the contrail UI, one cannot apply this configuration directly over the service's left or right interface. Instead, one should go to the ports section under networking and configure ecmp fields selection for each of the instantiated service instances' VMIs explicitly.
 
-[ECMP Fields Selection under VMI]([ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png))
+[ECMP Fields Selection under VMI](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
 
 
 ### Applicability
