@@ -17,8 +17,7 @@ Instead, in a more practical scenario in which, flows between a pair of source a
 
 Note: At the moment, from the contrail UI, one cannot apply this configuration directly over the service's left or right interface. Instead, one should go to the ports section under networking and configure ecmp fields selection for each of the instantiated service instances' VMIs explicitly.
 
-[ECMP Fields Selection under VMI](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
-
+[ECMP Fields Selection under VMI]([ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png))
 
 
 ### Applicability
@@ -30,5 +29,4 @@ This feature is mainly applicable in scenarios where in multiple ECMP paths exis
 3. Create a policy, select service instance SI and apply it to the desired VMIs or VNs.
 
 Once all setup done correctly, vrouters shall be programmed with appropriate routing table with ECMP paths towards various service instances. Also vrouters are programmed with the desired ECMP fields to be used to hash during load balancing the traffic.
-
 
