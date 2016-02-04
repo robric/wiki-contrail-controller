@@ -11,13 +11,23 @@ Instead of providing a feature to select pre-configured subsets of the 5 tuples 
 
 e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ![ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
+If configured for the VirtualNetwork, all traffic destined to that VM will get the customized hash field selection during forwarding over ECMP paths (by vrouters). This may not be desirable in all cases. This could potentially skew all traffic destined to that destination network over a smaller set of paths across the ip-fabric, even in case of no-ecmp at the ingress. (Because, the outer UDP source port of the nested tunneled packet would get a hashed source port, based only based on the configured ecmp fields)
+
+Instead, in a more practical scenario in which, flows between a pair of source and destination must go through the same service-instance in between, one could configure customized ECMP fields for the ServiceInstances' VirtualMachineInterface (VNI). Then, all service-chain routes originated off that VMI would get the desired ECMP field selection applied as its path attribute, and eventually gets propagated to the ingress vrouter node.
+
+Note: At the moment, from the contrail UI, one cannot apply this configuration directly over the service's left or right interface. Instead, one should go to the ports section under networking and configure ecmp fields selection for each of the instantiated service instances' VMIs explicitly.
+
+[ECMP Fields Selection configuration](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
+
+
+
 ### Applicability
 This feature is mainly applicable in scenarios where in multiple ECMP paths exist for a destination. Typically these paths point ingress service instance nodes, which could be running any where in the contrail cloud. Following steps can be followed to create a setup with ECMP over service chains
 
 1. Create necessary virtual networks to interconnect using service-chaining (with ecmp load-balancing). During creation, select appropriate fields to hash during ECMP load balancing as shown in the picture earlier.
 1. Create a service template ST and enable scaling
 2. Create service instance SI using ST, select desired number if instances for scale-out, select desired left and right virtual network to connect and also select "shared address" space to make sure that instantiated services come up with the same IP address for left and right respectively. This enables ECMP among all those service instances during forwarding
-3. Create a policy, select service instance SI and apply it to the desired networks
+3. Create a policy, select service instance SI and apply it to the desired VMIs or VNs.
 
 Once all setup done correctly, vrouters shall be programmed with appropriate routing table with ECMP paths towards various service instances. Also vrouters are programmed with the desired ECMP fields to be used to hash during load balancing the traffic.
 
