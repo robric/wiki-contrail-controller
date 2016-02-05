@@ -11,9 +11,9 @@ Instead of providing a feature to select pre-configured subsets of the 5 tuples 
 
 e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ![ECMP Fields Selection under VN](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
-If configured for the VirtualNetwork, all traffic destined to that VM will get the customized hash field selection during forwarding over ECMP paths (by VRouters). This may not be desirable in all cases. This could potentially skew all traffic destined to that destination network over a smaller set of paths across the ip-fabric, even in case of no-ECMP at the ingress. (Because, the outer UDP source port of the nested tunneled packet would get a hashed source port, based only based on the configured ECMP fields)
+If configured for the VirtualNetwork, all traffic destined to that VM will get the customized hash field selection during forwarding over ECMP paths (by VRouters).
 
-Instead, in a more practical scenario in which, flows between a pair of source and destination must go through the same service-instance in between, one could configure customized ECMP fields for the ServiceInstances' VirtualMachineInterface (VNI). Then, all service-chain routes originated off that VMI would get the desired ECMP field selection applied as its path attribute, and eventually gets propagated to the ingress VRouter node.
+Instead, in a more practical scenario in which, flows between a pair of source and destination must go through the same service-instance in between, one could configure customized ECMP fields for the ServiceInstances' VirtualMachineInterface (VMI). Then, all service-chain routes originated off that VMI would get the desired ECMP field selection applied as its path attribute, and eventually gets propagated to the ingress VRouter node.
 
 [ECMP Fields Selection under VMI](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
 
@@ -27,7 +27,7 @@ This feature is mainly applicable in scenarios where in multiple ECMP paths exis
 4. Create a policy, select service instance SI and apply it to the desired VMIs or VNs.
 5. After service VMs are instantiated, left and right interfaces' ports shall be available for further configuration. Select the left port (VMI) of the service instances and apply appropriate ECMP field selection configuration.
 
-Note: At the moment, from the contrail UI, one cannot apply ECMP field selection configuration directly over the service's left or right interface. Instead, one has go to the ports(VMIs) section under networking and configure ECMP fields selection for each of the instantiated service instances' VMIs explicitly. This must be done for all service interface of the group, otherwise the end result can be unpredictable. (For details, load-balance attribute of only the best path is carried over to the ingress VRouter. If the best path (of a Service VMI) does not have the load-balance attribute configured, it would not be propagated to the ingress Vrouter even if other paths do have that configuration set correctly.
+Note: At the moment, from the contrail UI, one cannot apply ECMP field selection configuration directly over the service's left or right interface. Instead, one has go to the ports(VMIs) section under networking and configure ECMP fields selection for each of the instantiated service instances' VMIs explicitly. This must be done for interface of all service instances in the group to ensure correctness.
 
 Once all setup done correctly, vrouters shall be programmed with appropriate routing table with ECMP paths towards various service instances. Also vrouters are programmed with the desired ECMP fields to be used to hash during load balancing the traffic.
 
