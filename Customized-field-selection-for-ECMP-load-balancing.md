@@ -32,3 +32,29 @@ Note: At the moment, from the contrail UI, one cannot apply ECMP field selection
 
 Once all setup done correctly, vrouters shall be programmed with appropriate routing table with ECMP paths towards various service instances. Also vrouters are programmed with the desired ECMP fields to be used to hash during load balancing the traffic.
 
+Here are various flows without ecmp-field selections configured in a sample setup with multiple in-network-nat service instances
+
+tcpdump -i eth0 'port 1023 and tcp[tcpflags] & (tcp-syn) != 0 and tcp[tcpflags] & (tcp-ack) == 0'
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
+14:55:10.115122 IP 2.2.2.5.18337 > 2.2.2.100.1023: Flags [S], seq 2276852196, win 29200, options [mss 1398,sackOK,TS val 25208882 ecr 0,nop,wscale 7], length 0
+14:55:10.132753 IP 2.2.2.4.21193 > 2.2.2.100.1023: Flags [S], seq 4161487314, win 29200, options [mss 1398,sackOK,TS val 25208886 ecr 0,nop,wscale 7], length 0
+14:55:10.152053 IP 2.2.2.5.24230 > 2.2.2.100.1023: Flags [S], seq 2466454857, win 29200, options [mss 1398,sackOK,TS val 25208892 ecr 0,nop,wscale 7], length 0
+14:55:11.146029 IP 2.2.2.5.24230 > 2.2.2.100.1023: Flags [S], seq 2466454857, win 29200, options [mss 1398,sackOK,TS val 25209142 ecr 0,nop,wscale 7], length 0
+14:55:13.147616 IP 2.2.2.5.24230 > 2.2.2.100.1023: Flags [S], seq 2466454857, win 29200, options [mss 1398,sackOK,TS val 25209643 ecr 0,nop,wscale 7], length 0
+14:55:13.164367 IP 2.2.2.3.25582 > 2.2.2.100.1023: Flags [S], seq 2259034580, win 29200, options [mss 1398,sackOK,TS val 25209644 ecr 0,nop,wscale 7], length 0
+14:55:13.179939 IP 2.2.2.5.24895 > 2.2.2.100.1023: Flags [S], seq 2174031724, win 29200, options [mss 1398,sackOK,TS val 25209648 ecr 0,nop,wscale 7], length 0
+14:55:14.168282 IP 2.2.2.5.24895 > 2.2.2.100.1023: Flags [S], seq 2174031724, win 29200, options [mss 1398,sackOK,TS val 25209898 ecr 0,nop,wscale 7], length 0
+14:55:16.172384 IP 2.2.2.5.24895 > 2.2.2.100.1023: Flags [S], seq 2174031724, win 29200, options [mss 1398,sackOK,TS val 25210399 ecr 0,nop,wscale 7], length 0
+14:55:16.189864 IP 2.2.2.5.22952 > 2.2.2.100.1023: Flags [S], seq 3099816842, win 29200, options [mss 1398,sackOK,TS val 25210401 ecr 0,nop,wscale 7], length 0
+14:55:16.205142 IP 2.2.2.4.16487 > 2.2.2.100.1023: Flags [S], seq 3961114202, win 29200, options [mss 1398,sackOK,TS val 25210405 ecr 0,nop,wscale 7], length 0
+14:55:17.196763 IP 2.2.2.4.16487 > 2.2.2.100.1023: Flags [S], seq 3961114202, win 29200, options [mss 1398,sackOK,TS val 25210655 ecr 0,nop,wscale 7], length 0
+14:55:19.200623 IP 2.2.2.4.16487 > 2.2.2.100.1023: Flags [S], seq 3961114202, win 29200, options [mss 1398,sackOK,TS val 25211156 ecr 0,nop,wscale 7], length 0
+14:55:19.215809 IP 2.2.2.3.18914 > 2.2.2.100.1023: Flags [S], seq 3157557440, win 29200, options [mss 1398,sackOK,TS val 25211158 ecr 0,nop,wscale 7], length 0
+14:55:19.228405 IP 2.2.2.7.15569 > 2.2.2.100.1023: Flags [S], seq 3850648420, win 29200, options [mss 1398,sackOK,TS val 25211161 ecr 0,nop,wscale 7], length 0
+14:55:20.223482 IP 2.2.2.7.15569 > 2.2.2.100.1023: Flags [S], seq 3850648420, win 29200, options [mss 1398,sackOK,TS val 25211412 ecr 0,nop,wscale 7], length 0
+14:55:22.232068 IP 2.2.2.7.15569 > 2.2.2.100.1023: Flags [S], seq 3850648420, win 29200, options [mss 1398,sackOK,TS val 25211913 ecr 0,nop,wscale 7], length 0
+14:55:22.247325 IP 2.2.2.4.28388 > 2.2.2.100.1023: Flags [S], seq 3609240658, win 29200, options [mss 1398,sackOK,TS val 25211915 ecr 0,nop,wscale 7], length 0
+
+
+
