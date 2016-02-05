@@ -16,7 +16,7 @@ If configured for the VirtualNetwork, all traffic destined to that VM will get t
 
 Instead, in a more practical scenario in which, flows between a pair of source and destination must go through the same service-instance in between, one could configure customized ECMP fields for the ServiceInstances' VirtualMachineInterface (VMI). Then, all service-chain routes originated off that VMI would get the desired ECMP field selection applied as its path attribute, and eventually gets propagated to the ingress VRouter node.
 
-! [ECMP Fields Selection under VMI](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
+![ECMP Fields Selection under VMI](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_interface_ecmp_fields_selection.png)
 
 
 ### Applicability
