@@ -61,7 +61,24 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 
 ### Traffic flow path 'without customized ecmp fields selection configuration'
 ```
-
-
+root@two:~# tcpdump -i eth0 'port 1023 and tcp[tcpflags] & (tcp-syn) != 0 and tcp[tcpflags] & (tcp-ack) == 0'
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
+15:57:18.680853 IP 2.2.2.4.21718 > 2.2.2.100.1023: Flags [S], seq 2052086108, win 29200, options [mss 1398,sackOK,TS val 26141024 ecr 0,nop,wscale 7], length 0
+15:57:18.696114 IP 2.2.2.4.13585 > 2.2.2.100.1023: Flags [S], seq 2039627277, win 29200, options [mss 1398,sackOK,TS val 26141028 ecr 0,nop,wscale 7], length 0
+15:57:18.714846 IP 2.2.2.4.16414 > 2.2.2.100.1023: Flags [S], seq 3252526560, win 29200, options [mss 1398,sackOK,TS val 26141033 ecr 0,nop,wscale 7], length 0
+15:57:18.731281 IP 2.2.2.4.32499 > 2.2.2.100.1023: Flags [S], seq 1389133175, win 29200, options [mss 1398,sackOK,TS val 26141037 ecr 0,nop,wscale 7], length 0
+15:57:18.747051 IP 2.2.2.4.6081 > 2.2.2.100.1023: Flags [S], seq 427936299, win 29200, options [mss 1398,sackOK,TS val 26141041 ecr 0,nop,wscale 7], length 0
+15:57:19.740204 IP 2.2.2.4.6081 > 2.2.2.100.1023: Flags [S], seq 427936299, win 29200, options [mss 1398,sackOK,TS val 26141291 ecr 0,nop,wscale 7], length 0
+15:57:21.743951 IP 2.2.2.4.6081 > 2.2.2.100.1023: Flags [S], seq 427936299, win 29200, options [mss 1398,sackOK,TS val 26141792 ecr 0,nop,wscale 7], length 0
+15:57:21.758532 IP 2.2.2.4.13800 > 2.2.2.100.1023: Flags [S], seq 3020971712, win 29200, options [mss 1398,sackOK,TS val 26141794 ecr 0,nop,wscale 7], length 0
+15:57:21.772646 IP 2.2.2.4.23894 > 2.2.2.100.1023: Flags [S], seq 3373734307, win 29200, options [mss 1398,sackOK,TS val 26141797 ecr 0,nop,wscale 7], length 0
+15:57:22.764469 IP 2.2.2.4.23894 > 2.2.2.100.1023: Flags [S], seq 3373734307, win 29200, options [mss 1398,sackOK,TS val 26142047 ecr 0,nop,wscale 7], length 0
+15:57:24.768511 IP 2.2.2.4.23894 > 2.2.2.100.1023: Flags [S], seq 3373734307, win 29200, options [mss 1398,sackOK,TS val 26142548 ecr 0,nop,wscale 7], length 0
+15:57:24.784119 IP 2.2.2.4.21858 > 2.2.2.100.1023: Flags [S], seq 2212369297, win 29200, options [mss 1398,sackOK,TS val 26142550 ecr 0,nop,wscale 7], length 0
+15:57:24.797149 IP 2.2.2.4.29440 > 2.2.2.100.1023: Flags [S], seq 2007897735, win 29200, options [mss 1398,sackOK,TS val 26142554 ecr 0,nop,wscale 7], length 0
+15:57:25.792816 IP 2.2.2.4.29440 > 2.2.2.100.1023: Flags [S], seq 2007897735, win 29200, options [mss 1398,sackOK,TS val 26142804 ecr 0,nop,wscale 7], length 0
+15:57:27.797538 IP 2.2.2.4.29440 > 2.2.2.100.1023: Flags [S], seq 2007897735, win 29200, options [mss 1398,sackOK,TS val 26143305 ecr 0,nop,wscale 7], length 0
+15:57:27.814002 IP 2.2.2.4.23452 > 2.2.2.100.1023: Flags [S], seq 1659332655, win 29200, options [mss 1398,sackOK,TS val 26143307 ecr 0,nop,wscale 7], length 0
 ```
 
