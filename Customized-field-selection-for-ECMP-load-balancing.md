@@ -9,8 +9,8 @@ Typically this feature is useful whenever packets originated from a particular s
 
 Instead of providing a feature to select pre-configured subsets of the 5 tuples to use during ECMP forwarding, a general feature to select necessary fields directly by the users themselves has been provided in 3.0 release.
 
-e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture ! 
-[ECMP Fields Selection under VN](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
+e.g. ECMP fields can be selected from contrail web UI in virtual-network configuration section as shown in this picture 
+![ECMP Fields Selection under VN](https://raw.githubusercontent.com/wiki/rombie/contrail-controller/virtual_network_ecmp_fields_selection.png)
 
 If configured for the VirtualNetwork, all traffic destined to that VM will get the customized hash field selection during forwarding over ECMP paths (by VRouters).
 
