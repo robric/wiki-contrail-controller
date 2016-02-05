@@ -34,6 +34,7 @@ Once all setup done correctly, vrouters shall be programmed with appropriate rou
 
 Here are various flows without ecmp-field selections configured in a sample setup with multiple in-network-nat service instances
 
+```tcpdump
 tcpdump -i eth0 'port 1023 and tcp[tcpflags] & (tcp-syn) != 0 and tcp[tcpflags] & (tcp-ack) == 0'
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
@@ -55,6 +56,6 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 14:55:20.223482 IP 2.2.2.7.15569 > 2.2.2.100.1023: Flags [S], seq 3850648420, win 29200, options [mss 1398,sackOK,TS val 25211412 ecr 0,nop,wscale 7], length 0
 14:55:22.232068 IP 2.2.2.7.15569 > 2.2.2.100.1023: Flags [S], seq 3850648420, win 29200, options [mss 1398,sackOK,TS val 25211913 ecr 0,nop,wscale 7], length 0
 14:55:22.247325 IP 2.2.2.4.28388 > 2.2.2.100.1023: Flags [S], seq 3609240658, win 29200, options [mss 1398,sackOK,TS val 25211915 ecr 0,nop,wscale 7], length 0
-
+```
 
 
