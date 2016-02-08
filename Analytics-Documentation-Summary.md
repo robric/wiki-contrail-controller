@@ -24,7 +24,7 @@ prouters - Physical Routers.
 _http://\<contrail-analytics-api-IP\>:8081/analytics/uves/prouters_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/uves/prouter/a7-ex1?flat_  
 
-A raw dump of the various UVEs is given in section [[Per-UVE type contents|#Per-UVE type contents]].  
+A raw dump of the various UVEs is given in section [Per-UVE type contents](https://github.com/Juniper/contrail-controller/wiki/Analytics-Documentation-Summary#per-uve-type-contents).  
 
 # Analytics Table Queries
 Most analytics data is queried using SQL-like queries into tables whose schema
@@ -52,7 +52,7 @@ table: "StatTable.UveVirtualNetworkAgent.vn_stats" ,
 select_fields: ["SUM(vn_stats.in_bytes)", "vn_stats.other_vn"] ,   
 where: [[{"value": "default-domain:admin:vn1", "op": 1, "suffix": null, "name": "name", "value2": null}]] }  
 
-The schemas of the available tables is given in section [[Query-able Table Schemas|#Query-able Table Schemas]].  
+The schemas of the available tables is given in section [Query-able Table Schemas](https://github.com/Juniper/contrail-controller/wiki/Analytics-Documentation-Summary#query-able-table-schemas).  
   
 # Data Collection Frequency
 
