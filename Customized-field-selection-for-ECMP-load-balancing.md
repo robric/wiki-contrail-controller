@@ -32,7 +32,7 @@ Note: At the moment, from the contrail UI, one cannot apply ECMP field selection
 
 Once all setup done correctly, vrouters shall be programmed with appropriate routing table with ECMP paths towards various service instances. Also vrouters are programmed with the desired ECMP fields to be used to hash during load balancing the traffic.
 
-### Traffic flow path 'without customized ecmp fields selection configuration (i.e, use all standard 7 tuple flow fields)'
+### Traffic flow path 'without customized ecmp fields selection configuration (i.e, use all standard 5 tuple flow fields)'
 Here are various flows without ecmp-field selections configured in a sample setup with multiple in-network-nat service instances
 
 ```
