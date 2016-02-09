@@ -28,3 +28,5 @@ For example, for sandesh `systemlog` message `TcpServerMessageLog` the documenta
 6. Documentation about structures precedes the structure definition and is indicated using `/**` `*/`
 7. **Generic systemlog messages need to be changed to specific one so that appropriate descriptions can be added. Further, `@severity` fields are preferred to have only one value rather than using the same message for ERROR and DEBUG.**
 8. Sandesh file or module level documentation is added at the top of the file after the copyright.
+
+Explanation of the generated HTML can be found at https://github.com/Juniper/contrail-controller/blob/master/src/opserver/messages-user-documentation.html
