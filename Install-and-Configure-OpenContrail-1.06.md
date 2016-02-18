@@ -289,4 +289,4 @@ $ echo "vrouter" | sudo tee -a /etc/modules
 
 * vRouter Agent
 
-  The introspec port for vRouger agent is 8085.
+  The introspec port for vRouter agent is 8085.
