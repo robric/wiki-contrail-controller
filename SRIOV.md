@@ -66,6 +66,8 @@ setup.
 A) testbed.py changes
 
    A1)
+        
+
         env.sriov = {
             host1 :[{'interface' : 'eth0', 'VF' : 7, 'physnets' : ['physnet1']},
                     {'interface' : 'eth1', 'VF' : 7, 'physnets' : ['physnet2']}],
@@ -94,14 +96,14 @@ B) Complete Cloud Setup
        fab provsioning starts
 
 C) Provisioning a new SRIOV compute node independently
+   
+   C1) If a new compute node needs to be setup with SRIOV capability both compute node
+       role and openstack role needs to be setup
+   
+   C2) fab add_vrouter_node:user@a.b.c.d sets up the new compute node with required
+       configuration as in 1.C, 2.A1
 
-    C1) If a new compute node needs to be setup with SRIOV capability both compute node
-        role and openstack role needs to be setup
-
-    C2) fab add_vrouter_node:user@a.b.c.d sets up the new compute node with required
-        configuration as in 1.C, 2.A1
-
-    C3) fab setup_openstack_node:user@a.b.c.d sets up the openstack role as in 2.B1
+   C3) fab setup_openstack_node:user@a.b.c.d sets up the openstack role as in 2.B1
 
 
 ##4) Launching VMs:
