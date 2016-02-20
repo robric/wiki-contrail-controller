@@ -72,22 +72,36 @@ A) testbed.py changes
             host2 :[{'interface' : 'eth0', 'VF' : 7, 'physnets' : ['physnet3']}]
         }
 
-   A2) Above stanza describes the configuration to be setup on two different
+   A2) host1 and host2 need to have  compute node roles in the testbed
+
+   A3) sriov stanza describes the configuration to be setup on two different
        compute nodes "host1" and "host2".
        "host1" to be setup with two physical interface "eth0" and "eth1" having 
        '7' VF's each belonging to "physnet1" and "physnet2" respectively.
        "host2" to be setup with "eth0" having '7' VF's belonging to physical
        network "physnet3"
 
-   A3) "fab setup_all" enables required linux iommu option as mentioned in 1.B,
-       configures VF's as mentioned in 1.C, configures physical networks as
-       mentioned in 2.A1
+B) Complete Cloud Setup
 
-   A4) "openstack" role node also gets setup with scheduler options as
-       mentioned in 2.B1
+   B1) "fab setup_all" enables required linux iommu option as mentioned in 1.B,
+        configures VF's as mentioned in 1.C, configures physical networks as
+        mentioned in 2.A1
 
-   A5) Enabling the BIOS, as in 1.A, needs to be setup manually before the
+   B2) "openstack" role node also gets setup with scheduler options as
+        mentioned in 2.B1
+
+   B3) Enabling the BIOS, as in 1.A, needs to be setup manually before the
        fab provsioning starts
+
+C) Provisioning a new SRIOV compute node independently
+
+    C1) If a new compute node needs to be setup with SRIOV capability both compute node
+        role and openstack role needs to be setup
+
+    C2) fab add_vrouter_node:user@a.b.c.d sets up the new compute node with required
+        configuration as in 1.C, 2.A1
+
+    C3) fab setup_openstack_node:user@a.b.c.d sets up the openstack role as in 2.B1
 
 
 ##4) Launching VMs:
@@ -108,13 +122,11 @@ B) Crate a subnet in vn1
 
    neutron subnet-create vn1 a.b.c.d/netmask
 
-C) neutron port-create --name <name of port> <vn1 uuid>  
-                       --binding:vnic_type direct
+C) neutron port-create --name <name of port> <vn1 uuid> --binding:vnic_type direct
 
    This creates an SRIOV port belonging to virtual network vn1
 
-D) nova boot --flavor m1.large --image <image name>
-             --nic port-id=<uuid of above port> <vm name>
+D) nova boot --flavor m1.large --image <image name> --nic port-id=<uuid of above port> <vm name>
 
    This boots a VM with SRIOV port on the permissible Compute node.
 
@@ -191,7 +203,7 @@ D) vrouter-agent
    VM is launched on this compute node from control-node as IFMAP objects. vrouter
    uses this information to generate the UVE's (and if possible VF statistics)
 
-6) Configuration Flow
+##6) Configuration Flow
 
 A) When a virtual network is created with provider information, the provider
    information is persisted by api-server in Cassandra. The VN  contains the
