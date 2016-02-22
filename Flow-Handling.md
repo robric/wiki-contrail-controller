@@ -23,4 +23,4 @@ From Release R2.22, Contrail supports an optimization to reduce the number of fl
 
 This can be configured by specifying the list of fat-flow-protocols on a virtual-machine-interface. For each such application protocol, the list would contain the _protocol_ and _port_ pairs. In the above example, on the server virtual-machine-interface, protocol _udp_ and port _53_ can be configured as fat-flow-protocol. Note that if the same effect is desired on the client side as well, the configuration has to be applied on the client virtual-machine-interface as well.
 
-Fat flow has a few limitations. It does not work when the server interface is in ECMP. Another case it does not take effect is when the client is on the same compute node as the server. In the latter case, the client interface also has to be configured for the fat flow for it to work as explained earlier.
+Fat flow has a few limitations. It does not work when the server interface is in ECMP. Another case it does not take effect is when the client is on the same compute node as the server. In the latter case, the client interface also has to be configured for the fat flow.
