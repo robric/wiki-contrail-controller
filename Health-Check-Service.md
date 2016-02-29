@@ -7,7 +7,7 @@ HealthCheck Object has the following properties associated to it
 >  
       - enabled            
       - monitor-type     # Health Check protocol type to be used (HTTP/PING)  
-      - delay            # delay between to health check attempts  
+      - delay            # delay between two health check attempts  
       - timeout          # timeout for single health check attempt  
       - max-retries      # number of retries to attempt before declaring a failure  
       - http-method      # HTTP method valid only for monitor-type(HTTP) (currently not supported)  
