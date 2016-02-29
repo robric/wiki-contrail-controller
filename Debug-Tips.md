@@ -91,3 +91,24 @@ curl "http://node_ip:5998/clients.json" | python -mjson.tool
 * Schema Transformer
 
     `http://<config-node-ip>:8087/Snh_SandeshUVECacheReq?x=NodeStatus`
+
+## Control-Node daemon
+Replace vn1 in the search_string with the name (or part of the name) of the problem node
+
+    curl localhost:8083/Snh_IFMapTableShowReq?table_name=&search_string=vn1
+
+Replace vn1 in the search_string with the name (or part of the name) of the problem link
+
+    curl localhost:8083/Snh_IFMapLinkTableShowReq?search_string=vn1
+
+Replace localhost with IP of your controller
+
+    curl localhost:8083/Snh_IFMapPeerServerInfoReq?
+    curl localhost:8083/Snh_IFMapServerClientShowReq?
+    curl localhost:8083/Snh_IFMapXmppClientInfoShowReq?
+    curl localhost:8083/Snh_IFMapUpdateQueueShowReq?
+    curl localhost:8083/Snh_IFMapXmppShowReq?
+    curl localhost:8083/Snh_IFMapNodeToUuidMappingReq?
+    curl localhost:8083/Snh_IFMapUuidToNodeMappingReq?
+    curl localhost:8083/Snh_IFMapPendingVmRegReq?
+
