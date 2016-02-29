@@ -93,6 +93,7 @@ curl "http://node_ip:5998/clients.json" | python -mjson.tool
     `http://<config-node-ip>:8087/Snh_SandeshUVECacheReq?x=NodeStatus`
 
 ## Control-Node daemon
+Replace localhost with IP of your controller
 Replace vn1 in the search_string with the name (or part of the name) of the problem node
 
     curl localhost:8083/Snh_IFMapTableShowReq?table_name=&search_string=vn1
