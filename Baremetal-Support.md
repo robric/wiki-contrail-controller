@@ -238,7 +238,7 @@ In case the SSL certificate used on the Contrail side needs to be regenerated, t
 
 `openssl req -new -x509 -days 3650 -text -sha256 -newkey rsa:4096 -nodes -subj "/C=US/ST=Global/O=juniper" -keyout /etc/contrail/ssl/private/tor.<tor-id>.privkey.pem -out /etc/contrail/ssl/certs/tor.<tor-id>.cert.pem`
 * Restart contrail-tor-agent
-* Remove the file /var/db/certs/cacert.pem file on the QFX.
+* Remove the file /var/db/certs/ca-cert.pem file on the QFX.
 
 ## Prior Configuration required on QFX5100
 
@@ -265,8 +265,8 @@ The following configuration has to be done on a QFX5100 beforehand.
 * apt-get install openvswitch-common
 * ovs-pki init
 * ovs-pki req+sign vtep
-* scp vtep-cert.pem root@<tor-ip>:/var/db/certs
-* scp vtep-privkey.pem root@<tor-ip>:/var/db/certs
+* scp vtep-cert.pem root@tor-ip:/var/db/certs
+* scp vtep-privkey.pem root@tor-ip:/var/db/certs
 * cacert.pem file will be available in /var/lib/openvswitch/pki/switchca, when the above are done. This is the file to be provided in the above testbed (for ca_cert_file).
 >
  
