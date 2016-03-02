@@ -13,3 +13,12 @@ If there is a specific host/VM not getting resolved,
 * Access http://controller-ip:8092/Snh_SandeshTraceRequest?x=DnsBind to see whether contrail-dns programmed bind entries correctly on every controller
 * Access http://controller-ip:8092/Snh_ShowDnsConfig to see which records the controller is aware of for this virtual dns. The last column, installed, must be true which indicates the record was successfuly sent to bind/named
 * grep <vm-name> in /etc/contrail/dns/* in every controller to check presence of entry. zone files are lazily created and thus do not indicate a problem if grep does not find anything. The opposite is true for jnl files, a positive match on the jnl file also does not indicate a that named is aware of such records.s
+
+
+## How to dump the zone files' contents to see if the records are in bind
+
+* contrail-rndc -c /etc/contrail/dns/contrail-rndc.conf sync - sync records from jnl to zones files
+
+* contrail-rndc -c /etc/contrail/dns/contrail-rndc.conf dumpdb -zones
+
+* The above command creates a file "named_dump.db" that has all records from all zones, which you can grep to look for records
