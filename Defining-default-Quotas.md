@@ -20,3 +20,5 @@ security-group=50
 security-group_rule=50  
 virtual-machine-interface=30  
   
+The security-group 'default' will also be considered while checking the quota limits
+Any security-group-rules added by default to a SG will also be considered while checking the quota limits
