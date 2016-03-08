@@ -59,7 +59,8 @@ GET http://\<analytics-ip\>:8081/analytics/alarms
         ]
     }
 
-"_any_of_" indicates alarm rules defined in the format [ [rule1 AND rule2 AND ... AND ruleN] ... OR [rule11 AND rule22 AND ... AND ruleNN] ]        
+"_any_of_" attribute contains alarm rules defined in the format         
+    [ [rule1 _AND_ rule2 _AND_ ... _AND_ ruleN] ... _OR_ [rule11 _AND_ rule22 _AND_ ... _AND_ ruleNN] ]        
 “_ack_” indicates if the alert has been acknowledged or not        
 “_token_” is to be used by clients when requesting acknowledgements        
   
@@ -88,6 +89,55 @@ This is available for all UVE table-types. If the “tablefilt” URL Query para
 This is similar to #4 above, but it provides only the Alerts portion of UVEs instead of providing the entire content of the UVEs.  
 This is available for all UVE table-types. If the “tablefilt” URL Query parameter is not provided, alerts for all UVEs will be seen.
   
+
+## Contrail Alarm Notification:
+
+contrail-alarm-notify script (/usr/bin in analytics nodes) can be used to send email notification for alarms.
+The script receives real-time update of alarms from the /analytics/alarms-stream API and sends email to the intended recipients.
+
+**_Example:_**
+
+contrail-alarms-notify --smtp-server smtp.juniper.net --smtp-server-port 25 --sender-email xyz@juniper.net --receiver-email-list someone@juniper.net someone@gmail.com
+
+It may be noted there is no option to specify the sender's password. This script tries to send email notification without sender credentials. However, if the SMTP server requires the sender to be authenticated, then the script would prompt the user to enter the sender's password to proceed further.
+ 
+**_Sample email notification for Process Failure alarm:_**
+
+_**Subject:**_ [Contrail Alarm] Process Failure -- analytics-node:nodec40    
+_**Body:**_   
+
+    Source : analytics-node:nodec40    
+    Type : ProcessStatus    
+    Severity : 3    
+    Timestamp : 2016-03-04 00:30:36    
+    Status : Unacknowledged    
+    Description : NodeMgr reports abnormal status for process(es) in NodeStatus.process_info    
+    Details : [    
+        {    
+            "all_of": [    
+                {    
+                    "json_operand1_value": "\"PROCESS_STATE_STOPPED\"",    
+                    "json_vars": {    
+                        "NodeStatus.process_info.process_name": "contrail-snmp-collector"
+                    },
+                    "rule": {
+                        "oper": "!=",
+                        "operand1": {
+                            "keys": [
+                                "NodeStatus",
+                                "process_info",
+                                "process_state"
+                            ]
+                        },
+                        "operand2": {
+                            "json_value": "\"PROCESS_STATE_RUNNING\""
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+
   
 ## Built-in Node Alerts:  
 The following built-in node alerts are supported and can be retrieved using APIs listed in the previous section.  
