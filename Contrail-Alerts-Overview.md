@@ -59,19 +59,10 @@ GET http://\<analytics-ip\>:8081/analytics/alarms
         ]
     }
 
-"any_of" indicates alarm rules defined in the format [ [rule1 AND rule2 AND ... AND ruleN] ... OR [rule11 AND rule22 AND ... AND ruleNN] ].
-“ack” indicates if the alert has been acknowledged or not.  
-“token” is to be used by clients when requesting acknowledgements   
+"_any_of_" indicates alarm rules defined in the format [ [rule1 AND rule2 AND ... AND ruleN] ... OR [rule11 AND rule22 AND ... AND ruleNN] ]        
+“_ack_” indicates if the alert has been acknowledged or not        
+“_token_” is to be used by clients when requesting acknowledgements        
   
-***Alerts are raised on a per-UVE basis and can be retrieved by a GET on a UVE.***
-
-For example, all the alarms for a specific analytics-node can be retrieved by the following UVE GET request.
-
-GET http://\<analytics-ip\>:8081/analytics/uves/analytics-node/<name>?cfilt=UVEAlarms
-
-Alarms for all the analytics-nodes can be retrieved by the following UVE GET request.
-
-GET http://\<analytics-ip\>:8081/analytics/uves/analytics-node/*?cfilt=UVEAlarms
 
 ## Analytics APIs for Alerts:  
   
