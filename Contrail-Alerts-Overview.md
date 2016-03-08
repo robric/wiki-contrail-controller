@@ -13,28 +13,50 @@ The Contrail Analytics API will provide the following.
   
 GET http://\<analytics-ip\>:8081/analytics/uves/control-node/a6s40?flat  
 
-
     {
-        NodeStatus:  {…},
-        ControlCpuState:  {…},
-        UVEAlarms:  {
-        alarms:  [
+        analytics-node: [
             {
-                description:  [
-                    {
-                    value: "0 != 2",
-                    rule: "BgpRouterState.num_up_bgp_peer != BgpRouterState.num_bgp_peer"
+                name: "nodec40",
+                value: {
+                    UVEAlarms: {
+                        alarms: [
+                            {
+                                any_of: [
+                                    {
+                                        all_of: [
+                                            {
+                                                json_operand1_value: ""PROCESS_STATE_STOPPED"",
+                                                rule: {
+                                                    oper: "!=",
+                                                    operand1: {
+                                                        keys: [
+                                                            "NodeStatus",
+                                                            "process_info",
+                                                            "process_state"
+                                                        ]
+                                                    },
+                                                    operand2: {
+                                                        json_value: ""PROCESS_STATE_RUNNING""
+                                                    }
+                                                },
+                                                json_vars: {
+                                                    NodeStatus.process_info.process_name: "contrail-topology"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ],
+                                severity: 3,
+                                ack: false,
+                                timestamp: 1457395052889182,
+                                token: "eyJ0aW1lc3RhbXAiOiAxNDU3Mzk1MDUyODg5MTgyLCAiaHR0cF9wb3J0IjogNTk5NSwgImhvc3RfaXAiOiAiMTAuMjA0LjIxNy4yNCJ9",
+                                type: "ProcessStatus"
+                            }
+                        ]
                     }
-                ],
-                ack: false,
-                timestamp: 1442995349253178,
-                token: "eyJ0aW1lc3RhbXAiOiAxNDQyOTk1MzQ5MjUzMTc4LCAiaHR0cF9wb3J0IjogNTk5NSwgImhvc3RfaXAiOiAiMTAuODQuMTMuNDAifQ==",
-                type: "BgpConnectivity",
-                severity: 4
+                }
             }
         ]
-        },
-        BgpRouterState:  {…}
     }
 
 As can be seen from above, Alerts are raised on a per-UVE basis and can be retrieved by a GET on a UVE.  
