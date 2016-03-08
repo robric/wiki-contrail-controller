@@ -11,7 +11,7 @@ The Contrail Analytics API will provide the following.
   
 ## Alert format:  
   
-GET http://\<analytics-ip\>:8081/analytics/uves/control-node/a6s40?flat  
+GET http://\<analytics-ip\>:8081/analytics/alarms  
 
     {
         analytics-node: [
@@ -59,11 +59,20 @@ GET http://\<analytics-ip\>:8081/analytics/uves/control-node/a6s40?flat
         ]
     }
 
-As can be seen from above, Alerts are raised on a per-UVE basis and can be retrieved by a GET on a UVE.  
+"any_of" indicates alarm rules defined in the format [ [rule1 AND rule2 AND ... AND ruleN] ... OR [rule11 AND rule22 AND ... AND ruleNN] ].
 “ack” indicates if the alert has been acknowledged or not.  
 “token” is to be used by clients when requesting acknowledgements   
   
-  
+***Alerts are raised on a per-UVE basis and can be retrieved by a GET on a UVE.***
+
+For example, all the alarms for a specific analytics-node can be retrieved by the following UVE GET request.
+
+GET http://\<analytics-ip\>:8081/analytics/uves/analytics-node/<name>?cfilt=UVEAlarms
+
+Alarms for all the analytics-nodes can be retrieved by the following UVE GET request.
+
+GET http://\<analytics-ip\>:8081/analytics/uves/analytics-node/*?cfilt=UVEAlarms
+
 ## Analytics APIs for Alerts:  
   
 1. GET _http://\<analytics-ip\>:\<rest-api-port\>/analytics/uves/control-node/aXXsYY&cfilt=UVEAlarms_  
