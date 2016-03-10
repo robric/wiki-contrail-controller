@@ -2,9 +2,14 @@
 
 ##1.1 Configuration API Server
 * Mode: Active/Active
-* Configuration: /etc/contrail/contrail-api.conf
-* Log: Defined in configuration
-* Storage: Configurations in Cassandra
+* Launched using: /etc/contrail/supervisord_config_files/contrail-api.ini
+* Process configuration files:
+    + /etc/contrail/contrail-api.conf
+    + /etc/contrail/contrail-keystone-auth.conf [in case of openstack]
+* Log: Defined in configuration, typically
+    + /var/log/contrail/contrail-api-0.log and /var/log/contrail/contrail-api.log (when setup by fab)
+    + /var/log/contrail/contrail-api-0-stdout.log and /var/log/contrail/contrail-api.log (when setup by server manager)
+* Storage: User created configurations (VN etc.) in Cassandra
 * Port:
   * 8082: REST API for reading and writing configuration
   * 8084: introspect for debugging
@@ -15,7 +20,7 @@
 
 #### IF-MAP Server (local)
 * Read: None
-* Write: Publish configuration. This is driven by the configuration received from RabbitMQ.
+* Write: Publish configuration. This is driven by the messages received from RabbitMQ.
 
 #### RabbitMQ (default is local, configurable)
 * Read: Receive configuration sent from the API server who got user request originally.
@@ -32,9 +37,12 @@
 
 ##1.2 Discovery
 * Mode: Active/Active
-* Configuration: /etc/contrail/contrail-discovery.conf
-* Log: Defined in configuration
-* Storage: Registration of services in Cassandra (prior to 1.1 in Zookeeper)
+* Launched using: /etc/contrail/supervisord_config_files/contrail-discovery.ini
+* Process configuration files: /etc/contrail/contrail-discovery.conf
+* Log: Defined in configuration, typically
+    + /var/log/contrail/contrail-discovery-0.log and /var/log/contrail/contrail-discovery.log (when setup by fab)
+    + /var/log/contrail/contrail-discovery-0-stdout.log and /var/log/contrail/contrail-discovery.log (when setup by server manager)
+* Storage: Registration of services in Cassandra
 * Port:
   * 5998: REST API for register and request services
 
@@ -50,19 +58,21 @@
 ##1.3 Schema Transformer
 * Mode: Active/Passive
 * Configuration: /etc/contrail/contrail-schema.conf
-* Log: Defined in configuration
+* Log: Defined in configuration, typically
+    + /var/log/contrail/contrail-schema.log when setup by fab
+    + /var/log/contrail/schema.log when setup by server-manager
+    + Exceptions are stored in /var/log/contrail/schema.err (search up for 'A problem' from bottom of file)
 * Storage: 
   + Non-UUID Unique items from Zookeeper, eg. route-target numbers, virtual-network-ids, security-group-ids.
   + Private persistent data in Cassandra.
 * Port:
   * 8087: introspect for debugging
 
-#### IF-MAP Server
+#### Configuration updates from IF-MAP Server (<R3.0) and RabbitMQ (>=R3.0)
 * Read: Receive configuration published by configuration API server.
 * Write: None
 
 #### Configuration API Server
-* Read: Read configurations defined by user.
 * Write: Write transformed configurations (routing instance, access control list and route target).
 
 #### Zookeeper
@@ -70,7 +80,7 @@
 * Write: Register, first register, first being active(aka master election recipe). A callback is invoked if it is active. All other instances of schema transformer are passive and stuck at callback. Once the active one is down, one of the passive will be woken up by callback. Only the active schema transformer connects to local IF-MAP server on port 8443.
 
 #### Cassandra
-* Read: On startup to rebuild internal state from previous run
+* Read: On startup to rebuild internal state from previous run. Ongoing reads of objects on message updates.
 * Write: Data associated with User and System objects that are specific to schema transformer and that need to survive restarts
 
 #### Collector
@@ -80,7 +90,7 @@
 
 ##1.4 Service Monitor
 * Mode: Active/Passive
-* Configuration: /etc/contrail/svc-monitor.conf
+* Configuration: /etc/contrail/contrail-svc-monitor.conf
 * Log: Defined in configuration
 * Storage:
   + Zookeeper for master election recipe (see schema-transformer section). 
@@ -88,25 +98,24 @@
 * Port:
   * 8088: introspect for debugging
 
-#### IF-MAP Server
+#### RabbitMQ Server
 * Read: Receive configuration published by configuration API server.
 * Write: None
 
 #### Configuration API Server
-* Read: Read configuration.
-* Write: Write configuration.
+* Write: Write generated configuration objects.
 
 #### Zookeeper
 * Read: None
 * Write: Register, first register, first being active. A callback is invoked if it is active. All other instances of schema transformer are passive and stuck at callback. Once the active one is down, one of the passive will be waked up by callback.
 
 #### Cassandra
-* Read: On startup to rebuild internal state from previous run
+* Read: On startup to rebuild internal state from previous run, Ongoing reads of objects on message updates.
 * Write: Data associated with User and System objects that are specific to service monitor and that need to survive restarts
 
-#### Collector
-* Read: None
-* Write: Send positive (updates) and negtive (error, failures) logs, and running stats.
+#### Collector/Opserver(contrail-analytics-api)
+* Read: Read VRouter UVE to select host for launching service VM/netns.
+* Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 #### Nova-API
 * Read: For monitoring service-instance's VM state.
@@ -123,11 +132,7 @@
 * Read: Read configuration published by API server, and store in memory (not persistent).
 * Write: None
 
-#### Schema Transformer
-* Read: None
-* Write: Send published configuration.
-
-#### Service Monitor
+#### Schema Transformer (for <R3.0)
 * Read: None
 * Write: Send published configuration.
 
@@ -147,8 +152,16 @@
   * 5672
 
 #### Configuration API Server
-* Read: Read configuration.
-* Write: Write configuration.
+* Read: Read configuration update message.
+* Write: Send configuration update message.
+
+#### Schema Transformer (>=R3.0)
+* Read: Read configuration update message.
+* Write: None.
+
+#### Service Monitor
+* Read: Read configuration update message.
+* Write: None.
 
 
 ##1.7 Configuration Node Manager (server layer)
