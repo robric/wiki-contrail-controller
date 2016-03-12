@@ -1,5 +1,5 @@
 ## Using gnu screen
-[![asciicast](https://asciinema.org/a/6kym72j5lteg2ffb9ohr8w0oa.png)](https://asciinema.org/a/6kym72j5lteg2ffb9ohr8w0oa)
+[![asciicast](https://asciinema.org/a/6kym72j5lteg2ffb9ohr8w0oa.png)](https://asciinema.org/a/6kym72j5lteg2ffb9ohr8w0oa?speed=3)
 
 ## Useful Chrome Browser applications
 
