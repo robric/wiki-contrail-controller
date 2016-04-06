@@ -14,10 +14,9 @@ Contrail uses flows to implement following features (as of R3.0)
 
 Flows in VRouter have following fields,
 
-  Flow-Key
-  --------
-  Flow key is made of <nh-id, src-ip, dst-ip, protocol, src-port, dst-port>
-  nh-id: This is nexthop-id for the flow. The nexthop-id value is based on the
+## Flow-Key
+Flow key is made of <nh-id, src-ip, dst-ip, protocol, src-port, dst-port>
+  - nh-id: This is nexthop-id for the flow. The nexthop-id value is based on the
          type of packet
          1. Packet from vm-interface:
             The interface next-hop created for vm-interface is used as key
@@ -26,11 +25,11 @@ Flows in VRouter have following fields,
          3. VxLan packet from fabric
             Bridge lookup is done for DMAC in the table pointed by vxlan-id.
             The nexthop in bridge route is used as the key
-  src-ip, dst-ip, protocol, src-port and dst-port are the 5-tuple from packet
+  - src-ip, dst-ip, protocol, src-port and dst-port are the 5-tuple from packet
 
-  Flow-Data
-  ---------
-  The data part of flow contains following information,
+## Flow-Data
+
+The data part of flow contains following information,
   - Flow Action
     Values can be Forward(F), Deny (D) or Nat
 
@@ -81,74 +80,72 @@ applies policies rules and computes appropriate actions for the flows.
 
 The diagram below gives summary of flow processing,
 
-
-       +------------------+
-       |                  |
-       | Pkt Receive      |
-       |                  |
-       +--------+---------+
-                |
-                |
-       +--------v---------+
-       |                  |
-       | Pkt Handler      |
-       |                  |
-       +--------+---------+
-                | 1:N
-                |
-                |   <-------------------------------------------------------------------------+
-                |   |                                                                         ^
-                |   |      <-------------------------------------------------------------+    |
-                |   |      |                                                             ^    |
-+---------------v---v------v----+                                                        |    |
-|                               |                                                        |    |
-|      +------------------+     |                                                        |    |
-|      |                  |     |                                                        |    |
-|      | Flow Setup       |     |                                                        |    |
-|      |                  |     |                                                        |    |
-|      +--------+---------+     |                                                        |    |
-|               |               |                                                        |    |
-|               |               |                                                        |    |
-|               |               |                                                        |    |
-|      +--------v---------+     |                                                        |    |
-|      |                  |     |                                                        |    |
-|      | Flow Table       +-----+----------------+-----------------------+               |    |
-|      |                  |     |                |                       |               |    |
-|      +--------+---------+     |                |                       |               |    |
-|               |               |                |                       |               |    |
-|               |               |                |                       |               |    |
-|               |               |                |                       |               |    |
-|      +--------v----------+    |      +---------v--------+     +--------v---------+     |    |
-|      |                   |    |      |                  |     |                  |     |    |
-|      | Index Management  |    |      |  Flow Management |     |  Flow Stats      |     |    |
-|      |                   |    |      |                  |     |  Collector       |     |    |
-|      +--------+----------+    |      +---------^---+----+     +--------+---------+     |    |
-|               |               |                |   |                   |               |    |
-|               |               |                |   |                   v-------------->+    |
-|               |               |                |   v                                        |
-|               |               |                |   +--------------------------------------->+
-|      +--------v----------+    |      +---------+---+----+
-|      |                   |    |      |                  |
-|      | Flow KSync        |    |      |                  |
-|      |                   |    |      |                  |
-|      +--------+----------+    |      +------------------+
-+---------------|---------------+
-                |
-       +--------v----------+
-       |                   |
-       | KSync Socket      |
-       |                   |
-       +-------------------+
-                |
-                |
-                |
-                |
-       +--------v----------+
-       |                   |
-       | VRouter           |
-       |                   |
-       +-------------------+
-
+               +------------------+
+               |                  |
+               | Pkt Receive      |
+               |                  |
+               +--------+---------+
+                        |
+                        |
+               +--------v---------+
+               |                  |
+               | Pkt Handler      |
+               |                  |
+               +--------+---------+
+                        | 1:N
+                        |
+                        |   <-------------------------------------------------------------------------+
+                        |   |                                                                         ^
+                        |   |      <-------------------------------------------------------------+    |
+                        |   |      |                                                             ^    |
+        +---------------v---v------v----+                                                        |    |
+        |                               |                                                        |    |
+        |      +------------------+     |                                                        |    |
+        |      |                  |     |                                                        |    |
+        |      | Flow Setup       |     |                                                        |    |
+        |      |                  |     |                                                        |    |
+        |      +--------+---------+     |                                                        |    |
+        |               |               |                                                        |    |
+        |               |               |                                                        |    |
+        |               |               |                                                        |    |
+        |      +--------v---------+     |                                                        |    |
+        |      |                  |     |                                                        |    |
+        |      | Flow Table       +-----+----------------+-----------------------+               |    |
+        |      |                  |     |                |                       |               |    |
+        |      +--------+---------+     |                |                       |               |    |
+        |               |               |                |                       |               |    |
+        |               |               |                |                       |               |    |
+        |               |               |                |                       |               |    |
+        |      +--------v----------+    |      +---------v--------+     +--------v---------+     |    |
+        |      |                   |    |      |                  |     |                  |     |    |
+        |      | Index Management  |    |      |  Flow Management |     |  Flow Stats      |     |    |
+        |      |                   |    |      |                  |     |  Collector       |     |    |
+        |      +--------+----------+    |      +---------^---+----+     +--------+---------+     |    |
+        |               |               |                |   |                   |               |    |
+        |               |               |                |   |                   v-------------->+    |
+        |               |               |                |   v                                        |
+        |               |               |                |   +--------------------------------------->+
+        |      +--------v----------+    |      +---------+---+----+
+        |      |                   |    |      |                  |
+        |      | Flow KSync        |    |      |                  |
+        |      |                   |    |      |                  |
+        |      +--------+----------+    |      +------------------+
+        +---------------|---------------+
+                        |
+               +--------v----------+
+               |                   |
+               | KSync Socket      |
+               |                   |
+               +-------------------+
+                        |
+                        |
+                        |
+                        |
+               +--------v----------+
+               |                   |
+               | VRouter           |
+               |                   |
+               +-------------------+
 Agent receives flow setup notification from pkt0 interfaces. The packet handler
 module registers pkt0 interface with ASIO to get notifications.
 
