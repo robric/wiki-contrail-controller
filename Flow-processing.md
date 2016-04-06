@@ -1,4 +1,4 @@
-* # Overview
+# Overview
 Contrail uses flows to implement following features (as of R3.0)
   - Network Policy
   - Security Group
