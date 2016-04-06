@@ -1,14 +1,14 @@
-# Overview
+* # Overview
 Contrail uses flows to implement following features (as of R3.0)
-         - Network Policy
-         - Security Group
-         - ECMP
-         - RPF Check
-         - Different type of NAT used for
-           - Floating-IP
-           - Link-local services
-           - Metadata services
-           - BGP As a Service
+  - Network Policy
+  - Security Group
+  - ECMP
+  - RPF Check
+  - Different type of NAT used for
+  - Floating-IP
+  - Link-local services
+  - Metadata services
+  - BGP As a Service
 
 # Flows in VRouter
 
