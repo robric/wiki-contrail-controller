@@ -154,6 +154,9 @@ All packets exchanged between agent and vrouter will have a proprietary header g
 
 The packet receive notification is received in ASIO context. Agent does not do any processing in the ASIO context. All packet processing is done in "Packet Handler" module.
 
+## Dropstats counters
+<TODO - Document dropstats relavent to flows>
+
 #Flows in Agent
 
 contrail-vrouter-agent is responsible to manage the flows in vrouter. Agent
@@ -363,8 +366,7 @@ The Flow management module maintains following information to track dependency b
 
 When it gets notification for add/change/delete of flow, it will update the Flow-to-DBEntry tree with latest dependency information.
 
-The processing on notification for a DBEntry depends on the the type of DBEntry,
-
+The processing on notification for a DBEntry depends on the the type of DBEntry, <TODO>
 
 ### Flow Stats Collector
 
@@ -387,4 +389,12 @@ The ageing algorithm can be summarised as below. The algorithm is run every 50-m
                     - Enqueue message to age the flow
     - Store the next-flow to visit in next-iteration
 
+#### Flow Table memory mapped to agent
+<TODO>
+
 # Flow setup events
+The sequence of events that happen for setting-up a flow are given below,
+
+1 VRouter decides that a packet needs flow
+2 VRouter forms the key for flow
+3 
