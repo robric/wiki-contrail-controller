@@ -173,44 +173,44 @@ The diagram below gives summary of flow processing,
                | Pkt Handler      |
                |                  |
                +--------+---------+
-                        | 1:N
+                        | 1:N (Choose partition based on hash of 5-tuple)
                         |
-                        |   <-------------------------------------------------------------------+
-                        |   |                                                                   ^
-                        |   |      <-------------------------------------------------------+    |
-                        |   |      |                                                       ^    |
-        +---------------v---v------v----+                                                  |    |
-        |                               |                                                  |    |
-        |      +------------------+     |                                                  |    |
-        |      |                  |     |                                                  |    |
-        |      | Flow Setup       |     |                                                  |    |
-        |      |                  |     |                                                  |    |
-        |      +--------+---------+     |                                                  |    |
-        |               |               |                                                  |    |
-        |               |               |                                                  |    |
-        |               |               |                                                  |    |
-        |      +--------v---------+     |                                                  |    |
-        |      |                  |     |                                                  |    |
-        |      | Flow Table       +-----+--------------+---------------------+             |    |
-        |      |                  |     |              |                     |             |    |
-        |      +--------+---------+     |              |                     |             |    |
-        |               |               |              |                     |             |    |
-        |               |               |              |                     |             |    |
-        |               |               |              |                     |             |    |
-        |      +--------v----------+    |    +---------v--------+   +--------v---------+   |    |
-        |      |                   |    |    |                  |   |                  |   |    |
-        |      | Index Management  |    |    |  Flow Management |   |  Flow Stats      |   |    |
-        |      |                   |    |    |                  |   |  Collector       |   |    |
-        |      +--------+----------+    |    +---------^---+----+   +--------+---------+   |    |
-        |               |               |              |   |                 |             |    |
-        |               |               |              |   |                 v------------>+    |
-        |               |               |              |   v                                    |
-        |               |               |              |   +----------------------------------->+
-        |      +--------v----------+    |    +---------+---+----+
-        |      |                   |    |    |                  |
-        |      | Flow KSync        |    |    | DB Clients       |
-        |      |                   |    |    |                  |
-        |      +--------+----------+    |    +------------------+
+                        |   <-----------------------------------------------------------------+
+                        |   |                                                                 ^
+                        |   |      <-----------------------------------------------------+    |
+                        |   |      |                                                     ^    |
+        +---------------v---v------v----+                                                |    |
+        |                               |                                                |    |
+        |      +------------------+     |                                                |    |
+        |      |                  |     |                                                |    |
+        |      | Flow Setup       |     |                                                |    |
+        |      |                  |     |                                                |    |
+        |      +--------+---------+     |                                                |    |
+        |               |               |                                                |    |
+        |               |               |                                                |    |
+        |               |               |                                                |    |
+        |      +--------v---------+     |                                                |    |
+        |      |                  |     |                                                |    |
+        |      | Flow Table       +-----+------------+---------------------+             |    |
+        |      |                  |     |            |                     |             |    |
+        |      +--------+---------+     |            |                     |             |    |
+        |               |               |            |                     |             |    |
+        |               |               |            |                     |             |    |
+        |               |               |            |                     |             |    |
+        |      +--------v----------+    |  +---------v--------+   +--------v---------+   |    |
+        |      |                   |    |  |                  |   |                  |   |    |
+        |      | Index Management  |    |  |  Flow Management |   |  Flow Stats      |   |    |
+        |      |                   |    |  |                  |   |  Collector       |   |    |
+        |      +--------+----------+    |  +---------^---+----+   +--------+---------+   |    |
+        |               |               |            |   |                 |             |    |
+        |               |               |            |   |                 v------------>+    |
+        |               |               |            |   v                                    |
+        |               |               |            |   +----------------------------------->+
+        |      +--------v----------+    |  +---------+---+----+
+        |      |                   |    |  |                  |
+        |      | Flow KSync        |    |  | DB Clients       |
+        |      |                   |    |  |                  |
+        |      +--------+----------+    |  +------------------+
         +---------------|---------------+
                         |
                +--------v----------+
@@ -250,24 +250,49 @@ Post classification, packet is enqueued to the right module.
 
 An overview of packet parsing is given below,
 
-        - Decapsulate packet if dmac matches vhost-mac and destination-ip
-          matches agent ip-address on fabric
-          Decapsulate the pacekt if it has tunnel headers
-        - If packet is TCP/UDP/SCTP packet
-            Pick port-numbers from L4 header
-        - If packet is ICMP echo request
-            Set sport = ICMP Echo request indentifier
-        - If packet is ICMP error
-            Parse inner payload to get the 5 tuple
+    - Packet received from fabric-interface ?
+        - Validate Outer Ethernet header
+            - Dest-MAC should be that of fabric-interface
+        - Validate outer IP header
+            - Dest-IP should be that of vhost interface
+        - Extract MPLS Label/VxLan-ID from the tunnel
+        - Strip Tunnel header
+        - Is tunnel-type MPLSoGRE or MPLSoUDP
+            - If MPLS label points to layer3 next-hop
+                - Do "IP Parsing"
+            - Else
+                - Do "Ethernet Parsing"
+        - Is tunnel-type VxLAN
+            - Do "Ethernet Parsing"
+    - Packet received from a VM ?
+        - Do "Ethernet Parsing"
+
+    Ethernet Parsing:
+    - Do lookup into bridge-table for dest-mac
+        - If dest-mac hits route with receive-nh
+            - Mark flow as L3-Flow
+        - Else
+            - Mark flow as L2-Flow
+        - Parse VLAN header if present
+    - Do "IP Parsing"
+
+    IP Parsing:
+    - If protocol is TCP/UDP/SCTP
+        - Set source-port and dest-port based on L4 headers
+    - If protocol is ICMP
+        - If ICMP Echo packet
+            - Set source-port = ICMP Identifier
+        - If ICMP Destination Unreachable
+            - Set 5-tuple from the inner payload of ICMP packet
 
 ### Flow Module
-Flow module consits of following sub-modules
+Flow module implements horizontal scaling to support high flow rates. By default, it there are 4 "partitions". Each partition can run in parallel to other partitions. Flows are distributed to partitions by hashing 5-tuple in the packet. Only the forward flow trapped by vrouter is hashed to find the partition. The reverse flow will always use same partition as forward flow.
+
+Each flow partition runs following sub-module in sequence,
 - Flow Handler
 - Flow Table Management
 - Index Management
 - Flow KSync
-
-The Flow Module runs in multiple threads to support horizontal scaling. Flows are distributed across the threads by hashing 5-tuple in the packet. Flow module ensures that both forward and reverse flows are always in the same partition.
 
 #### Flow Handler
 Flow Handler receives parsed packet from Packet Handler module.
@@ -281,31 +306,85 @@ This module computes the attributes for forward flow and the reverse flows. A fl
 - Linklocal Flows
 
 #### Flow Table
-- Flow-table stores all flow-entries in a given partition.
+- Flow-table maintains a tree of all flow-entries for given partition.
 - Identifies duplicate flows
-- Does lookup into network-policy and security-groups
+- Do policy match by implementing lookup into network-policy and security-groups
+- Mark flows in inconsistent state as Short-Flow
+    - Ex. Transition from NAT to Non-NAT flow
+- Notify Flow Management module of add/change/delete of flows  
+- Invoke Index Manager of the new flow
 
 #### Index Management
-- Responsible to manage flow-index
-- Identifies eviction of flows
-- 
+There is difference in key between VRouter module and Agent module. VRouter uses flow-handle as key for flows and Agent uses the 6-tuple as key. Due to this inconsistency, its possible that agent will see more than one flows using same index (as transitionary state).
+
+The Index Manager module ensures that only one flow will actively use an index. It makes use of Gen-Id for this purpose. Flow with highest value of Gen-Id can own the index and do operations to the VRouter. Flows having older Gen-Id are treated as evicted flows and get deleted.
+
+Once Index Manager gives ownership of an index to a flow, it will invoke "Flow KSync" module to send messages to VRouter.
 
 #### Flow KSync
+This module has 2 main functionality,
+
+1. Ensure object dependencies
+
+A flow can refer to next-hops and mirror-entries thru indexes. This module ensures that the nexthop and mirror index pointed by flow are programmed to VRouter before flow is programmed.
+
+KSync provides a mechanism to ensure the dependencies listed above. But, KSync dependency tracking is not multi-thread safe and it expects that flow setup does not run when KSync messages are processed. As a result, the Flow KSync module supports simple retry mechanism to ensure dependencies instead of using KSync dependency tracking.
+
+2. Encode of messages
+This module is responsible to encode/decode Flow messages to VRouter. The messages are enqueued to KSync Socket after encode.
 
 ### KSync Socket
 
-### VRouter
+KSync Socket implements a queue. Any module wanting to send messages to VRouter enqueues message to the queue. The KSync Socket module will bunch the requests together and send message to VRouter.
+
+### Flow DB Client
+The "Flow Handler" module will setup based on the current contents of various DBTables. When configuration changes (ex. change in security-group, network-pocicy etc...), the flows need to be reevaluated to be consistent with latest configuration. The "Flow DB Client" and "Flow Management" modules keeps the flow action consistent with latest configuration.
+
+The "Flow DB Client" registers with DBTables of interest - 
+- Interface
+- Virtual-Network
+- NextHop
+- Route
+- ACL/Security-Group
+
+It gets notification about add/delete/change of DBEntries. On receiving notification, it checks if fields of interest to flow are modified (ex: security-group changed in Interface notification). If so, it will enqueue a request to "Flow Management" module to handle the notification. Its not a good idea to do large computation in notification context, hence it only enqueues a message to "Flow Management" module.
 
 ### Flow Management
 
-### DB Client
+The "Flow Management" module gets different type of notifications,
+
+- Flow add/change/delete from "Flow Table Management" module
+- DB Entries add/change/delete from "DB Client" module
+
+The Flow management module maintains following information to track dependency between flow and DBEntries,
+
+- Flow to list of DBEntries it is dependent on (say Flow-to-DBEntry tree)
+- DBEntry to list of flows dependent on the DBEntry (say DBEntry-to-Flow tree).
+
+When it gets notification for add/change/delete of flow, it will update the Flow-to-DBEntry tree with latest dependency information.
+
+The processing on notification for a DBEntry depends on the the type of DBEntry,
+
 
 ### Flow Stats Collector
 
-Agent receives flow setup notification from pkt0 interfaces. The packet handler
-module registers pkt0 interface with ASIO to get notifications.
+The Flow Stats collector is responsible for ageing of flows.
 
+The ageing algorithm has following parameters,
+- Ageing time. By default, ageing time is 180 seconds.
+- Scan interval. This is time by which complete flow-table is scanned once. This is set to 25% of the ageing time. As a result, flow-ageing time can have tolerance of 25% of ageing time.
 
+The ageing algorithm can be summarised as below. The algorithm is run every 50-msec
 
+    - Compute number of flow-entries to visit
+        - This is a function of timer (50 msec), scan-interval (25% of ageing time) and number of flow-entries managed by this timer.
+    - Repeat for flows identified above
+        - Query stats for the flow from memory mapped flow-table
+            - If there is change in stats
+                - Update active time in the flow
+            - If there is no change in stats
+                - If flow is inactive for > ageing-time
+                    - Enqueue message to age the flow
+    - Store the next-flow to visit in next-iteration
 
 # Flow setup events
