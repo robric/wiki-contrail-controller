@@ -69,12 +69,94 @@ The data part of flow contains following information,
   - VRF
     Changes VRF for the packet to value configured
 
+  - Gen-Id
+    This is an 8-bit number representing generation-id for the flow. Every time a hash entry is reused for a flow, the gen-id is incremented.
+
 Contrail does not use flow to make forwarding decisions in the flows. However,
 flows can influence forwarding decision (NAT rewrites, VRF Translation and
 choosing ECMP members)
 
-Flows in contrail-vrouter-agent
--------------------------------
+## Flow debug output
+A flow in vrouter is shown as below,
+
+    Entries: Created 86315592 Added 86305583 Processed 86315016 Used Overflow entries 127
+    (Created Flows/CPU: 2 2 0 0 3 0 0 1 0 6 0 0 4 0 0 0 0 0 0 34389347 51926223 0 0 0 4 0 0 0 0 0 0 0)(oflows 0)
+
+    Action:F=Forward, D=Drop N=NAT(S=SNAT, D=DNAT, Ps=SPAT, Pd=DPAT, L=Link Local Port)
+    Other:K(nh)=Key_Nexthop, S(nh)=RPF_Nexthop
+    Flags:E=Evicted, Ec=Evict Candidate, N=New Flow, M=Modified
+    TCP(r=reverse):S=SYN, F=FIN, R=RST, C=HalfClose, E=Established, D=Dead
+
+    Index                Source:Port/Destination:Port                      Proto(V)
+    -----------------------------------------------------------------------------------
+    25<=>2811240      1.1.1.3:63                                         17 (1)
+                      8.0.75.57:63
+    (Gen: 243, K(nh):12, Action:F, Flags:, S(nh):12,  Stats:1/88,  SPort 58395)
+
+The fields used are,
+
+***_Entries: Created 86315592 Added 86305583 Processed 86315016 Used Overflow entries 127_***
+
+This line give summary statistics for the flow.
+
+
+***_(Created Flows/CPU: 2 2 0 0 3 0 0 1 0 6 0 0 4 0 0 0 0 0 0 34389347 51926223 0 0 0 4 0 0 0 0 0 0 0)(oflows 0)_***
+
+This line give number of flow created on per-cpu basis and also number of overflow entries currently in use.
+
+
+***Gen*** : Represents generation-id for the flow
+
+***K(nh)*** : Represents nh-id for the flow
+
+***Action*** : Action for the flow
+
+***S(nh)*** : This is nexthop used for RPF checks
+
+***Stats*** : Packet and Bytes counts for the flow. Updated when a packet hits the flow.
+
+***SPort*** : Specifies the source-port used when packet is encapsulated in MPLSoUDP or VxLAN tunnels.
+
+## Organization of Flow-Table
+Flow table is organised as a hash-table with 4 entries per-bucket. Hash collision are resolved by allocating entries from an overflow table. The default size of hash-table is 512K entries (128K buckets) and overflow table is 8K entries. When a bucket has no empty slots, an entry from overflow table is allocated and linked to the bucket. The overflow entry is freed when flow is deleted.
+
+The size of tables can be modified by setting the vrouter module parameters vr_flow_entries and vr_oflow_entries.
+
+It is recommended that overflow-table should be atleast twice the number of expected flows and the overflow entries must be atleast 25% of the flow-table size
+
+# AgentHdr format
+
+All packets exchanged between agent and vrouter will have a proprietary header given below.
+ 
+     0                        16                         31
+     +--------------------------+--------------------------+
+     |    ifindex               | vrf                      |
+     +--------------------------+--------------------------+
+     |    command               | prameter-1               |
+     +--------------------------+--------------------------+
+     |    parameter-1           | parameter-2              |
+     +--------------------------+--------------------------+
+     |    parameter-2           | parameter-3              |
+     +--------------------------+--------------------------+
+     |    parameter-3           | parameter-4              |
+     +--------------------------+--------------------------+
+     |    parameter-4           | parameter-5              |
+     +--------------------------+--------------------------+
+     |    parameter-5           | Unused                   |
+     +--------------------------+--------------------------+
+
+- ifindex : Interface index for the ingress interface. Can be fabric interface when packet is received on fabric or vm-interface.
+- vrf : vrf-index for the packet
+- parameter-1 : Flow-handle allocated by vrouter for the flow
+- parameter-2 : 
+- parameter-3 : 
+- parameter-4 : 
+- parameter-5 : Gen-Id for the flow
+
+The packet receive notification is received in ASIO context. Agent does not do any processing in the ASIO context. All packet processing is done in "Packet Handler" module.
+
+#Flows in Agent
+
 contrail-vrouter-agent is responsible to manage the flows in vrouter. Agent
 applies policies rules and computes appropriate actions for the flows.
 
@@ -82,7 +164,7 @@ The diagram below gives summary of flow processing,
 
                +------------------+
                |                  |
-               | Pkt Receive      |
+               |     pkt0 Rx      |
                |                  |
                +--------+---------+
                         |
@@ -94,40 +176,40 @@ The diagram below gives summary of flow processing,
                +--------+---------+
                         | 1:N
                         |
-                        |   <-------------------------------------------------------------------------+
-                        |   |                                                                         ^
-                        |   |      <-------------------------------------------------------------+    |
-                        |   |      |                                                             ^    |
-        +---------------v---v------v----+                                                        |    |
-        |                               |                                                        |    |
-        |      +------------------+     |                                                        |    |
-        |      |                  |     |                                                        |    |
-        |      | Flow Setup       |     |                                                        |    |
-        |      |                  |     |                                                        |    |
-        |      +--------+---------+     |                                                        |    |
-        |               |               |                                                        |    |
-        |               |               |                                                        |    |
-        |               |               |                                                        |    |
-        |      +--------v---------+     |                                                        |    |
-        |      |                  |     |                                                        |    |
-        |      | Flow Table       +-----+----------------+-----------------------+               |    |
-        |      |                  |     |                |                       |               |    |
-        |      +--------+---------+     |                |                       |               |    |
-        |               |               |                |                       |               |    |
-        |               |               |                |                       |               |    |
-        |               |               |                |                       |               |    |
-        |      +--------v----------+    |      +---------v--------+     +--------v---------+     |    |
-        |      |                   |    |      |                  |     |                  |     |    |
-        |      | Index Management  |    |      |  Flow Management |     |  Flow Stats      |     |    |
-        |      |                   |    |      |                  |     |  Collector       |     |    |
-        |      +--------+----------+    |      +---------^---+----+     +--------+---------+     |    |
-        |               |               |                |   |                   |               |    |
-        |               |               |                |   |                   v-------------->+    |
-        |               |               |                |   v                                        |
-        |               |               |                |   +--------------------------------------->+
+                        |   <-----------------------------------------------------------------------+
+                        |   |                                                                       ^
+                        |   |      <-----------------------------------------------------------+    |
+                        |   |      |                                                           ^    |
+        +---------------v---v------v----+                                                      |    |
+        |                               |                                                      |    |
+        |      +------------------+     |                                                      |    |
+        |      |                  |     |                                                      |    |
+        |      | Flow Setup       |     |                                                      |    |
+        |      |                  |     |                                                      |    |
+        |      +--------+---------+     |                                                      |    |
+        |               |               |                                                      |    |
+        |               |               |                                                      |    |
+        |               |               |                                                      |    |
+        |      +--------v---------+     |                                                      |    |
+        |      |                  |     |                                                      |    |
+        |      | Flow Table       +-----+----------------+-----------------------+             |    |
+        |      |                  |     |                |                       |             |    |
+        |      +--------+---------+     |                |                       |             |    |
+        |               |               |                |                       |             |    |
+        |               |               |                |                       |             |    |
+        |               |               |                |                       |             |    |
+        |      +--------v----------+    |      +---------v--------+     +--------v---------+   |    |
+        |      |                   |    |      |                  |     |                  |   |    |
+        |      | Index Management  |    |      |  Flow Management |     |  Flow Stats      |   |    |
+        |      |                   |    |      |                  |     |  Collector       |   |    |
+        |      +--------+----------+    |      +---------^---+----+     +--------+---------+   |    |
+        |               |               |                |   |                   |             |    |
+        |               |               |                |   |                   v------------>+    |
+        |               |               |                |   v                                      |
+        |               |               |                |   +------------------------------------->+
         |      +--------v----------+    |      +---------+---+----+
         |      |                   |    |      |                  |
-        |      | Flow KSync        |    |      |                  |
+        |      | Flow KSync        |    |      | DB Clients       |
         |      |                   |    |      |                  |
         |      +--------+----------+    |      +------------------+
         +---------------|---------------+
@@ -146,12 +228,36 @@ The diagram below gives summary of flow processing,
                | VRouter           |
                |                   |
                +-------------------+
+
+
+
+### Pkt0 Rx
+This module manages pkt0 interface. All packets exchanged over pkt0 interface will be prepended with a proprietary agent-header. The format of agent header is, 
+
+Agent uses Boost ASIO library for I/O on the pkt0 interface. 
+### Packet Handler
+
+### Flow Handler
+
+### Flow Table
+
+### Index Management
+
+### Flow KSync
+
+### KSync Socket
+
+### VRouter
+
+### Flow Management
+
+### DB Client
+
+### Flow Stats Collector
+
 Agent receives flow setup notification from pkt0 interfaces. The packet handler
 module registers pkt0 interface with ASIO to get notifications.
 
-    1. Packet validation
-        - Validate the incoming interface
-        - Validate the incoming VRF
     2. Packet parse
         - Decapsulate packet if dmac matches vhost-mac and destination-ip
           matches agent ip-address on fabric
@@ -166,11 +272,4 @@ module registers pkt0 interface with ASIO to get notifications.
 
 
 
-Flow setup event sequences
---------------------------
-
-   VRouter                                Agent
-
-   Allocate a HOLD entry
-   Cache the packet
-   Send message to agent for flow setup
+# Flow setup events
