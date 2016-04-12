@@ -34,7 +34,7 @@ A flow in vrouter is shown as below,
 ### Flow Index
 The fields 25<=> 28140 indicate that the flow is allocated index 25 and its reverse flow is at index 28140.
 
-### Key Fields
+### Flow Key
 Flow key is made of <nh-id, src-ip, dst-ip, protocol, src-port, dst-port>
   - nh-id: This is nexthop-id for the flow. The nexthop-id value is based on the
          type of packet
@@ -49,7 +49,7 @@ Flow key is made of <nh-id, src-ip, dst-ip, protocol, src-port, dst-port>
 
 In the example above, key is <nh-id=17, src-ip=1.1.1.3, src-port=63, dst-ip=8.0.75.57, dst-port=63, protocol=17>
 
-### Flow-Data
+### Flow Data
 Data part of the flow contains following fields
 
 ***Gen*** :
@@ -116,12 +116,11 @@ This line give summary statistics for the flow.
 
 This line give number of flow created on per-cpu basis and also number of overflow entries currently in use.
 
-## Organization of Flow-Table
-Flow table is organised as a hash-table with 4 entries per-bucket. Hash collision are resolved by allocating entries from an overflow table. The default size of hash-table is 512K entries (128K buckets) and overflow table is 8K entries. When a bucket has no empty slots, an entry from overflow table is allocated and linked to the bucket. The overflow entry is freed when flow is deleted.
+## Organisation of Flow-Table
+Flow table is organised as a hash-table with 4 entries per-bucket. Hash collision are resolved by allocating entries from an overflow table. The overflow table acts as free-list that can be used when all entries in bucket are allocated. Once allocated, the overflow entries are freed when corresponding flow is deleted.
 
-The size of tables can be modified by setting the vrouter module parameters vr_flow_entries and vr_oflow_entries.
 
-It is recommended that overflow-table should be atleast twice the number of expected flows and the overflow entries must be atleast 25% of the flow-table size
+The default size of hash-table is 512K entries (128K buckets) and overflow table is 8K entries. The size of tables can be modified by setting the vrouter module parameters vr_flow_entries and vr_oflow_entries. It is recommended that overflow-table should be atleast twice the number of expected flows and the overflow entries must be atleast 25% of the flow-table size.
 
 # AgentHdr format
 
@@ -152,7 +151,7 @@ All packets exchanged between agent and vrouter will have a proprietary header g
 - parameter-4 : 
 - parameter-5 : Gen-Id for the flow
 
-The packet receive notification is received in ASIO context. Agent does not do any processing in the ASIO context. All packet processing is done in "Packet Handler" module.
+*NOTE: The contents of parameter-* fields vary based on command
 
 ## Dropstats counters
 <TODO - Document dropstats relavent to flows>
@@ -238,7 +237,7 @@ VRouter creates a pkt0 interface to exchange packets between agent and vrouter. 
 
 Agent opens a socket on pkt0 interface and registers with Boost ASIO library for I/O. Boost library notifies agent when a packet is received on the interface. On getting notification from Boost library, Agent reads the packet enqueues packet immediately to "Packet Handler" module without parsing the packet.
 
-Task Context : ASIO notification happens in context of main thread. Since main thread runs out of task library, the module should not access any databases managed in agent.
+**Task Context** : ASIO notification happens in context of main thread of agent process. Since main thread runs outside of task library, the module should not access any databases managed in agent. On receiving a packet, its is immediately enqueued to "Packet Handler"
 
 ### Packet Handler
 This module receives packet enqueued by "Pkt0 Rx" module. VRouter traps different type of packets to agent. Example, packet for flow setup, ping packets to gateway-ip, ARP response packets etc.
@@ -289,7 +288,7 @@ An overview of packet parsing is given below,
             - Set 5-tuple from the inner payload of ICMP packet
 
 ### Flow Module
-Flow module implements horizontal scaling to support high flow rates. By default, it there are 4 "partitions". Each partition can run in parallel to other partitions. Flows are distributed to partitions by hashing 5-tuple in the packet. Only the forward flow trapped by vrouter is hashed to find the partition. The reverse flow will always use same partition as forward flow.
+Flow module implements horizontal scaling to support high flow rates. By default, it there are 4 "partitions" which can run in parallel. Flows are distributed across partitions by hashing 5-tuple in the packet. Only the forward flow trapped by vrouter is hashed to a partition. A reverse flow will always use same partition as it corresponding forward flow.
 
 Each flow partition runs following sub-module in sequence,
 - Flow Handler
@@ -390,11 +389,75 @@ The ageing algorithm can be summarised as below. The algorithm is run every 50-m
     - Store the next-flow to visit in next-iteration
 
 #### Flow Table memory mapped to agent
-<TODO>
+On bootup, agent maps the flow-table in VRouter onto its memory-space. The memory-mapped table are used by Flow Stats module to query for flow statistics.
 
 # Flow setup events
 The sequence of events that happen for setting-up a flow are given below,
 
-1 VRouter decides that a packet needs flow
-2 VRouter forms the key for flow
-3 
+Flow-Setup Phase-1 : This phase is executed in VRouter
+
+
+    1 VRouter decides to trap flow-setup message
+    2 Check hash-entry already allocated for the flow
+    3 If hash-entry already allocated
+        3.1 Check how many packets cached in flow
+        3.2 If number of packets cached in flow > "Flow Cache Limit"
+            Drop packet and increment "Flow Cache Limit Exceeded"
+        3.3 Add packet to list of packets held on the flow
+        3.4 Increment "Flow Cache Limit" counter
+    4 Else /* hash-entry not allocated */
+        4.1 Is "Hold Flow Count Limit" exceeded (see 5.3)
+            Drop packet and increment "Flow Unusable" counter
+        4.2 Allocate an hash-entry
+            4.2.1 If hash-entry cannot be allocated
+                  Drop packet and increment "Flow Table Full" counter
+        4.3 Increment the "Hold Flow Count Limit"
+        4.4 Cache packet against the flow-entry allocated
+    5 Add AgentHdr and enqueue packet to pkt0 interface
+
+Flow-Setup Phase-2: This phase is executed in Agent
+
+
+    1  Pkt0 Rx module receives packet from pkt0 interface
+"flow-image.txt" 183 lines --39%--                                                                                                                     72,6          49%
+            This is not really error. It says VRouter already has flow
+            Goto 3.1
+        2.2 If error is ENOSPACE
+            Flow entry cannot be allocated for reverse flow
+            Make both forward and reverse flow as Short-Flow
+    3 Else /* VRouter returned success */
+        3.1 Update flow-index for the reverse-flow
+        3.2 Send message to VRouter to update forward-flow
+        3.3 Wait for VRouter response for forward-flow message
+
+
+Flow-Setup Phase-5: This phase is executed in VRouter
+    1 VRouter decodes message for reverse-flow
+    2 Flow message already has index in flow-table
+    3 Validate index in the flow-message
+       3.1 If no flow present at given index
+           3.1.1 Return ENOENT
+       3.2 If gen-id does not match for the flow
+           3.2.1 Return EBADF
+       3.3 If key in flow-entry and request do not match
+           3.3.2 Return EFAULT
+    4 If allocated-flow in HOLD state
+           3.1.1 Decrement "Flow Hold Limit Count"
+           3.1.2 Release packets cached against the flow
+    5 Update flow with new parameters in request
+
+Flow-Setup Phase-6: This phase is executed in Agent
+    1 Agent decodes response from VRouter
+    2 If VRouter returned error
+        2.1 If error is ENOENT
+            Make both forward and reverse flows as short-flow
+        2.2 If error is EBADF
+            Make both forward and reverse flows as short-flow
+        2.2 If error is EFAULT
+            Make both forward and reverse flows as short-flow
+        2.3 Return
+    3 Else /* VRouter returned success */
+        3.1 Flow state is synchronized between VRouter and Agent
+
+# Flow Audit
+Agent and VRouter exchange flow setup messages on pkt0 interface.
