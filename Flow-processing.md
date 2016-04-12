@@ -419,7 +419,42 @@ Flow-Setup Phase-2: This phase is executed in Agent
 
 
     1  Pkt0 Rx module receives packet from pkt0 interface
-"flow-image.txt" 183 lines --39%--                                                                                                                     72,6          49%
+    2  Enqueues packet to PacketHandler module
+    3  PacketModule enqueues request to one of the partitions
+       3.1 PacketHandler uses hash of 5-tuple to pick flow partition
+    4  Flow Module in agent computes both forward-flow and reverse-flow
+    5  Agent writes reverse flow first
+        5.1 Agent requests VRouter to allocate hash-entry for reverse-flow
+        5.2 Agent also links reverse-flow with the forward-flow
+            Note: Only reverse flow is linked to forward-flow at this time
+                  Forward flow is not linked to reverse flow yet
+    6 Agent waits for VRouter to allocate an entry for reverse flow
+
+
+Flow-Setup Phase-3: This phase is executed in VRouter
+
+
+    1 VRouter decodes message for reverse-flow
+    2 Check if hash-entry already allocated for the flow
+    3 If hash-entry already-allocated
+       3.1 If allocated-flow in HOLD state
+           3.1.1 Decrement "Flow Hold Limit Count"
+           3.1.2 Release packets cached against the flow
+       3.2 Update flow with new parameters in request
+       3.3 Return EEXIST error
+    4 Else
+       4.1 Allocate flow-entry
+       4.2 If flow-entry cannot be allocated
+           4.2.1 Return ENOSPACE
+       4.3 Return flow-index allocated
+
+
+Flow-Setup Phase-4: This phase is executed in Agent
+
+
+    1 Agent decodes response from VRouter
+    2 If VRouter returned error
+        2.1 If error is EEXIST
             This is not really error. It says VRouter already has flow
             Goto 3.1
         2.2 If error is ENOSPACE
@@ -432,6 +467,8 @@ Flow-Setup Phase-2: This phase is executed in Agent
 
 
 Flow-Setup Phase-5: This phase is executed in VRouter
+
+
     1 VRouter decodes message for reverse-flow
     2 Flow message already has index in flow-table
     3 Validate index in the flow-message
@@ -447,6 +484,8 @@ Flow-Setup Phase-5: This phase is executed in VRouter
     5 Update flow with new parameters in request
 
 Flow-Setup Phase-6: This phase is executed in Agent
+
+
     1 Agent decodes response from VRouter
     2 If VRouter returned error
         2.1 If error is ENOENT
