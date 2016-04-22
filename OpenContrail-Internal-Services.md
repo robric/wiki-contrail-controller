@@ -107,7 +107,7 @@
 
 #### Zookeeper
 * Read: None
-* Write: Register, first register, first being active. A callback is invoked if it is active. All other instances of schema transformer are passive and stuck at callback. Once the active one is down, one of the passive will be waked up by callback.
+* Write: Register, first register, first being active. A callback is invoked if it is active. All other instances of svc-monitor are passive and stuck at callback. Once the active one is down, one of the passive will be waked up by callback.
 
 #### Cassandra
 * Read: On startup to rebuild internal state from previous run, Ongoing reads of objects on message updates.
