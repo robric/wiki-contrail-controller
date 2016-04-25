@@ -26,6 +26,7 @@ Debug and Troubleshooting:
 * [Virtual DNS](vDNS-Debugging)
 * [Scenarios](Scenario-Troubleshooting)
 * [Dump sandesh trace buffer](Dump-sandesh-trace-buffer)
+* [Disk Performance for database](Disk-performance-debug)
 
 Maintenance Procedures:
 * [Removing + Adding DB node](Removing_Adding_DB_Node)
