@@ -7,7 +7,7 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 
 Note: In 3.1, GR support in contrail-vrouter-agent is not present. It is only in contrail-control, does this take into effect. In future releases, GR/LLGR support shall be extended to contrail-vrouter-agent as well thus keeping end-to-end traffic intact during agent restarts.
 
-## Some of the highlights of this feature are listed below
+## Feature highlights
 
 * Support to advertise GR and LLGR capabilities in BGP (By configuring non-zero restart time)
 * Support for GR and LLGR helper mode to retain routes even after sessions go down (By configuring helper mode)
