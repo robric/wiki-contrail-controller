@@ -12,6 +12,7 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 * Support for GR and LLGR helper mode to retain routes even after sessions go down (By configuring helper mode)
 * With GR is in effect, when ever a session down event is detected and close process is triggered, all routes (across all address families) are marked stale and remain eligible for best-path election for GracefulRestartTime duration (as exchanged)
 * With LLGR is in effect, stale routes can be retained for much longer time than however long allowed by GR alone. In this phase, route preference is brought down and best paths are recomputed. Also LLGR_STALE community is tagged for stale paths and re-advertised. However, if NO_LLGR community is associated with any received stale route, then such routes are not kept and deleted instead
+* After a certain time, if session comes back up, any remaining stale routes are deleted. If the session does not come back up, all retained stale routes are permanently deleted and withdrawn from advertised peers
 * GR/LLGR feature can be enabled for both BGP based and XMPP based peers
 * BGP GR/LLGR configuration resides under BgpRouter and BgpSessionAttributes configuration sections
 * XMPP GR/LLGR configuration resides under global-vrouter-config section
