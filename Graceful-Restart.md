@@ -1,7 +1,8 @@
 In Release 3.1, limited support to Graceful Restart (GR) and Long Lived Graceful Restart (LLGR) helper modes has been added to contrail-controller. This feature is deemed to be in "Beta" phase and not enabled by default.
 
 ## Reference
-GracefulRestart for BGP (and XMPP) follows [RFC4724](https://tools.ietf.org/html/rfc4724) specifications and LongLivedGracefulRestart feature follows [draft-uttaro-idr-bgp-persistence](https://tools.ietf.org/html/draft-uttaro-idr-bgp-persistence-03) specifications.
+* GracefulRestart for BGP (and XMPP) follows [RFC4724](https://tools.ietf.org/html/rfc4724) specifications
+* LongLivedGracefulRestart feature follows [draft-uttaro-idr-bgp-persistence](https://tools.ietf.org/html/draft-uttaro-idr-bgp-persistence-03) specifications.
 
 ## Applicability 
 When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all routes learned from the peer are deleted and also withdrawn immediately from advertised peers. This causes instantaneous disruption to traffic flowing end-to-end even if routes are kept inside vrouter kernel module (in data plane) intact. GracefulRestart and LongLivedGracefulRestart feature helps to alleviate this problem. When the session goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. If session comes back up and routes are relearned, then impact to the network can be significantly contained.
