@@ -16,8 +16,11 @@ The following features are supported for IPv6 as well in the overlay. The underl
 * UVEs
 
 Support for the following is not present for IPv6:
+* SNAT
+* LBaaS
 * IPv6 Fragmentation
 * Floating IP
 * Link local & metadata services
 * Diagnostics for IPv6
+* Device Manager
 * vCPE
