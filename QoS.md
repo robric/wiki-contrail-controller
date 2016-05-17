@@ -74,20 +74,30 @@ In the above example QOS config object DSCP values 10, 18 and 26 are mapped to f
 all the other IP packets are mapped to forwarding class with ID 2 which is *FC2*.
 Similarly all traffic with 802.1p value of 6 and 7 are mapped to forwarding class *FC1*, rest to *FC2*.
 
-## Example QoS config object on virtual-machine-interface, vhost or fabric interface 
-Lets apply above example QoS config on virtual-machine-interface or vhost or fabric interface
+##QoS config object marking on packet
+### Traffic originated by VMI
+1. If interface sends a IP packet with DSCP value to another VM in remote compute node, then this DSCP value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
+2. If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class's DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
+3. If VM sends a packet a IP packet with DSCP value to VM in same compute node, then DSCP value assigned forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
 
-1. If interface sends a IP packet with DSCP value *18*, then packet would be remarked with DSCP value *10* and enqueued to *queue 0* as specified by *FC1* with ID *1* 
-2. If interface sends a IP packet with DSCP value *22*, then packet would map to default rule which specifies that DSCP value *38* to be written and queued to queue *1* as specified by *FC2* with ID *2*
-3. If a layer 2 packet is received with 802.1p value of *5*, then packet would be remarked with 802.1p value of *7* and enqueue to *queue 0* as specified by *FC1*
+###Traffic destined to VM
+1. If a tunneled packet is received DSCP value in the tunnel IP header would be used to look in qos-config table and corresponding DSCP value would be written to inner payload IP header.
 
-## Example QoS config object on virtual-network.
-If the above example qos config is applied on virtual-network, then all the intra-vn traffic would be 
-subjected to the above translation rules.
+### Traffic from vhost interface
+QoS config can be applied on IP traffic coming vhost interface. DSCP value in packet would be used to lookup into cos-config specified on vhost, and corresponding forwarding-class would specified DSCP and 802.1p value would be rewritten on packet.
 
-## Example QOS config on network policy or SG.
-If the above example qos config is applies in policy, the all the packet matching that policy
-would be subjected to above translation rules.  
+### Traffic from fabric interface
+QoS config can be applied while receiving packet on ethernet interface of compute node. Based on DSCP and 802.1p value in packet corresponding forwarding-class DSCP, 802.1p values would be written.
+
+### Precedence of QoS bits in packet
+1. In IP packet DSCP value would be to lookup in DSCP table of qos-config.
+2. Non IP layer 2 traffic would use 802.1p value and lookup in 802.1p table of cos-config.
+
+### QoS config assignment on packet
+QoS config can be specified at multiple levels, following is the order of priority
+   1. QoS config on policy
+   2. QoS config on virtual-network
+   3. QoS config on virtual-machine-interface
 
 # Caveats
 1. NIC queues would be used.
