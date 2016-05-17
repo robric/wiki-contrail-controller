@@ -14,7 +14,8 @@ QoS feature in contrail would be supported from 3.1
 2. QoS config object: specifies a mapping from DSCP, 802.1p and MPLS EXP values to corresponding forwarding class. It also has a trusted mode to specify if QoS bits in packet should be honored or not.
     1. If packet is IP packet then DSCP map would be used to lookup and corresponding forwarding class will be applied.
     2. If packet is layer2 packet then 802.1p map would be used to lookup and corresponding forwarding class will be applied.
-    3. If its a MPLS tunneled packet and its has MPLS EXP values specified, then EXP bit value would be used to lookup into MPLS EXP map and corresponding forwarding class will be applied.    
+    3. If its a MPLS tunneled packet and its has MPLS EXP values specified, then EXP bit value would be used to lookup into MPLS EXP map and corresponding forwarding class will be applied.
+    4. If QoS config is untrusted then DSCP, 802.1p and EXP bits in packet would be ignored, all packets would be marked with same forwarding-class properties.
 
 >
 
@@ -73,14 +74,14 @@ all the other IP packets are mapped to forwarding class with ID 2 which is *FC2*
 Similarly all traffic with 802.1p value of 6 and 7 are mapped to forwarding class *FC1*, rest to *FC2*.
 
 ##QoS config object marking on packet
-### Traffic originated by VMI
+### Traffic originated by Virtual machine interface
 1. If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
 2. If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
-3. If VM sends a packet a IP packet to VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
+3. If VM sends an IP packet to VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
 
-###Traffic destined to VM
+###Traffic destined to Virtual machine interface
 1. If a tunneled packet is received DSCP value in the tunnel IP header would be used to look in qos-config table and corresponding DSCP value would be written to inner payload IP header.
-2. If VM receives a IP packet from VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
+2. If VM receives an IP packet from VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
 
 ### Traffic from vhost interface
 QoS config can be applied on IP traffic coming from vhost interface. DSCP value in packet would be used to lookup into cos-config object specified on vhost, and corresponding forwarding-class specified DSCP and 802.1p value would be rewritten on packet.
