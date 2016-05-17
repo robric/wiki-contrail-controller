@@ -8,12 +8,10 @@ QoS feature in contrail would be supported from 3.1
 
 ## Configuration objects.
 1. Forwarding-class: specifies knobs for marking and queuing. 
-    1. If packet is IP packet, then it specifes DSCP value to be written on packet  
-    2. If packet is non-IP layer-2 packet, then it specifies 802.1p value to be written on packet
-
-2. Queue: Specifies priority of the traffic, in future bandwidth properties can be set on this entity.
-
-3. QoS config object: specifies a mapping from DSCP, 802.1p and MPLS EXP values to corresponding forwarding class. It also has a trusted mode to specify if QoS bits in packet should be honored or not.
+    1. Specifies DSCP value, 802.1p and MPLS EXP values to be written on packet  
+    2. Specifies queue index to be used for packet.
+ 
+2. QoS config object: specifies a mapping from DSCP, 802.1p and MPLS EXP values to corresponding forwarding class. It also has a trusted mode to specify if QoS bits in packet should be honored or not.
     1. If packet is IP packet then DSCP map would be used to lookup and corresponding forwarding class will be applied.
     2. If packet is layer2 packet then 802.1p map would be used to lookup and corresponding forwarding class will be applied.
     3. If its a MPLS tunneled packet and its has MPLS EXP values specified, then EXP bit value would be used to lookup into MPLS EXP map and corresponding forwarding class will be applied.    
@@ -40,16 +38,16 @@ QOS config object can be specified on vhost and fabric interface so that underla
 
 >
             
-                        +------------------+    +------------+      +-------------+  
-                        + Virtual machine  +    +  Virtual   +      +  Policy/SG  + 
-                        + interface        +    +  network   +      +             +  
-                        +------------------+    +------------+      +-------------+
-                                |                     |                    |
-                                |                     V                    | 
-                                |            +--------------------+        |          +---------------+
-                                ---------->  +    QoS config      + <-----------------+  global qos   +   
-                                             +--------------------+      vhost/       +    config     +
-                                                                         fabric       +---------------+    
+                  +------------------+    +------------+      +-------------+  
+                  + Virtual machine  +    +  Virtual   +      +  Policy/SG  + 
+                  + interface        +    +  network   +      +             +  
+                  +------------------+    +------------+      +-------------+
+                            |                     |                    |
+                            |                     V                    | 
+                            |            +--------------------+ <------|     +---------------+
+                            ---------->  +    QoS config      + <------------+  global qos   +   
+                                         +--------------------+     vhost/   +    config     +
+                                                                    fabric   +---------------+    
 ## Example Forwarding class
 
 Name    |  ID | DSCP | 802.1p | MPLS EXP|Queue |
@@ -76,12 +74,13 @@ Similarly all traffic with 802.1p value of 6 and 7 are mapped to forwarding clas
 
 ##QoS config object marking on packet
 ### Traffic originated by VMI
-1. If interface sends a IP packet with DSCP value to another VM in remote compute node, then this DSCP value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
+1. If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
 2. If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
-3. If VM sends a packet a IP packet with DSCP value to VM in same compute node, then DSCP value assigned forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
+3. If VM sends a packet a IP packet to VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
 
 ###Traffic destined to VM
 1. If a tunneled packet is received DSCP value in the tunnel IP header would be used to look in qos-config table and corresponding DSCP value would be written to inner payload IP header.
+2. If VM receives a IP packet from VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
 
 ### Traffic from vhost interface
 QoS config can be applied on IP traffic coming from vhost interface. DSCP value in packet would be used to lookup into cos-config object specified on vhost, and corresponding forwarding-class specified DSCP and 802.1p value would be rewritten on packet.
@@ -100,5 +99,4 @@ QoS config can be specified at multiple levels, following is the order of priori
    3. QoS config specified on virtual-machine-interface
 
 # Caveats
-1. NIC queues would be used.
-1. Built in or default scheduler in NIC would be used.        
+Queuing and scheduling will not be supported in 3.1   
