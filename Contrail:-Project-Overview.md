@@ -53,7 +53,7 @@ Note: All the code is distributed with Apache 2.0 license.
 Developers can upstream their patches via OpenContrail CI process. The tools and workflow is similar to that in Openstack project. To get started:
 
 1. Sign the [contributor agreement](https://secure.echosign.com/public/hostedForm?formid=6G36BHPX974EXY)
-2. Have a Launchpad ID
+2. Create a Launchpad ID
 
 After that one can submit the patch to [review.opencontrail.org](https://review.opencontrail.org) by following the [CI document](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)). The CI tool enables code review and runs test script. After passing these steps code will be merged automatically to mainline.
 
@@ -84,7 +84,7 @@ Here are the pointers to Contrail documents:
 * Community contributed blogs on Contrail features & capabilities are at [http://opencontrail.org/blog/](http://opencontrail.org/blog/)
 
 ###### Support ######
-To get support on Contrail, join the mailing list as indicated in [http://opencontrail.org/community/](http://opencontrail.org/community/)
+To get support on Contrail, join the mailing list as indicated in [http://www.opencontrail.org/developer-resources/](http://www.opencontrail.org/developer-resources/)
 
 - - -
 
