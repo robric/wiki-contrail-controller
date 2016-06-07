@@ -1,25 +1,29 @@
 
 # Overview
-QoS in networking guarantees reliability, bandwidth, latency and better management of network traffic upon congestion. Network traffic gets marked with QoS bits (DSCP, 802.1p etc) which intermediate network switches and routes use to provide priority.
 
-#High level QOS model for contrail is following
-1. All packet forwarding devices e.g vrouter and gateway, together form a system.
-2. There interface to the system like tap interfaces and physical ports.
-3. There fabric interfaces where the overlay traffic is tunneled
-4. QOS is applied at ingress to the system. i.e traffic from interfaces to fabric.
-5. At egress packets will removed from their envolpes and sent interface queues based on forwarding class. No marking from envolope to innerpacket is considered at this time.
+QoS feature in networking provides the ability to control reliability, bandwidth and latency among other traffic management features. Network traffic can be marked with QoS bits (DSCP, 802.1p etc), which intermediate network switches and routers can use to provide service guarantees.
 
-Considereing above interfaces may belong to tenants or shared, however fabric interfaces are always shared and common property. Hence the traffic class in the underlay and marking on the fabric has to be controlled by the system admin. Admin may provision different classes of service on the fabric.
+#High level QOS model in Contrail
 
-This is achieved by two constructs
-* Queueing on the fabric interface, which may involve queues, scheduling of queues and drop policy
-* Forwarding class that controls how packets are sent to fabric. It involves marking and queue to use.
+1. All packet forwarding devices (for e.g.: vRouter and Gateway) together form a system.
+2. Interfaces to the system are ports from where system sends and receives packets, such as tap interfaces and physical ports.
+3. Fabric interfaces are interfaces where the overlay traffic is tunneled
+4. QOS is applied at ingress to the system, i.e traffic from interfaces to fabric.
+5. At egress, packets will be stripped off their tunnel headers and sent to interface queues based on forwarding class. No marking from the outer packet to innerpacket is considered at this time.
 
-Tenants have ability to define which forwarding class their traffic can use. So in QOS config they can, decide which packets gets to use what forwarding class.
+Unlike other interfaces that may not be shared, fabric interfaces are always shared, and thus, a common property. Hence, the traffic classes and the QOS marking on the fabric has to be controlled by the System Administrator. Administrator may provision different classes of service on the fabric.
 
-QOS config object has mapping table from incoming DSCP or .1p to forwarding class mapping.
+This is achieved by two constructs:
 
-Additionally QOS config can be applied to virtual-network, interface or network-policy.
+* Queueing on the fabric interface, which involves queues, scheduling of queues and drop policy
+  AND
+* Forwarding class, which involves marking and identifying which queue to use and thus controls how packets are sent to fabric.
+
+Tenants have the ability to define which forwarding class their traffic can use. So, in QOS config, they can decide which packets can use what forwarding class.
+
+QOS config object has a mapping table from incoming DSCP or .1p to forwarding class mapping.
+
+Additionally QOS config can be applied to a virtual-network, interface or network-policy.
 
 #Release
 1. QOS config and forwarding class will be implemented as part of 3.1
