@@ -225,3 +225,61 @@ Just creating an interface using '--create' will not be of any use. To send rece
 
 To add an interface to vRouter, one will have to specify the 'vrf' to which the interface belongs to. One also will have to specify the type of the interface (as explained earlier, type can be 'vhost', 'physical', 'virtual', etc.:). '--xconnect' option is specific for 'vhost' type interface. It just specifies the physical interface to which this 'vhost' interface has to be associated to. This is just an added information to the vRouter to help it route packets to the physical interface in case the agent keeps crashing or is not in a sane state and vRouter does not have any information to forward packets. The '--xconnect' option is optional.
 
+
+<<< 
+
+==== *3.0 Dropstats*  
+
+The _dropstats_ utility provides statistics on the packets dropped in the vrouter. A summary of what each count means is provided below.
+
+----
+GARP                          Number of GARP messages seen
+ARP no where to go            (Currently unused)
+Invalid ARPs                  ARP format error / ARP packet is not meant to be answered by this Vrouter
+
+Invalid IF                    Interface is not present in vrouter
+Trap No IF                    Inteface pkt0 is not found while attempting to trap a packet
+IF TX Discard                 Interface is not initialized
+IF Drop                       Packet dropped in interface RX/TX path
+IF RX Discard                 Interface is not initialized in the Rx path
+
+Flow Unusable                 Flow Hold Count is more than the flow hold limit
+Flow No Memory                (Currently unused)
+Flow Table Full               Flow table is full
+Flow NAT no flow              Packet had to be NATed and no reverse flow is found
+Flow Action Drop              Flow action is drop
+Flow Action Invalid           Flow action is not valid
+Flow Invalid Protocol         (currently unused)
+Flow Queue Limit Exceeded     More than three packets received before flow processing is completed
+
+Discards                      Packets going to discard Nexthop
+TTL Exceeded                  Packets whose TTL became zero
+Mcast Clone Fail              Cloning of Multicast buffer failed
+Cloned Original               Original packet is dropped, after action is taken on cloned packet
+
+Invalid NH                    Nexthop is not valid
+Invalid Label                 Label received in the packet is Invalid
+Invalid Protocol              Protocols packet not handled by vrouter
+Rewrite Fail                  Failure while applying L2 header to packet
+Invalid Mcast Source          Source address is not part of multicast tree
+
+Push Fails                    Increasing the length of buffer failed
+Pull Fails                    Decreasing the length of buffer failed
+Duplicated                    Trap packet to Agent has been truncated and original packet is dropped
+Head Alloc Fails              (Currently unused)
+Head Space Reserve Fails      (Currently unused)
+PCOW fails                    (Cloning and copying of buffer failed)
+Invalid Packets               Format of the received packet is Invalid
+
+Misc                          Packet dropped for miscellaneous reasons
+Nowhere to go                 Packet dropped because intended L3 or L2 processing failed
+Checksum errors               Packet dropped because of Checksum failure
+No Fmd                        No forwarding metadata to process the packet
+Invalid VNID                  Wrong VNI/Vxlan Id received in the packet
+Fragment errors               Enqueueing to fragment queue failed
+Invalid Source                RPF check on the packet failed
+Jumbo Mcast Pkt with DF Bit   Multicast packet more than MTU size is received
+ARP No Route                  (Currently unused)
+ARP Reply No Route            (Currently unused)
+No L2 Route                   L2 route is missing
+----
