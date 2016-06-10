@@ -17,7 +17,7 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 * BGP GR/LLGR configuration resides under BgpRouter and BgpSessionAttributes configuration sections
 * XMPP GR/LLGR configuration resides under global-vrouter-config section
 
-****Configuration parameters****
+***Configuration parameters***
 
 1. GracefulRestart Time interval in seconds
 2. LongLivedGracefulRestart Time interval in seconds
