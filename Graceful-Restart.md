@@ -17,6 +17,12 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 * BGP GR/LLGR configuration resides under BgpRouter and BgpSessionAttributes configuration sections
 * XMPP GR/LLGR configuration resides under global-vrouter-config section
 
+****Configuration parameters****
+
+1. GracefulRestart Time interval in seconds
+2. LongLivedGracefulRestart Time interval in seconds
+3. EndOfRib receive timer interval in seconds (Time to wait before GR exit and routes sweeping)
+
 ### Caveats (3.1)
 * GR support in contrail-vrouter-agent is not present. It is only in contrail-control, does this take into effect. In future releases, GR/LLGR support shall be extended to contrail-vrouter-agent as well thus keeping end-to-end traffic intact during agent restarts.
 * GR/LLGR feature with a peer comes into effect either to all negotiated address-families or to none. i.e, if a peer signals support to GR/LLGR only for a subset of negotiated address families (Via bgp GR/LLGR capability advertisement), then GR helper mode does not come into effect for all of the negotiated address families
