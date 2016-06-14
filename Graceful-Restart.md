@@ -23,7 +23,7 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 2. LongLivedGracefulRestart Time interval in seconds
 3. EndOfRib receive timer interval in seconds (Time to wait before GR exit and routes sweeping)
 
-GR helper mode can be disabled for BGP and/or XMPP sessions by following these steps in contrail-control node.
+GR helper mode can be disabled for BGP and/or XMPP sessions by following these steps in contrail-control node. For BGP, restart time shall still be advertised in GR capability, as configured. This lets one still avail gr-helper mode from the bgp peer (JUNOS MX) for graceful restarts of contrail-control process.
 
 1. openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_disable 1
 2. openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_disable 1
