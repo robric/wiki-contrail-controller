@@ -23,6 +23,11 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 2. LongLivedGracefulRestart Time interval in seconds
 3. EndOfRib receive timer interval in seconds (Time to wait before GR exit and routes sweeping)
 
+GR helper mode can be disabled for BGP and/or XMPP sessions by following these steps in contrail-control node.
+1. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_disable 1
+2. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_disable 1
+3. service contrail-control restart
+
 ### Caveats (3.1)
 * GR support in contrail-vrouter-agent is not present. It is only in contrail-control, does this take into effect. In future releases, GR/LLGR support shall be extended to contrail-vrouter-agent as well thus keeping end-to-end traffic intact during agent restarts.
 * GR/LLGR feature with a peer comes into effect either to all negotiated address-families or to none. i.e, if a peer signals support to GR/LLGR only for a subset of negotiated address families (Via bgp GR/LLGR capability advertisement), then GR helper mode does not come into effect for all of the negotiated address families
