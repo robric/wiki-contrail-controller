@@ -24,6 +24,7 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 3. EndOfRib receive timer interval in seconds (Time to wait before GR exit and routes sweeping)
 
 GR helper mode can be disabled for BGP and/or XMPP sessions by following these steps in contrail-control node.
+
 1. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_disable 1
 2. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_disable 1
 3. service contrail-control restart
