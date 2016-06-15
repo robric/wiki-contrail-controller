@@ -3,6 +3,7 @@ In Release 3.1, limited support to Graceful Restart (GR) and Long Lived Graceful
 ### Reference
 * GracefulRestart for BGP (and XMPP) follows [RFC4724](https://tools.ietf.org/html/rfc4724) specifications
 * LongLivedGracefulRestart feature follows [draft-uttaro-idr-bgp-persistence](https://tools.ietf.org/html/draft-uttaro-idr-bgp-persistence-03) specifications
+* [SystemTest plan](https://github.com/Juniper/contrail-test/wiki/Graceful-Restart-(Beta))
 
 ### Applicability 
 When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all routes learned from the peer are deleted and also withdrawn immediately from advertised peers. This causes instantaneous disruption to traffic flowing end-to-end even when routes are kept inside vrouter kernel module (in data plane) intact. GracefulRestart and LongLivedGracefulRestart features help to alleviate this problem. When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, then overall impact to the network can be significantly contained.
@@ -19,7 +20,7 @@ Also in completely headless mode when no contrail-control is running in a cluste
 * BGP GR/LLGR configuration resides under BgpRouter and BgpSessionAttributes configuration sections
 * XMPP GR/LLGR configuration resides under global-vrouter-config section
 
-***Configuration parameters***
+***[Configuration parameters](https://github.com/Juniper/contrail-controller/blob/master/src/schema/vnc_cfg.xsd#L790)***
 
 1. GracefulRestart Time interval in seconds
 2. LongLivedGracefulRestart Time interval in seconds
