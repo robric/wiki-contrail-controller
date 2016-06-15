@@ -7,6 +7,8 @@ In Release 3.1, limited support to Graceful Restart (GR) and Long Lived Graceful
 ### Applicability 
 When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all routes learned from the peer are deleted and also withdrawn immediately from advertised peers. This causes instantaneous disruption to traffic flowing end-to-end even when routes are kept inside vrouter kernel module (in data plane) intact. GracefulRestart and LongLivedGracefulRestart features help to alleviate this problem. When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, then overall impact to the network can be significantly contained.
 
+Also in completely headless mode when no contrail-control is running in a cluster, north-south traffic flows can also be preserved by using GR helper mode of BGP Peers (East West traffic flows are preserved by vrouters in head less mode in 3.0+ itself). Only this particular aspect of headless mode + contrail-control GR/LLGR feature shall be productized and fully qualified in 3.1 release. GR Helper modes from contrail-control for its BGP and XMPP peers shall be qualified in future releases
+
 ### Feature highlights
 * Support to advertise GR and LLGR capabilities in BGP (By configuring non-zero restart time)
 * Support for GR and LLGR helper mode to retain routes even after sessions go down (By configuring helper mode)
