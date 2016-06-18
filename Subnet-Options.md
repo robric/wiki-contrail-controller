@@ -80,7 +80,7 @@ Subnets can be created and deleted in a Virtual Network, each having its own att
 ***
 * In every subnet, one address is reserved for Gateway (when enabled) and another is reserved for Services. This Services address is used as the DHCP server address and can be seen in all the DHCP responses.
 * The same address is also used as the DNS server address for the subnet if DNS name server is not configured. In such a case, this address will be sent as domain-name-server in DHCP response to the VM.
-* 'dns-server-address' is the corresponding field in ipam-subnets. If not set, this address will be auto-allocated from the subnet (typically .2 address from the subnet).
+* 'dns-server-address' is the corresponding field in ipam-subnets. If not set, this address will be auto-allocated from the subnet (typically .2 address from the subnet). When set to 0.0.0.0, no additional address is allocated and the gateway address of the subnet is used for this purpose as well. 
 
 
 ## Disabling Gateway
