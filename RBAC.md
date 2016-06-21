@@ -44,7 +44,7 @@ Permission field has following meaning:
   - W (Create/Update object)
   - X (Link or refer to object)
 
-Access is allowed:
-   if user is owner and permissions allow (rwx)
-   or if user tenant in shared list and permissions allow
-   or if world access is allowed
+Access is allowed if:
+   - user is owner and permissions allow (rex) or
+   - user tenant in shared list and permissions allow or
+   - world access is allowed
