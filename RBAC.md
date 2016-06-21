@@ -82,3 +82,9 @@ Delete rule from RBAC group - specify rule number or exact rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule 2 --op del-rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op del-rule
 
+
+## chmod.py
+This allows updating object permissions:
+- ownership (specify new owner tenant UUID)
+- enable/disable sharing with other tenants (specify <tenant, permissions>)
+- enable/disable sharing with world (specify permissions)
