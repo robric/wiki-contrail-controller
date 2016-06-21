@@ -27,9 +27,9 @@ Thus admin and users with role <em>Development</em> can perform CRUD operations 
 Role is Keystone role name. Field can be resource property or Reference. Field can be multi level, for example network.ipam.host-routes (in first release only one level is supported).
 
 Rule set for validation is union of rules from api-access-list object attached to :
-     - user Project
-     - user domain 
-     - default-domain 
+ - user Project
+ - user domain 
+ - default-domain 
 
 It is possible for project or domain ACL object to be empty. Access is only granted if a rule in the combined Rule set allows access. There is no explicit deny rule.
 
@@ -39,7 +39,7 @@ ACL object can be shared within a domain. Thus multiple projects can point to sa
 
 perms2 property of an object allows fine grained access control per resource. It has the following fields:
  - Owner (tenant uuid)
- - share list (<tenant UUID, rwx>)
+ - share list (list of (tenant UUID, rex) tuple)
  - globally shared flag (plus rwx)
 
 Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. It consists of list of <tenant UUID, rwx> tuples the object is shared with.
