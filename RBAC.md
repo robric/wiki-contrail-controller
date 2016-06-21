@@ -8,7 +8,7 @@ API level access is controlled by list of rules. Attachment point for the rules 
 
 # API Level RBAC
 
-If RBAC feature is turned on, API server requires a valid token to be present in the **X-Auth-Token header** of incoming request. If token is missing or is invalid, HTTP error 401 will be returned. API server trades token for user credentials (role, domain, project etc) from keystone.
+If RBAC feature is turned on, API server requires a valid token to be present in the **X-Auth-Token** of incoming request. If token is missing or is invalid, HTTP error 401 will be returned. API server trades token for user credentials (role, domain, project etc) from keystone.
 
 api-access-list object associated with domain or project holds rules of the form:
 
@@ -30,7 +30,7 @@ Rule set for validation is union of rules from Project and Domain ACL objects. I
 
 ACL object can be shared within a domain. Thus multiple projects can point to same ACL object (such as default).
 
-# Resource based access control (perms2)
+# Object level access control
 
 perms2 property of an object allows fine grained access control per resource. It has the following fields:
  - Owner (tenant uuid)
@@ -43,3 +43,8 @@ Permission field has following meaning:
   - R (Read object)
   - W (Create/Update object)
   - X (Link or refer to object)
+
+Access is allowed:
+   if user is owner and permissions allow (rwx)
+   or if user tenant in shared list and permissions allow
+   or if world access is allowed
