@@ -64,17 +64,21 @@ Read RBAC rule-set using UUID or FQN
     python /opt/contrail/utils/rbacutil.py --name 'default-domain:default-api-access-list' --op read
 
 Create RBAC rule-set using FQN domain/project
+
     python /opt/contrail/utils/rbacutil.py --fq_name 'default-domain:api-access-list' --op create
 
 Delete RBAC group using FQN or UUID
+
     python /opt/contrail/utils/rbacutil.py --name 'default-domain:api-access-list' --op delete
     python /opt/contrail/utils/rbacutil.py --uuid 71ef050f-3487-47e1-b628-8b0949530bee --op delete
 
 Add rule to existing RBAC group
+
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "* Member:R" --op add-rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op add-rule
 
 Delete rule from RBAC group - specify rule number or exact rule
+
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule 2 --op del-rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op del-rule
 
