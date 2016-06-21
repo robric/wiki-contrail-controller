@@ -10,7 +10,7 @@ API level access is controlled by list of rules. Attachment point for the rules 
 
 api-access-list object associated with domain or project holds rules of the form:
 
-  <object, field> => list of <role:CRUD>
+    <object, field> => list of <role:CRUD>
 
 object refers to an API resource such as network or subnet. Field refers to any property or reference within the resource. Field is optional in which case the CRUD operation refers to entire resource. Each rule also specifies list of roles and their corresponding permissions as a subset of CRUD operations.
 
@@ -27,3 +27,19 @@ Role is Keystone role name. Field can be resource property or Reference. Field c
 Rule set for validation is union of rules from Project and Domain ACL objects. It is possible for project ACL object to be empty. Access is only granted if a rule in the combined Rule set allows access. There is no explicit deny rule.
 
 ACL object can be shared within a domain. Thus multiple projects can point to same ACL object (such as default).
+
+# Resource based access control (perms2)
+
+perms2 property of an object allows fine grained access control per resource. It has the following fields:
+ - Owner (tenant uuid)
+ - share list (<tenant UUID, rwx>)
+ - globally shared flag (plus rwx)
+ - role access list (future)
+
+Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. It consists of list of <tenant UUID, rwx> tuples the object is shared with.
+
+Permission field has following meaning:
+  - R, Read resource
+  - W, Create/Update resource
+  - X, Link (refer to) object
+
