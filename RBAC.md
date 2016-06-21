@@ -59,6 +59,7 @@ Access is allowed if:
 to manage api-access-list rules. It allows adding, removing and viewing of rules. For example:
 
 Read RBAC rule-set using UUID or FQN
+
     python /opt/contrail/utils/rbacutil.py --uuid 'b27c3820-1d5f-4bfd-ba8b-246fefef56b0' --op read
     python /opt/contrail/utils/rbacutil.py --name 'default-domain:default-api-access-list' --op read
 
