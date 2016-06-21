@@ -8,6 +8,8 @@ API level access is controlled by list of rules. Attachment point for the rules 
 
 # API Level RBAC
 
+If RBAC feature is turned on, API server requires a valid token to be present in the **X-Auth-Token header** of incoming request. If token is missing or is invalid, HTTP error 401 will be returned. API server trades token for user credentials (role, domain, project etc) from keystone.
+
 api-access-list object associated with domain or project holds rules of the form:
 
     <object, field> => list of <role:CRUD>
@@ -34,12 +36,10 @@ perms2 property of an object allows fine grained access control per resource. It
  - Owner (tenant uuid)
  - share list (<tenant UUID, rwx>)
  - globally shared flag (plus rwx)
- - role access list (future)
 
 Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. It consists of list of <tenant UUID, rwx> tuples the object is shared with.
 
 Permission field has following meaning:
-  - R, Read resource
-  - W, Create/Update resource
-  - X, Link (refer to) object
-
+  - R (Read object)
+  - W (Create/Update object)
+  - X (Link or refer to object)
