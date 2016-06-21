@@ -39,7 +39,7 @@ ACL object can be shared within a domain. Thus multiple projects can point to sa
 
 perms2 property of an object allows fine grained access control per resource. It has the following fields:
  - Owner (tenant uuid)
- - share list (list of (tenant UUID, rex) tuple)
+ - share list (list of (tenant UUID, rwx) tuple)
  - globally shared flag (plus rwx)
 
 Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. It consists of list of <tenant UUID, rwx> tuples the object is shared with.
@@ -53,3 +53,27 @@ Access is allowed if:
    - user is owner and permissions allow (rex) or
    - user tenant in shared list and permissions allow or
    - world access is allowed
+
+# Utilities
+## rbacutil.py
+to manage api-access-list rules. It allows adding, removing and viewing of rules. For example:
+
+Read RBAC rule-set using UUID or FQN
+    python /opt/contrail/utils/rbacutil.py --uuid 'b27c3820-1d5f-4bfd-ba8b-246fefef56b0' --op read
+    python /opt/contrail/utils/rbacutil.py --name 'default-domain:default-api-access-list' --op read
+
+Create RBAC rule-set using FQN domain/project
+    python /opt/contrail/utils/rbacutil.py --fq_name 'default-domain:api-access-list' --op create
+
+Delete RBAC group using FQN or UUID
+    python /opt/contrail/utils/rbacutil.py --name 'default-domain:api-access-list' --op delete
+    python /opt/contrail/utils/rbacutil.py --uuid 71ef050f-3487-47e1-b628-8b0949530bee --op delete
+
+Add rule to existing RBAC group
+    python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "* Member:R" --op add-rule
+    python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op add-rule
+
+Delete rule from RBAC group - specify rule number or exact rule
+    python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule 2 --op del-rule
+    python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op del-rule
+
