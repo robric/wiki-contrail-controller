@@ -6,11 +6,11 @@ RBAC currently works in conjunction with Keystone relying on user credentials ob
 
 API level access is controlled by list of rules. Attachment point for the rules is domain and project. Resource level access is controlled by permissions embedded in the object.
 
-# API Level RBAC
+# API Level access control
 
 If RBAC feature is turned on, API server requires a valid token to be present in the **X-Auth-Token** of incoming request. If token is missing or is invalid, HTTP error 401 will be returned. API server trades token for user credentials (role, domain, project etc) from keystone.
 
-api-access-list object associated with domain or project holds rules of the form:
+api-access-list object holds rules of the form:
 
     <object, field> => list of <role:CRUD>
 
@@ -26,7 +26,12 @@ Thus admin and users with role <em>Development</em> can perform CRUD operations 
 
 Role is Keystone role name. Field can be resource property or Reference. Field can be multi level, for example network.ipam.host-routes (in first release only one level is supported).
 
-Rule set for validation is union of rules from Project and Domain ACL objects. It is possible for project ACL object to be empty. Access is only granted if a rule in the combined Rule set allows access. There is no explicit deny rule.
+Rule set for validation is union of rules from api-access-list object attached to :
+     - user Project
+     - user domain 
+     - default-domain 
+
+It is possible for project or domain ACL object to be empty. Access is only granted if a rule in the combined Rule set allows access. There is no explicit deny rule.
 
 ACL object can be shared within a domain. Thus multiple projects can point to same ACL object (such as default).
 
