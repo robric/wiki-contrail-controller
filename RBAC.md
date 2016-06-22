@@ -50,9 +50,19 @@ Permission field has following meaning:
   - X (Link or refer to object)
 
 Access is allowed if:
-   - user is owner and permissions allow (rex) or
+   - user is owner and permissions allow (rwx) or
    - user tenant in shared list and permissions allow or
    - world access is allowed
+
+# Configuration
+
+RBAC is controlled by a new knob named **aaa-mode**. It can be set to following values:
+
+ - *no-auth* In this mode no authentication is performed.
+ - *admin-only* In this mode only admin role has (full) access. 
+ - *rbac* RBAC access as described in this document.
+
+With release of RBAC, multi-tenancy flag is being deprecated and must be removed from configuration files for RBAC to take effect. If must-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
 
 # Utilities
 ## rbacutil.py
