@@ -58,13 +58,13 @@ Access is allowed if:
 
 RBAC is controlled by a new knob named **aaa-mode**. It can be set to following values:
 
- - *no-auth* (no authentication is performed)
- - *admin-only* (only admin role has access) 
- - *rbac* RBAC (access as described in this document)
+ - *no-auth* (no authentication is performed and full access is granted to all)
+ - *admin-only* (authentication is performed and only admin role has access) 
+ - *rbac* RBAC (authentication is performed and access granted based on role)
 
-With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name was a misnomer because only enforced admin-only access. Multi tenancy is an inherent feature of Contrail. 
+With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name was a misnomer because only it enforced admin-only access. Multi tenancy is an inherent feature of Contrail. 
 
-Multi-tenancy knob must be removed from configuration files for RBAC to take effect. If must-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
+Multi-tenancy knob must be removed from configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
 
 # Utilities
 ## rbacutil.py
