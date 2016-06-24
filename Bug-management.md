@@ -35,14 +35,13 @@ As a policy all Contrail bugs should be in public. Only exceptions are bugs whic
 
 ![Set public bugs](https://github.com/aranjan7/contrail-misc/blob/master/images/public-bug.png)
 
-Private bugs can be shared with select Launchpad members, or bug creator could opt to be notified. To do this 'subscribe' to the bug as below.
+Private bugs can be shared with select Launchpad members, or bug creator could opt to be notified. To do this 'subscribe' to the bug as below. If there is 'group' which needs to be notified, the organization/team should create a 'launchpad team' and that team can be added in bug notification list. This 'team' can be independently managed by their 'team owners'. 
 ![sharing bugs](https://github.com/aranjan7/contrail-misc/blob/master/images/subs.png)
 
 ##### Bug query:
 Bugs on this project can be queried based on tag and status [in advanced search](https://bugs.launchpad.net/juniperopenstack/+bugs?advanced=1) page. However, its not possible to query bugs targeted for a release or maintentance release easily. Only way is to select the correct '_milestone_' on the [search](https://bugs.launchpad.net/juniperopenstack/+bugs?advanced=1 "Advanced search page") page. Given that, setting the correct '_milestone_' is _required_ step while filing a bug.
 
 On a given release all the pending/fixed bugs can be found by clicking on the '_milestone_'. E,g., for r2.11 milestone on r2.1 series all the bugs are: [https://launchpad.net/juniperopenstack/+milestone/r2.11](https://launchpad.net/juniperopenstack/+milestone/r2.11)
-
 
 
 
