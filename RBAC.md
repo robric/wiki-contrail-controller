@@ -62,7 +62,7 @@ RBAC is controlled by a new knob named **aaa-mode**. It can be set to following 
  - *admin-only* (authentication is performed and only admin role has access) 
  - *rbac* RBAC (authentication is performed and access granted based on role)
 
-With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name was a misnomer because only it enforced admin-only access. Multi tenancy is an inherent feature of Contrail. 
+With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name was a misnomer because Multi tenancy is an inherent feature of Contrail while the knob enforced admin only access.  
 
 Multi-tenancy knob must be removed from configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
 
