@@ -12,24 +12,27 @@ In R3.1, Mirroring function will be enhanced with the following options:
     * When dynamic is chosen, nexthop based on the destination is used. Packets are forwarded to the destination based on the encapsulation priority.
     * When static is chosen, nexthop created for the specified destination with VxLAN encapsulation using the configured VNI, destination VTEP, MAC is used to transmit the mirrored packets.
 
-3. Knob to add destination host L2 header
-
-    * When a mirrored packet is sent to the destination host, the outer header is de-capsulated and the original packet is sent to the host network stack. For this packet to be accepted, the packet needs to have the L2 header with the destination MAC of the host. This knob controls addition or not of this header.
-    * Source MAC would be vrouter’s MAC
-    * RPF checks would be disabled in the destination VN
-
 The following are the combinations required:
+
 1. Dynamic Nexthop with Juniper header added (this is the default combination and is the only supported case upto R3.0.2)
 2. Dynamic Nexthop, without Juniper header
 3. Static Nexthop, without Juniper header, with the original L2 packet
-4. Static Nexthop, without Juniper header and with addition L2 header
-5. Static Nexthop, with Juniper header and with addition L2 header (not required now)
 
-Implementation
+### Implementation
 
 Contrail-vrouter-agent adds a mirror entry in the vrouter and points to the nexthop to be used. The data for Juniper header is taken from the flow entry. In case of interface mirroring, the Juniper header will have a new TLV in the metadata to have interface name and use that instead of providing destination VN.
 
 * Mirror entry will now have flags to indicate whether to add Juniper header or not and whether to add L2 header or not.
 * When dynamic nexthop is used, nexthop is chosen as is done currently and the mirror entry points to it.
 * When static nexthop is used, a new nexthop is created with the configured values and mirror entry points to it.
-* L2 header info (mac address) is also added to the mirror entry.
+
+Dynamic without Juniper header
+* Agent will change this to static NH while programming vrouter
+* Agent will have destination VRF name from mirror configuration, sends subscribe to control-node (L2); get NH for the destination and program it as static in the kernel.
+* The destination VN is special, will have flooding of unknown unicast enabled. So, vrouter will send the packet to the destination.
+* Alternative of adding a flag in the destination VRF to send it to a specific interface can be considered later.
+* This is incompatible with existing analyzer.
+
+Static without Juniper header
+* Static never adds Juniper header and will always be VxLAN
+* Same as dynamic without Juniper header, except that configuration gives VxLAN info.
