@@ -13,6 +13,8 @@ Trace route:
 Trace route is very similar to the Ping in terms of the generating the packet, it sends first packet with TTL 2, if the TTL becomes zero in the receiving end Vrouter traps the packet to agent with TTL exception and agent sends the ICMP time exceed message to the source.  If not, it handles the reply and logs the turn around time. Currently based on Time out mechanism if the Reply is not received from the destination, TTL will be incremented and with that new TTL value request will be sent.
 
 Diag TLV added to the packet. 
+
+
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |            Operation (Echo Requet/Reply)
@@ -45,6 +47,7 @@ Inner UDP payload - This is where all of the overlay OAM specific message format
 
 
 1.1.1.1	Inner UDP Payload Format
+
 
  0                     1                     2                     3         
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -86,6 +89,7 @@ Value What it means
  
 
 1.1.1.3	TLV For VxLAN ping
+
 
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
