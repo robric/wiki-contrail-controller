@@ -2,7 +2,7 @@ The following features are supported for IPv6 as well in the overlay. The underl
 
 * Virtual machines having IPv6 and IPv4 interfaces
 * Virtual machines having IPv6 only interfaces
-* DHCPv6, Neighbor discovery
+* DHCPv6, Neighbor discovery (Stateless)
 * Policy, Security Groups
 * IPv6 flow setup, tear down and aging
 * Flow setup / tear down based on TCP state machine
