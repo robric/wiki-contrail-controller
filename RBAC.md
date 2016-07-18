@@ -68,7 +68,17 @@ With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name
 Multi-tenancy knob must be removed from configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
 
 ## cloud_admin_role
-By definition a user with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** in API server. BY default this is equal to "admin". This role must be configured in keystone.
+User with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** knob in API server. By default this is set to "admin". This role must be configured in keystone.
+
+## /etc/neutron/api-paste.conf
+Contrail RBAC is based on user token received in _X-Auth-Token_ header in API requests. To force neutron to pass actual user token in requests to Contrail API server, following change in /etc/neutron/api-paste.conf is needed.
+
+    keystone = user_token request_id catch_errors ....
+    ...
+    ...
+    [filter:user_token]
+    paste.filter_factory = neutron_plugin_contrail.plugins.opencontrail.neutron_middleware:token_factory
+
 
 # Utilities
 ## rbacutil.py
