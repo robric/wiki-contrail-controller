@@ -56,6 +56,7 @@ Access is allowed if:
 
 # Configuration
 
+## aaa-mode
 RBAC is controlled by a new knob named **aaa-mode**. It can be set to following values:
 
  - *no-auth* (no authentication is performed and full access is granted to all)
@@ -65,6 +66,9 @@ RBAC is controlled by a new knob named **aaa-mode**. It can be set to following 
 With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name was a misnomer because Multi tenancy is an inherent feature of Contrail while the knob enforced admin only access.  
 
 Multi-tenancy knob must be removed from configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
+
+## cloud_admin_role
+By definition a user with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** in API server. BY default this is equal to "admin". This role must be configured in keystone.
 
 # Utilities
 ## rbacutil.py
