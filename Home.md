@@ -49,18 +49,3 @@ Features:
 * [Configuring Contrail SSL with Openstack] (https://github.com/Juniper/contrail-controller/wiki/Configuring-Contrail-SSL-with-Openstack)
 * [Customized field selection for ECMP load balancing](https://github.com/Juniper/contrail-controller/wiki/Customized-field-selection-for-ECMP-load-balancing)
 * [RBAC](RBAC)
-
-Release specific Notes:
-* R1.10
-  + [Neutron API compatibility](Neutron-API-Support)
-  + [Process Name Changes](Contrail-process-names'-changes-in-R1.10)
-
-* R2.0
-  + For build 22 and below, to enable sslv3 with ifmap, comment the following in `/etc/java-7-openjdk/security/java.security` and `service supervisor-config restart`
-
-        ``
-jdk.tls.disabledAlgorithms=SSLv3
-        ``
-
-* R2.20
-  + [Addition of Interface UVEs](Creation-of-Virtual-Machine-Interface-UVE-and-changes-wrt-interface-statistics-collection)
