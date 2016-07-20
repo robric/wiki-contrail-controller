@@ -10,7 +10,7 @@ Note that one VLAN is mapped to one virtual machine interface.
 
 In /etc/contrail/contrail-vrouter-agent.conf, add the following in DEFAULT section and restart contrail-vrouter-agent.
 
-`gateway_mode = remote-vm`
+`gateway_mode = server`
 
 ## Configuration
 
