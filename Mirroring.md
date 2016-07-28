@@ -4,7 +4,7 @@ Specific traffic can be mirrored to a traffic analyzer in Contrail by configurin
 
 When a packet is mirrored, a Juniper header is added to provide additional information in the analyzer and then the packet is appropriately encapsulated and sent to the destination.
 
-In R3.1, Mirroring function will be enhanced with the following options:
+In R3.x, Mirroring function will be enhanced with the following options:
 
 1. Knob to control addition of Juniper header in the mirrored packet. When disabled, the Juniper header is not added to the mirrored packet.
 2. Knob to control if the Nexthop used is dynamic or static.
