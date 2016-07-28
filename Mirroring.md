@@ -29,9 +29,8 @@ Contrail-vrouter-agent adds a mirror entry in the vrouter and points to the next
 Dynamic without Juniper header
 * Agent will change this to static NH while programming vrouter
 * Agent will have destination VRF name from mirror configuration, sends subscribe to control-node (L2); get NH for the destination and program it as static in the kernel.
-* The destination VN is special, will have flooding of unknown unicast enabled. So, vrouter will send the packet to the destination.
-* Alternative of adding a flag in the destination VRF to send it to a specific interface can be considered later.
-* This is incompatible with existing analyzer.
+* The destination VN is special, with a flag indicating that it is meant for mirroring destination VMs. Based on this flag, vrouter sends the original packet to the VMs spawned in this destination virtual network.
+* This mode is incompatible with existing analyzer instance.
 
 Static without Juniper header
 * Static never adds Juniper header and will always be VxLAN
