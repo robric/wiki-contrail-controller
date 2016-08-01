@@ -116,4 +116,5 @@ This allows updating object permissions:
 - enable/disable sharing with world (specify permissions)
 
 # Upgrading from previous releases
-No change is needed when upgrading to 3.1. aaa_mode is set to "cloud-admin" by default in 3.1 meaning only user with cloud-admin role has access. Cloud admin role is set to "admin" for backward compatibility. This behavior is same as setting multi_tenancy True which was the default in previous releases.
+
+multi_tenancy flag is deprecated in 3.1. It should be removed from config and replaced with aaa_mode parameter.
