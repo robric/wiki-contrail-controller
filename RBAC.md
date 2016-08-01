@@ -4,7 +4,7 @@ Contrail RBAC provides access control at API (operation) and resource level. Pre
 
 RBAC currently works in conjunction with Keystone relying on user credentials obtained from keystone from token present in the API request. Credentials include user, role, tenant and domain names and corresponding UUIDs.
 
-API level access is controlled by list of rules. Attachment point for the rules is domain and project. Resource level access is controlled by permissions embedded in the object.
+API level access is controlled by list of rules. Attachment point for the rules is global-system-config, domain and project. Resource level access is controlled by permissions embedded in the object.
 
 # API Level access control
 
@@ -60,12 +60,12 @@ Access is allowed if:
 RBAC is controlled by a new knob named **aaa-mode**. It can be set to following values:
 
  - *no-auth* (no authentication is performed and full access is granted to all)
- - *admin-only* (authentication is performed and only admin role has access) 
- - *rbac* RBAC (authentication is performed and access granted based on role)
+ - *cloud-admin* (authentication is performed and only cloud-admin role has access - default cloud-admin role is "admin") 
+ - *rbac* RBAC (authentication is performed and access granted based on role and configured rules)
 
 With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name was a misnomer because Multi tenancy is an inherent feature of Contrail while the knob enforced admin only access.  
 
-Multi-tenancy knob must be removed from configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
+Multi-tenancy knob must not be set in configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
 
 ## cloud_admin_role
 User with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** knob in API server. By default this is set to "admin". This role must be configured in keystone.
@@ -114,3 +114,6 @@ This allows updating object permissions:
 - ownership (specify new owner tenant UUID)
 - enable/disable sharing with other tenants (specify <tenant, permissions>)
 - enable/disable sharing with world (specify permissions)
+
+# Upgrading from previous releases
+No change is needed when upgrading to 3.1. aaa_mode is set to "cloud-admin" by default in 3.1 meaning only user with cloud-admin role has access. Cloud admin role is set to "admin" for backward compatibility. This behavior is same as setting multi_tenancy True which was the default in previous releases.
