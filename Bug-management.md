@@ -39,7 +39,7 @@ Private bugs can be shared with select Launchpad members, or bug creator could o
 ![sharing bugs](https://github.com/aranjan7/contrail-misc/blob/master/images/subs.png)
 
 ##### Bug query:
-Bugs on this project can be queried based on tag and status [in advanced search](https://bugs.launchpad.net/juniperopenstack/+bugs?advanced=1) page. However, its not possible to query bugs targeted for a release or maintentance release easily. Only way is to select the correct '_milestone_' on the [search](https://bugs.launchpad.net/juniperopenstack/+bugs?advanced=1 "Advanced search page") page. Given that, setting the correct '_milestone_' is _required_ step while filing a bug.
+Bugs on this project can be queried based on tag and status [in advanced search](https://bugs.launchpad.net/juniperopenstack/+bugs?advanced=1) page. If a fix for the bug is merged by CI, appropriate milestone will be set automatically. One can manually set the milestone as well, if you want to specifically target a bug to a given release.
 
 On a given release all the pending/fixed bugs can be found by clicking on the '_milestone_'. E,g., for r2.11 milestone on r2.1 series all the bugs are: [https://launchpad.net/juniperopenstack/+milestone/r2.11](https://launchpad.net/juniperopenstack/+milestone/r2.11)
 
