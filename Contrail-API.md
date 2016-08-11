@@ -11,4 +11,6 @@ For a general overview of Contrail APIs refer to (http://www.juniper.net/us/en/l
 
 Detailed documentation of VNC Python lib is hosted at (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/index.html)
 
-Contrail configuration object level details for REST API can be found in openAPI format here. (https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.json). Html is here (https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.html)
+Contrail configuration object level details for REST API can be found in openAPI format here. (https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.json). 
+
+Html formatted documentation is here. (https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.html)
