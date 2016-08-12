@@ -25,9 +25,8 @@ Also in completely headless mode when no contrail-control is running in a cluste
 
 1. GracefulRestart Time interval in seconds
 2. LongLivedGracefulRestart Time interval in seconds
-3. EndOfRib receive timer interval in seconds (Time to wait before GR exit and routes sweeping)
 
-GR helper mode can be enabled for BGP and/or XMPP sessions by following these steps in contrail-control node. For BGP, restart time shall still be advertised in GR capability, as configured. This lets one still avail gr-helper mode from the bgp peer (JUNOS MX) for graceful restarts of contrail-control process.
+GR helper mode can be enabled for BGP and/or XMPP sessions by following these steps in contrail-control node. For BGP, restart time shall still be advertised in GR capability, as configured. This lets one still avail gr-helper mode from the bgp peer (JUNOS MX) for graceful restarts of contrail-control process. Also, one can tune end-of-rib receive wait timer values by configuring DEFAULT.bgp_end_of_rib_timeout and DEFAULT.xmpp_end_of_rib_timeout (in seconds)
 
 1. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_enable 1
 2. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1
