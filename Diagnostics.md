@@ -81,21 +81,23 @@ Complete headers on a VXLAN encapsulated overlay OAM packet looks like this -
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Message Types
-
 The Message Type is one of the following:-
-Value What it means
------ -------------
-1     Echo Request
-2     Echo Reply
+
+1. Echo Request
+
+2. Echo Reply
 
 
 Reply Mode Values:-
 
 Value What it means
 ----- ---------------------------------
-1     Do not reply
-2     Reply via an IPv4/IPv6 UDP Packet
-3     Reply via Overlay Segment
+
+1. Do not reply
+
+2. Reply via an IPv4/IPv6 UDP Packet
+
+3. Reply via Overlay Segment
  
 
 ## TLV For VxLAN ping
