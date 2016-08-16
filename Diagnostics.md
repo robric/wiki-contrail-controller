@@ -41,23 +41,21 @@ Complete headers on a VXLAN encapsulated overlay OAM packet looks like this -
 
 2. Outer IP hdr - Contains the SIP and DIP of the VxLAN tunnel endpoints
 
-3.Outer UDP hdr - The source port contains the flow entropy, Destination port is fixed (to VxLAN port)
+3. Outer UDP hdr - The source port contains the flow entropy, Destination port is fixed (to VxLAN port)
 
 4. VxLAN hdr - VNI identifies the overlay segment. There is a new RA flag bits defined in the VxLAN hdr
 
-5.Inner Eth hdr - Draft defines that the SMAC/DMAC should be set to some control MAC address (00-00-5E-90-XX-XX) that doesn't get forwarded out of the box. Alternatively SMAC can be set to non-control MAC address also but then this SMAC should not be learned on the VXLAN endpoints from the overlay OAM packets.
+5. Inner Eth hdr - Draft defines that the SMAC/DMAC should be set to some control MAC address (00-00-5E-90-XX-XX) that doesn't get forwarded out of the box. Alternatively SMAC can be set to non-control MAC address also but then this SMAC should not be learned on the VXLAN endpoints from the overlay OAM packets.
 
 6. Inner IP hdr - SIP can be set to the end host's IP or source VTEP IP and DIP can be set to the 127/8 address making sure that the overlay OAM packet doesn't get forwarded out of the switching node ports.
 
 7. Inner UDP header - Defines a new reserved value to be used in the destination port field in the inner UDP to identify that the incoming UDP packet is an overlay OAM packet.
 
-8.Inner UDP payload - This is where all of the overlay OAM specific message format and TLVs are defined.
+8. Inner UDP payload - This is where all of the overlay OAM specific message format and TLVs are defined.
 
 
 
 ## Inner UDP Payload Format
-
-
  0                     1                     2                     3         
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -82,7 +80,7 @@ Complete headers on a VXLAN encapsulated overlay OAM packet looks like this -
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-## Message Types
+Message Types
 
 The Message Type is one of the following:-
 Value What it means
@@ -91,7 +89,7 @@ Value What it means
 2     Echo Reply
 
 
-## Reply Mode Values:-
+Reply Mode Values:-
 
 Value What it means
 ----- ---------------------------------
