@@ -52,6 +52,8 @@ table: "StatTable.UveVirtualNetworkAgent.vn_stats" ,
 select_fields: ["SUM(vn_stats.in_bytes)", "vn_stats.other_vn"] ,   
 where: [[{"value": "default-domain:admin:vn1", "op": 1, "suffix": null, "name": "name", "value2": null}]] }  
 
+Queries can be done using [contrail-stats](https://github.com/Juniper/contrail-controller/wiki/Contrail-utility-scripts-for-getting-logs,-stats-and-flows-from-analytics#contrail-stats) for Statistics Tables, [contrail-logs](https://github.com/Juniper/contrail-controller/wiki/Contrail-utility-scripts-for-getting-logs,-stats-and-flows-from-analytics#contrail-logs) for Message Table and [contrail-flows](https://github.com/Juniper/contrail-controller/wiki/Contrail-utility-scripts-for-getting-logs,-stats-and-flows-from-analytics#contrail-flows) for Flow Tables.
+
 The schemas of the available tables is given in section [Query-able Table Schemas](https://github.com/Juniper/contrail-controller/wiki/Analytics-Documentation-Summary#query-able-table-schemas).  
   
 # Data Collection Frequency
