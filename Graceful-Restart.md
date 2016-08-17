@@ -27,6 +27,7 @@ When sessions goes down, learned routes are not deleted and also not withdrawn f
 
 When BGP Peering with JUNOS, JUNOS must also be explicitly configured for gr/llgr. e.g.
 ```
+set routing-options graceful-restart
 set protocols bgp group a6s20 type internal
 set protocols bgp group a6s20 local-address 10.87.140.181
 set protocols bgp group a6s20 keep all
