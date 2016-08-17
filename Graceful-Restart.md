@@ -9,7 +9,7 @@ In Release 3.2, support to Graceful Restart (GR) and Long Lived Graceful Restart
 ### Applicability 
 When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all routes learned from the peer are deleted and also withdrawn immediately from advertised peers. This causes instantaneous disruption to traffic flowing end-to-end even when routes are kept inside vrouter kernel module (in data plane) intact. GracefulRestart and LongLivedGracefulRestart features help to alleviate this problem.
 
-When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, the overall impact to the network can be significantly contained.
+When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, the overall impact to the network is significantly contained.
 
 ### Feature highlights
 * Support to advertise GR and LLGR capabilities in BGP (By configuring non-zero restart time)
@@ -23,11 +23,15 @@ When sessions goes down, learned routes are not deleted and also not withdrawn f
 * GR timers can be configured by UI or via provision script.
   e.g. `/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000`
 
-GR helper mode can be enabled for BGP and/or XMPP sessions by following these steps in contrail-control node. For BGP, restart time shall still be advertised in GR capability, as configured. This lets one still avail gr-helper mode from the bgp peer (JUNOS MX) for graceful restarts of contrail-control process. Also, one can tune end-of-rib receive wait timer values by configuring DEFAULT.bgp_end_of_rib_timeout and DEFAULT.xmpp_end_of_rib_timeout (in seconds)
+GR helper mode can be enabled for BGP and/or XMPP sessions by configuring gr_helper_enable in /etc/contrail/contrail-control.conf configuration file. For BGP, restart time shall be advertised in GR capability, as configured (in schema). end-of-rib receive and send timeout values can be tuned by configuring DEFAULT.bgp_end_of_rib_timeout and DEFAULT.xmpp_end_of_rib_timeout (in seconds) values
 
+e.g.
 1. ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_enable 1```
 2. ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1```
-3. service contrail-control restart
+3 ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT bgp_end_of_rib_timeout 30```
+4 ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT xmpp_end_of_rib_timeout 30```
+5. service contrail-control restart
 
 ### Caveats
 * GR/LLGR feature with a peer comes into effect either to all negotiated address-families or to none. i.e, if a peer signals support to GR/LLGR only for a subset of negotiated address families (Via bgp GR/LLGR capability advertisement), then GR helper mode does not come into effect for any family among the set of negotiated address families
+* end-of-rib notification exchanged between control-node and xmpp agents is afi independent and signals eor for all address families
