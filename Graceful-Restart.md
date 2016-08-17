@@ -32,7 +32,6 @@ set protocols bgp group a6s20 local-address 10.87.140.181
 set protocols bgp group a6s20 keep all
 set protocols bgp group a6s20 family inet-vpn unicast graceful-restart long-lived restarter stale-time 20
 set protocols bgp group a6s20 family route-target
-deactivate protocols bgp group a6s20 family route-target
 set protocols bgp group a6s20 graceful-restart restart-time 600
 set protocols bgp group a6s20 neighbor 10.84.13.20 peer-as 64512
 
