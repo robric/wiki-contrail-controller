@@ -23,19 +23,10 @@ Also in completely headless mode when no contrail-control is running in a cluste
 * GR timers can be configured by UI or via provision script.
   e.g. `/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000`
 
-* GR Helper modes can be enabled in /etc/contrail/contrail-control.conf
-
-`/usr/bin/openstack-config --set /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_enable 1`
-
-`/usr/bin/openstack-config --set /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1`
-
-1. GracefulRestart Time interval in seconds
-2. LongLivedGracefulRestart Time interval in seconds
-
 GR helper mode can be enabled for BGP and/or XMPP sessions by following these steps in contrail-control node. For BGP, restart time shall still be advertised in GR capability, as configured. This lets one still avail gr-helper mode from the bgp peer (JUNOS MX) for graceful restarts of contrail-control process. Also, one can tune end-of-rib receive wait timer values by configuring DEFAULT.bgp_end_of_rib_timeout and DEFAULT.xmpp_end_of_rib_timeout (in seconds)
 
-1. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_enable 1
-2. /usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1
+1. ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_enable 1```
+2. ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1```
 3. service contrail-control restart
 
 ### Caveats (3.1)
