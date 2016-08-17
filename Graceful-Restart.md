@@ -20,8 +20,10 @@ When sessions goes down, learned routes are not deleted and also not withdrawn f
 * GR/LLGR feature can be enabled for both BGP based and XMPP based peers
 * GR/LLGR configuration resides under global-system-config configuration section
 ***[Configuration parameters](https://github.com/Juniper/contrail-controller/blob/master/src/schema/vnc_cfg.xsd#L885)***
-* GR timers can be configured by UI or via provision script.
-  e.g. `/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000`
+* GR timers can be configured by UI or via provision script. e.g.
+```
+/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000
+```
 
 GR helper mode can be enabled for BGP and/or XMPP sessions by configuring gr_helper_enable in /etc/contrail/contrail-control.conf configuration file. For BGP, restart time shall be advertised in GR capability, as configured (in schema). end-of-rib receive and send timeout values can be tuned by configuring DEFAULT.bgp_end_of_rib_timeout and DEFAULT.xmpp_end_of_rib_timeout (in seconds) values
 
