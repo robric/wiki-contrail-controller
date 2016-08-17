@@ -25,6 +25,19 @@ When sessions goes down, learned routes are not deleted and also not withdrawn f
 /opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000
 ```
 
+When BGP Peering with JUNOS, JUNOS must also be explicitly configured for gr/llgr. e.g.
+```
+set protocols bgp group a6s20 type internal
+set protocols bgp group a6s20 local-address 10.87.140.181
+set protocols bgp group a6s20 keep all
+set protocols bgp group a6s20 family inet-vpn unicast graceful-restart long-lived restarter stale-time 20
+set protocols bgp group a6s20 family route-target
+deactivate protocols bgp group a6s20 family route-target
+set protocols bgp group a6s20 graceful-restart restart-time 600
+set protocols bgp group a6s20 neighbor 10.84.13.20 peer-as 64512
+
+```
+
 GR helper mode can be enabled for BGP and/or XMPP sessions by configuring gr_helper_enable in /etc/contrail/contrail-control.conf configuration file. For BGP, restart time shall be advertised in GR capability, as configured (in schema). end-of-rib receive and send timeout values can be tuned by configuring DEFAULT.bgp_end_of_rib_timeout and DEFAULT.xmpp_end_of_rib_timeout (in seconds) values
 
 e.g.
