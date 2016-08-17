@@ -7,9 +7,9 @@ In Release 3.2, support to Graceful Restart (GR) and Long Lived Graceful Restart
 * [Unit Test](https://github.com/Juniper/contrail-controller/blob/master/src/bgp/test/graceful_restart_test.cc#L1180)
 
 ### Applicability 
-When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all routes learned from the peer are deleted and also withdrawn immediately from advertised peers. This causes instantaneous disruption to traffic flowing end-to-end even when routes are kept inside vrouter kernel module (in data plane) intact. GracefulRestart and LongLivedGracefulRestart features help to alleviate this problem. When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, then overall impact to the network can be significantly contained.
+When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all routes learned from the peer are deleted and also withdrawn immediately from advertised peers. This causes instantaneous disruption to traffic flowing end-to-end even when routes are kept inside vrouter kernel module (in data plane) intact. GracefulRestart and LongLivedGracefulRestart features help to alleviate this problem.
 
-Also in completely headless mode when no contrail-control is running in a cluster, north-south traffic flows can also be preserved by using GR helper mode of BGP Peers (East West traffic flows are preserved by vrouters in head less mode in 3.0+ itself). Only this particular aspect of headless mode + contrail-control GR/LLGR feature shall be productized and fully qualified in 3.1 release. GR Helper modes from contrail-control for its BGP and XMPP peers shall be qualified in future releases
+When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, the overall impact to the network can be significantly contained.
 
 ### Feature highlights
 * Support to advertise GR and LLGR capabilities in BGP (By configuring non-zero restart time)
@@ -29,6 +29,5 @@ GR helper mode can be enabled for BGP and/or XMPP sessions by following these st
 2. ```/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1```
 3. service contrail-control restart
 
-### Caveats (3.1)
-* GR support in contrail-vrouter-agent is not present. It is only in contrail-control, does this take into effect. In future releases, GR/LLGR support shall be extended to contrail-vrouter-agent as well thus keeping end-to-end traffic intact during agent restarts.
+### Caveats
 * GR/LLGR feature with a peer comes into effect either to all negotiated address-families or to none. i.e, if a peer signals support to GR/LLGR only for a subset of negotiated address families (Via bgp GR/LLGR capability advertisement), then GR helper mode does not come into effect for any family among the set of negotiated address families
