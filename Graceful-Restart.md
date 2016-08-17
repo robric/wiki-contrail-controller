@@ -24,7 +24,9 @@ Also in completely headless mode when no contrail-control is running in a cluste
   e.g. `/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000`
 
 * GR Helper modes can be enabled in /etc/contrail/contrail-control.conf
+
 `/usr/bin/openstack-config --set /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_enable 1`
+
 `/usr/bin/openstack-config --set /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_enable 1`
 
 1. GracefulRestart Time interval in seconds
