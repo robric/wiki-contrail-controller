@@ -3,7 +3,7 @@ In Release 3.2, support to Graceful Restart (GR) and Long Lived Graceful Restart
 ### Reference
 * GracefulRestart for BGP (and XMPP) follows [RFC4724](https://tools.ietf.org/html/rfc4724) specifications
 * LongLivedGracefulRestart feature follows [draft-uttaro-idr-bgp-persistence](https://tools.ietf.org/html/draft-uttaro-idr-bgp-persistence-03) specifications
-* [SystemTest plan](https://github.com/Juniper/contrail-test/wiki/Graceful-Restart-(Beta))
+* [SystemTest plan](https://github.com/Juniper/contrail-test/wiki/Graceful-Restart)
 * [Unit Test](https://github.com/Juniper/contrail-controller/blob/master/src/bgp/test/graceful_restart_test.cc#L1180)
 
 ### Applicability 
