@@ -24,7 +24,7 @@ prouters - Physical Routers.
 _http://\<contrail-analytics-api-IP\>:8081/analytics/uves/prouters_  
 _http://\<contrail-analytics-api-IP\>:8081/analytics/uves/prouter/a7-ex1?flat_  
 
-A raw dump of the various UVEs is given in section [Per-UVE type contents](https://github.com/Juniper/contrail-controller/wiki/Analytics-Documentation-Summary#per-uve-type-contents).  
+A raw dump of the various UVEs is given in section [Per-UVE type contents](https://github.com/Juniper/contrail-controller/wiki/Contrail-Analytics-Documentation#per-uve-type-contents).  
 
 # Analytics Table Queries
 Most analytics data is queried using SQL-like queries into tables whose schema
@@ -54,7 +54,7 @@ where: [[{"value": "default-domain:admin:vn1", "op": 1, "suffix": null, "name": 
 
 Queries can be done using [contrail-stats](https://github.com/Juniper/contrail-controller/wiki/Contrail-utility-scripts-for-getting-logs,-stats-and-flows-from-analytics#contrail-stats) for Statistics Tables, [contrail-logs](https://github.com/Juniper/contrail-controller/wiki/Contrail-utility-scripts-for-getting-logs,-stats-and-flows-from-analytics#contrail-logs) for Message Table and [contrail-flows](https://github.com/Juniper/contrail-controller/wiki/Contrail-utility-scripts-for-getting-logs,-stats-and-flows-from-analytics#contrail-flows) for Flow Tables.
 
-The schemas of the available tables is given in section [Query-able Table Schemas](https://github.com/Juniper/contrail-controller/wiki/Analytics-Documentation-Summary#query-able-table-schemas).  
+The schemas of the available tables is given in section [Query-able Table Schemas](https://github.com/Juniper/contrail-controller/wiki/Contrail-Analytics-Documentation#query-able-table-schemas).  
   
 # Data Collection Frequency
 
