@@ -39,10 +39,10 @@ ACL object can be shared within a domain. Thus multiple projects can point to sa
 
 perms2 property of an object allows fine grained access control per resource. It has the following fields:
  - Owner (tenant uuid)
- - share list (list of (tenant UUID, rwx) tuple)
- - globally shared flag (plus rwx)
+ - share list (list of (tenant/domain UUID, Permissions) tuple) 
+ - globally shared flag (plus Permissions)
 
-Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. It consists of list of <tenant UUID, rwx> tuples the object is shared with.
+Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. Sharing can be enabled at tenant or domain level.
 
 Permission field has following meaning:
   - R (Read object)
@@ -51,7 +51,7 @@ Permission field has following meaning:
 
 Access is allowed if:
    - user is owner and permissions allow (rwx) or
-   - user tenant in shared list and permissions allow or
+   - user tenant or domain in shared list and permissions allow or
    - world access is allowed
 
 # Configuration
