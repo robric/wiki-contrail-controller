@@ -4,7 +4,7 @@ Below are the steps to provision RBAC in an EXISTING 3.1 setup.
 
 In /etc/neutron/api-paste.ini
 
--          REPLACE “keystone = cors request_id catch_errors authtoken keystonecontext extensions     
+          REPLACE “keystone = cors request_id catch_errors authtoken keystonecontext extensions     
            neutronapiapp_v2_0”  WITH  “keystone = user_token cors request_id catch_errors authtoken  
            keystonecontext extensions neutronapiapp_v2_0”
 
