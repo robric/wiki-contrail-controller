@@ -1,6 +1,6 @@
 Below are the steps to provision RBAC in an EXISTING 3.1 setup.
  
--          Set “aaa_mode=rbac” in /etc/contrail/contrail-api.conf
+          Set “aaa_mode=rbac” in /etc/contrail/contrail-api.conf
 
 In /etc/neutron/api-paste.ini
 
