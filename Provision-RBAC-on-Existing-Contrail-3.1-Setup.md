@@ -13,4 +13,4 @@ ADD below lines,
            [filter:user_token]
            paste.filter_factory = neutron_plugin_contrail.plugins.opencontrail.neutron_middleware:token_factory
  
--          Restart contrail-api, neutron services
+Restart contrail-api, neutron services
