@@ -23,7 +23,7 @@ When sessions goes down, learned routes are not deleted and also not withdrawn f
 ***[Configuration parameters](https://github.com/Juniper/contrail-controller/blob/master/src/schema/vnc_cfg.xsd#L885)***
 * GR timers can be configured by UI or via provision script. e.g.
 ```
-/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --graceful_restart_time 300 --long_lived_graceful_restart_time 60000 --end_of_rib_timeout 30 --graceful_restart_enable --graceful_restart_bgp_helper_enable --graceful_restart_xmpp_helper_enable
+/opt/contrail/utils/provision_control.py --api_server_ip 10.84.13.20 --api_server_port 8082 --router_asn 64512 --admin_user admin --admin_password c0ntrail123 --admin_tenant_name admin --host_name a6s20 --host_ip 10.84.13.20  --set_graceful_restart_parameters --graceful_restart_time 300 --long_lived_graceful_restart_time 60000 --end_of_rib_timeout 30 --graceful_restart_enable --graceful_restart_bgp_helper_enable --graceful_restart_xmpp_helper_enable
 ```
 
 When BGP Peering with JUNOS, JUNOS must also be explicitly configured for gr/llgr. e.g.
