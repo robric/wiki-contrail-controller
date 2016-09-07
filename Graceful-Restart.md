@@ -51,4 +51,7 @@ service contrail-control restart
 ### Caveats
 * GR/LLGR feature with a peer comes into effect either to all negotiated address-families or to none. i.e, if a peer signals support to GR/LLGR only for a subset of negotiated address families (Via bgp GR/LLGR capability advertisement), then GR helper mode does not come into effect for any family among the set of negotiated address families
 * end-of-rib notification exchanged between control-node and xmpp agents is afi independent and signals eor for all address families
-* GracefulRestart for contrail-vrouter-agents is not supported yet (in 3.2). Hence, graceful_restart_xmpp_helper_enable should not be set. If agent restarts, data plane is reset and hence routes and flows get reprogrammed afresh (which typically results in traffic loss for new/existing flows for several seconds) 
+* GracefulRestart for contrail-vrouter-agents is not supported yet (in 3.2). Hence, graceful_restart_xmpp_helper_enable should not be set. If agent restarts, data plane is reset and hence routes and flows get reprogrammed afresh (which typically results in traffic loss for new/existing flows for several seconds)
+
+###Contrail-Vrouter HeadLess mode
+Headless mode is introduced as a resilient mode of operation for Agent. When running in Headless mode, agent will retain the last "Route Path" from Contrail-Controller. The "Route Path" are held till a new stable connection is established to one of the Contrail-Controller. Once the XMPP connection is up and is stable for a pre-defined duration, the "Route Path" from old XMPP connection are flushed.
