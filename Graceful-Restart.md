@@ -55,3 +55,5 @@ service contrail-control restart
 
 ###Contrail-Vrouter HeadLess mode
 Headless mode is introduced as a resilient mode of operation for Agent. When running in Headless mode, agent will retain the last "Route Path" from Contrail-Controller. The "Route Path" are held till a new stable connection is established to one of the Contrail-Controller. Once the XMPP connection is up and is stable for a pre-defined duration, the "Route Path" from old XMPP connection are flushed.
+
+When Headless mode is used along with graceful-restart helper mode in contrail-control, vrouter can forward east-west traffic between vrouters for current and new flows (for already learnt routes) even if all control-nodes go down and remain down in the cluster. If graceful restart helper mode is also used in SDN gateways (such as JUNOS-MX), north south traffic between MX and Vrouters can also remain uninterrupted in headless mode. This particular aspect is not available in releases < 3.2. 
