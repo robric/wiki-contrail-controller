@@ -10,15 +10,15 @@ We provide four TTL parameters defined as below in /etc/contrail/contrail-collec
 
 TTL is specified in number of hours and a typical configuration in /etc/contrail/contrail-collector.conf could be  
 analytics_data_ttl=48  
-analytics_config_audit_ttl=168  
-analytics_statistics_ttl=24  
+analytics_config_audit_ttl=2160  
+analytics_statistics_ttl=168  
 analytics_flow_ttl=2  
 
-In this case, we save the config audit logs for 7 days, messages and object logs for 2 days, statistics data for 1 day and flow data for 2 hours.
+In this case, we save the config audit logs for 90 days, statistics data for 7 days, messages and object logs for 2 days, and flow data for 2 hours.
 
 If one is using fabric-utils to do the contrail provisioning, the following parameters in the testbed.py will translate to the above config parameters for contrail-collector  
 database_ttl = 48  
-analytics_config_audit_ttl = 168  
-analytics_statistics_ttl = 24  
+analytics_config_audit_ttl = 2160  
+analytics_statistics_ttl = 168  
 analytics_flow_ttl = 2  
 
