@@ -24,11 +24,10 @@ analytics_flow_ttl = 2
 
 For all values:
 
-```
-0 means keep forever
-1 means 1 hour
-2 means 2 hours and so on
--1 or unset value is a special setting which will result in the value matching another reference value. For example:
+* 0 means keep forever
+* 1 means 1 hour
+* 2 means 2 hours and so on
+* -1 or unset value is a special setting which will result in the value matching another reference value. For example (from `contrail-collector.conf`):
 
 # analytics_config_audit_ttl, if not set (or set to -1), defaults to analytics_data_ttl
 # analytics_statistics_ttl, if not set (or set to -1), defaults to analytics_data_ttl
