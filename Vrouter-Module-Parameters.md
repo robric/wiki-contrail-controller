@@ -1,3 +1,4 @@
+#Vrouter Module Parameters
 Vrouter takes the following parameters:
 
 * vr_flow_entries (uint)    : maximum flow entries (default is 512K)
@@ -29,3 +30,27 @@ Some of these parameters can be provisioned during setup via fab, using the foll
 >     host5:{'mpls_labels':'196000', 'nexthops':'521000', 'vrfs':'65536', 'macs':'1000000'}
 >
 >}
+
+
+#VRouter memory requirements
+VRouter will allocate few blocks of memory during its initialisation. The memory is normally available during bootup of compute node. If the vrouter module is reloaded on a running compute node, there are chances that vrouter may not get all required memory blocks and insertion of vrouter module can fail. Running command below will free-up os-cache and lets vrouter allocate memory blocks it needs. 
+
+    root@nodel2:~$ free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+                 total       used       free     shared    buffers     cached
+    Mem:     263785456   16921100  246864356       1312      73132     139468
+    -/+ buffers/cache:   16708500  247076956
+    Swap:    268324860          0  268324860
+                 total       used       free     shared    buffers     cached
+    Mem:     263785456   16749356  247036100       1312       1144      39532
+    -/+ buffers/cache:   16708680  247076776
+    Swap:    268324860          0  268324860
+
+#Steps to reload vrouter with new parameters
+1. Create/edit file /etc/modprobe.d/vrouter.conf with new parameters
+1. Stop vrouter processes with "service supervisor-vrouter stop"
+1. Ensure no vrouter utility programs such as "flow, nh, vif..." are running
+1. Unload vrouter module with "rmmod vrouter"
+1. Run “free && sync && echo 3 > /proc/sys/vm/drop_caches && free” on host-os
+1. Insert module again with "modprobe vrouter"
+1. Restart vrouter processes with "service supervisor-vrouter start"
+1. Verify new parameters with "vrouter —info"
