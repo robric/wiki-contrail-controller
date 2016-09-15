@@ -20,7 +20,9 @@ curl -X POST -H "Content-Type: application/json" -d '[{"ip-address": "11.0.0.11"
 
 ###http://localhost:9091/syncports (POST)
 This is used for syncing of ports between plug-in (REST client) and agent across plug-in restarts. Typically, when plug-in (client) restarts, it issues this command and then issues adds for ports using the above (item number 1) API. Agent, upon receiving this command starts a timer. It expects plug-in to replay all ports before the expiry of this timer.  On expiry of timer, agent will remove all ports which have not been added by plug-in after issue of syncports command.
- 
+
+The timeout value of this timer is configurable in contrail-vrouter-agent config file. The configration parameter is stale_interface_cleanup_timeout under DEFAULT section. The value is set in seconds.
+
 ####Example:
 curl -X POST http://localhost:9091/syncports
  
