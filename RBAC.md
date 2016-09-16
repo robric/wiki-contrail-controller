@@ -70,6 +70,11 @@ Multi-tenancy knob must not be set in configuration files for RBAC to take effec
 ## cloud_admin_role
 User with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** knob in API server. By default this is set to "admin". This role must be configured in keystone.
 
+A user with cloud admin role in one tenant must include that role in other tenants if user has any role in them. User with cloud admin role doesn't need to have a role in all tenants but if has a role in a tenant, it must include cloud admin role.
+
+## global_read_only_role
+Role configured as global_read_only_role allows read-only access to all contrail resources. This role must be configured in keystone. By default this is not set to any value. 
+
 ## /etc/neutron/api-paste.conf
 Contrail RBAC is based on user token received in _X-Auth-Token_ header in API requests. To force neutron to pass actual user token in requests to Contrail API server, following change in /etc/neutron/api-paste.conf is needed.
 
