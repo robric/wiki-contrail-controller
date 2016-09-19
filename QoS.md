@@ -25,6 +25,10 @@ QOS config object has a mapping table from incoming DSCP or .1p to forwarding cl
 
 Additionally QOS config can be applied to a virtual-network, interface or network-policy.
 
+#Queueing
+
+From 3.2 release onwards, vRouter will provide the infrastructure to make use of the queues supplied by the network interface, also called hardware queueing. NICs that implement hardware queueing also come with their own set of scheduling algorithms associated with the queues. While the implementation will work with most of the NICs, Intel based 10G NIC (also called 'Niantic') is what was used for internal testing.
+
 #Release
 1. QOS config and forwarding class will be implemented as part of 3.1
 2. Queueing will be implemented as part 3.2
@@ -124,6 +128,22 @@ QoS config can be specified at multiple levels, following is the order of priori
    1. QoS config in policy
    2. QoS config specified on virtual-network
    3. QoS config specified on virtual-machine-interface
+
+### Queue selection in datapath
+
+The queue to send a packet to is specified by the forwarding class. While in almost every component of contrail where queue number is specified it is a logical number, in vRouter (i.e in the data path) that number specifies the actual hardware queue to which the packet needs to be send to. To facilitate this logical to physical transition, there needs to be a mapping and this mapping is specified in the vRouter-agent's configuration file. vRouter-agent, when it programs the vRouter, will program this translated queue number from the logical queue number that it has in its configuration.
+
+#### Hardware queueing in Linux kernel based vRouter
+
+If XPS or Xmit-Packet-Steering is enabled, which is the common case in Ubuntu based kernels, kernel will choose the queue to send a packet to based on the affinity each cpu has i.e each cpu has a list of queues it can send a packet to and the kernel will select one from the available set. If kernel selects the queue, then packets will not be sent to the vRouter specified queue. Hence, this mapping needs to be disabled. One can disable this mapping either by having a kernel without CONFIG_XPS option or by writing zeros to the mapping file in /sys/class/net/<ifname>/queues/tx-X/xps_cpus. Once this mapping is disabled, kernel will start sending the packets to the specific hardware queue. One can verify that packets indeed make it to the specified hardware queue by looking at individual queue statistics in the output of 'ethtool -S <ifname>' command. 
+
+### Bandwidth control and scheduling algorithms in hardware based queueing
+
+In the case of Intel 10G NIC, the QOS features come as part of a feature called DataCenterBridging (DCB). DCB is now an IEEE standards based feature that provides end to end QOS. In Linux, DCB feature is provided by the tools associated with a package called lldpad. If one wishes to use DCB, DCB has to be enabled at both ends of the wire i.e both on the compute as well as on the switch to which the compute is connected to. The 'lldpad' package also provides tools to configure the bandwidth and the scheduling algorithms to be used under a feature called ExtendedTransmissionSelection or ETS. Please refer to lldptool-ets(8) for the various configuration options.
+
+If one doesn't want to enable DCB on both ends of the wire, one has the option to program the NIC with available functionality/interfaces provided by the Linux kernel under the DCB feature. In vRouter-utils package, there is a utility called 'qosmap' that allows configuration of bandwidth groups and bandwidths allotted to each of the group. It also allows one to specify whether this is a strict allocation or not. Bandwidth that is left after allotment to strict priority groups is divided in a round-robin manner.
+
+
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
