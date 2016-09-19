@@ -131,7 +131,7 @@ QoS config can be specified at multiple levels, following is the order of priori
 
 ### Queue selection in datapath
 
-The queue to send a packet to is specified by the forwarding class. While in almost every component of contrail where queue number is specified it is a logical number, in vRouter (i.e in the data path) that number specifies the actual hardware queue to which the packet needs to be send to. To facilitate this logical to physical transition, there needs to be a mapping and this mapping is specified in the vRouter-agent's configuration file. vRouter-agent, when it programs the vRouter, will program this translated queue number from the logical queue number that it has in its configuration.
+The queue to send a packet to is specified by the forwarding class. While in almost every component of contrail where queue number specified is a logical number, in vRouter (i.e in the data path) that number specifies the actual hardware queue to which the packet needs to be send to. To facilitate this logical to physical transition, there needs to be a mapping and this mapping is specified in the vRouter-agent's configuration file. vRouter-agent, when it programs the vRouter, will program this translated queue number from the logical queue number that it has in its configuration.
 
 #### Hardware queueing in Linux kernel based vRouter
 
