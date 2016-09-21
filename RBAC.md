@@ -75,8 +75,8 @@ A user with cloud admin role in one tenant must include that role in other tenan
 ## global_read_only_role
 Role configured as global_read_only_role allows read-only access to all contrail resources. This role must be configured in keystone. By default this is not set to any value. 
 
-## /etc/neutron/api-paste.conf
-Contrail RBAC is based on user token received in _X-Auth-Token_ header in API requests. To force neutron to pass actual user token in requests to Contrail API server, following change in /etc/neutron/api-paste.conf is needed.
+## /etc/neutron/api-paste.ini
+Contrail RBAC is based on user token received in _X-Auth-Token_ header in API requests. To force neutron to pass actual user token in requests to Contrail API server, following change in /etc/neutron/api-paste.ini is needed.
 
     keystone = user_token request_id catch_errors ....
     ...
