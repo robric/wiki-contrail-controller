@@ -94,6 +94,11 @@ Contrail RBAC is based on user token received in _X-Auth-Token_ header in API re
     [filter:user_token]
     paste.filter_factory = neutron_plugin_contrail.plugins.opencontrail.neutron_middleware:token_factory
 
+# Provisioning through fab
+
+To enable RBAC while provisioning through fab, set the aaa_mode to RBAC in testbed.py
+
+    aaa_mode='rbac'
 
 # Utilities
 ## rbacutil.py
