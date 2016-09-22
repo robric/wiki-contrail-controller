@@ -68,10 +68,20 @@ With release of RBAC, multi-tenancy flag is being deprecated. Multi-tenancy name
 Multi-tenancy knob must not be set in configuration files for RBAC to take effect. If multi-tenancy flag is present in configuration file, aaa-mode setting will be ignored. 
 
 ## cloud_admin_role
-User with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** knob in API server. By default this is set to "admin". This role must be configured in keystone.
+User with cloud admin role has full access to everything. Name of this role is configured by **cloud_admin_role** knob in API server. By default this is set to "admin". This role must be configured in keystone. Set cloud_admin_role in /etc/contrail/contrail-api.conf on controller node and restart the API server to take affect.
 
 A user with cloud admin role in one tenant must include that role in other tenants if user has any role in them. User with cloud admin role doesn't need to have a role in all tenants but if has a role in a tenant, it must include cloud admin role.
 
+Following configuration files contain cloud admin credentials and should be modified if cloud-admin role is changed:
+* /etc/contrail/contrail-keystone-auth.conf
+* /etc/neutron/plugins/opencontrail/ContrailPlugin.ini
+* /etc/contrail/contrail-webui-userauth.js
+
+After changing the files above, restart API server, neutron server and WEBUI
+* service supervisor-config restart
+* service neutron-server restart
+* service supervisor-webui restart
+ 
 ## global_read_only_role
 Role configured as global_read_only_role allows read-only access to all contrail resources. This role must be configured in keystone. By default this is not set to any value. 
 
