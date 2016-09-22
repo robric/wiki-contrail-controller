@@ -94,6 +94,8 @@ Contrail RBAC is based on user token received in _X-Auth-Token_ header in API re
     [filter:user_token]
     paste.filter_factory = neutron_plugin_contrail.plugins.opencontrail.neutron_middleware:token_factory
 
+Note that if RBAC is enabled while provisions via fab (See provisioning section below), /etc/neutron/api-paste.ini will be updated automatically.
+
 # Provisioning through fab
 
 To enable RBAC while provisioning through fab, set the aaa_mode in testbed.py as follows:
@@ -138,3 +140,8 @@ This allows updating object permissions:
 # Upgrading from previous releases
 
 multi_tenancy flag is deprecated in 3.1. It should be removed from config and replaced with aaa_mode parameter.
+
+# Contrail UI
+For Contrail UI to work with RBAC, set aaa_mode to no_auth in /etc/contrail/contrail-analytics-api.conf
+
+    aaa_mode = no-auth
