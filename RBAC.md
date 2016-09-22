@@ -96,7 +96,7 @@ Contrail RBAC is based on user token received in _X-Auth-Token_ header in API re
 
 # Provisioning through fab
 
-To enable RBAC while provisioning through fab, set the aaa_mode to RBAC in testbed.py
+To enable RBAC while provisioning through fab, set the aaa_mode in testbed.py as follows:
 
     aaa_mode='rbac'
 
