@@ -144,6 +144,6 @@ This allows updating object permissions:
 multi_tenancy flag is deprecated in 3.1. It should be removed from config and replaced with aaa_mode parameter.
 
 # Contrail UI
-For Contrail UI to work with RBAC, set aaa_mode to no_auth in /etc/contrail/contrail-analytics-api.conf
+For Contrail UI to work with RBAC, set aaa_mode to no_auth in /etc/contrail/contrail-analytics-api.conf and restart analytics-api service (service contrail-analytics-api restart)
 
     aaa_mode = no-auth
