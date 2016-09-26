@@ -83,7 +83,9 @@ After changing the files above, restart API server, neutron server and WEBUI
 * service supervisor-webui restart
  
 ## global_read_only_role
-Role configured as global_read_only_role allows read-only access to all contrail resources. This role must be configured in keystone. By default this is not set to any value. 
+Role configured as global_read_only_role allows read-only access to all contrail resources. This role must be configured in keystone. By default this is not set to any value. global_read_only_role user can view the global configuration of contrail default setting from WebUI. Admin has to set global_read_only_role in contrail api (/etc/contrail/contrail-api.conf) and restart contrail-api service (service contrail-api restart). 
+
+- global_read_only_role = <new-admin-read-role>
 
 ## /etc/neutron/api-paste.ini
 Contrail RBAC is based on user token received in _X-Auth-Token_ header in API requests. To force neutron to pass actual user token in requests to Contrail API server, following change in /etc/neutron/api-paste.ini is needed.
