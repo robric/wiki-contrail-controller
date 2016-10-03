@@ -9,8 +9,8 @@ Contrail Configuration API uses REST to configure contrail SDN cluster. The API 
 ###Documentation:
 For a general overview of Contrail APIs refer to (http://www.juniper.net/us/en/local/pdf/whitepapers/2000527-en.pdf)
 
-Detailed documentation of VNC Python lib is hosted at (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/index.html)
+Detailed documentation of the API and VNC Python lib is hosted [here](http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/v2). Previous version is [here](http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/index.html)
 
-Contrail configuration object level details for REST API can be found in openAPI format here. (https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.json). 
+Contrail configuration object level details for REST API can be found in openAPI format [here](https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.json).
 
-Html formatted documentation is here. (https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.html)
+Html formatted documentation is [here](https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/contrail_openapi.html).
