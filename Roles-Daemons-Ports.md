@@ -197,6 +197,7 @@ This process integrates Contrail controller with VMware vCenter as the orchestra
 + **Service Name** - contrail-database
 + **ports**
   * 9160 - thrift port
+  * 9042 - CQL native port
 
 #### zookeeper
 + **Service Name** - zookeeper
