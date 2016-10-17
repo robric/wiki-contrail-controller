@@ -152,7 +152,8 @@ env.roledefs = {
     'qos': [host4, host5]
 }
 
-env.qos = {host4: [ 
+env.qos = {
+           host4: [ 
            {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict', 'bandwidth': '10'},
            {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '15'},
            {'hardware_q_id': '3', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}],
