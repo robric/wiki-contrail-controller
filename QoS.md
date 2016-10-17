@@ -152,17 +152,16 @@ env.roledefs = {
     'qos': [host4, host5]
 }
 
-env.qos = {host4: [ {'hardware_q_id': '3', 'logical_queue':['1', '6-10', '12-15'], 
-                     'scheduling': 'strict', 'bandwidth': '70'},
+env.qos = {host4: [ 
+           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict', 'bandwidth': '10'},
+           {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '15'},
+           {'hardware_q_id': '3', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}],
 
-                    {'hardware_q_id': '5', 'logical_queue':['2'], 'scheduling': 'rr', 'bandwidth': '75'},
-
-                    {'hardware_q_id': '8', 'logical_queue':['3-5'], 'scheduling': 'rr', 'bandwidth': '75'},
-
-                    {'hardware_q_id': '1', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '60', 'default': 'True'}],
-           host5: [ {'hardware_q_id': '2', 'logical_queue':['1', '3-8', '10-15'], 'scheduling': 'rr', 'bandwidth': '75'},
-                    {'hardware_q_id': '6', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '80', 'default': 'True'}]
-          } 
+           host5: [ 
+           {'hardware_q_id': '1', 'logical_queue':['1', '3-8', '10-15'], 'scheduling': 'rr', 'bandwidth': '15'},
+           {'hardware_q_id': '2', 'logical_queue':['9'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}]
+          }
+ 
 ##Key Definitions:
 hardware_q_id: Identifier for the hardwarwe queue.
 logical_queue: Defines the logical queues each hardware queue is mapped to.
@@ -170,6 +169,33 @@ scheduling: Defines the scheduling algorathim used in logical queues.
 bandwidth: Total bandwidth used by logical queues.
 default: When set to True defines the default hardware queue for Qos, one of the queue must be defined default.
 scheduling and bandwidth properties for each hardware queue is not supported .
+
+##Generated contrail-vrouter-agent.conf
+The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:
+
+[QOS]
+# Default logical nic queue
+logical_queue= [7]
+
+[QUEUE-1]
+# Logical nic queues for qos config
+logical_queue= ['1', '6-10', '12-15']
+
+# Nic queue scheduling algorithm used
+scheduling= rr
+
+# Percentage of the total bandwidth used by queue
+bandwidth= 10
+
+[QUEUE-2]
+# Logical nic queues for qos config
+logical_queue= [2-5]
+
+# Nic queue scheduling algorithm used
+scheduling=strict
+
+# Percentage of the total bandwidth used by queue
+bandwidth= 15
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
