@@ -143,19 +143,19 @@ In the case of Intel 10G NIC, the QOS features come as part of a feature called 
 If one doesn't want to enable DCB on both ends of the wire, one has the option to program the NIC with available functionality/interfaces provided by the Linux kernel under the DCB feature. In vRouter-utils package, there is a utility called 'qosmap' that allows configuration of bandwidth groups and bandwidths allotted to each of the group. It also allows one to specify whether this is a strict allocation or not. Bandwidth that is left after allotment to strict priority groups is divided in a round-robin manner.
 
 
-# Configuring QoS parameters in testbed.py
+## Configuring QoS parameters in testbed.py
 For a hardware queue, mapping to logical queue, bandwidth and scheduling algorithm used can be defined in testbed.py as
 follows:
 
-env.roledefs = {
-    // Add below section in roledefs
-    'qos': [host4, host5]
-}
+     env.roledefs = {
+         // Add below section in roledefs    
+         'qos': [host4, host5]   
+     }
 
-env.qos = {
-           host4: [ 
-           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict', 'bandwidth': '10'},
-           {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '15'},
+     env.qos = {    
+           host4: [     
+           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict','bandwidth':'10'},   
+           {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '15'},  
            {'hardware_q_id': '3', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}],
 
            host5: [ 
@@ -163,40 +163,40 @@ env.qos = {
            {'hardware_q_id': '2', 'logical_queue':['9'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}]
           }
  
-##Key Definitions:
-hardware_q_id: Identifier for the hardwarwe queue.
-logical_queue: Defines the logical queues each hardware queue is mapped to.
-scheduling: Defines the scheduling algorathim used in logical queues.
-bandwidth: Total bandwidth used by logical queues.
-default: When set to True defines the default hardware queue for Qos, one of the queue must be defined default.
+###Key Definitions:
+hardware_q_id: Identifier for the hardwarwe queue.   
+logical_queue: Defines the logical queues each hardware queue is mapped to.   
+scheduling: Defines the scheduling algorathim used in logical queues.     
+bandwidth: Total bandwidth used by logical queues.   
+default: When set to True defines the default hardware queue for Qos, one of the queue must be defined default.   
 scheduling and bandwidth properties for each hardware queue is not supported .
 
-##Generated contrail-vrouter-agent.conf
-The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:
+###Generated contrail-vrouter-agent.conf
+The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:  
 
-[QOS]
-# Default logical nic queue
-logical_queue= [7]
+     [QOS]
+     # Default logical nic queue
+     logical_queue= [7]
 
-[QUEUE-1]
-# Logical nic queues for qos config
-logical_queue= ['1', '6-10', '12-15']
+     [QUEUE-1]
+     # Logical nic queues for qos config
+     logical_queue= ['1', '6-10', '12-15']
 
-# Nic queue scheduling algorithm used
-scheduling= rr
+     # Nic queue scheduling algorithm used
+     scheduling= strict
 
-# Percentage of the total bandwidth used by queue
-bandwidth= 10
+     # Percentage of the total bandwidth used by queue
+     bandwidth= 10
 
-[QUEUE-2]
-# Logical nic queues for qos config
-logical_queue= [2-5]
+     [QUEUE-2]
+     # Logical nic queues for qos config
+     logical_queue= [2-5]
 
-# Nic queue scheduling algorithm used
-scheduling=strict
+     # Nic queue scheduling algorithm used
+     scheduling= rr
 
-# Percentage of the total bandwidth used by queue
-bandwidth= 15
+     # Percentage of the total bandwidth used by queue
+     bandwidth= 15
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
