@@ -143,9 +143,10 @@ In the case of Intel 10G NIC, the QOS features come as part of a feature called 
 If one doesn't want to enable DCB on both ends of the wire, one has the option to program the NIC with available functionality/interfaces provided by the Linux kernel under the DCB feature. In vRouter-utils package, there is a utility called 'qosmap' that allows configuration of bandwidth groups and bandwidths allotted to each of the group. It also allows one to specify whether this is a strict allocation or not. Bandwidth that is left after allotment to strict priority groups is divided in a round-robin manner.
 
 
-## Configuring QoS parameters in testbed.py
-For a hardware queue, mapping to logical queue, bandwidth and scheduling algorithm used can be defined in testbed.py as
-follows:
+## QoS queue provisioning using Fab
+The QoS queue configuration provided in the forwarding class is a logical queue. The logical queues used are mapped to the physical queues supported in the NIC, this mapping is done in the contrail-vrouter-agent.conf on each compute node. Fab setup supports updating this mapping in the corresponding contrail-vrouter-agent configuration files. In addition, the scheduling algorithm and bandwidth values that are used by respective priority groups (in IEEE mode, we have one traffic class per priority group) can also be updated in the same agent configuration. The scheduling algorithm and bandwidth values can be read by a script that runs on the compute node to configure the priority groups.
+
+The logical to physical mapping and scheduling, bandwidth values can be added in testbed.py in the following format.
 
      env.roledefs = {
          // Add below section in roledefs    
@@ -154,29 +155,25 @@ follows:
 
      env.qos = {    
            host4: [     
-           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict','bandwidth':'10'},   
-           {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '15'},  
-           {'hardware_q_id': '3', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}],
+           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict','bandwidth':'0'},   
+           {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '60'},  
+           {'hardware_q_id': '3', 'logical_queue':['7'], 'scheduling': 'rr', 'bandwidth': '40', 'default': 'True'}],
 
            host5: [ 
            {'hardware_q_id': '1', 'logical_queue':['1', '3-8', '10-15'], 'scheduling': 'rr', 'bandwidth': '15'},
-           {'hardware_q_id': '2', 'logical_queue':['9'], 'scheduling': 'strict', 'bandwidth': '10', 'default': 'True'}]
-          }
- 
-###Key Definitions:
-hardware_q_id: Identifier for the hardwarwe queue.   
-logical_queue: Defines the logical queues each hardware queue is mapped to.   
-scheduling: Defines the scheduling algorathim used in logical queues.     
-bandwidth: Total bandwidth used by logical queues.   
-default: When set to True defines the default hardware queue for Qos, one of the queue must be defined default.   
-scheduling and bandwidth properties for each hardware queue is not supported .
+           {'hardware_q_id': '2', 'logical_queue':['9'], 'scheduling': 'strict', 'bandwidth': '0', 'default': 'True'}]
+      }
+
+      hardware_q_id  : Hardware queue identifier.   
+      logical_queue  : Defines the logical queues that map to the hardware queue.   
+      scheduling     : Defines the scheduling algorithm to be used by the corresponding priority group (strict / rr).  
+      bandwidth      : Bandwidth to be used by the corresponding priority group when scheduling is round-robin.   
+      default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. One of the queue must be defined default.
 
 ###Generated contrail-vrouter-agent.conf
 The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:  
 
      [QOS]
-     # Default logical nic queue
-     logical_queue= [7]
 
      [QUEUE-1]
      # Logical nic queues for qos config
@@ -186,7 +183,7 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
      scheduling= strict
 
      # Percentage of the total bandwidth used by queue
-     bandwidth= 10
+     bandwidth= 0
 
      [QUEUE-2]
      # Logical nic queues for qos config
@@ -196,7 +193,20 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
      scheduling= rr
 
      # Percentage of the total bandwidth used by queue
-     bandwidth= 15
+     bandwidth= 60
+
+     [QUEUE-3]
+     # This is the default hardware queue
+     default_hw_queue= true
+
+     # Logical nic queues for qos config
+     logical_queue= [7]
+
+     # Nic queue scheduling algorithm used
+     scheduling= rr
+
+     # Percentage of the total bandwidth used by queue
+     bandwidth= 40
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
