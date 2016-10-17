@@ -143,6 +143,29 @@ In the case of Intel 10G NIC, the QOS features come as part of a feature called 
 If one doesn't want to enable DCB on both ends of the wire, one has the option to program the NIC with available functionality/interfaces provided by the Linux kernel under the DCB feature. In vRouter-utils package, there is a utility called 'qosmap' that allows configuration of bandwidth groups and bandwidths allotted to each of the group. It also allows one to specify whether this is a strict allocation or not. Bandwidth that is left after allotment to strict priority groups is divided in a round-robin manner.
 
 
+# Configuring QoS parameters in testbed.py
+For a hardware queue, mapping to logical queue, bandwidth and scheduling algorithm used can be defined in testbed.py as
+follows:
+
+env.roledefs = {
+    // Add below section in roledefs
+    'qos': [host4, host5]
+}
+
+env.qos = {host4: [ {'hardware_q_id': '3', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict', 'bandwidth': '70'},
+                    {'hardware_q_id': '5', 'logical_queue':['2'], 'scheduling': 'rr', 'bandwidth': '75'},
+                    {'hardware_q_id': '8', 'logical_queue':['3-5'], 'scheduling': 'rr', 'bandwidth': '75'},
+                    {'hardware_q_id': '1', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '60', 'default': 'True'}],
+           host5: [ {'hardware_q_id': '2', 'logical_queue':['1', '3-8', '10-15'], 'scheduling': 'rr', 'bandwidth': '75'},
+                    {'hardware_q_id': '6', 'logical_queue':['7'], 'scheduling': 'strict', 'bandwidth': '80', 'default': 'True'}]
+          } 
+##Key Definitions:
+hardware_q_id: Identifier for the hardwarwe queue.
+logical_queue: Defines the logical queues each hardware queue is mapped to.
+scheduling: Defines the scheduling algorathim used in logical queues.
+bandwidth: Total bandwidth used by logical queues.
+default: When set to True defines the default hardware queue for Qos, one of the queue must be defined default.
+scheduling and bandwidth properties for each hardware queue is not supported .
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
