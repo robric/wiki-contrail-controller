@@ -213,7 +213,7 @@ Queuing and scheduling will not be supported in 3.1
 
 # Guidelines and Limitations:
   1. DCB feature supports 2 modes. One is IEEE and other is CEE.
-     We recommend and provide provision to configure Bandwidth and Scheduling values. 
+     We recommend and provide provision to configure Bandwidth and Scheduling values using IEEE mode. 
      User can use CEE mode as well but some limitations are present in that mode which are documented in following bug:
      https://bugs.launchpad.net/juniperopenstack/+bug/1630865
 
