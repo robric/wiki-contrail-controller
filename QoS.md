@@ -217,7 +217,7 @@ Queuing and scheduling will not be supported in 3.1
      User can use CEE mode as well but some limitations are present in that mode which are documented in following bug:
      https://bugs.launchpad.net/juniperopenstack/+bug/1630865
 
-  2. On causing congestion within a single instance of VM and verifying scheduling, results will not be as per expectations. This is because of the fact that VM has its own queue and congestion within the VM will be handled by the queue of the VM(Not by the parent NIC interface queues).
+  2. On creating congestion within a single instance of VM and verifying scheduling, results will not be as per expectations. This is because of the fact that VM has its own queue and congestion within the VM will be handled by the queue of the VM(Not by the parent NIC interface queues).
      For more information, please refer to the following bug:
      https://bugs.launchpad.net/juniperopenstack/+bug/1634762
 
