@@ -210,3 +210,17 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
+
+# Guidelines and Limitations:
+  1. DCB feature supports 2 modes. One is IEEE and other is CEE.
+     We recommend and provide provision to configure Bandwidth and Scheduling values. 
+     User can use CEE mode as well but some limitations are present in that mode which are documented in following bug:
+     https://bugs.launchpad.net/juniperopenstack/+bug/1630865
+
+  2. On causing congestion within a single instance of VM and verifying scheduling, results will not be as per expectations. This is because of the fact that VM has its own queue and congestion within the VM will be handled by the queue of the VM(Not by the parent NIC interface queues).
+     For more information, please refer to the following bug:
+     https://bugs.launchpad.net/juniperopenstack/+bug/1634762
+
+  3. For "Intel based 10G NIC(Niantic)", you will observe 32 queues initially. As soon as you enable dcb on the interface, it shows all 64 queues. Using "qosmap" utility to configure Bandwidth and Scheduling, automatically enables DCB and creates 64 queues.
+
+  4.  It is observed that even if the highest priority queue is carrying full rate(10G) data, some very minor leaks happen on lower priority queues as well.(Assuming highest priority queue is configured for strict priority)
