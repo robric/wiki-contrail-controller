@@ -147,22 +147,17 @@ If one doesn't want to enable DCB on both ends of the wire, one has the option t
 ## QoS queue provisioning using Fab
 The QoS queue configuration provided in the forwarding class is a logical queue. The logical queues used are mapped to the physical queues supported in the NIC, this mapping is done in the contrail-vrouter-agent.conf on each compute node. Fab setup supports updating this mapping in the corresponding contrail-vrouter-agent configuration files. In addition, the scheduling algorithm and bandwidth values that are used by respective priority groups (in IEEE mode, we have one traffic class per priority group) can also be updated in the same agent configuration. The scheduling algorithm and bandwidth values can be read by a script that runs on the compute node to configure the priority groups.
 
-The logical to physical mapping and scheduling, bandwidth values can be added in testbed.py in the following format.
-
-     env.roledefs = {
-         // Add below section in roledefs    
-         'qos': [host4, host5]   
-     }
+The logical to physical queue mapping can be added in testbed.py in the following format.
 
      env.qos = {    
            host4: [     
-           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15'], 'scheduling': 'strict','bandwidth':'0'},   
-           {'hardware_q_id': '2', 'logical_queue':['2-5'], 'scheduling': 'rr', 'bandwidth': '60'},  
-           {'hardware_q_id': '3', 'logical_queue':['7'], 'scheduling': 'rr', 'bandwidth': '40', 'default': 'True'}],
+           {'hardware_q_id': '1', 'logical_queue':['1', '6-10', '12-15']},   
+           {'hardware_q_id': '2', 'logical_queue':['2-5']},  
+           {'hardware_q_id': '3', 'logical_queue':['7'], 'default': 'True'}],
 
            host5: [ 
-           {'hardware_q_id': '1', 'logical_queue':['1', '3-8', '10-15'], 'scheduling': 'rr', 'bandwidth': '15'},
-           {'hardware_q_id': '2', 'logical_queue':['9'], 'scheduling': 'strict', 'bandwidth': '0', 'default': 'True'}]
+           {'hardware_q_id': '1', 'logical_queue':['1', '3-8', '10-15']},
+           {'hardware_q_id': '2', 'logical_queue':['9'], 'default': 'True'}]
       }
 
       hardware_q_id  : Hardware queue identifier.   
@@ -172,29 +167,25 @@ The logical to physical mapping and scheduling, bandwidth values can be added in
       default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. One of the queue must be defined default.
 
 ###Generated contrail-vrouter-agent.conf
-The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:  
+The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:   
+   
+`env.qos_niantic = {host2:[
+                     { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},
+                     { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '20'},
+                     { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '10'}],
+                   host3:[
+                     { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},
+                     { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '30'}]
+                  }`   
 
      [QOS]
-
      [QUEUE-1]
      # Logical nic queues for qos config
      logical_queue= ['1', '6-10', '12-15']
 
-     # Nic queue scheduling algorithm used
-     scheduling= strict
-
-     # Percentage of the total bandwidth used by queue
-     bandwidth= 0
-
      [QUEUE-2]
      # Logical nic queues for qos config
      logical_queue= [2-5]
-
-     # Nic queue scheduling algorithm used
-     scheduling= rr
-
-     # Percentage of the total bandwidth used by queue
-     bandwidth= 60
 
      [QUEUE-3]
      # This is the default hardware queue
@@ -203,12 +194,30 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
      # Logical nic queues for qos config
      logical_queue= [7]
 
-     # Nic queue scheduling algorithm used
-     scheduling= rr
+Priority group with scheduling and bandwidth properties can be defined in testbed.py as follows:   
+`# [QOS-NIANTIC]
+# [PG-1]
+# Scheduling algorithm for priority group (strict/rr)
+# scheduling=
 
-     # Percentage of the total bandwidth used by queue
-     bandwidth= 40
+# Total hardware queue bandwidth used by priority group
+# bandwidth=
 
+# [PG-2]
+# Scheduling algorithm for priority group (strict/rr)
+# scheduling=
+
+# Total hardware queue bandwidth used by priority group
+# bandwidth=
+
+# [PG-3]
+# Scheduling algorithm for priority group (strict/rr)
+# scheduling=
+
+# Total hardware queue bandwidth used by priority group
+# bandwidth=
+
+`   
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
 
