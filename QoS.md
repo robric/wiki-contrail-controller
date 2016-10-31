@@ -168,15 +168,7 @@ The logical to physical queue mapping can be added in testbed.py in the followin
 
 ###Generated contrail-vrouter-agent.conf
 The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:   
-   
-`env.qos_niantic = {host2:[
-                     { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},
-                     { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '20'},
-                     { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '10'}],
-                   host3:[
-                     { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},
-                     { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '30'}]
-                  }`   
+
 
      [QOS]
      [QUEUE-1]
@@ -195,29 +187,47 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
      logical_queue= [7]
 
 Priority group with scheduling and bandwidth properties can be defined in testbed.py as follows:   
-`# [QOS-NIANTIC]
-# [PG-1]
-# Scheduling algorithm for priority group (strict/rr)
-# scheduling=
-
-# Total hardware queue bandwidth used by priority group
-# bandwidth=
-
-# [PG-2]
-# Scheduling algorithm for priority group (strict/rr)
-# scheduling=
-
-# Total hardware queue bandwidth used by priority group
-# bandwidth=
-
-# [PG-3]
-# Scheduling algorithm for priority group (strict/rr)
-# scheduling=
-
-# Total hardware queue bandwidth used by priority group
-# bandwidth=
-
+   
+`env.qos_niantic = {host4:[   
+                     { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
+                     { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '20'},   
+                     { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '10'}],   
+                    host5:[   
+                     { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
+                     { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '30'}]   
+                    }   
+priority_id: Priority group for qos.   
+scheduling: Defines the scheduling algorithm used for priority group, strict or roundrobin (rr).   
+bandwidth: Total hardware queue bandwidth used by priority group.   
+Bandwidth cannot be specified if strict scheduling is used for priority group set it as 0.   
+`      
+###Generated contrail-vrouter-agent.conf  
+The above parameters for priority groups are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:   
 `   
+[QOS-NIANTIC]
+[PG-1]
+# Scheduling algorithm for priority group (strict/rr)
+scheduling=strict
+
+# Total hardware queue bandwidth used by priority group
+bandwidth=0
+
+[PG-2]
+# Scheduling algorithm for priority group (strict/rr)
+scheduling=rr
+
+# Total hardware queue bandwidth used by priority group
+bandwidth=20
+
+[PG-3]
+# Scheduling algorithm for priority group (strict/rr)
+scheduling=rr
+
+# Total hardware queue bandwidth used by priority group
+bandwidth=10   
+   
+`
+
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
 
