@@ -41,11 +41,12 @@ From 3.2 release onwards, vRouter will provide the infrastructure to make use of
     1. Specifies DSCP value, 802.1p and MPLS EXP values to be written on packet  
     2. Specifies queue index to be used for packet.
  
-2. QoS config object: specifies a mapping from DSCP, 802.1p and MPLS EXP values to corresponding forwarding class. It also has a trusted mode to specify if QoS bits in packet should be honored or not.
+2. QoS config object: specifies a mapping from DSCP, 802.1p and MPLS EXP values to corresponding forwarding class and a default forwarding class identifier.
     1. If packet is IP packet then DSCP map would be used to lookup and corresponding forwarding class will be applied.
     2. If packet is layer2 packet then 802.1p map would be used to lookup and corresponding forwarding class will be applied.
     3. If its a MPLS tunneled packet and its has MPLS EXP values specified, then EXP bit value would be used to lookup into MPLS EXP map and corresponding forwarding class will be applied.
-    4. If QoS config is untrusted then DSCP, 802.1p and EXP bits in packet would be ignored, all packets would be marked with same forwarding-class properties.
+    4. For unspecified values of DSCP, 802.1p or MPLS EXP, the default forwarding class will be applied.
+    5. If QoS config is to be untrusted then only the default forwarding class can be specified so that the values of DSCP, 802.1p and EXP bits in incoming packet would be ignored, and the default forwarding class will be applied on all packets.
 
 >
 
@@ -65,7 +66,7 @@ From 3.2 release onwards, vRouter will provide the infrastructure to make use of
                   +------------------------------------------------------------+
                                            
 Virtual-machine-interface, virtual-network, network policy and security-group can refer to QoS config object.
-QOS config object can be specified on vhost and fabric interface so that underlay traffic can also be subjected to marking and queing  
+QOS config object can be specified on vhost and fabric interface so that underlay traffic can also be subjected to marking and queueing  
 
 >
             
