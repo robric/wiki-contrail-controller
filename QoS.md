@@ -185,17 +185,22 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
 
      # Logical nic queues for qos config
      logical_queue= [7]
+  
+###Niantic Nic configuration for priority groups  
 
 Priority group with scheduling and bandwidth properties can be defined in testbed.py as follows:   
    
-     env.qos_niantic = {host4:[   
-                         { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
-                         { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '20'},   
-                         { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '10'}],   
-                        host5:[   
-                         { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
-                         { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '30'}]   
-                       }   
+     env.qos_niantic = {
+           host4:[   
+            { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
+            { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '20'},   
+            { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '10'}],   
+   
+           host5:[   
+            { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
+            { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '30'}]   
+    }    
+   
      priority_id: Priority group for qos.   
      scheduling: Defines the scheduling algorithm used for priority group, strict or roundrobin (rr).   
      bandwidth: Total hardware queue bandwidth used by priority group.   
