@@ -188,7 +188,7 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
 
 Priority group with scheduling and bandwidth properties can be defined in testbed.py as follows:   
    
-`    env.qos_niantic = {host4:[   
+     env.qos_niantic = {host4:[   
                          { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
                          { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '20'},   
                          { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '10'}],   
@@ -196,14 +196,13 @@ Priority group with scheduling and bandwidth properties can be defined in testbe
                          { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},   
                          { 'priority_id': '2', 'scheduling': 'rr', 'bandwidth': '30'}]   
                        }   
-priority_id: Priority group for qos.   
-scheduling: Defines the scheduling algorithm used for priority group, strict or roundrobin (rr).   
-bandwidth: Total hardware queue bandwidth used by priority group.   
-Bandwidth cannot be specified if strict scheduling is used for priority group set it as 0.   
-`      
+     priority_id: Priority group for qos.   
+     scheduling: Defines the scheduling algorithm used for priority group, strict or roundrobin (rr).   
+     bandwidth: Total hardware queue bandwidth used by priority group.   
+     Bandwidth cannot be specified if strict scheduling is used for priority group set it as 0.   
 ###Generated contrail-vrouter-agent.conf  
 The above parameters for priority groups are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:   
-`   
+ 
     [QOS-NIANTIC]
     [PG-1]
     # Scheduling algorithm for priority group (strict/rr)
@@ -225,8 +224,7 @@ The above parameters for priority groups are updated in /etc/contrail/contrail-v
 
     # Total hardware queue bandwidth used by priority group
     bandwidth=10   
-   
-`
+
 
 # Caveats
 Queuing and scheduling will not be supported in 3.1   
