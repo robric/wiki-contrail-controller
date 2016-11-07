@@ -27,12 +27,13 @@ Additionally QOS config can be applied to a virtual-network, interface or networ
 
 #Queueing
 
-From 3.2 release onwards, vRouter will provide the infrastructure to make use of the queues supplied by the network interface, also called hardware queueing. NICs that implement hardware queueing also come with their own set of scheduling algorithms associated with the queues. While the implementation will work with most of the NICs, Intel based 10G NIC (also called 'Niantic') is what was used for internal testing.
+From 3.2 release onwards, vRouter will provide the infrastructure to make use of the queues supplied by the network interface, also called hardware queueing. NICs that implement hardware queueing also come with their own set of scheduling algorithms associated with the queues. While the implementation will work with most of the NICs, Intel based 10G NIC (also called 'Niantic') is what was used for internal testing. Note that R3.2 queueing support is only with kernel mode vrouter.
 
 #Release
 1. QOS config and forwarding class will be implemented as part of 3.1
-2. Queueing will be implemented as part 3.2
-3. Egress marking and queueing is currently not planned.
+2. Queueing in kernel mode vrouter will be implemented as part of 3.2
+3. Queueing in DPDK mode vrouter will be implemented as part of 4.0
+4. Egress marking and queueing is currently not planned.
 
 # Implementation details
 
@@ -232,9 +233,6 @@ The above parameters for priority groups are updated in /etc/contrail/contrail-v
     # Total hardware queue bandwidth used by priority group
     bandwidth=10     
 Above configuration can be read by a script that runs on the compute node to configure the priority groups using qosmap utility.
-
-# Caveats
-Queuing and scheduling will not be supported in 3.1   
 
 # Guidelines and Limitations:
   1. DCB feature supports 2 modes. One is IEEE and other is CEE.
