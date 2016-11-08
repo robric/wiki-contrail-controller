@@ -8,6 +8,8 @@ Vrouter takes the following parameters:
 * vr_mpls_labels (uint)     : maximum MPLS labels used in the node (default is 5K)
 * vr_nexthops (uint)        : maximum nexthops in the node
 * vr_vrfs (uint)            : maximum VRFs supported in the node
+* vr_interfaces (uint)      : maximum interfaces that can be created (default is 4352); this can be modified
+                              from release 3.1.1.0 & 3.2
 * vrouter_dbg (int)         : 1 to dump packets, 0 to disable (disabled by default)
 
 The currently configured limits can be seen using `vrouter --info`. These can be updated by editing /etc/modprobe.d/vrouter.conf with the desired options and by following it up with a reboot of the node.
