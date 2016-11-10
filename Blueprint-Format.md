@@ -30,7 +30,8 @@
 ####List dev and test assignments
 
 ##4.2 Work Items
-####Describe changes needed for different components such as Controller, Analytics, Agent, UI. Add subsections as needed.
+####Describe changes needed for different components such as Controller, Analytics, Agent, UI. 
+####Add subsections as needed.
 
 #5. Performance and scaling impact
 ##5.1 API and control plane
