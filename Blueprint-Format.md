@@ -1,13 +1,16 @@
 
-#Problem Description
+#Introduction
+Purpose of the document
 
-#Proposed Change
+#Problem statement
+Describe the problem being solved for a new or existing feature changes.
+
+#Proposed Solution
+Describe the proposed solution.
+
 ##Data model or Schema changes
-##REST API impact
-##Security impact
-##Other impact
-##Performance impact
-##Deployment impact
+Describe any data model or schema changes
+
 
 #Implementation
 ##Assignee(s)
