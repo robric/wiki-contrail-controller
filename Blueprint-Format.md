@@ -3,8 +3,8 @@
 Purpose of the document
 
 #2. Problem statement
-####Describe the problem being solved for a new or existing features.
-####Use cases
+Describe the problem being solved for a new or existing features.
+Use cases
 
 #3. Proposed Solution
 Describe the proposed solution.
