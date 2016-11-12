@@ -6,22 +6,22 @@
 ####Describe the problem being solved for a new or existing features.
 ####Use cases
 
-#3. Proposed Solution
+#3. Proposed solution
 ####Describe the proposed solution.
 
-##3.3 Alternatives considered
+##3.1 Alternatives considered
 ####Describe pros and cons of alternatives considered.
 
-##3.1 API schema changes
+##3.2 API schema changes
 ####Describe api schema changes and impact to the REST APIs.
 
-##3.2 User workflow impact
+##3.3 User workflow impact
 ####Describe how users will use the feature.
 
-##3.3 UI changes
+##3.4 UI changes
 ####Describe any UI changes
 
-##3.4 Notification impact
+##3.5 Notification impact
 ####Describe any log, UVE, alarm changes
 
 
@@ -29,13 +29,14 @@
 ##4.1 Assignee(s)
 ####List dev and test assignments
 
-##4.2 Work Items
+##4.2 Work items
 ####Describe changes needed for different components such as Controller, Analytics, Agent, UI. 
 ####Add subsections as needed.
 
 #5. Performance and scaling impact
 ##5.1 API and control plane
 ####Scaling and performance for API and control plane
+
 ##5.2 Forwarding performance
 ####Scaling and performance for API and forwarding
 
@@ -46,14 +47,14 @@
 #7. Deprecations
 ####If this feature deprecates any older feature or API then list it here.
 
-#6. Dependencies
+#8. Dependencies
 ####Describe dependent features or components.
 
-#6. Testing
-##6.1 Unit tests
-##6.2 Dev tests
-##6.3 System tests
+#9. Testing
+##9.1 Unit tests
+##9.2 Dev tests
+##9.3 System tests
 
-#7. Documentation Impact
+#10. Documentation Impact
 
-#8. References
+#11. References
