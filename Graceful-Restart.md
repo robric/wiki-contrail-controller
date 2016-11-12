@@ -53,6 +53,7 @@ service contrail-control restart
 * end-of-rib notification exchanged between control-node and xmpp agents is afi independent and signals eor for all address families
 * GracefulRestart for contrail-vrouter-agents is not supported yet (in 3.2). Hence, graceful_restart_xmpp_helper_enable should not be set. If agent restarts, data plane is reset and hence routes and flows get reprogrammed afresh (which typically results in traffic loss for new/existing flows for several seconds)
 * GR/LLGR is not supported for multicast routes
+* GR/LLGR helper mode may not work correctly for EVPN routes, if the restarting node does not preserve forwarding state
 
 ###[Contrail-Vrouter Head-Less mode](http://www.juniper.net/techpubs/en_US/contrail2.21/topics/concept/using-headless-vrouter-vnc.html)
 ```
