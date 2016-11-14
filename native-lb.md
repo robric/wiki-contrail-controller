@@ -4,7 +4,7 @@ Add support for ecmp based loadbalancer in OpenContrail.
 
 #2. Problem statement
 Currently OpenContrail supports L4-L7 proxy based loadbalancers. This is done by instantiating haproxy on a compute node. If there is no requirement for proxy based loadbalancers then ecmp based loadbalancing helps prevents traffic tromboning.
-####Use cases
+##2.1 Use cases
 In container orchestration systems such as Kubernetes there is a need to distribute traffic to PODS behind a service. Proxy based solutions are not distributed and add overhead for simple distribution of traffic to stateless PODS. Hence the native ECMP based solution is needed.
 
 #3. Proposed solution
@@ -16,14 +16,14 @@ OpenContrail supports ECMP based forwarding if the same IP address is announced 
 * Protocol
 
 ##3.1 Alternatives considered
-####Proxy solutions are potential alternatives.
+Proxy solutions are potential alternatives.
 
 ##3.2 API schema changes
-####New loadbalancer provider called "native" is being added to the loadbalancer object. The rest of the objects remain the same as before in the loadbalancer hierarchy.
+New loadbalancer provider called "native" is being added to the loadbalancer object. The rest of the objects remain the same as before in the loadbalancer hierarchy.
 * User creates a port for a virtual-ip.
 * User provides the list of endpoint IPs as members for the VIP.
 
-####Controller changes
+###Controller changes
 
 * Controller now aggregates the configuration based on the provider. In the case of native provider controller allocates a new floating-ip object as the child of the instance-ip. It copies the IP address from the instance-ip into the floating-ip. Controller also copies the port translations from VIP to members in the floating-ip object. There is a flag to identify that port-translations are enabled on the floating-ip.
 * In addition controller also attaches this floating IP to all the virtual machine interface objects of the endpoints/pool members.
