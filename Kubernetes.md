@@ -1,6 +1,6 @@
 
 #1. Introduction
-Kubernetes (K8s) is an open source container management platform. It provides a portable platform across public and private clouds. K8s supports deployment, scaling and auto-healing of applications. Here is a quick summary of resources in K8s (changes happen based on releases - this is current with 1.4 K8s):
+Kubernetes (K8s) is an open source container management platform. It provides a portable platform across public and private clouds. K8s supports deployment, scaling and auto-healing of applications. More details can be found at: http://kubernetes.io/docs/whatisk8s/
 
 
 
