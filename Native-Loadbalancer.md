@@ -28,7 +28,7 @@ In addition controller also attaches this floating IP to all the virtual machine
 Agent acts on the new floating-ip object. Based on the port translation flag agent creates a port translation table for the floating ip. In addition agent traverses its parent instance-ip to get the corresponding routing table information.
 
 #Example LB creation
-- Set the configuration for provider as "native"
+Set the configuration for provider as "native"
 
 * neutron net-create private-net
 * neutron subnet-create --name private-subnet private-net 30.30.30.0/24
