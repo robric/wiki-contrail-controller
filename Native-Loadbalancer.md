@@ -30,13 +30,13 @@ Agent acts on the new floating-ip object. Based on the port translation flag age
 #Example LB creation
 - Set the configuration for provider as "native"
 
-    neutron net-create private-net
-    neutron subnet-create --name private-subnet private-net 30.30.30.0/24
-    neutron lbaas-loadbalancer-create $(neutron subnet-list | awk '/ private-subnet / {print $2}') --name lb1
-    neutron lbaas-listener-create --loadbalancer lb1 --protocol-port 80 --protocol HTTP --name listener1
-    neutron lbaas-pool-create --name pool1 --protocol HTTP --listener listener1 --lb-algorithm ROUND_ROBIN
-    neutron lbaas-member-create --subnet private-subnet --address 30.30.30.10 --protocol-port 8080 mypool
-    neutron lbaas-member-create --subnet private-subnet --address 30.30.30.11 --protocol-port 8080 mypool
+*neutron net-create private-net
+*neutron subnet-create --name private-subnet private-net 30.30.30.0/24
+*neutron lbaas-loadbalancer-create $(neutron subnet-list | awk '/ private-subnet / {print $2}') --name lb1
+*neutron lbaas-listener-create --loadbalancer lb1 --protocol-port 80 --protocol HTTP --name listener1
+*neutron lbaas-pool-create --name pool1 --protocol HTTP --listener listener1 --lb-algorithm ROUND_ROBIN
+*neutron lbaas-member-create --subnet private-subnet --address 30.30.30.10 --protocol-port 8080 mypool
+*neutron lbaas-member-create --subnet private-subnet --address 30.30.30.11 --protocol-port 8080 mypool
 
 #Health check
 For health check we will use the following blueprint.
