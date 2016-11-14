@@ -1,14 +1,14 @@
 
 #1. Introduction
-####Add support for ecmp based loadbalancer in OpenContrail.
+Add support for ecmp based loadbalancer in OpenContrail.
 
 #2. Problem statement
-####Currently OpenContrail supports L4-L7 proxy based loadbalancers. This is done by instantiating haproxy on a compute node. If there is no requirement for proxy based loadbalancers then ecmp based loadbalancing helps prevents traffic tromboning.
+Currently OpenContrail supports L4-L7 proxy based loadbalancers. This is done by instantiating haproxy on a compute node. If there is no requirement for proxy based loadbalancers then ecmp based loadbalancing helps prevents traffic tromboning.
 ####Use cases
 In container orchestration systems such as Kubernetes there is a need to distribute traffic to PODS behind a service. Proxy based solutions are not distributed and add overhead for simple distribution of traffic to stateless PODS. Hence the native ECMP based solution is needed.
 
 #3. Proposed solution
-####OpenContrail supports ECMP based forwarding if the same IP address is announced by different endpoints. This is based on a hash of the five tuple:
+OpenContrail supports ECMP based forwarding if the same IP address is announced by different endpoints. This is based on a hash of the five tuple:
 * Source ip
 * Source port
 * Destination ip
