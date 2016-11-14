@@ -1,0 +1,1 @@
+Vrouter does Tx and Rx TCP segmentation offload in the kernel mode currently. It largely leverages kernel APIs for achieving this. However, wrt DPDK, the library lacks segmentation support/API’s and hence DPDK based vrouter cannot do the offloads. For achieving line rate performance of TCP based workloads on 10G NIC’s, we need DPDK based vrouter to support offloads.
