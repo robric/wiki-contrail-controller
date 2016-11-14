@@ -23,14 +23,6 @@ New loadbalancer provider called "native" is being added to the loadbalancer obj
 * User creates a port for a virtual-ip.
 * User provides the list of endpoint IPs as members for the VIP.
 
-###Controller changes
-
-* Controller now aggregates the configuration based on the provider. In the case of native provider controller allocates a new floating-ip object as the child of the instance-ip. It copies the IP address from the instance-ip into the floating-ip. Controller also copies the port translations from VIP to members in the floating-ip object. There is a flag to identify that port-translations are enabled on the floating-ip.
-* In addition controller also attaches this floating IP to all the virtual machine interface objects of the endpoints/pool members.
-
-#### Agent changes
-* Agent acts on the new floating-ip object. Based on the port translation flag agent creates a port translation table for the floating ip. In addition agent traverses its parent instance-ip to get the corresponding routing table information.
-		-
 
 ##3.3 User workflow impact
 ####Set the configuration for provider as "native"
@@ -56,19 +48,24 @@ New loadbalancer provider called "native" is being added to the loadbalancer obj
 
 
 ##4.2 Work items
-####Describe changes needed for different components such as Controller, Analytics, Agent, UI. 
-####Add subsections as needed.
+###Controller changes
+
+* Controller now aggregates the configuration based on the provider. In the case of native provider controller allocates a new floating-ip object as the child of the instance-ip. It copies the IP address from the instance-ip into the floating-ip. Controller also copies the port translations from VIP to members in the floating-ip object. There is a flag to identify that port-translations are enabled on the floating-ip.
+* In addition controller also attaches this floating IP to all the virtual machine interface objects of the endpoints/pool members.
+
+#### Agent changes
+* Agent acts on the new floating-ip object. Based on the port translation flag agent creates a port translation table for the floating ip. In addition agent traverses its parent instance-ip to get the corresponding routing table information.
 
 #5. Performance and scaling impact
 ##5.1 API and control plane
-####Scaling and performance for API and control plane
+There is no impact on API and control plane performance.
 
 ##5.2 Forwarding performance
-####Scaling and performance for API and forwarding
+Forwarding performance should be better than proxy based solutions but this needs to be characterized during the test cycle.
 
 #6. Upgrade
 ####Describe upgrade impact of the feature
-####Schema migration/transition
+The native loadbalancer is a new feature and hence does not have any upgrade impact.
 
 #7. Deprecations
 #### Not applicable
@@ -78,7 +75,7 @@ New loadbalancer provider called "native" is being added to the loadbalancer obj
 https://blueprints.launchpad.net/opencontrail/+spec/service-health-check
 
 #9. Testing
-##9.1 Unit tests
+##9.1 Unit tests 
 ##9.2 Dev tests
 ##9.3 System tests
 
