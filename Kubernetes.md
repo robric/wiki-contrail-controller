@@ -1,6 +1,9 @@
 
 #1. Introduction
-####Purpose of the document
+Kubernetes (K8s) is an open source container management platform. It provides a portable platform across public and private clouds. K8s supports deployment, scaling and auto-healing of applications. Here is a quick summary of resources in K8s (changes happen based on releases - this is current with 1.4 K8s):
+
+
+
 
 #2. Problem statement
 ####Describe the problem being solved for a new or existing features.
