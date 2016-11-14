@@ -49,6 +49,8 @@ Features:
 * [Configuring Contrail SSL with Openstack] (https://github.com/Juniper/contrail-controller/wiki/Configuring-Contrail-SSL-with-Openstack)
 * [Customized field selection for ECMP load balancing](https://github.com/Juniper/contrail-controller/wiki/Customized-field-selection-for-ECMP-load-balancing)
 * [RBAC](RBAC)
+* [Kubernetes](kubernetes)
+* [Native Loadbalancer](native-lb)
 
 Miscellaneous:
 * [Blueprint Format](Blueprint-Format)
