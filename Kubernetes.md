@@ -10,52 +10,32 @@ There is a need to provide pod addressing, network isolation, policy based secur
  
 
 #3. Proposed solution
-Currently K8s provides a flat networking model wherein all pods can talk to each other. Network policy is the new feature added to provide security between the pods. Opencontrail will add additional networking functionality to the solution. There are multiple modes wherein Opencontrail can be configured in a K8s cluster:
+Currently K8s provides a flat networking model wherein all pods can talk to each other. Network policy is the new feature added to provide security between the pods. Opencontrail will add additional networking functionality to the solution - multi-tenancy, network isolation, micro-segmentation with network policies, load-balancing etc. Opencontrail can be configured in the following mode in a K8s cluster:
 
-##* Cluster mode
-##* Namespace isolation mode
-##* App isolation mode
-##* User defined mode
+* Cluster isolation
+This is the default mode, and no action is required from the admin or app developer. It provides the same isolation level as kube-proxy. OpenContrail will create a cluster network shared by all namespaces, from where service IP addresses will be allocated.
 
+* Namespace isolation mode
+The cluster admin can configure a namespace annotation to turn on isolation. As a result, services in that namespace will not be accessible from other namespaces, unless security groups or network policies are defined explicitly.
 
-##3.1 Alternatives considered
-####Describe pros and cons of alternatives considered.
+* App isolation mode
+In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
 
-##3.2 API schema changes
-####Describe api schema changes and impact to the REST APIs.
-
-##3.3 User workflow impact
-####Describe how users will use the feature.
-
-##3.4 UI changes
-####Describe any UI changes
-
-##3.5 Notification impact
-####Describe any log, UVE, alarm changes
 
 #4. Implementation
 
 
-##4.2 Work items
-####Describe changes needed for different components such as Controller, Analytics, Agent, UI. 
-####Add subsections as needed.
-
 #5. Performance and scaling impact
-##5.1 API and control plane
-####Scaling and performance for API and control plane
 
 ##5.2 Forwarding performance
-####Scaling and performance for API and forwarding
 
 #6. Upgrade
-####Describe upgrade impact of the feature
-####Schema migration/transition
 
 #7. Deprecations
-####If this feature deprecates any older feature or API then list it here.
 
 #8. Dependencies
-####Describe dependent features or components.
+* Native loadbalancer implementation is needed to support service loadbalancing. https://blueprints.launchpad.net/juniperopenstack/+spec/native-ecmp-loadbalancer
+* Health check implementation
 
 #9. Testing
 ##9.1 Unit tests
