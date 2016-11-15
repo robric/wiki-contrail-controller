@@ -29,11 +29,17 @@ In this finer-grain isolation mode, the admin or app developer can add the label
 ##4.1 Contrail kubernetes manager
 Opencontrail implementation requires listening to K8s API messages and create corresponding resources in the Opencontrail API database. New module called "contrail-kube-manager" will run in a container to listen to the messages from the K8s api-server. A new project will be created in Opencontrail for each of the namespaces in K8s.
 
-##4.2 Loadbalancer for K8s service
+##4.2 Contrail CNI plugin
 
-##4.3 Security groups for K8s network policy
+##4.3 Loadbalancer for K8s service
+Each service in K8s will be represented by a loadbalancer object. The service IP allocated by K8s will be used as the VIP for the loadbalancer. Listeners will be created for the port on which service is listening. Each pod will be added as a member for the listener pool. contrail-kube-manager will listen for any changes based on service labels or pod labels to update the member pool list with the add/updated/delete pods.  
 
-##4.4 Contrail CNI plugin
+Loadbalancing for services will be L4 non-proxy loadbalancing based on ECMP. The instance-ip (service-ip) will be linked to the ports of each of the pods in the service. This will create an ECMP next-hop in Opencontrail and traffic will be loadbalanced directly from the source pod.
+
+##4.4 Security groups for K8s network policy
+
+##4.5 DNS
+
 
 
 #5. Performance and scaling impact
