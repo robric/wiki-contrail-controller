@@ -26,6 +26,14 @@ In this finer-grain isolation mode, the admin or app developer can add the label
 
 
 #4. Implementation
+##4.1 Contrail kubernetes manager
+Opencontrail implementation requires listening to K8s API messages and create corresponding resources in the Opencontrail API database. New module called "contrail-kube-manager" will run in a container to listen to the messages from the K8s api-server. A new project will be created in Opencontrail for each of the namespaces in K8s.
+
+##4.2 Loadbalancer for K8s service
+
+##4.3 Security groups for K8s network policy
+
+##4.4 Contrail CNI plugin
 
 
 #5. Performance and scaling impact
