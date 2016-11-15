@@ -46,7 +46,7 @@ http://kubernetes.io/docs/user-guide/networkpolicies/
 Contrail-kube-manager will listen to Kubernetes NetworkPolicy create/update/delete events, and will translate the Network Policy to Contrail Security Group objects applied to Virtual Machine Interfaces. The algorithm will dynamically update the set of Virtual Machine Interfaces as pods and labels are added/deleted.
 
 ##4.5 DNS
-
+Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that responds to DNS requests for service name resolution from Pods. On K8S, SkyDNS runs as a Pod.  
 
 
 #5. Performance and scaling impact
