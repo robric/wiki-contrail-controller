@@ -13,13 +13,13 @@ There is a need to provide pod addressing, network isolation, policy based secur
 Currently K8s provides a flat networking model wherein all pods can talk to each other. Network policy is the new feature added to provide security between the pods. Opencontrail will add additional networking functionality to the solution - multi-tenancy, network isolation, micro-segmentation with network policies, load-balancing etc. Opencontrail can be configured in the following mode in a K8s cluster:
 
 * Cluster isolation
-This is the default mode, and no action is required from the admin or app developer. It provides the same isolation level as kube-proxy. OpenContrail will create a cluster network shared by all namespaces, from where service IP addresses will be allocated.
+**This is the default mode, and no action is required from the admin or app developer. It provides the same isolation level as kube-proxy. OpenContrail will create a cluster network shared by all namespaces, from where service IP addresses will be allocated.
 
 * Namespace isolation mode
-The cluster admin can configure a namespace annotation to turn on isolation. As a result, services in that namespace will not be accessible from other namespaces, unless security groups or network policies are defined explicitly.
+**The cluster admin can configure a namespace annotation to turn on isolation. As a result, services in that namespace will not be accessible from other namespaces, unless security groups or network policies are defined explicitly.
 
 * App isolation mode
-In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
+**In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
 
 
 #4. Implementation
