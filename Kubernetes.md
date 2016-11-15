@@ -38,6 +38,13 @@ Loadbalancing for services will be L4 non-proxy loadbalancing based on ECMP. The
 
 ##4.4 Security groups for K8s network policy
 
+Network policies can be applied in a cluster configured in isolation mode, to define which pods can communicate with each other or with other endpoints.
+The cluster admin will create a Kubernetes API NetworkPolicy object. This is an ingress policy, it applies to a set of pods, and defines which set of pods is allowed access. Both source and destination pods are selected based on labels. The app developer and the cluster admin can add labels to pods, for instance “frontend” / “backend”,  and “development” / “test” / “production”. Full specification of the Network Policy can be found here:
+
+http://kubernetes.io/docs/user-guide/networkpolicies/
+
+Contrail-kube-manager will listen to Kubernetes NetworkPolicy create/update/delete events, and will translate the Network Policy to Contrail Security Group objects applied to Virtual Machine Interfaces. The algorithm will dynamically update the set of Virtual Machine Interfaces as pods and labels are added/deleted.
+
 ##4.5 DNS
 
 
