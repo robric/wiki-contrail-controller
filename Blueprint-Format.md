@@ -21,7 +21,9 @@
 ##3.4 UI changes
 ####Describe any UI changes
 
-##3.5 Notification impact
+##3.5 Operations and Notification impact
+####Describe how to operate the feature
+####Describe operational impact
 ####Describe any log, UVE, alarm changes
 
 
