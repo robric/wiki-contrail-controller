@@ -17,4 +17,23 @@ The figure below compared GSO with no-GSO. For GRO, the operation will be simila
 None. This feature is enabled by default if the VM supports it
 
 # Performance Goals #
-TBD
+
+Setup
+```
+=>	Intel E5-2463 v3 Haswell CPU running @ 3.40 GHz
+=>	2 sockets @ 6 cores/socket
+=>	L1 cache 64K, L2 cache 256K, L3 cache 20M
+=>	DIMM RAM 256Gb, channels 8
+=>	2-port Intel 82599 NIC non-bonded
+=>	Hyper-threading enabled
+
+ ------------------------------------------------------
+|         |  Throughput   |  VM Exits  |  Cache Misses |
+|-------------------------------------------------------
+|No-GRO   |               |            |               |
+|GRO      |               |            |               |
+|No-GSO   |               |            |               |
+|GSO      |               |            |               |
+ ------------------------------------------------------
+```
+
