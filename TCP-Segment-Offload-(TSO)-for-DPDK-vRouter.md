@@ -10,6 +10,9 @@ In case of virtualized environments, offload further improves VMExits which resu
 
 The figure below compared GSO with no-GSO. For GRO, the operation will be similar, but in the other direction.
 
+# Block Diagram #
+![](http://image.slidesharecdn.com/20140928gsoeurobsdcon2014-150111071210-conversion-gate01/95/software-segmentation-offloading-for-freebsd-by-stefano-garzarella-5-638.jpg?cb=1420982015)
+
 # UI impact and configuration #
 None. This feature is enabled by default if the VM supports it
 
