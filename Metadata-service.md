@@ -35,6 +35,25 @@ Nova configuration also has a shared secret (configured as quantum_metadata_prox
 
 The shared secret can also be left empty (which is the default configuration).
 
+### SSL support
+SSL support is added for the http requests sent by VM for metadata service. Hence communication between vrouter agent and nova-api server can be secured using this. To enable this feature, certain configuration is required at Nova side as well as Agent side. 
+
+Below configuration has to be added in default section of nova.conf file to enable this support for Nova:
+
+enabled_ssl_apis = metadata
+nova_metadata_protocol = https
+nova_metadata_insecure = False
+ssl_cert_file = <cert.pem>
+ssl_key_file  = <privkey.pem>
+ssl_ca_file   = <cacert.pem>
+
+Below configuration has to be added in contrail-vrouter-agent.conf file to enable this support for Contrail vrouter agent:
+
+metadata_use_ssl = True
+metadata_client_cert = <client_cert.pem>
+metadata_client_key = <client_key.pem>
+metadata_ca_cert = <cacert.pem>
+
 ### Debugging 
 To debug metadata transactions, below traces and statistics should help 
 
