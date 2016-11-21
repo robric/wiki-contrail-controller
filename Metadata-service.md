@@ -43,16 +43,16 @@ Below configuration has to be added in default section of nova.conf file to enab
 - enabled_ssl_apis = metadata
 - nova_metadata_protocol = https
 - nova_metadata_insecure = False
-- ssl_cert_file = <cert.pem>
-- ssl_key_file  = <privkey.pem>
-- ssl_ca_file   = <cacert.pem>
+- ssl_cert_file = cert.pem
+- ssl_key_file  = privkey.pem
+- ssl_ca_file   = cacert.pem
 
 Below configuration has to be added in contrail-vrouter-agent.conf file to enable this support for Contrail vrouter agent:
 
 - metadata_use_ssl = True
-- metadata_client_cert = <client_cert.pem>
-- metadata_client_key = <client_key.pem>
-- metadata_ca_cert = <cacert.pem>
+- metadata_client_cert = client_cert.pem
+- metadata_client_key = client_key.pem
+- metadata_ca_cert = cacert.pem
 
 ### Debugging 
 To debug metadata transactions, below traces and statistics should help 
