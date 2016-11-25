@@ -12,7 +12,8 @@ dpkg-reconfigure wireshark-common
 
 2) Capture packets with root privileges and write them to a file. Give read permissions to file for non-root users. Use the lua script with tshark as non-root user
 
-New user can be added on debian systems using: useradd command. 
+New user to be added to wireshark group and can be added on debian systems as below:
+useradd guest -g wireshark 
 
 Please make sure to use required tshark filters for interested packets to avoid huge outputs. 
 
