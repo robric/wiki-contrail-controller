@@ -39,7 +39,7 @@ For mirrored-packets, a plugin is already added to wireshark which parses the me
 
 Example output for ping packet received to agent from local vm:
 
-$ tshark -i pkt0 -V -X lua_script:/tmp/agent_dissector.lua  
+$ tshark -i pkt0 -V -X lua_script:/usr/share/contrail-utils/agent_dissector.lua  
 Frame 8: 142 bytes on wire (1136 bits), 142 bytes captured (1136 bits) on interface 0  
     Interface id: 0  
     Encapsulation type: Ethernet (1)  
