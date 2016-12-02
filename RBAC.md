@@ -112,6 +112,7 @@ Read RBAC rule-set using UUID or FQN
 
     python /opt/contrail/utils/rbacutil.py --uuid 'b27c3820-1d5f-4bfd-ba8b-246fefef56b0' --op read
     python /opt/contrail/utils/rbacutil.py --name 'default-domain:default-api-access-list' --op read
+    python /opt/contrail/utils/rbacutil.py --name 'default-global-system-config:default-api-access-list' --op read
 
 Create RBAC rule-set using FQN domain/project
 
@@ -132,6 +133,23 @@ Delete rule from RBAC group - specify rule number or exact rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule 2 --op del-rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op del-rule
 
+The script requires administrative credentials. Note that a few rules are pre-configured at global level as software defaults:
+
+    root@b4s3:/opt/contrail/utils# python /opt/contrail/utils/rbacutil.py --name "default-global-system-config:default-api-access-list" --op read
+    AAA mode is rbac
+
+    Oper       =  read
+    Name       = ['default-global-system-config', 'default-api-access-list']
+    UUID       = None
+    API Server =  127.0.0.1:8082
+    
+    Rules (5):
+    ----------
+     1 fqname-to-id                       *:CRUD,
+     2 useragent-kv                       *:CRUD,
+     3 documentation                      *:R,
+     4 id-to-fqname                       *:CRUD,
+     5 /                                  *:R,
 
 ## chmod2.py
 This allows updating object permissions:
