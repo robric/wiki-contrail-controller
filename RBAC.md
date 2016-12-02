@@ -116,7 +116,7 @@ Read RBAC rule-set using UUID or FQN
 
 Create RBAC rule-set using FQN domain/project
 
-    python /opt/contrail/utils/rbacutil.py --fq_name 'default-domain:api-access-list' --op create
+    python /opt/contrail/utils/rbacutil.py --name 'default-domain:api-access-list' --op create
 
 Delete RBAC group using FQN or UUID
 
@@ -133,7 +133,7 @@ Delete rule from RBAC group - specify rule number or exact rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule 2 --op del-rule
     python /opt/contrail/utils/rbacutil.py --uuid <uuid> --rule "useragent-kv *:CRUD" --op del-rule
 
-The script requires administrative credentials. Note that a few rules are pre-configured at global level as software defaults:
+The script requires administrative credentials. Note that a few rules are pre-configured at global level as software defaults. These are needed for system operations. If removed, these rules will be added when API server is restarted.
 
     root@b4s3:/opt/contrail/utils# python /opt/contrail/utils/rbacutil.py --name "default-global-system-config:default-api-access-list" --op read
     AAA mode is rbac
