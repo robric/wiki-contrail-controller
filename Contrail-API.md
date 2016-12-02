@@ -19,3 +19,5 @@ https://s3-us-west-1.amazonaws.com/configuration-schema-documentation/openapi/co
 
 ###Release specific versions:
 [**R3.0**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.0)
+
+[**R3.1**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.1)
