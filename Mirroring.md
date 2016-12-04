@@ -35,3 +35,7 @@ Dynamic without Juniper header
 Static without Juniper header
 * Static never adds Juniper header and will always be VxLAN
 * Same as dynamic without Juniper header, except that configuration gives VxLAN info.
+
+Config required for 
+* Dynamic without Juniper Header - Analyser VM mac & destination Mirror VRF, mode- dynamic, Juniper header - false 
+* Static without Juniper Header -  VTEP IP , VNI(Vxlan_id), mode-static JuniperHeader -false 
