@@ -125,6 +125,7 @@ Till then, just assume that we have 8 PGs in a system from PG0 to PG7.
 If we have 64 HW queues, then HW queue 0 - 7 belong to PG0, 8 - 15 belong to PG1 and so on...
 
 Priority group has 2 attributes:
+
 1. Strictness : We configure the PG as strict priority(binary 1) queue or a Round Robin one(binary 0).
 2. Bandwidth: This parameter hold significance only for round robin queues. For strict queues, it will be set to 0. For Round robin queues, we set different values of BW. Sum of total BW allotted to all queues should not exceed 100.
 
@@ -133,6 +134,7 @@ You can understand the whole concept with this assumption without bothering for 
 
 
 Following is the traffic behavior which we expect after configuring scheduling:
+
 1. If traffic congestion happens between 2 PGs with strictness as 1(set), then the PG with higher id (eg. PG7) will preempt the PG with lower ID(e.g. PG0).
 2. If traffic congestion happens between 2 PGs with 1 PG having  strictness as 1(set) and other with strictness 0(reset), the PG with strictness set will preempt the traffic of other PG irrespective of PG ID being higher or lower.
 3. If traffic congestion happens between 2 PGs with strictness as 0(reset), then the traffic will be scheduled in BW ratio configured for the 2 round robin PGs.
