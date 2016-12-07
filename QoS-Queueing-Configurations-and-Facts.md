@@ -2,10 +2,13 @@
 This document focuses on explaining what all configurations need to be done as part of QOS queueing in release R3.2 and how to play around with it.
 
 There are 2 major modules of Qos Queueing in R3.2.
+
 They can be segregated as:
+
 1. Queue mapping : It helps in directing the traffic to a particular physical Queue on the NIC interface
 2. Queue scheduling : We can configure the queue scheduling to be strict or weighted round robin.
-The traffic mapped to the queue by consulting the "Queue mapping" will get scheduling behavior as configured in "Queue scheduling"
+   The traffic mapped to the queue by consulting the "Queue mapping" will get scheduling behavior as configured in "Queue scheduling"
+
 Logical Queues are what we expose to end user. So, user has to configure logical IDs which will internally map to HW queues.
 
 
