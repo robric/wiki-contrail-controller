@@ -22,7 +22,7 @@ It is kind of a mapping table where 1 or more Logical Queue IDs maps to a single
 
 
 ## **Steps to configure Queue mapping:**
-1. Before provisioning the setup, we can make the required configurations in the testbed file as follows:
+* Before provisioning the setup, we can make the required configurations in the testbed file as follows:
 
 >      env.qos = {host2: [{'hardware_q_id': '3', 'logical_queue':['1', '6-10', '12-15']},
 >                     {'hardware_q_id': '11', 'logical_queue':['40-46']},
@@ -49,7 +49,7 @@ It is kind of a mapping table where 1 or more Logical Queue IDs maps to a single
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
 Note that it is mandatory to mention a 'default' queue for every host where you are configuring Qos queue mapping. The provisioning will fail if "default" not mentioned
 
-2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
+* Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
 
 >       [QOS]
@@ -82,20 +82,21 @@ Please don't forget to restart contrail-vrouter-agent service after making modif
 
 
 ## **How Qos Queueing works:**
-1. Using Contrail UI, while configuring a Forwarding class(FC) though UI, you have to mention a Qos Queue ID.
-This will implicitly create a QosQueue object with that ID. This is the Logical Queue ID.
-Alternatively, if you don't use UI, then you have to create a QosQueue object using a VNC API mentioning the logical Queue ID.
 
-Please note that when you provision the setup, Queue mapping gets populated in contrail-grouter-agent.conf, the logical QosQueue objects do not get created by their own. User have to create them manually if using VncApi. If using UI, it gives us provision that while creating a Forwarding Class and mentioning QosQueue ID, it creates the QosQueue object as well.
+1. Using Contrail UI, while configuring a Forwarding class(FC) though UI, you have to mention a Qos Queue ID.
+   This will implicitly create a QosQueue object with that ID. This is the Logical Queue ID.
+   Alternatively, if you don't use UI, then you have to create a QosQueue object using a VNC API mentioning the logical Queue ID.
+
+   Please note that when you provision the setup, Queue mapping gets populated in contrail-grouter-agent.conf, the logical QosQueue objects do not get created by their own. User have to create them manually if using VncApi. If using UI, it gives us provision that while creating a Forwarding Class and mentioning QosQueue ID, it creates the QosQueue object as well.
 
 2. After FC is created, agent knows that a particular FC maps to some Logical Queue ID.
-It is the task of router to associate the FC to actual HW queue based on the Logical Queue ID used by user.
-For eg:
-User creates a FC using UI and mention QosQueue ID as 141.
-Then, a QosQueue object will get created and it will also get associated with the FC.
-Then contrail-vrouter-agent.conf will be consulted and it will reach for corresponding HW queue.
-As per testbed sample above, FC will map to HW queue 36 on host2 and HW queue 37 on host4.
-In case user use QosQueue ID which do not maps to any physical HW queue e.g.:146, then it will map to default HW queue 53 on host2 and 54 on host4.
+   It is the task of router to associate the FC to actual HW queue based on the Logical Queue ID used by user.
+   For eg:
+   User creates a FC using UI and mention QosQueue ID as 141.
+   Then, a QosQueue object will get created and it will also get associated with the FC.
+   Then contrail-vrouter-agent.conf will be consulted and it will reach for corresponding HW queue.
+   As per testbed sample above, FC will map to HW queue 36 on host2 and HW queue 37 on host4.
+   In case user use QosQueue ID which do not maps to any physical HW queue e.g.:146, then it will map to default HW queue 53 on host2 and 54 on host4.
 
 
 ## How to test Queue mapping:
