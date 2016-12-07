@@ -23,66 +23,69 @@ It is kind of a mapping table where 1 or more Logical Queue IDs maps to a single
 
 ## **Steps to configure Queue mapping:**
 1. Before provisioning the setup, we can make the required configurations in the testbed file as follows:
-env.qos = {host2: [{'hardware_q_id': '3', 'logical_queue':['1', '6-10', '12-15']},
-                   {'hardware_q_id': '11', 'logical_queue':['40-46']},
-                   {'hardware_q_id': '18', 'logical_queue':['70-74, 75, 80-95']},
-                   {'hardware_q_id': '28', 'logical_queue':['115']},
-                   {'hardware_q_id': '36', 'logical_queue':['140-143', '145']},
-                   {'hardware_q_id': '43', 'logical_queue':['175']},
-                   {'hardware_q_id': '53', 'logical_queue':['180-220'], 'default': 'True'},
-                   {'hardware_q_id': '61', 'logical_queue':['245']}],
-            host4: [{'hardware_q_id': '4', 'logical_queue':['1', '6-10', '12-15']},
-                   {'hardware_q_id': '12', 'logical_queue':['40-46']},
-                   {'hardware_q_id': '19', 'logical_queue':['70-74, 75, 80-95']},
-                   {'hardware_q_id': '29', 'logical_queue':['115']},
-                   {'hardware_q_id': '37', 'logical_queue':['140-143', '145']},
-                   {'hardware_q_id': '44', 'logical_queue':['175']},
-                   {'hardware_q_id': '54', 'logical_queue':['180'], 'default': 'True'},
-                   {'hardware_q_id': '62', 'logical_queue':['245']}]}
 
-  `hardware_q_id  : Hardware queue identifier.   `
-  `logical_queue  : Defines the logical queues that map to the hardware queue.    `
-  `default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. One of the queue must be defined default.`
+     env.qos = {host2: [{'hardware_q_id': '3', 'logical_queue':['1', '6-10', '12-15']},
+                    {'hardware_q_id': '11', 'logical_queue':['40-46']},
+                    {'hardware_q_id': '18', 'logical_queue':['70-74, 75, 80-95']},
+                    {'hardware_q_id': '28', 'logical_queue':['115']},
+                    {'hardware_q_id': '36', 'logical_queue':['140-143', '145']},
+                    {'hardware_q_id': '43', 'logical_queue':['175']},
+                    {'hardware_q_id': '53', 'logical_queue':['180-220'], 'default': 'True'},
+                    {'hardware_q_id': '61', 'logical_queue':['245']}],
+             host4: [{'hardware_q_id': '4', 'logical_queue':['1', '6-10', '12-15']},
+                    {'hardware_q_id': '12', 'logical_queue':['40-46']},
+                    {'hardware_q_id': '19', 'logical_queue':['70-74, 75, 80-95']},
+                    {'hardware_q_id': '29', 'logical_queue':['115']},
+                    {'hardware_q_id': '37', 'logical_queue':['140-143', '145']},
+                    {'hardware_q_id': '44', 'logical_queue':['175']},
+                    {'hardware_q_id': '54', 'logical_queue':['180'], 'default': 'True'},
+                    {'hardware_q_id': '62', 'logical_queue':['245']}]}
+
+      hardware_q_id  : Hardware queue identifier.
+      logical_queue  : Defines the logical queues that map to the hardware queue.
+      default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. One of the queue must be defined default.
+
+
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
 Note that it is mandatory to mention a 'default' queue for every host where you are configuring Qos queue mapping. The provisioning will fail if "default" not mentioned
 
 2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
-`[QOS]`
-`[QUEUE-4]`
-`# Logical nic queues for qos config`
-`logical_queue=[1, 6-10, 12-15]`
+[QOS]
+[QUEUE-4]
+# Logical nic queues for qos config
+logical_queue=[1, 6-10, 12-15]
 
-`[QUEUE-12]`
-`# Logical nic queues for qos config`
-`logical_queue=[40-46]`
+[QUEUE-12]
+# Logical nic queues for qos config
+logical_queue=[40-46]
 
-`[QUEUE-19]`
-`# Logical nic queues for qos config`
-`logical_queue=[70-74, 75, 80-95]`
+[QUEUE-19]
+# Logical nic queues for qos config
+logical_queue=[70-74, 75, 80-95]
 
-`[QUEUE-29]`
-`# Logical nic queues for qos config`
-`logical_queue=[115]`
+[QUEUE-29]
+# Logical nic queues for qos config`
+logical_queue=[115]
 
-`[QUEUE-37]`
-`# Logical nic queues for qos config`
-`logical_queue=[140-143, 145]`
+[QUEUE-37]
+# Logical nic queues for qos config
+logical_queue=[140-143, 145]
 
-`[QUEUE-44]`
-`# Logical nic queues for qos config`
-`logical_queue=[175]`
+[QUEUE-44]
+# Logical nic queues for qos config
+logical_queue=[175]
 
-`[QUEUE-62]`
-`# Logical nic queues for qos config`
-`logical_queue=[245]`
+[QUEUE-62]
+# Logical nic queues for qos config
+logical_queue=[245]
 
-`[QUEUE-54]`
-`# This is the default hardware queue`
-`default_hw_queue= true`
+[QUEUE-54]
+# This is the default hardware queue
+default_hw_queue= true
 
-`# Logical nic queues for qos config`
-`logical_queue=[180]`
+# Logical nic queues for qos config
+logical_queue=[180]
 Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
 
 
