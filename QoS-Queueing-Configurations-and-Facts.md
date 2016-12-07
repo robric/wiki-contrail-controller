@@ -51,31 +51,32 @@ Note that it is mandatory to mention a 'default' queue for every host where you 
 
 2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
-> [QOS]
-> [QUEUE-4]
-> logical_queue=[1, 6-10, 12-15]
 
-> [QUEUE-12]
-> logical_queue=[40-46]
+>       [QOS]
+>       [QUEUE-4]
+>       logical_queue=[1, 6-10, 12-15]
 
-> [QUEUE-19]
-> logical_queue=[70-74, 75, 80-95]
+>       [QUEUE-12]
+>       logical_queue=[40-46]
 
-> [QUEUE-29]
-> logical_queue=[115]
+>       [QUEUE-19]
+>       logical_queue=[70-74, 75, 80-95]
 
-> [QUEUE-37]
-> logical_queue=[140-143, 145]
+>       [QUEUE-29]
+>       logical_queue=[115]
 
-> [QUEUE-44]
-> logical_queue=[175]
+>       [QUEUE-37]
+>       logical_queue=[140-143, 145]
 
-> [QUEUE-62]
-> logical_queue=[245]
+>       [QUEUE-44]
+>       logical_queue=[175]
 
-> [QUEUE-54]
-> default_hw_queue= true
-> logical_queue=[180]
+>       [QUEUE-62]
+>       logical_queue=[245]
+
+>       [QUEUE-54]
+>       default_hw_queue= true
+>       logical_queue=[180]
 
 Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
 
