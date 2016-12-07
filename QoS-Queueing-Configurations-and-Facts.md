@@ -51,41 +51,41 @@ Note that it is mandatory to mention a 'default' queue for every host where you 
 
 2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
-[QOS]
-[QUEUE-4]
-# Logical nic queues for qos config
-logical_queue=[1, 6-10, 12-15]
+> [QOS]
+> [QUEUE-4]
+> # Logical nic queues for qos config
+> logical_queue=[1, 6-10, 12-15]
 
-[QUEUE-12]
-# Logical nic queues for qos config
-logical_queue=[40-46]
+> [QUEUE-12]
+> # Logical nic queues for qos config
+> logical_queue=[40-46]
 
-[QUEUE-19]
-# Logical nic queues for qos config
-logical_queue=[70-74, 75, 80-95]
+> [QUEUE-19]
+> # Logical nic queues for qos config
+> logical_queue=[70-74, 75, 80-95]
 
-[QUEUE-29]
-# Logical nic queues for qos config`
-logical_queue=[115]
+> [QUEUE-29]
+> # Logical nic queues for qos config`
+> logical_queue=[115]
 
-[QUEUE-37]
-# Logical nic queues for qos config
-logical_queue=[140-143, 145]
+> [QUEUE-37]
+> # Logical nic queues for qos config
+> logical_queue=[140-143, 145]
 
-[QUEUE-44]
-# Logical nic queues for qos config
-logical_queue=[175]
+> [QUEUE-44]
+> # Logical nic queues for qos config
+> logical_queue=[175]
 
-[QUEUE-62]
-# Logical nic queues for qos config
-logical_queue=[245]
+> [QUEUE-62]
+> # Logical nic queues for qos config
+> logical_queue=[245]
 
-[QUEUE-54]
-# This is the default hardware queue
-default_hw_queue= true
+> [QUEUE-54]
+> # This is the default hardware queue
+> default_hw_queue= true
 
-# Logical nic queues for qos config
-logical_queue=[180]
+> # Logical nic queues for qos config
+> logical_queue=[180]
 Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
 
 
@@ -144,57 +144,57 @@ Our commitment is Intel-NIANTEC 10G NIC interface "82599ES". Testing has been do
 
 ## **Steps to configure Queue scheduling:**
 1. Before provisioning the setup, we can make the required configurations in the testbed file as follows:
-`env.qos_niantic = {host2:[`
-                          `{ 'priority_id': '0', 'scheduling': 'strict', 'bandwidth': '10'},`
-                          `{ 'priority_id': '1', 'scheduling': 'rr', 'bandwidth': '0'},`
-                          `{ 'priority_id': '2', 'scheduling': 'strict', 'bandwidth': '25'},`
-                          `{ 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '0'},`
-                          `{ 'priority_id': '4', 'scheduling': 'strict', 'bandwidth': '30'},`
-                          `{ 'priority_id': '5', 'scheduling': 'rr', 'bandwidth': '0'},`
-                          `{ 'priority_id': '6', 'scheduling': 'strict', 'bandwidth': '35'},`
-                          `{ 'priority_id': '7', 'scheduling': 'rr', 'bandwidth': '0'}],`
-                   `host4:[`
-                          `{ 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},`
-                          `{ 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '25'},`
-                          `{ 'priority_id': '6', 'scheduling': 'rr', 'bandwidth': '50'},`
-                          `{ 'priority_id': '7', 'scheduling': 'strict', 'bandwidth': '0'}]}`
+> env.qos_niantic = {host2:[
+>                           { 'priority_id': '0', 'scheduling': 'strict', 'bandwidth': '10'},
+>                           { 'priority_id': '1', 'scheduling': 'rr', 'bandwidth': '0'},
+>                           { 'priority_id': '2', 'scheduling': 'strict', 'bandwidth': '25'},
+>                           { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '0'},
+>                           { 'priority_id': '4', 'scheduling': 'strict', 'bandwidth': '30'},
+>                           { 'priority_id': '5', 'scheduling': 'rr', 'bandwidth': '0'},
+>                           { 'priority_id': '6', 'scheduling': 'strict', 'bandwidth': '35'},
+>                           { 'priority_id': '7', 'scheduling': 'rr', 'bandwidth': '0'}],
+>                    host4:[
+>                           { 'priority_id': '1', 'scheduling': 'strict', 'bandwidth': '0'},
+>                           { 'priority_id': '3', 'scheduling': 'rr', 'bandwidth': '25'},
+>                           { 'priority_id': '6', 'scheduling': 'rr', 'bandwidth': '50'},
+>                           { 'priority_id': '7', 'scheduling': 'strict', 'bandwidth': '0'}]}
 
-  `scheduling     : Defines the scheduling algorithm to be used by the corresponding priority group (strict / rr).  `
-  `bandwidth      : Bandwidth to be used by the corresponding priority group when scheduling is round-robin.  `
+>       scheduling     : Defines the scheduling algorithm to be used by the corresponding priority group (strict / rr).
+>       bandwidth      : Bandwidth to be used by the corresponding priority group when scheduling is round-robin. 
 
 
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
 
 2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
-[QOS-NIANTIC]
-[PG-1]
-# Scheduling algorithm for priority group (strict/rr)
-scheduling=strict
+> [QOS-NIANTIC]
+> [PG-1]
+> # Scheduling algorithm for priority group (strict/rr)
+> scheduling=strict
 
-# Total hardware queue bandwidth used by priority group
-bandwidth=0
+> # Total hardware queue bandwidth used by priority group
+> bandwidth=0
 
-[PG-3]
-# Scheduling algorithm for priority group (strict/rr)
-scheduling=rr
+> [PG-3]
+> # Scheduling algorithm for priority group (strict/rr)
+> scheduling=rr
 
-# Total hardware queue bandwidth used by priority group
-bandwidth=25
+> # Total hardware queue bandwidth used by priority group
+> bandwidth=25
 
-[PG-6]
-# Scheduling algorithm for priority group (strict/rr)
-scheduling=rr
+> [PG-6]
+> # Scheduling algorithm for priority group (strict/rr)
+> scheduling=rr
 
-# Total hardware queue bandwidth used by priority group
-bandwidth=50
+> # Total hardware queue bandwidth used by priority group
+> bandwidth=50
 
-[PG-7]
-# Scheduling algorithm for priority group (strict/rr)
-scheduling=strict
+> [PG-7]
+> # Scheduling algorithm for priority group (strict/rr)
+> scheduling=strict
 
-# Total hardware queue bandwidth used by priority group
-bandwidth=0
+> # Total hardware queue bandwidth used by priority group
+> bandwidth=0
 
 Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
 
@@ -214,21 +214,21 @@ There are following ways through which NIC can be programmed:
 *      It will make this as a rc process so that the configurations can be redone after compute node reboot without running the fab/ qosmap.py again.
 
 Example of using a qosmap command is as follows:
-`qosmap --set-queue p6p2 --dcbx ieee --bw 0,10,0,20,0,30,0,40 --strict 10101010 --tc 0,1,2,3,4,5,6,7`
-`Priority Operation`
-`Interface:                   p6p2`
-`DCBX:                        IEEE`
-`DCB State:                  Disabled`
+> qosmap --set-queue p6p2 --dcbx ieee --bw 0,10,0,20,0,30,0,40 --strict 10101010 --tc 0,1,2,3,4,5,6,7`
+> Priority Operation
+> Interface:                   p6p2
+> DCBX:                        IEEE
+> DCB State:                  Disabled
 
-                               `P0   P1   P2   P3   P4   P5   P6   P7`
-`Traffic Class:                  0    1    2    3    4    5    6    7`
+>                                P0   P1   P2   P3   P4   P5   P6   P7
+> Traffic Class:                  0    1    2    3    4    5    6    7
 
-                              `TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7`
-`Priority Group:                 0    1    2    3    4    5    6    7`
+>                               TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7
+> Priority Group:                 0    1    2    3    4    5    6    7
 
-                              `PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7`
-`Priority Group Bandwidth:       0   10    0   20    0   30    0   40`
-`Strictness:                     1    0    1    0    1    0    1    0`
+>                               PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7
+> Priority Group Bandwidth:       0   10    0   20    0   30    0   40
+> Strictness:                     1    0    1    0    1    0    1    0
 
 I believe that "Priority group", "Priority Group Bandwidth" and "Strictness" must be clear as per the assumption we took. Please see the above configuration and you can relate why BW is kept 0 where strictness is 1 and why BW sums up to 100. 
 Some congestion scenarios and expected output as per the previous example are as follows:
@@ -247,22 +247,22 @@ In our scenario, all the actual HW queues map to traffic classed. So, the actual
 Then, each traffic class or set of traffic classes can map to a single priority group.
  
 It means you can have something like this:
-`root@nodei10:~# qosmap --set-queue p6p2 --dcbx cee --pg 1,0,1,2,0,1,2,3 --bw 30,40,20,10 --strict 01010101 --tc 0,1,2,3,4,5,6,7`
-`NOTE: Bandwidth specification does not work with strict priority`
-`Priority Operation`
-`Interface:                   p6p2`
-`DCBX:                         CEE`
-`DCB State:                  Disabled`
- 
-                               `P0   P1   P2   P3   P4   P5   P6   P7`
-`Traffic Class:                  0    1    2    3    4    5    6    7`
- 
-                              `TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7`
-`Priority Group:                 1    0    1    2    0    1    2    3`
- 
-                              `PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7`
-`Priority Group Bandwidth:      30    0   20    0    0    0    0    0`
-`Strictness:                     0    1    0    1    0    1    0    1`
+> root@nodei10:~# qosmap --set-queue p6p2 --dcbx cee --pg 1,0,1,2,0,1,2,3 --bw 30,40,20,10 --strict 01010101 --tc 0,1,2,3,4,5,6,7
+> NOTE: Bandwidth specification does not work with strict priority
+> Priority Operation
+> Interface:                   p6p2
+> DCBX:                         CEE
+> DCB State:                  Disabled
+>  
+>                                P0   P1   P2   P3   P4   P5   P6   P7
+> Traffic Class:                  0    1    2    3    4    5    6    7
+>  
+>                               TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7
+> Priority Group:                 1    0    1    2    0    1    2    3
+>  
+>                               PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7
+> Priority Group Bandwidth:      30    0   20    0    0    0    0    0
+> Strictness:                     0    1    0    1    0    1    0    1
 Note that TC0, TC2 and TC5, all are mapped to PG1.
 This means that HW queue 0-7, 16-23 and 40-47, all share same BW and strictness configurations.
  
