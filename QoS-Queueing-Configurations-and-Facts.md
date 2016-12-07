@@ -146,7 +146,7 @@ Our commitment is Intel-NIANTEC 10G NIC interface "82599ES". Testing has been do
 ## **Steps to configure Queue scheduling:**
 1. Before provisioning the setup, we can make the required configurations in the testbed file as follows:
 
-> env.qos_niantic = {host2:[
+>       env.qos_niantic = {host2:[
 >                           { 'priority_id': '0', 'scheduling': 'strict', 'bandwidth': '10'},
 >                           { 'priority_id': '1', 'scheduling': 'rr', 'bandwidth': '0'},
 >                           { 'priority_id': '2', 'scheduling': 'strict', 'bandwidth': '25'},
@@ -161,30 +161,30 @@ Our commitment is Intel-NIANTEC 10G NIC interface "82599ES". Testing has been do
 >                           { 'priority_id': '6', 'scheduling': 'rr', 'bandwidth': '50'},
 >                           { 'priority_id': '7', 'scheduling': 'strict', 'bandwidth': '0'}]}
 
->       scheduling     : Defines the scheduling algorithm to be used by the corresponding priority group (strict / rr).
->       bandwidth      : Bandwidth to be used by the corresponding priority group when scheduling is round-robin. 
+>        scheduling     : Defines the scheduling algorithm to be used by the corresponding priority group (strict / rr).
+>        bandwidth      : Bandwidth to be used by the corresponding priority group when scheduling is round-robin. 
 
 
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
 
 2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
-> [QOS-NIANTIC]
-> [PG-1]
-> scheduling=strict
-> bandwidth=0
+>       [QOS-NIANTIC]
+>       [PG-1]
+>       scheduling=strict
+>       bandwidth=0
 
-> [PG-3]
-> scheduling=rr
-> bandwidth=25
+>       [PG-3]
+>       scheduling=rr
+>       bandwidth=25
 
-> [PG-6]
-> scheduling=rr
-> bandwidth=50
+>       [PG-6]
+>       scheduling=rr
+>       bandwidth=50
 
-> [PG-7]
-> scheduling=strict
-> bandwidth=0
+>       [PG-7]
+>       scheduling=strict
+>       bandwidth=0
 
 Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
 
