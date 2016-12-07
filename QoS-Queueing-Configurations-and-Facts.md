@@ -144,7 +144,7 @@ It is choice of user if he/she wants to use Queue scheduling or not. It is compl
 Our commitment is Intel-NIANTEC 10G NIC interface "82599ES". Testing has been done on this NIC.
 
 ## **Steps to configure Queue scheduling:**
-1. Before provisioning the setup, we can make the required configurations in the testbed file as follows:
+* Before provisioning the setup, we can make the required configurations in the testbed file as follows:
 
 >       env.qos_niantic = {host2:[
 >                           { 'priority_id': '0', 'scheduling': 'strict', 'bandwidth': '10'},
@@ -167,7 +167,7 @@ Our commitment is Intel-NIANTEC 10G NIC interface "82599ES". Testing has been do
 
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
 
-2. Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
+* Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
 >       [QOS-NIANTIC]
 >       [PG-1]
@@ -197,6 +197,7 @@ This is responsibility of user to program the configurations on NIC.
 For programming NICs with scheduling related configuration, a utility named "qosmap" can be used. This is the only way provided by us to program NICs. User can use their own ways as well.
 
 There are following ways through which NIC can be programmed:
+
 1. Using qosmap utility directly as a command on compute node.
 2. Using a python script named "qosmap.py" kept in "/opt/contrail/utils" which read contrail-vrouter-agent.conf and creates a qosmap command with configured .conf file and run it automatically on that compute node.
 3. Using a fab command on cfgm0 which will run "qosmap.py" on all compute nodes of the setup. The advantage of having fab script is:
