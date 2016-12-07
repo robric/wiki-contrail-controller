@@ -118,13 +118,10 @@ Please don't forget to restart contrail-vrouter-agent service after making modif
 # **Queue scheduling**
 In Queue scheduling we set scheduling related configurations for Queues.
 
-Few important and confusing things to understand in Qos Scheduling concept are Priority, Traffic Class(TC) and Priority Group(PG).
-These are standard definitions in which we apply scheduling configurations on Intel NICs.
-
+Few important and confusing things to understand in Qos Scheduling concept are Priority, Traffic Class(TC) and Priority Group(PG). These are standard definitions in which we apply scheduling configurations on Intel NICs.
 Explanation about Priority, Traffic Class and Priority Group can be found below in section "How Qos Scheduling works". 
 
-Till then, just assume that we have 8 PGs in a system from PG0 to PG7
-
+Till then, just assume that we have 8 PGs in a system from PG0 to PG7. 
 If we have 64 HW queues, then HW queue 0 - 7 belong to PG0, 8 - 15 belong to PG1 and so on...
 
 Priority group has 2 attributes:
@@ -132,7 +129,6 @@ Priority group has 2 attributes:
 2. Bandwidth: This parameter hold significance only for round robin queues. For strict queues, it will be set to 0. For Round robin queues, we set different values of BW. Sum of total BW allotted to all queues should not exceed 100.
 
 The BW and Strictness configurations which we do for PG0 will be applicable to all queues from HW queue 0 to 7. Same is true for other PGs as well.
-
 You can understand the whole concept with this assumption without bothering for Priority and Traffic class. 
 
 
