@@ -50,6 +50,7 @@ It is kind of a mapping table where 1 or more Logical Queue IDs maps to a single
 
 
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
+
 Note that it is mandatory to mention a 'default' queue for every host where you are configuring Qos queue mapping. The provisioning will fail if "default" not mentioned
 
 * Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
@@ -88,6 +89,7 @@ Please don't forget to restart contrail-vrouter-agent service after making modif
 
 1. Using Contrail UI, while configuring a Forwarding class(FC) though UI, you have to mention a Qos Queue ID.
    This will implicitly create a QosQueue object with that ID. This is the Logical Queue ID.
+   
    Alternatively, if you don't use UI, then you have to create a QosQueue object using a VNC API mentioning the logical Queue ID.
 
    Please note that when you provision the setup, Queue mapping gets populated in contrail-grouter-agent.conf, the logical QosQueue objects do not get created by their own. User have to create them manually if using VncApi. If using UI, it gives us provision that while creating a Forwarding Class and mentioning QosQueue ID, it creates the QosQueue object as well.
@@ -118,14 +120,19 @@ In Queue scheduling we set scheduling related configurations for Queues.
 
 Few important and confusing things to understand in Qos Scheduling concept are Priority, Traffic Class(TC) and Priority Group(PG).
 These are standard definitions in which we apply scheduling configurations on Intel NICs.
+
 Explanation about Priority, Traffic Class and Priority Group can be found below in section "How Qos Scheduling works". 
 
 Till then, just assume that we have 8 PGs in a system from PG0 to PG7
+
 If we have 64 HW queues, then HW queue 0 - 7 belong to PG0, 8 - 15 belong to PG1 and so on...
+
 Priority group has 2 attributes:
 1. Strictness : We configure the PG as strict priority(binary 1) queue or a Round Robin one(binary 0).
 2. Bandwidth: This parameter hold significance only for round robin queues. For strict queues, it will be set to 0. For Round robin queues, we set different values of BW. Sum of total BW allotted to all queues should not exceed 100.
+
 The BW and Strictness configurations which we do for PG0 will be applicable to all queues from HW queue 0 to 7. Same is true for other PGs as well.
+
 You can understand the whole concept with this assumption without bothering for Priority and Traffic class. 
 
 
