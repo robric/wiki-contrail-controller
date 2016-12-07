@@ -201,6 +201,7 @@ There are following ways through which NIC can be programmed:
 1. Using qosmap utility directly as a command on compute node.
 2. Using a python script named "qosmap.py" kept in "/opt/contrail/utils" which read contrail-vrouter-agent.conf and creates a qosmap command with configured .conf file and run it automatically on that compute node.
 3. Using a fab command on cfgm0 which will run "qosmap.py" on all compute nodes of the setup. The advantage of having fab script is:
+
 *      We don’t need to go to each node and run qosmap.py
 *      It will make this as a rc process so that the configurations can be redone after compute node reboot without running the fab/ qosmap.py again.
 
