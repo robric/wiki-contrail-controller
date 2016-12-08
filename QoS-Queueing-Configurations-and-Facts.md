@@ -207,24 +207,26 @@ There are following ways through which NIC can be programmed:
 
 Example of using a qosmap command is as follows:
 
-> qosmap --set-queue p6p2 --dcbx ieee --bw 0,10,0,20,0,30,0,40 --strict 10101010 --tc 0,1,2,3,4,5,6,7`
-> Priority Operation
-> Interface:                   p6p2
-> DCBX:                        IEEE
-> DCB State:                  Disabled
+>       qosmap --set-queue p6p2 --dcbx ieee --bw 0,10,0,20,0,30,0,40 --strict 10101010 --tc 0,1,2,3,4,5,6,7`
+>       Priority Operation
+>       Interface:                   p6p2
+>       DCBX:                        IEEE
+>       DCB State:                  Disabled
 
->                                P0   P1   P2   P3   P4   P5   P6   P7
-> Traffic Class:                  0    1    2    3    4    5    6    7
+>                                      P0   P1   P2   P3   P4   P5   P6   P7
+>       Traffic Class:                  0    1    2    3    4    5    6    7
 
->                               TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7
-> Priority Group:                 0    1    2    3    4    5    6    7
+>                                     TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7
+>       Priority Group:                 0    1    2    3    4    5    6    7
 
->                               PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7
-> Priority Group Bandwidth:       0   10    0   20    0   30    0   40
-> Strictness:                     1    0    1    0    1    0    1    0
+>                                     PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7
+>       Priority Group Bandwidth:       0   10    0   20    0   30    0   40
+>       Strictness:                     1    0    1    0    1    0    1    0
 
 I believe that "Priority group", "Priority Group Bandwidth" and "Strictness" must be clear as per the assumption we took. Please see the above configuration and you can relate why BW is kept 0 where strictness is 1 and why BW sums up to 100. 
+
 Some congestion scenarios and expected output as per the previous example are as follows:
+
 1. If congestion between any queue of PG4 and PG6, queue under PG6 will preempt traffic of queue under PG4 and no drops will be seen in queue under PG6
 2. If congestion between any queue of PG4 and PG5, queue under PG4 will preempt all traffic of queue under PG5 and no drops will be seen in queue under PG4.
 3. If congestion between any queue of PG3 and PG5, traffic will flow in ratio 20:30 for PG3:PG5. Drops will happen in queues of both PGs.
@@ -241,22 +243,22 @@ Then, each traffic class or set of traffic classes can map to a single priority 
  
 It means you can have something like this:
 
-> root@nodei10:~# qosmap --set-queue p6p2 --dcbx cee --pg 1,0,1,2,0,1,2,3 --bw 30,40,20,10 --strict 01010101 --tc 0,1,2,3,4,5,6,7
-> NOTE: Bandwidth specification does not work with strict priority
-> Priority Operation
-> Interface:                   p6p2
-> DCBX:                         CEE
-> DCB State:                  Disabled
+>       root@nodei10:~# qosmap --set-queue p6p2 --dcbx cee --pg 1,0,1,2,0,1,2,3 --bw 30,40,20,10 --strict 01010101 --tc 0,1,2,3,4,5,6,7
+>       NOTE: Bandwidth specification does not work with strict priority
+>       Priority Operation
+>       Interface:                   p6p2
+>       DCBX:                         CEE
+>       DCB State:                  Disabled
+>        
+>                                      P0   P1   P2   P3   P4   P5   P6   P7
+>       Traffic Class:                  0    1    2    3    4    5    6    7
+>        
+>                                     TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7
+>       Priority Group:                 1    0    1    2    0    1    2    3
 >  
->                                P0   P1   P2   P3   P4   P5   P6   P7
-> Traffic Class:                  0    1    2    3    4    5    6    7
->  
->                               TC0  TC1  TC2  TC3  TC4  TC5  TC6  TC7
-> Priority Group:                 1    0    1    2    0    1    2    3
->  
->                               PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7
-> Priority Group Bandwidth:      30    0   20    0    0    0    0    0
-> Strictness:                     0    1    0    1    0    1    0    1
+>                                     PG0  PG1  PG2  PG3  PG4  PG5  PG6  PG7
+>       Priority Group Bandwidth:      30    0   20    0    0    0    0    0
+>       Strictness:                     0    1    0    1    0    1    0    1
 
 Note that TC0, TC2 and TC5, all are mapped to PG1.
 This means that HW queue 0-7, 16-23 and 40-47, all share same BW and strictness configurations.
