@@ -243,7 +243,7 @@ Then, each traffic class or set of traffic classes can map to a single priority 
  
 It means you can have something like this:
 
->       root@nodei10:~# qosmap --set-queue p6p2 --dcbx cee --pg 1,0,1,2,0,1,2,3 --bw 30,40,20,10 --strict 01010101 --tc 0,1,2,3,4,5,6,7
+>       qosmap --set-queue p6p2 --dcbx cee --pg 1,0,1,2,0,1,2,3 --bw 30,40,20,10 --strict 01010101 --tc 0,1,2,3,4,5,6,7
 >       NOTE: Bandwidth specification does not work with strict priority
 >       Priority Operation
 >       Interface:                   p6p2
