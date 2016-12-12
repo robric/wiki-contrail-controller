@@ -46,12 +46,10 @@ It is kind of a mapping table where 1 or more Logical Queue IDs maps to a single
 
 >       hardware_q_id  : Hardware queue identifier.
 >       logical_queue  : Defines the logical queues that map to the hardware queue.
->       default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. One of the queue must be defined default.
+>       default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue.
 
 
 The provisioning will take care to populate the contrail-vrouter-agent.conf with above mentioned configurations.
-
-Note that it is mandatory to mention a 'default' queue for every host where you are configuring Qos queue mapping. The provisioning will fail if "default" not mentioned
 
 * Alternatively, if you have already provisioned the setup without including qos configurations at the time of fresh provisioning, you can directly go and modify the contrail-vrouter-agent.conf on each compute node as follows:
 
@@ -84,6 +82,14 @@ Note that it is mandatory to mention a 'default' queue for every host where you 
 
 Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
 
+* Another way to configure qos mapping in an already running setup is by using fab utility. For that, just update the testbed file and env.qos corresponding to your compute nodes. Run a fab command "fab setup_qos". This fab utility will do the following:
+
+1. Update the contrail-vrouter-agent.conf file with QOS section.
+2. Set the bitmap in ps_cpu file of each queue to 0
+3. Restart the agent so that changes take effect.
+
+
+
 
 ## **How Qos Queueing works:**
 
@@ -92,21 +98,21 @@ Please don't forget to restart contrail-vrouter-agent service after making modif
    
    Alternatively, if you don't use UI, then you have to create a QosQueue object using a VNC API mentioning the logical Queue ID.
 
-   Please note that when you provision the setup, Queue mapping gets populated in contrail-grouter-agent.conf, the logical QosQueue objects do not get created by their own. User have to create them manually if using VncApi. If using UI, it gives us provision that while creating a Forwarding Class and mentioning QosQueue ID, it creates the QosQueue object as well.
+   Please note that when you provision the setup, Queue mapping gets populated in contrail-vrouter-agent.conf but the logical QosQueue objects do not get created by their own. User have to create them manually if using VncApi. If using UI, it gives us provision that while creating a Forwarding Class and mentioning QosQueue ID, it creates the QosQueue object as well.
 
 2. After FC is created, agent knows that a particular FC maps to some Logical Queue ID.
-   It is the task of router to associate the FC to actual HW queue based on the Logical Queue ID used by user.
+   It is the task of vrouter to associate the FC to actual HW queue based on the Logical Queue ID used by user.
    For eg:
    User creates a FC using UI and mention QosQueue ID as 141.
    Then, a QosQueue object will get created and it will also get associated with the FC.
-   Then contrail-vrouter-agent.conf will be consulted and it will reach for corresponding HW queue.
+   Then contrail-vrouter-agent.conf will be consulted and it will search for corresponding HW queue.
    As per testbed sample above, FC will map to HW queue 36 on host2 and HW queue 37 on host4.
    In case user use QosQueue ID which do not maps to any physical HW queue e.g.:146, then it will map to default HW queue 53 on host2 and 54 on host4.
 
 
 ## How to test Queue mapping:
-1. Create QosQueue object and mention any logical id there.
-2. Create a FC and map the QosQueue ID there. (Step 1 and 2 happens together if using Contrail UI)
+1. Create QosQueue object using any valid logical id.
+2. Create a FC and map the QosQueue ID to the FC. (Step 1 and 2 happens together if using Contrail UI)
 3. Create a Qos Config and map some dscp/dot1p/exp to the FC created in step 2.
 4. Apply this Qos config on VMI/ VN/ Policy.
 5. Send high rate traffic with dscp/dot1p/exp as mentioned in step 3.
@@ -118,7 +124,7 @@ Please don't forget to restart contrail-vrouter-agent service after making modif
 # **Queue scheduling**
 In Queue scheduling we set scheduling related configurations for Queues.
 
-Few important and confusing things to understand in Qos Scheduling concept are Priority, Traffic Class(TC) and Priority Group(PG). These are standard definitions in which we apply scheduling configurations on Intel NICs.
+Few important but a little confusing things to understand in Qos Scheduling concept are Priority, Traffic Class(TC) and Priority Group(PG). These are standard definitions in which we apply scheduling configurations on Intel NICs.
 Explanation about Priority, Traffic Class and Priority Group can be found below in section "How Qos Scheduling works". 
 
 Till then, just assume that we have 8 PGs in a system from PG0 to PG7. 
@@ -140,7 +146,7 @@ Following is the traffic behavior which we expect after configuring scheduling:
 3. If traffic congestion happens between 2 PGs with strictness as 0(reset), then the traffic will be scheduled in BW ratio configured for the 2 round robin PGs.
 
 Note:
-It is choice of user if he/she wants to use Queue scheduling or not. It is completely optional. The user can have anything of his own to do such configurations. What contrail has done here is just provided a process named "qosmap" which will help user to configure the NIC queues scheduling behavior. After configurations, behavior of queues of the NIC is dependent on HW. IF HW is having some limitations, few features might not work as expected.
+It is choice of user if he/she wants to use Queue scheduling or not. It is completely optional. The user can have anything of his own to do such configurations. What contrail has done here is just provided a utility named "qosmap" which will help user to configure the NIC queues scheduling parameters. After configurations, behavior of queues of the NIC is dependent on HW. IF HW is having some limitations, few features might not work as expected.
 Our commitment is Intel-NIANTEC 10G NIC interface "82599ES". Testing has been done on this NIC.
 
 ## **Steps to configure Queue scheduling:**
@@ -186,8 +192,12 @@ The provisioning will take care to populate the contrail-vrouter-agent.conf with
 >       scheduling=strict
 >       bandwidth=0
 
-Please don't forget to restart contrail-vrouter-agent service after making modifications in contrail-vrouter-agent.conf
+Note that restart of agent is not required here. There is no process which is using these configurations until we use some way to read this data and run qosmap utility.
 
+* Another way to configure qos scheduling in an already running setup is by using fab utility. For that, just update the testbed file and env.qos_niantic corresponding to your compute nodes. Run a fab command "fab setup_qos_niantic". This fab utility will do the following:
+
+1. Update the contrail-vrouter-agent.conf file with QOS-NIANTIC section.
+2. Run qosmap.py script from "/usr/share/contrail-utils". This python script read the agent.con file and builds a command of qosmap. It hen executes that command which configures the NIC queue scheduling
 
 
 ## **How Qos Scheduling works:**
@@ -203,7 +213,7 @@ There are following ways through which NIC can be programmed:
 3. Using a fab command on cfgm0 which will run "qosmap.py" on all compute nodes of the setup. The advantage of having fab script is:
 
 *      We don’t need to go to each node and run qosmap.py
-*      It will make this as a rc process so that the configurations can be redone after compute node reboot without running the fab/ qosmap.py again.
+*      It will take care of keeping the backup of the configurations so that they are restored after compute reboot.
 
 Example of using a qosmap command is as follows:
 
@@ -223,7 +233,7 @@ Example of using a qosmap command is as follows:
 >       Priority Group Bandwidth:       0   10    0   20    0   30    0   40
 >       Strictness:                     1    0    1    0    1    0    1    0
 
-I believe that "Priority group", "Priority Group Bandwidth" and "Strictness" must be clear as per the assumption we took. Please see the above configuration and you can relate why BW is kept 0 where strictness is 1 and why BW sums up to 100. 
+I believe that readers understand the terms "Priority group", "Priority Group Bandwidth" and "Strictness" by now. Please see the above configuration and you can relate why BW is kept 0 where strictness is 1 and why BW sums up to 100. 
 
 Some congestion scenarios and expected output as per the previous example are as follows:
 
@@ -238,7 +248,7 @@ Priority P0, P1, P2 etc are user priorities. Ideally, the traffic classification
 But, in our case, please note that priority do not hold any significance. We are classifying traffic based on Queue numbers.
 So, you can ignore Priority completely.(P0, P1 etc.. , we can ignore)
  
-In our scenario, all the actual HW queues map to traffic classed. So, the actual statement should be that HW queue 0 to 7 belong to TC0, 8-15 belong to TC1 and so on.
+Below in the hierarchy, instead of P0(priority 0) mapping to a traffic class TC0, HW queue 0-7 maps to TC0 in our case. So, the correct statement should be that HW queue 0 to 7 belong to TC0, 8-15 belong to TC1 and so on.
 Then, each traffic class or set of traffic classes can map to a single priority group.
  
 It means you can have something like this:
@@ -261,19 +271,28 @@ It means you can have something like this:
 >       Strictness:                     0    1    0    1    0    1    0    1
 
 Note that TC0, TC2 and TC5, all are mapped to PG1.
-This means that HW queue 0-7, 16-23 and 40-47, all share same BW and strictness configurations.
+This means that HW queue 0-7, 16-23 and 40-47, all share same BW and strictness capabilities.
  
 Again, we have limitation here also. This configuration(more than 1 TC mapped to single PG) is possible only on CEE mode(which we are not claiming to be supported).
-In IEEE mode, as we cannot configure PG, we are bound to use 1 to 1 mapping of PG and TC.
+In IEEE mode, as we cannot configure PG(--pg option not supported), we are bound to use 1 to 1 mapping of PG and TC.
 Thus, we interchangeably use Traffic class and Priority Group.
 Also, with this understanding, using –tc option in “qosmap --set-queue p6p2 --dcbx ieee  --bw 15,5,10,20,5,8,9,10 --strict 00000000 --tc 0,1,2,3,4,5,6,7” does not hold any significance.
 Hopefully, it will be removed in future. A bug is there to follow up on this.
 
 
 ## How to test Queue Scheduling:
-
+1. Create at least 2 QosQueue objects using any valid logical id. The 2 logical queues should map to 2 different HW queues.
+2. Create 2 FCs and map the QosQueue ID to each FC. (Step 1 and 2 happens together if using Contrail UI)
+3. Create a Qos Config and map some dscp/dot1p/exp to the FC1 and FC2 created in step 2.
+4. Apply this Qos config on a VMI/ VN/ Policy.
+5. Either run qosmap command or fab command or qosmap.py script to configure scheduling on the NIC interface.
+6. Send 2 different streams with 10G traffic rate each. Note that stream 1 should classify for entry 1 of Qos config and stream 2 should classify This will create congestion.
+7. Use d
+6. Verify through "ethtool -S <interfaceName>" that traffic is flowing through the HW queue which maps to the logical queue id used in step 1.
 
 
 
 ## Limitations of Qos Scheduling:
+
+
 For any NIC interface, if the interface do not support DCB, Qos scheduling configurations do not hold any significance. In that case, user can only take advantage of "Queue mapping" feature
