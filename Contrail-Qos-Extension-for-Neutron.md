@@ -116,6 +116,7 @@ The following Neutron CLIs are introduced (valid from Newton)
 	neutron port-update <port-id> --no-qos-policy
 
 ## 3.4 Neutron - Contrail Association ##
+a. When a Neutron QosPolicy is created, a corresponding call to create
    Contrail QosConfig object along with a default Contrail QoSForwardingClass
    and the QosConfig object and the QosForwardingClass is linked.
    
