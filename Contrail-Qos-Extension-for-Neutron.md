@@ -176,10 +176,12 @@ parameters are used to provision QoS parameters.
 
 # 6. References #
 [1] Contrail QoS Wiki - https://github.com/Juniper/contrail-controller/wiki/QoS
+
 [2] Neutron QoS API Models and Extension - 
 https://specs.openstack.org/openstack/neutron-specs/specs/liberty/qos-api-extension.html
+
 [3] Supported Openstack QoS Config -
 http://docs.openstack.org/mitaka/networking-guide/config-qos.html
+
 [4] - Neutron QoS DSCP Mapping - 
 https://specs.openstack.org/openstack/neutron-specs/specs/newton/ml2-qos-with-dscp.html
-
