@@ -286,13 +286,17 @@ Hopefully, it will be removed in future. A bug is there to follow up on this.
 3. Create a Qos Config and map some dscp/dot1p/exp to the FC1 and FC2 created in step 2.
 4. Apply this Qos config on a VMI/ VN/ Policy.
 5. Either run qosmap command or fab command or qosmap.py script to configure scheduling on the NIC interface.
-6. Send 2 different streams with 10G traffic rate each. Note that stream 1 should classify for entry 1 of Qos config and stream 2 should classify This will create congestion.
-7. Use d
-6. Verify through "ethtool -S <interfaceName>" that traffic is flowing through the HW queue which maps to the logical queue id used in step 1.
-
+6. Send 2 different streams with 10G traffic rate each. Note that stream 1 should classify for entry 1 of Qos config and stream 2 should classify for entry 2 of Qos config. This will create congestion.
+7. Use "ethtool -S <interface>" to verify the count of traffic in both queues.
+   Alternatively, you can use "tc -s class show dev <interface>" to see the traffic count and drop counts.
+   Note the there should not be any drop in strict priority traffic.
+   Also, if traffic goes through 2 weighted round robin queues, drop should be observed in both queues and traffic ratio should be same as configured by qosmap utility.
 
 
 ## Limitations of Qos Scheduling:
 
-
-For any NIC interface, if the interface do not support DCB, Qos scheduling configurations do not hold any significance. In that case, user can only take advantage of "Queue mapping" feature
+1. DCB feature supports 2 modes. One is IEEE and other is CEE. We recommend and provide provision to configure Bandwidth and Scheduling values using IEEE mode. User can use CEE mode as well but some limitations are present in that mode which are documented in following bug: https://bugs.launchpad.net/juniperopenstack/+bug/1630865
+2. For any NIC interface, if the interface do not support DCB, Qos scheduling configurations do not hold any significance. In that case, user can only take advantage of "Queue mapping" feature.
+3. For "Intel based 10G NIC(Niantic)", you will observe 32 queues initially. As soon as you enable dcb on the interface, it shows all 64 queues. Using "qosmap" utility to configure Bandwidth and Scheduling, automatically enables DCB and creates 64 queues.
+4. On restart of a compute node, the scheduling configurations are lost if configurations are done directly by using qosmap utility. If we used fab command or qosmap.py to provision the scheduling configurations, it handles these scenarios and scheduling configurations get restored after restart.
+5. qosmap utility do not provide with any option to do per queue policing. If the NIC supports per queue scheduling, user can use the NIC API's or any other way to configure the queues. We expect it to work as contrail qosmap is just a configuration tool and do not code any functionality on NIC driver.
