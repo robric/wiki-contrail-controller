@@ -30,15 +30,17 @@ The following Neutron QoS objects are supported in the Newton release of
 Openstack.
 
 **QosPolicy** - id, name, description, shared, tenant_id
+
 **QoSRule** - id, qos_policy_id, type, direction, tenant_id
-   **QoSBandwidthLimitRule** - qos_rule_id, max_kbps, max_burst_kbps (this is derived
+
+**QoSBandwidthLimitRule** - qos_rule_id, max_kbps, max_burst_kbps (this is derived
 from the QoSRule object)
 Details here - http://specs.openstack.org/openstack/neutron-specs/specs/liberty/qos-api-extension.html
 
-   **QoSDSCPMarkingRule** - Qos_Policy_id, dscp_mark (This is derived from the QosRule object)
+**QoSDSCPMarkingRule** - Qos_Policy_id, dscp_mark (This is derived from the QosRule object)
 details here - https://specs.openstack.org/openstack/neutron-specs/specs/newton/ml2-qos-with-dscp.html
 
-   **QosMinimumBandwidthRule** - id, qos_policy_id, min_kpbs, direction`. (ToDo: To check whether egress bandwidth is supported)
+**QosMinimumBandwidthRule** - id, qos_policy_id, min_kpbs, direction`. (ToDo: To check whether egress bandwidth is supported)
 Details here - https://specs.openstack.org/openstack/neutron-specs/specs/newton/ml2-qos-minimum-egress-bw-support.html
 
 The following maps how the above mentioned entities are associated with each other.
