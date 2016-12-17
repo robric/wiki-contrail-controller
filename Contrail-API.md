@@ -9,13 +9,15 @@ Contrail Configuration API uses REST to configure contrail SDN cluster. The API 
 ###Documentation:
 For a general overview of Contrail APIs refer to (http://www.juniper.net/us/en/local/pdf/whitepapers/2000527-en.pdf)
 
-###Release specific documenation:
-[**R3.0 html**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.0) 
+###Release specific documentation:
+[**R3.0**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.0) 
 
-[**R3.1 html**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.1)
+[**R3.1**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.1)
 
-[**OpenAPI**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
 
 [**R3.2 html**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2)
 
-[**OpenAPI**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
+###Release specific OpenAPI doc:
+
+[**R3.1**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
+[**R3.0**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
