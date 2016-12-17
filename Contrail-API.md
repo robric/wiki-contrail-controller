@@ -13,7 +13,9 @@ For a general overview of Contrail APIs refer to (http://www.juniper.net/us/en/l
 [**R3.0 html**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.0) 
 
 [**R3.1 html**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.1)
+
 [**OpenAPI**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
 
 [**R3.2 html**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2)
+
 [**OpenAPI**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
