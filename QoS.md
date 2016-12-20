@@ -28,6 +28,8 @@ Additionally QOS config can be applied to a virtual-network, interface or networ
 #Queueing
 
 From 3.2 release onwards, vRouter will provide the infrastructure to make use of the queues supplied by the network interface, also called hardware queueing. NICs that implement hardware queueing also come with their own set of scheduling algorithms associated with the queues. While the implementation will work with most of the NICs, Intel based 10G NIC (also called 'Niantic') is what was used for internal testing. Note that R3.2 queueing support is only with kernel mode vrouter.
+Various configurations and facts under QOS Queueing are covered in this page. There is a dedicated page to explain Qos Queueing as well. Please refer to following link:
+https://github.com/Juniper/contrail-controller/wiki/QoS-Queueing-Configurations-and-Facts
 
 #Release
 1. QOS config and forwarding class will be implemented as part of 3.1
