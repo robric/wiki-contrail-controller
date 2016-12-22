@@ -300,3 +300,7 @@ Hopefully, it will be removed in future. A bug is there to follow up on this.
 3. For "Intel based 10G NIC(Niantic)", you will observe 32 queues initially. As soon as you enable dcb on the interface, it shows all 64 queues. Using "qosmap" utility to configure Bandwidth and Scheduling, automatically enables DCB and creates 64 queues.
 4. On restart of a compute node, the scheduling configurations are lost if configurations are done directly by using qosmap utility. If we used fab command or qosmap.py to provision the scheduling configurations, it handles these scenarios and scheduling configurations get restored after restart.
 5. qosmap utility do not provide with any option to do per queue policing. If the NIC supports per queue scheduling, user can use the NIC API's or any other way to configure the queues. We expect it to work as contrail qosmap is just a configuration tool and do not code any functionality on NIC driver.
+6. Queueing and Scheduling will not happen on a Vlan fabric interface. The vlan driver in linux does not support carrying the physical queue mapping to the physical interface from the vlan virtual interface. Please refer to following bug:
+https://bugs.launchpad.net/juniperopenstack/+bug/1626406
+7. Queueing and Scheduling will not happen on Virtual Functions or SRIOV. Please refer to following bug:
+https://bugs.launchpad.net/juniperopenstack/+bug/1633347
