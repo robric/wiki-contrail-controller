@@ -76,13 +76,13 @@ Additionally QOS config can be applied to a virtual-network, interface or networ
         +     QOS config object    + ----> +  Forwarding class   + ----> +  Queue   + 
         +--------------------------+       +---------------------+       + ---------+
 
+However, current data path implementation does not change the packets header but only changes the tunnel header DSCP marking. This means that when the packet ingresses in the Destination VM it will not have corresponding DSCP marking since the tunnel header is stripped.
+
 ### Traffic originated by Virtual machine interface ###
 
     * If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
     * If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
-    * If VM sends an IP packet to VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
-
-
+    
 ## 3.3 Neutron CLI Examples ##
 
 The following Neutron CLIs are introduced (valid from Newton)
