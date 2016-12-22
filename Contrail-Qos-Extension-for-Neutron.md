@@ -4,12 +4,13 @@ Contrail Neutron API will support in the Contrail 4.0 release.
 
 # 2. Problem statement #
 Contrail vRouter data path supports different QoS features such as marking,
-mapping to forwarding class, bandwidth limiting from 3.x release. Details
+mapping to forwarding class, from 3.x release. Bandwidth limiting and
+policing are not supported features yet. Details
 of what the data path supports can be found at
 https://github.com/Juniper/contrail-controller/wiki/QoS
 
 However,the configuration of these QoS features through Horizon or the Neutron CLI
-was not supported since the Contrail Neutron extenstions API did not implement 
+was not supported since the Contrail Neutron extensions API did not implement 
 the Neutron QoS extensions. More details on what is supported in the Neutron 
 CLI can be found here in this blueprint. 
 https://review.openstack.org/#/c/88599/14/specs/liberty/qos-api-extension.rst
@@ -23,7 +24,7 @@ QoS features.
 The Neutron QoS Model operates on the idea of policies and rules. Policies
 can be associated to a Port or a network (QosPolicy -> Port/Network). 
 The QosPolicy can be linked to a base QosRule. New rules could be 
-introduced by adding new submodels to QoSRule. When a QoSPolicy can be
+introduced by adding new submodels to QoSRule. A QoSPolicy can be
 associated to a VM (Interface/Port) or a complete network.
 
 The following Neutron QoS objects are supported in the Newton release of 
@@ -75,6 +76,13 @@ Additionally QOS config can be applied to a virtual-network, interface or networ
         +     QOS config object    + ----> +  Forwarding class   + ----> +  Queue   + 
         +--------------------------+       +---------------------+       + ---------+
 
+### Traffic originated by Virtual machine interface ###
+
+    * If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
+    * If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
+    * If VM sends an IP packet to VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
+
+
 ## 3.3 Neutron CLI Examples ##
 
 The following Neutron CLIs are introduced (valid from Newton)
@@ -91,14 +99,6 @@ The following Neutron CLIs are introduced (valid from Newton)
 
 ### 3.3.2 QoS Policy Rules manipulation: ###
 
-		neutron qos-bandwidth-limit-rule-create <policy-name-or-id> \
-							--max_kbps x [--max_burst_kbps y]
-		neutron qos-bandwidth-limit-rule-update <rule-id> <policy-name-or-id> \
-							--max_kbps x [--max_burst_kbps y]
-		neutron qos-bandwidth-limit-rule-list   <policy-name-or-id>
-		neutron qos-bandwidth-limit-rule-delete <rule-id> <policy-name-or-id>
-		neutron qos-bandwidth-limit-rule-show   <rule-id> <policy-name-or-id>
-		
 		neutron qos-dscp-marking-rule-create <policy-id> –dscp_mark <value>
 		neutron qos-dscp-marking-rule-show <mark-rule-id> <policy-id>
 		neutron qos-dscp-marking-rule-list <policy-id>
