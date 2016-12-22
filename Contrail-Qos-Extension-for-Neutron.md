@@ -80,8 +80,8 @@ However, current data path implementation does not change the packets header but
 
 ### Traffic originated by Virtual machine interface ###
 
-    * If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
-    * If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
+* If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
+* If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
     
 ## 3.3 Neutron CLI Examples ##
 
@@ -128,9 +128,9 @@ c. When a Neutron attach policy to a port/network is configured, then we will
    attach the Contrail QosConfig object to the corresponding VMI or VN.
 
 ## 3.5  User workflow impact ##
-First, create a QoS policy and its bandwidth limit rule:
+First, create a QoS policy and its DSCP marking rule:
 
-		neutron qos-policy-create bw-limiter
+		neutron qos-policy-create mark-dscp
 
 		Created a new policy:
 		+-------------+--------------------------------------+
@@ -138,29 +138,27 @@ First, create a QoS policy and its bandwidth limit rule:
 		+-------------+--------------------------------------+
 		| description |                                      |
 		| id          | 0ee1c673-5671-40ca-b55f-4cd4bbd999c7 |
-		| name        | bw-limiter                           |
+		| name        | mark-dscp                            |
 		| rules       |                                      |
 		| shared      | False                                |
 		| tenant_id   | 85b859134de2428d94f6ee910dc545d8     |
 		+-------------+--------------------------------------+
 
-		$ neutron qos-bandwidth-limit-rule-create bw-limiter --max-kbps 3000 \
-		--max-burst-kbps 300
+		$ neutron qos-dscp-marking-rule-create mark-dscp --dscp-mark 5
 
-		Created a new bandwidth_limit_rule:
+		Created a new dscp_mark_rule:
 		+----------------+--------------------------------------+
 		| Field          | Value                                |
 		+----------------+--------------------------------------+
 		| id             | 92ceb52f-170f-49d0-9528-976e2fee2d6f |
-		| max_burst_kbps | 300                                  |
-		| max_kbps       | 3000                                 |
+		| dscp_mark      | 5                                  |
 		+----------------+--------------------------------------+
 		
 Second, associate the created policy with an existing neutron port. 
 In order to do this, user extracts the port id to be associated to the already 
-created policy. In the next example, we will assign the bw-limiter policy to the VM.
+created policy. In the next example, we will assign the mark-dscp policy to the VM.
 	
-		$ neutron port-update 88101e57-76fa-4d12-b0e0-4fc7634b874a --qos-policy bw-limiter
+		$ neutron port-update 88101e57-76fa-4d12-b0e0-4fc7634b874a --qos-policy mark-dscp
 		Updated port: 88101e57-76fa-4d12-b0e0-4fc7634b874a
 
 # 4. Implementation #
