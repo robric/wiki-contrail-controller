@@ -251,8 +251,7 @@ Above configuration is read by a qosmap.py script (path /opt/contrail/utils) tha
 ###Qos Scheduling for an already provisioned cluster
 Testbed.py can be updated as shown above and run fab task from /opt/contrail/utils path on config node:   
 fab setup_qos_scheduling   
-This task will generate [QOS-NIANTIC] section in contrail-vrouter-agent.conf write zeros to xps_cpu files   
-and make the qos scheduilng configuration persistent across restarts .   
+This task will generate [QOS-NIANTIC] section in contrail-vrouter-agent.conf write zeros to xps_cpu files and make the qos scheduilng configuration persistent across restarts .   
 To change the configuration update testbed.py and rerun the task .
 
 # Guidelines and Limitations:
