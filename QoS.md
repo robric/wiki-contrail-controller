@@ -151,7 +151,7 @@ If one doesn't want to enable DCB on both ends of the wire, one has the option t
 The QoS queue configuration provided in the forwarding class is a logical queue. The logical queues used are mapped to the physical queues supported in the NIC, this mapping is done in the contrail-vrouter-agent.conf on each compute node. Fab setup supports updating this mapping in the corresponding contrail-vrouter-agent configuration files. In addition, the scheduling algorithm and bandwidth values that are used by respective priority groups (in IEEE mode, we have one traffic class per priority group) can also be updated in the same agent configuration for supported nic (niantic nic). 
 The scheduling algorithm and bandwidth values can be read by a script that runs on the compute node to configure the priority groups.
     
-###Configuration for Logical to physical queue mapping
+###Configuration for Logical to physical queue mapping (Queue Mapping) for a new cluster .
 The logical to physical queue mapping can be added in testbed.py in the following format.
 
      env.qos = {    
@@ -169,7 +169,7 @@ The logical to physical queue mapping can be added in testbed.py in the followin
       logical_queue  : Defines the logical queues that map to the hardware queue.   
       scheduling     : Defines the scheduling algorithm to be used by the corresponding priority group (strict / rr).  
       bandwidth      : Bandwidth to be used by the corresponding priority group when scheduling is round-robin.   
-      default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. One of the queue must be defined default.
+      default        : When set to True, defines the default hardware queue for Qos. All unspecified logical queues map to this hardware queue. This is an optional configuration .
 
 ###Generated contrail-vrouter-agent.conf
 The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on host4 as follows:   
