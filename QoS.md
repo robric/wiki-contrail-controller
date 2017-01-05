@@ -191,6 +191,8 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
      # Logical nic queues for qos config
      logical_queue= [7]
   
+As part of provisioning of a new cluster the queuing mapping is enforced also Xmit-Packet-Steering
+is disabled i.e. zeros are written to files /sys/class/net//queues/tx-X/xps_cpus .
 ###Configuration for priority groups (niantic nic)     
 
 Priority group with scheduling and bandwidth properties can be defined in testbed.py as follows:   
