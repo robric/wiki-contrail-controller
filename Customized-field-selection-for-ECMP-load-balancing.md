@@ -82,3 +82,13 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 15:57:27.814002 IP 2.2.2.4.23452 > 2.2.2.100.1023: Flags [S], seq 1659332655, win 29200, options [mss 1398,sackOK,TS val 26143307 ecr 0,nop,wscale 7], length 0
 ```
 
+## Hash consistency
+
+An ECMP nexthop maintains list of all its member nexthops. For a given flow, Agent selects one of the members based on hash computed for the flow. The hash computation uses key fields according to algorithm explained above. The hash is used to index the array of members in ECMP Nexthop. The ECMP management logic ensures that position of a member nexthop does not change on add/delete of members to the list. As a result, flows continue to use a member nexthop even if new members are added or deleted into the ECMP nexthop.
+
+
+The hash value is computed using boost::hash_combine() function. boost::hash_combine is a deterministic hash, as a result,  hash of given keys will always result in same value. So, hash value for a given flow is always same.
+The algorithm ensures that packets of given 5-tuple use same ECMP member even if flow is deleted and added again.
+
+
+Note, if Agent restarts there is no guarantee that members are built in same sequence inside the ECMP nexthop. So, flows can go to different ECMP members on Agent restart.
