@@ -151,7 +151,7 @@ If one doesn't want to enable DCB on both ends of the wire, one has the option t
 The QoS queue configuration provided in the forwarding class is a logical queue. The logical queues used are mapped to the physical queues supported in the NIC, this mapping is done in the contrail-vrouter-agent.conf on each compute node. Fab setup supports updating this mapping in the corresponding contrail-vrouter-agent configuration files. In addition, the scheduling algorithm and bandwidth values that are used by respective priority groups (in IEEE mode, we have one traffic class per priority group) can also be updated in the same agent configuration for supported nic (niantic nic). 
 The scheduling algorithm and bandwidth values can be read by a script that runs on the compute node to configure the priority groups.
     
-###Configuration for Logical to physical queue mapping (Queue Mapping) for a new cluster .
+###Queue Mapping: Configuration for Logical to physical queue mapping for a new cluster .
 The logical to physical queue mapping can be added in testbed.py in the following format.
 
      env.qos = {    
@@ -192,8 +192,18 @@ The above parameters are updated in /etc/contrail/contrail-vrouter-agent.conf on
      logical_queue= [7]
   
 As part of provisioning of a new cluster the queuing mapping is enforced also Xmit-Packet-Steering
-is disabled i.e. zeros are written to files /sys/class/net//queues/tx-X/xps_cpus .
-###Configuration for priority groups (niantic nic)     
+is disabled i.e. zeros are written to files /sys/class/net//queues/tx-X/xps_cpus . The above Qos queuing
+parameters are consistent across restarts .
+
+### Queue Mapping for an already provisioned cluster .
+Testbed.py file should be updated as shown above and run fab task from /opt/contrail/utils path on config node :
+fab setup_qos_queuing
+
+This task will generate [QOS] section in contrail-vrouter-agent.conf write zeros to xps_cpu files
+and make the configuration persistent across restarts .
+To change the configuration update testbed.py and rerun the task .
+ 
+###Qos Scheduling: Configuration for priority groups for a new cluster     
 
 Priority group with scheduling and bandwidth properties can be defined in testbed.py as follows:   
    
@@ -236,7 +246,14 @@ The above parameters for priority groups are updated in /etc/contrail/contrail-v
 
     # Total hardware queue bandwidth used by priority group
     bandwidth=10     
-Above configuration can be read by a script that runs on the compute node to configure the priority groups using qosmap utility.
+Above configuration can be read by a qosmap.py script (path /opt/contrail/utils) that runs on the compute node to configure the priority groups using qosmap utility.
+
+###Qos Scheduling for an already provisioned cluster
+Testbed.py can be updated as shown above and run fab task from /opt/contrail/utils path on config node:
+fab setup_qos_scheduling
+This task will generate [QOS-NIANTIC] section in contrail-vrouter-agent.conf write zeros to xps_cpu files
+and make the qos scheduilng configuration persistent across restarts .
+To change the configuration update testbed.py and rerun the task .
 
 # Guidelines and Limitations:
   1. DCB feature supports 2 modes. One is IEEE and other is CEE.
