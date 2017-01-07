@@ -111,7 +111,7 @@ Similarly all traffic with 802.1p value of 6 and 7 are mapped to forwarding clas
 ### Traffic originated by Virtual machine interface
 1. If interface sends a IP packet to another VM in remote compute node, then this DSCP value in IP header value would be used to look up in cos-config table, and the tunnel header would be marked with DSCP, 802.1p and MPLS EXP bit as specified by forwarding-class.
 2. If VM sends a layer 2 non IP packet with 802.1p value, then corresponding 802.1p value would be used to look into qos-config table and corresponding forwarding-class DSCP, 802.1p and MPLS EXP value would be written to tunnel header.
-3. If VM sends an IP packet to VM in same compute node, then DSCP value in IP header would be matched in qos-config and corresponding forwarding class would be used to overwrite IP header with new DSCP value and 802.1p value.
+3. If VM sends an IP packet to VM in same compute node, there is no change in the packet headers while forwarding the same (the original packet is not changed). 
 
 ###Traffic destined to Virtual machine interface
 If a tunneled packet is received, the tunnel headers are stripped off and sent to interface. No marking from the outer packet to inner packet is done.
