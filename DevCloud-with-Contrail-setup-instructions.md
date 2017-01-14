@@ -4,7 +4,7 @@ There are three components that needs to be installed and provisioned to make De
 * Compute Node - Xen with XCP and Contrail Networking component (DevCloud image running as a VM)
 * Contrail Control Node (Ubuntu 12.04 VM)
 
-For more details on the architecture and how these components interact together, visit http://opencontrail.org/getting-started/
+For more details on the architecture and how these components interact together, visit http://www.opencontrail.org/deploying-opencontrail/
 
 ## Preparation
 ### CloudStack Dev Environment
