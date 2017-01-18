@@ -1,5 +1,21 @@
-# Certs and SSL Keystone connection
-## Create ssl directories, give proper ownership, generate certificates
+# Introduction
+
+Provisioning keystone, api-server and neutron-server with SSL. This is achieved by configuring keystone with native SSL and api-server/neutron-server through SSL termination using Haproxy.
+
+# Create SSL Certificates
+
+## 1. Create ssl directories and assign ownership
+
+        # In Keystone Node
+        mkdir -p /etc/keystone/ssl; chown keystone:keystone /etc/keystone/ssl
+        # In neutron-server Node
+        mkdir -p /etc/neutron/ssl; chown neutron:neutron /etc/neutron/ssl
+        # In api-server Node
+        mkdir -p /etc/contrail/ssl; chown contrail:contrail /etc/contrail/ssl
+
+
+## 2. Create self-signed SSL certs for Keystone, neutron-server and api-server
+
 This example uses self signed certificates)
     mkdir /etc/contrail/ssl
     chown contrail:contrail /etc/contrail/ssl
