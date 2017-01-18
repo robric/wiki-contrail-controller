@@ -119,6 +119,10 @@ Ensure the neutron-server haproxy config looks like below in /etc/haproxy.cfg
             server <NeutronHostIp2> <NeutronHostIp2>:9697 check inter 2000 rise 2 fall 3
             server <NeutronHostIp3> <NeutronHostIp3>:9697 check inter 2000 rise 2 fall 3
 
+Restart harproxy,
+
+        service haproxy restart
+
 ## 7. Configure neutron.conf
 
 Add the keystone certificate information in keystone_authtoken section of neutron.conf
