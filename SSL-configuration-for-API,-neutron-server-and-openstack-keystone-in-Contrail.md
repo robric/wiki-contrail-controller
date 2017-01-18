@@ -16,8 +16,14 @@ Provisioning keystone, api-server and neutron-server with SSL. This is achieved 
         mkdir -p /etc/contrail/ssl; chown contrail:contrail /etc/contrail/ssl
 
 
-## 2. Create self-signed SSL certs for Keystone, neutron-server and api-server
+## 2. Download the script to create self-signed certs
 
+Download the script from github, if provisionig contrail release less than 3.0.3.2.
+otherwise the script will be available at /opt/contrail/bin/create-ssl-certs.sh
+
+        wget https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh
+
+## 3. Create self-signed SSL certs for Keystone, neutron-server and api-server
 This example uses self signed certificates)
     mkdir /etc/contrail/ssl
     chown contrail:contrail /etc/contrail/ssl
