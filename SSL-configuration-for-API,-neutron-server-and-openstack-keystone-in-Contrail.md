@@ -144,7 +144,6 @@ Add the api-server certificate information in APISERVER section of ContrailPlugi
 
 ## 8. Configure vnc_api_lib.ini
 
-
 Configure vnc_api_lib.ini in neutron-server, which will be used by vnc_api client library to talk to api-server.
 vnc_api library is used by neutron contrail plugin.
 
@@ -163,7 +162,9 @@ vnc_api library is used by neutron contrail plugin.
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/neutron/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/neutron/ssl/certs/keystone_ca.pem
 
+## 8. Restart neutron-server
 
+        service neutron-server restart
 
 ## Add keystone config to neutron.conf, for example:
     [keystone_authtoken]
