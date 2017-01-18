@@ -36,6 +36,8 @@ installing contrail-setup package.
 
 ## 4. Create certificate bundles
 
+Certificates bundles will be used in Haproxy for SSL termination,
+
         # In neutron-server Node,
         cd /etc/neutron/ssl/; cat certs/neutron_ca.pem private/neutron.key certs/neutron.pem >> neutroncertbundle.pem
 
