@@ -27,9 +27,6 @@ installing contrail-setup package.
 
 ## 1. Create ssl directories and assign ownership
 
-        # In Keystone Node,
-        mkdir -p /etc/keystone/ssl; chown keystone:keystone /etc/keystone/ssl
-
         # In api-server Node,
         mkdir -p /etc/contrail/ssl; chown contrail:contrail /etc/contrail/ssl
 
@@ -147,6 +144,10 @@ Add the api-server certificate information in APISERVER section of ContrailPlugi
 Configure vnc_api_lib.ini in neutron-server, which will be used by vnc_api client library to talk to api-server.
 vnc_api library is used by neutron contrail plugin.
 
+        chown contrail:contrail /etc/contrail/vnc_api_lib.ini 
+        usermod -a -G contrail neutron
+
+        # SKIP below commands in (8. Configure vnc_api_lib.ini), if neutron-server/plugin is in same node as config node.
         openstack-config --set /etc/contrail/vnc_api_lib.ini global insecure False
         openstack-config --set /etc/contrail/vnc_api_lib.ini global certfile /etc/neutron/ssl/certs/apiserver.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini global keyfile /etc/neutron/ssl/certs/apiserver.pem
@@ -157,9 +158,6 @@ vnc_api library is used by neutron contrail plugin.
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth certfile /etc/neutron/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/neutron/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/neutron/ssl/certs/keystone_ca.pem
- 
-        chown contrail:contrail /etc/contrail/vnc_api_lib.ini 
-        usermod -a -G contrail neutron
 
 
 
