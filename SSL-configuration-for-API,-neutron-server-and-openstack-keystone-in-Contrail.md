@@ -39,10 +39,10 @@ installing contrail-setup package.
 Certificates bundles will be used in Haproxy for SSL termination,
 
         # In neutron-server Node,
-        cd /etc/neutron/ssl/; cat certs/neutron_ca.pem private/neutron.key certs/neutron.pem >> neutroncertbundle.pem
+        cd /etc/neutron/ssl/; cat certs/neutron_ca.pem private/neutron.key certs/neutron.pem >> certs/neutroncertbundle.pem
 
         # In api-server Node,
-        cd /etc/contrail/ssl/; cat certs/apiserver_ca.pem private/apiserver.key certs/apiserver.pem >> apiservercertbundle.pem
+        cd /etc/contrail/ssl/; cat certs/apiserver_ca.pem private/apiserver.key certs/apiserver.pem >> certs/apiservercertbundle.pem
 
 
 # Copy keystone Certs
@@ -64,6 +64,31 @@ neutron-server and api-server can talk to keystone securely using keystone certs
         scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/contrail/ssl/certs/
         chown -R contrail:contrail /etc/contrail/ssl/certs/
 
+
+# Configuring neutron-server with SSL
+
+Configure the haproxy, neutron-server and neutron plugin config files with SSL related
+parameters.
+
+## 1. Configure neutron-server frontend
+
+Ensure the neutron-server haproxy config looks like below in /etc/haproxy.cfg
+
+        frontend neutron-server
+            bind *:9696 ssl crt /etc/neutron/ssl/certs/neutroncertbundle.pem
+            default_backend    neutron-server-backend
+
+        backend neutron-server-backend
+            option nolinger
+            option forwardfor
+            balance     roundrobin
+            http-request set-header X-Forwarded-Port %[dst_port]
+            http-request add-header X-Forwarded-Proto https if { ssl_fc }
+            server <NeutronHostIp1> <NeutronHostIp1>:9697 check inter 2000 rise 2 fall 3
+            server <NeutronHostIp2> <NeutronHostIp2>:9697 check inter 2000 rise 2 fall 3
+            server <NeutronHostIp3> <NeutronHostIp3>:9697 check inter 2000 rise 2 fall 3
+
+# Configuring api-server with SSL
 
 ## Add keystone config to neutron.conf, for example:
     [keystone_authtoken]
