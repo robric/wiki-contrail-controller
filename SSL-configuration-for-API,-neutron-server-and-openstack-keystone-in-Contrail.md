@@ -37,13 +37,31 @@ installing contrail-setup package.
 ## 4. Create certificate bundles
 
         # In neutron-server Node,
-        cd /etc/neutron/ssl; cat neutron_ca.pem private/neutron.key neutron.pem >> neutroncertbundle.pem
+        cd /etc/neutron/ssl/; cat certs/neutron_ca.pem private/neutron.key certs/neutron.pem >> neutroncertbundle.pem
 
         # In api-server Node,
-        cd /etc/contrail/ssl; cat apiserver_ca.pem private/apiserver.key apiserver.pem >> apiservercertbundle.pem
+        cd /etc/contrail/ssl/; cat certs/apiserver_ca.pem private/apiserver.key certs/apiserver.pem >> apiservercertbundle.pem
 
 
-# Copy keystone CA into neutron and contrail CA's)
+# Copy keystone Certs
+
+keystone certificate and CA needs to be available in neutron-server node and api-server node, so that
+neutron-server and api-server can talk to keystone securely using keystone certs/CA.
+
+## 1. Copy keystone certs to neutron-server node
+
+        # From neutron-server node,
+        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone.pem /etc/neutron/ssl/certs/
+        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/neutron/ssl/certs/
+        chown -R neutron:neutron /etc/neutron/ssl/certs/
+
+## 2. Copy keystone certs to api-server node
+
+        # From api-server node,
+        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone.pem /etc/contrail/ssl/certs/
+        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/contrail/ssl/certs/
+        chown -R contrail:contrail /etc/contrail/ssl/certs/
+
 
 ## Add keystone config to neutron.conf, for example:
     [keystone_authtoken]
