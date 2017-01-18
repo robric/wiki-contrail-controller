@@ -6,11 +6,13 @@ Provisioning keystone, api-server and neutron-server with SSL. This is achieved 
 
 ## 1. Create ssl directories and assign ownership
 
-        # In Keystone Node
+        # In Keystone Node,
         mkdir -p /etc/keystone/ssl; chown keystone:keystone /etc/keystone/ssl
-        # In neutron-server Node
+
+        # In neutron-server Node,
         mkdir -p /etc/neutron/ssl; chown neutron:neutron /etc/neutron/ssl
-        # In api-server Node
+
+        # In api-server Node,
         mkdir -p /etc/contrail/ssl; chown contrail:contrail /etc/contrail/ssl
 
 
