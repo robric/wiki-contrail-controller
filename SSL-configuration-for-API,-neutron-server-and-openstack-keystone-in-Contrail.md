@@ -2,7 +2,7 @@
 
 Provisioning keystone, api-server and neutron-server with SSL. This is achieved by configuring keystone with native SSL and api-server/neutron-server through SSL termination using Haproxy.
 
-# Create SSL Certificates
+# Section1: Create SSL Certificates
 
 ## 1. Create ssl directories and assign ownership
 
@@ -45,7 +45,7 @@ Certificates bundles will be used in Haproxy for SSL termination,
         cd /etc/contrail/ssl/; cat certs/apiserver_ca.pem private/apiserver.key certs/apiserver.pem >> certs/apiservercertbundle.pem
 
 
-# Copy keystone Certs
+# Section2: Copy keystone Certs
 
 keystone certificate and CA needs to be available in neutron-server node and api-server node, so that
 neutron-server and api-server can talk to keystone securely using keystone certs/CA.
@@ -65,7 +65,7 @@ neutron-server and api-server can talk to keystone securely using keystone certs
         chown -R contrail:contrail /etc/contrail/ssl/certs/
 
 
-# Configuring neutron-server with SSL
+# Section3: Configuring neutron-server with SSL
 
 Configure the haproxy, neutron-server and neutron plugin config files with SSL related
 parameters.
@@ -88,7 +88,7 @@ Ensure the neutron-server haproxy config looks like below in /etc/haproxy.cfg
             server <NeutronHostIp2> <NeutronHostIp2>:9697 check inter 2000 rise 2 fall 3
             server <NeutronHostIp3> <NeutronHostIp3>:9697 check inter 2000 rise 2 fall 3
 
-# Configuring api-server with SSL
+# Section4: Configuring api-server with SSL
 
 ## Add keystone config to neutron.conf, for example:
     [keystone_authtoken]
