@@ -2,12 +2,71 @@
 
 Provisioning keystone, api-server and neutron-server with SSL. This is achieved by configuring keystone with native SSL and api-server/neutron-server through SSL termination using Haproxy.
 
-# Section1: Create SSL Certificates
+# Section1: Keystone Settings for SSL
 
 ## 1. Create ssl directories and assign ownership
 
         # In Keystone Node,
         mkdir -p /etc/keystone/ssl; chown keystone:keystone /etc/keystone/ssl
+
+## 2. Download the script to create self-signed certs
+
+Download the script from github, if provisionig contrail release less than 3.0.3.2.
+otherwise the script will be available at /opt/contrail/bin/create-ssl-certs.sh when 
+installing contrail-setup package.
+
+        wget https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh
+
+## 3. Create self-signed SSL certs for Keystone
+
+        # In Keystone Node,
+        create-ssl-certs.sh <KeystoneNodeIP|VIP> /etc/keystone/ssl/ keystone
+
+
+# Section2: api-server SSL settings
+
+## 1. Create ssl directories and assign ownership
+
+        # In Keystone Node,
+        mkdir -p /etc/keystone/ssl; chown keystone:keystone /etc/keystone/ssl
+
+        # In api-server Node,
+        mkdir -p /etc/contrail/ssl; chown contrail:contrail /etc/contrail/ssl
+
+## 2. Download the script to create self-signed certs
+
+Download the script from github, if provisionig contrail release less than 3.0.3.2.
+otherwise the script will be available at /opt/contrail/bin/create-ssl-certs.sh when 
+installing contrail-setup package.
+
+        wget https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh\
+
+## 3. Create self-signed SSL certs for api-server
+
+        # In api-server Node,
+        create-ssl-certs.sh <ConfigNodeIP|VIP> /etc/contrail/ssl/ apiserver
+
+## 4. Create certificate bundle
+
+Certificates bundle will be used in Haproxy for SSL termination,
+
+        # In api-server Node,
+        cd /etc/contrail/ssl/; cat certs/apiserver_ca.pem private/apiserver.key certs/apiserver.pem >> certs/apiservercertbundle.pem
+
+## 5. Copy keystone certs to api-server node
+
+keystone certificate and CA needs to be available in api-server node , so that
+api-server can talk to keystone securely using keystone certs/CA.
+
+        # From api-server node,
+        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone.pem /etc/contrail/ssl/certs/
+        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/contrail/ssl/certs/
+        chown -R contrail:contrail /etc/contrail/ssl/certs/
+
+
+# Section3: neutron-server SSL settings
+
+## 1. Create ssl directories and assign ownership
 
         # In neutron-server Node,
         mkdir -p /etc/neutron/ssl; chown neutron:neutron /etc/neutron/ssl
@@ -23,54 +82,29 @@ installing contrail-setup package.
 
         wget https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh
 
-## 3. Create self-signed SSL certs for Keystone, neutron-server and api-server
-
-        # In Keystone Node,
-        create-ssl-certs.sh <KeystoneNodeIP|VIP> /etc/keystone/ssl/ keystone
+## 3. Create self-signed SSL certs for neutron-server
 
         # In neutron-server Node,
         create-ssl-certs.sh <NeutronNodeIP|VIP> /etc/neutron/ssl/ neutron
 
-        # In api-server Node,
-        create-ssl-certs.sh <ConfigNodeIP|VIP> /etc/contrail/ssl/ apiserver
+## 4. Create certificate bundle
 
-## 4. Create certificate bundles
-
-Certificates bundles will be used in Haproxy for SSL termination,
+Certificates bundle will be used in Haproxy for SSL termination,
 
         # In neutron-server Node,
         cd /etc/neutron/ssl/; cat certs/neutron_ca.pem private/neutron.key certs/neutron.pem >> certs/neutroncertbundle.pem
 
-        # In api-server Node,
-        cd /etc/contrail/ssl/; cat certs/apiserver_ca.pem private/apiserver.key certs/apiserver.pem >> certs/apiservercertbundle.pem
+## 5. Copy keystone certs to neutron-server node
 
-
-# Section2: Copy keystone Certs
-
-keystone certificate and CA needs to be available in neutron-server node and api-server node, so that
-neutron-server and api-server can talk to keystone securely using keystone certs/CA.
-
-## 1. Copy keystone certs to neutron-server node
+keystone certificate and CA needs to be available in neutron-server node , so that
+neutron-server can talk to keystone securely using keystone certs/CA.
 
         # From neutron-server node,
         scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone.pem /etc/neutron/ssl/certs/
         scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/neutron/ssl/certs/
         chown -R neutron:neutron /etc/neutron/ssl/certs/
 
-## 2. Copy keystone certs to api-server node
-
-        # From api-server node,
-        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone.pem /etc/contrail/ssl/certs/
-        scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/contrail/ssl/certs/
-        chown -R contrail:contrail /etc/contrail/ssl/certs/
-
-
-# Section3: Configuring neutron-server with SSL
-
-Configure the haproxy, neutron-server and neutron plugin config files with SSL related
-parameters.
-
-## 1. Configure neutron-server frontend
+## 6. Configure neutron-server frontend
 
 Ensure the neutron-server haproxy config looks like below in /etc/haproxy.cfg
 
@@ -88,7 +122,7 @@ Ensure the neutron-server haproxy config looks like below in /etc/haproxy.cfg
             server <NeutronHostIp2> <NeutronHostIp2>:9697 check inter 2000 rise 2 fall 3
             server <NeutronHostIp3> <NeutronHostIp3>:9697 check inter 2000 rise 2 fall 3
 
-## 2. Configure neutron.conf
+## 7. Configure neutron.conf
 
 Add the keystone certificate information in keystone_authtoken section of neutron.conf
 
@@ -97,8 +131,37 @@ Add the keystone certificate information in keystone_authtoken section of neutro
         openstack-config --set /etc/neutron/neutron.conf keystone_authtoken keyfile /etc/neutron/ssl/certs/keystone.pem
         openstack-config --set /etc/neutron/neutron.conf keystone_authtoken cafile /etc/neutron/ssl/certs/keystone_ca.pem
 
+## 8. Configure ContrailPlugin.ini
 
-# Section4: Configuring api-server with SSL
+Add the api-server certificate information in APISERVER section of ContrailPlugin
+
+        openstack-config --set /etc/neutron/plugins/opencontrail/ContrailPlugin.ini APISERVER use_ssl True
+        openstack-config --set /etc/neutron/plugins/opencontrail/ContrailPlugin.ini APISERVER insecure False
+        openstack-config --set /etc/neutron/plugins/opencontrail/ContrailPlugin.ini APISERVER certfile /etc/neutron/ssl/certs/apiserver.pem
+        openstack-config --set /etc/neutron/plugins/opencontrail/ContrailPlugin.ini APISERVER keyfile /etc/neutron/ssl/certs/apiserver.pem
+        openstack-config --set /etc/neutron/plugins/opencontrail/ContrailPlugin.ini APISERVER cafile /etc/neutron/ssl/certs/apiserver_ca.pem
+
+## 8. Configure vnc_api_lib.ini
+
+
+Configure vnc_api_lib.ini in neutron-server, which will be used by vnc_api client library to talk to api-server.
+vnc_api library is used by neutron contrail plugin.
+
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global insecure False
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global certfile /etc/neutron/ssl/certs/apiserver.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global keyfile /etc/neutron/ssl/certs/apiserver.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global cafile /etc/neutron/ssl/certs/apiserver_ca.pem
+
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth insecure False
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth AUTHN_PROTOCOL https
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth certfile /etc/neutron/ssl/certs/keystone.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/neutron/ssl/certs/keystone.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/neutron/ssl/certs/keystone_ca.pem
+ 
+        chown contrail:contrail /etc/contrail/vnc_api_lib.ini 
+        usermod -a -G contrail neutron
+
+
 
 ## Add keystone config to neutron.conf, for example:
     [keystone_authtoken]
