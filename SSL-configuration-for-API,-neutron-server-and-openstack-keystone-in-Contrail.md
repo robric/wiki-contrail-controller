@@ -44,8 +44,15 @@ installing contrail-setup package.
 
 ## 7. Add keystone endpoint with https url
 
-        Delete the existing keystone endpoint and replace it with endpoint using 'https' in url.
-        Delete the existing neutron endpoint and replace it with endpoint using 'https' in url.
+Delete the existing keystone/neutron endpoint and recreate them with endpoint replaced with'https' in url.
+
+        keystone service-list # to identify the keystone and neutron service_id
+        keystone endpoint-list # to identiy the endpoint id of keystone and neutron endpoints
+        keystone endpoint-delete <keystone endpoint_id>
+        keystone endpoint-delete <neutron endpoint_id>
+        keystone endpoint-create --region <endpoint-region>] --service keystone --publicurl <public-url> --adminurl <admin-url> --internalurl <internal-url>  # Replace http with https in the existing url
+        keystone endpoint-create --region <endpoint-region>] --service neutron --publicurl <public-url> --adminurl <admin-url> --internalurl <internal-url>  # Replace http with https in the existing url
+
 
 
 
