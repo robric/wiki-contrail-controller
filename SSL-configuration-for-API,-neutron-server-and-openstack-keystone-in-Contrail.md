@@ -20,6 +20,7 @@ installing contrail-setup package.
 ## 3. Create self-signed SSL certs for Keystone
 
         # In Keystone Node,
+        chmod +x create-ssl-certs.sh
         create-ssl-certs.sh <KeystoneNodeIP|VIP> /etc/keystone/ssl/ keystone
 
 ## 4. Sync SSL certs with the all other keystone nodes
