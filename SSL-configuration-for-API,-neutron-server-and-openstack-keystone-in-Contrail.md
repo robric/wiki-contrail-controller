@@ -42,6 +42,11 @@ installing contrail-setup package.
 
     service keystone restart
 
+## 7. Add keystone endpoint with https url
+
+Delete the existing keystone endpoint and replace it with endpoint using 'https' in url.
+Delete the existing neutron endpoint and replace it with endpoint using 'https' in url.
+
 
 
 # Section2: api-server SSL settings
@@ -53,7 +58,7 @@ installing contrail-setup package.
 
 ## 2. Download the script to create self-signed certs
 
-Download the script from github, if provisionig contrail release less than 3.0.3.2.
+Download the script from github, if provisioning contrail release less than 3.0.3.2.
 otherwise the script will be available at /opt/contrail/bin/create-ssl-certs.sh when 
 installing contrail-setup package.
 
