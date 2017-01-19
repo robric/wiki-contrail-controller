@@ -38,11 +38,7 @@ installing contrail-setup package.
         openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl keyfile /etc/keystone/ssl/private/keystone.key
         openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl ca_certs /etc/keystone/ssl/certs/keystone_ca.pem
 
-## 6. Restart keystone
-
-    service keystone restart
-
-## 7. Add keystone endpoint with https url
+## 6. Add keystone endpoint with https url
 
 Delete the existing keystone/neutron endpoint and recreate them with endpoint replaced with'https' in url.
 
@@ -53,6 +49,9 @@ Delete the existing keystone/neutron endpoint and recreate them with endpoint re
         keystone endpoint-create --region <endpoint-region>] --service keystone --publicurl <public-url> --adminurl <admin-url> --internalurl <internal-url>  # Replace http with https in the existing url
         keystone endpoint-create --region <endpoint-region>] --service neutron --publicurl <public-url> --adminurl <admin-url> --internalurl <internal-url>  # Replace http with https in the existing url
 
+## 7. Restart keystone
+
+    service keystone restart
 
 
 
