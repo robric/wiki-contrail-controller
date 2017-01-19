@@ -106,6 +106,11 @@ Restart harproxy,
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/contrail/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/contrail/ssl/certs/keystone_ca.pem
 
+## 9. Restart api-server
+
+        service supervisor-conifg restart
+
+
 # Section3: neutron-server SSL settings
 
 ## 1. Create ssl directories and assign ownership
@@ -207,6 +212,6 @@ vnc_api library is used by neutron contrail plugin.
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/neutron/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/neutron/ssl/certs/keystone_ca.pem
 
-## 8. Restart neutron-server
+## 9. Restart neutron-server
 
         service neutron-server restart
