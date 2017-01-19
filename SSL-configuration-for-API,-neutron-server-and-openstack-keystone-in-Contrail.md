@@ -22,7 +22,7 @@ installing contrail-setup package.
         # In Keystone Node,
         create-ssl-certs.sh <KeystoneNodeIP|VIP> /etc/keystone/ssl/ keystone
 
-## 6. Sync SSL certs with the all other keystone nodes
+## 4. Sync SSL certs with the all other keystone nodes
 
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp2>:/etc/keystone/ssl/
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp3>:/etc/keystone/ssl/
