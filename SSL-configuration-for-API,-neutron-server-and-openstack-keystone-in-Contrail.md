@@ -27,6 +27,21 @@ installing contrail-setup package.
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp2>:/etc/keystone/ssl/
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp3>:/etc/keystone/ssl/
 
+## 5. Configure keystone.conf
+
+        openstack-config --set /etc/keystone/keystone.conf ssl enable true
+        openstack-config --set /etc/keystone/keystone.conf ssl certfile /etc/keystone/ssl/certs/keystone.pem
+        openstack-config --set /etc/keystone/keystone.conf ssl keyfile /etc/keystone/ssl/private/keystone.key
+        openstack-config --set /etc/keystone/keystone.conf ssl ca_certs /etc/keystone/ssl/certs/keystone_ca.pem
+        openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl enable true
+        openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl certfile /etc/keystone/ssl/certs/keystone.pem
+        openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl keyfile /etc/keystone/ssl/private/keystone.key
+        openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl ca_certs /etc/keystone/ssl/certs/keystone_ca.pem
+
+## 6. Restart keystone
+
+    service keystone restart
+
 
 
 # Section2: api-server SSL settings
