@@ -84,6 +84,13 @@ Restart harproxy,
 
 ## 7. Configure contrail-keystone-auth.conf
 
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE  auth_url https://<KeystoneIp>:<Port>/<version>
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE  auth_protocol https
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE insecure False
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE certfile /etc/contrail/ssl/certs/keystone.pem
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE keyfile /etc/contrail/ssl/certs/keystone.pem
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE cafile /etc/contrail/ssl/certs/keystone_ca.pem
+
 ## 8. Configure vnc_api_lib.ini
 
         chown contrail:contrail /etc/contrail/vnc_api_lib.ini 
