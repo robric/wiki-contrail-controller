@@ -60,6 +60,44 @@ api-server can talk to keystone securely using keystone certs/CA.
         scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/contrail/ssl/certs/
         chown -R contrail:contrail /etc/contrail/ssl/certs/
 
+## 6. Configure api-server frontend/backend in haproxy
+
+Ensure the api-server haproxy config looks like below in /etc/haproxy.cfg
+
+        frontend api-server
+            bind *:9696 ssl crt /etc/contrail/ssl/certs/apiservercertbundle.pem
+            default_backend    api-server-backend
+
+        backend api-server-backend
+            option nolinger
+            option forwardfor
+            balance     roundrobin
+            http-request set-header X-Forwarded-Port %[dst_port]
+            http-request add-header X-Forwarded-Proto https if { ssl_fc }
+            server <ConfigHostIp1> <ConfigHostIp1>:9697 check inter 2000 rise 2 fall 3
+            server <ConfigHostIp2> <ConfigHostIp2>:9697 check inter 2000 rise 2 fall 3
+            server <ConfigHostIp3> <ConfigHostIp3>:9697 check inter 2000 rise 2 fall 3
+
+Restart harproxy,
+
+        service haproxy restart
+
+## 7. Configure contrail-keystone-auth.conf
+
+## 8. Configure vnc_api_lib.ini
+
+        chown contrail:contrail /etc/contrail/vnc_api_lib.ini 
+
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global insecure False
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global certfile /etc/contrail/ssl/certs/apiserver.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global keyfile /etc/contrail/ssl/certs/apiserver.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini global cafile /etc/contrail/ssl/certs/apiserver_ca.pem
+
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth insecure False
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth AUTHN_PROTOCOL https
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth certfile /etc/contrail/ssl/certs/keystone.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/contrail/ssl/certs/keystone.pem
+        openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/contrail/ssl/certs/keystone_ca.pem
 
 # Section3: neutron-server SSL settings
 
@@ -101,7 +139,7 @@ neutron-server can talk to keystone securely using keystone certs/CA.
         scp <user>@<keystoneNodeIp>:/etc/keystone/ssl/certs/keystone_ca.pem /etc/neutron/ssl/certs/
         chown -R neutron:neutron /etc/neutron/ssl/certs/
 
-## 6. Configure neutron-server frontend
+## 6. Configure neutron-server frontend/backend in haproxy
 
 Ensure the neutron-server haproxy config looks like below in /etc/haproxy.cfg
 
