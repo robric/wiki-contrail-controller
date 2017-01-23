@@ -69,7 +69,7 @@ Download the script from github, if provisioning contrail release less than 3.0.
 otherwise the script will be available at /opt/contrail/bin/create-ssl-certs.sh when 
 installing contrail-setup package.
 
-        wget https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh\
+        wget --no-check-certificate https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh\
 
 ## 3. Create self-signed SSL certs for api-server
 
