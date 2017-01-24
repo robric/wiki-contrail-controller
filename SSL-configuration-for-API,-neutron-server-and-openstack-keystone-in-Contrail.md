@@ -28,7 +28,7 @@ installing contrail-setup package.
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp2>:/etc/keystone/ssl/
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp3>:/etc/keystone/ssl/
 
-## 5. Configure keystone.conf, nova.conf, glance-api.conf & glance-registry.conf
+## 5. Configure keystone.conf, nova.conf, glance-api.conf, glance-registry.conf & local_settings
 
         openstack-config --set /etc/keystone/keystone.conf ssl enable true
         openstack-config --set /etc/keystone/keystone.conf ssl certfile /etc/keystone/ssl/certs/keystone.pem
@@ -69,7 +69,12 @@ installing contrail-setup package.
         openstack-config —set /etc/nova/nova.conf DEFAULT neutron_admin_auth_url https://<KeystoneNodeIp>:35357/v2.0/
         openstack-config —set /etc/nova/nova.conf DEFAULT neutron_url https://<neutron nodeIP>:9696/
 
-
+        # Update Local settings for Dashboard
+        Make sure the following is updated in /etc/openstack-dashboard/local_settings
+        
+        OPENSTACK_SSL_NO_VERIFY = True // Uncomment it
+        OPENSTACK_KEYSTONE_URL = "https://%s:5000/v2.0" % OPENSTACK_HOST // Change to https
+   
 ## 6. Add keystone endpoint with https url
 
 Update the existing keystone/neutron endpoint with'https' in url.
