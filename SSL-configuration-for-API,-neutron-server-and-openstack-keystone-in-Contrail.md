@@ -41,14 +41,23 @@ installing contrail-setup package.
 
 ## 6. Add keystone endpoint with https url
 
-Delete the existing keystone/neutron endpoint and recreate them with endpoint replaced with'https' in url.
+Update the existing keystone/neutron endpoint with'https' in url.
+        
+        For Keystone:
+        mysql -u keystone -p keystone  -h localhost use keystone;
+        select * from service; // Note down service ID for “identity"
+        select * from endpoint where service_id='<service ID of Identity>’; // Shows current configuration
 
-        keystone service-list # to identify the keystone and neutron service_id
-        keystone endpoint-list # to identiy the endpoint id of keystone and neutron endpoints
-        keystone endpoint-delete <keystone endpoint_id>
-        keystone endpoint-delete <neutron endpoint_id>
-        keystone endpoint-create --region <endpoint-region>] --service keystone --publicurl <public-url> --adminurl <admin-url> --internalurl <internal-url>  # Replace http with https in the existing url
-        keystone endpoint-create --region <endpoint-region>] --service neutron --publicurl <public-url> --adminurl <admin-url> --internalurl <internal-url>  # Replace http with https in the existing url
+        update endpoint set url='https://<IP Address of openstack node>:$(public_port)s/v2.0' where (service_id=‘<service ID of Identity>' and interface='public');
+        update endpoint set url='https://<IP Address of openstack node>:$(admin_port)s/v2.0' where (service_id='<service ID of Identity>' and interface='admin');
+        update endpoint set url='https://<IP Address of openstack node>:$(admin_port)s/v2.0' where (service_id='<service ID of Identity>' and interface='internal');
+
+        select * from endpoint where service_id='<service ID of Identity>’;  // To print the updated information
+        
+        For Neutron:
+        select * from service; // Note down service ID for “network"
+        select * from endpoint where service_id='<service ID of network>’; // Shows current configuration
+        update endpoint set url='https://<IP Address of Api server>:9696' where service_id='<service ID of network>';
 
 ## 7. Restart keystone
 
