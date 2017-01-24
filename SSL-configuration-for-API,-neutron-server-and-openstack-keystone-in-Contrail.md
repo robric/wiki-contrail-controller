@@ -28,7 +28,7 @@ installing contrail-setup package.
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp2>:/etc/keystone/ssl/
         scp -R /etc/keystone/ssl/ <user>@<KeystoneNodeIp3>:/etc/keystone/ssl/
 
-## 5. Configure keystone.conf
+## 5. Configure keystone.conf, nova.conf, glance-api.conf & glance-registry.conf
 
         openstack-config --set /etc/keystone/keystone.conf ssl enable true
         openstack-config --set /etc/keystone/keystone.conf ssl certfile /etc/keystone/ssl/certs/keystone.pem
@@ -38,6 +38,37 @@ installing contrail-setup package.
         openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl certfile /etc/keystone/ssl/certs/keystone.pem
         openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl keyfile /etc/keystone/ssl/private/keystone.key
         openstack-config --set /etc/keystone/keystone.conf eventlet_server_ssl ca_certs /etc/keystone/ssl/certs/keystone_ca.pem
+        
+        # Update /etc/nova/nova.conf
+        openstack-config --set /etc/nova/nova.conf keystone_authtoken insecure true
+        openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_protocol https
+        openstack-config —set /etc/nova/nova.conf DEFAULT neutron_api_insecure True
+        openstack-config —set /etc/nova/nova.conf DEFAULT neutron_admin_auth_url https://<KeystoneNodeIp>:35357/v2.0/
+        openstack-config —set /etc/nova/nova.conf DEFAULT neutron_url https://<neutron nodeIP>:9696/
+        
+    
+        service nova-api restart
+  
+        # Update glance-api.conf
+        openstack-config --set /etc/glance/glance-api.conf keystone_authtoken insecure true
+        openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_protocol https
+ 
+        service glance-api restart
+
+        # Update glance-registry.conf
+        openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken insecure true
+        openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_protocol https
+
+        service glance-registry restart
+
+        # Update nova.conf on all the compute nodes
+
+        openstack-config --set /etc/nova/nova.conf keystone_authtoken insecure true
+        openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_protocol https
+        openstack-config —set /etc/nova/nova.conf DEFAULT neutron_api_insecure True
+        openstack-config —set /etc/nova/nova.conf DEFAULT neutron_admin_auth_url https://<KeystoneNodeIp>:35357/v2.0/
+        openstack-config —set /etc/nova/nova.conf DEFAULT neutron_url https://<neutron nodeIP>:9696/
+
 
 ## 6. Add keystone endpoint with https url
 
@@ -83,6 +114,7 @@ installing contrail-setup package.
 ## 3. Create self-signed SSL certs for api-server
 
         # In api-server Node,
+        chmod +x create-ssl-certs.sh
         create-ssl-certs.sh <ConfigNodeIP|VIP> /etc/contrail/ssl/ apiserver
 
 ## 4. Create certificate bundle
@@ -109,34 +141,39 @@ api-server can talk to keystone securely using keystone certs/CA.
 
 ## 7. Configure api-server frontend/backend in haproxy
 
-Ensure the api-server haproxy config looks like below in /etc/haproxy.cfg
+Ensure the api-server haproxy config looks like below in /etc/haproxy/haproxy.cfg
 
-        frontend api-server
-            bind *:9696 ssl crt /etc/contrail/ssl/certs/apiservercertbundle.pem
-            default_backend    api-server-backend
+        frontend  contrail-api
+            bind *:8082 ssl crt /etc/contrail/ssl/certs/apiservercertbundle.pem
+            default_backend    contrail-api-backend
+            timeout client 3m
 
-        backend api-server-backend
+        backend contrail-api-backend
             option nolinger
             option forwardfor
             balance     roundrobin
             http-request set-header X-Forwarded-Port %[dst_port]
             http-request add-header X-Forwarded-Proto https if { ssl_fc }
-            server <ConfigHostIp1> <ConfigHostIp1>:9697 check inter 2000 rise 2 fall 3
-            server <ConfigHostIp2> <ConfigHostIp2>:9697 check inter 2000 rise 2 fall 3
-            server <ConfigHostIp3> <ConfigHostIp3>:9697 check inter 2000 rise 2 fall 3
+            server <ConfigHostIp1> <ConfigHostIp1>:9100 check inter 2000 rise 2 fall 3
+            server <ConfigHostIp2> <ConfigHostIp2>:9100 check inter 2000 rise 2 fall 3
+            server <ConfigHostIp3> <ConfigHostIp3>:9100 check inter 2000 rise 2 fall 3
 
 Restart harproxy,
 
         service haproxy restart
 
-## 8. Configure contrail-keystone-auth.conf
+## 8. Configure contrail-keystone-auth.conf & neutron.con
 
-        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE  auth_url https://<KeystoneIp>:<Port>/<version>
+        openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE  auth_url https://<KeystoneIp>:<Port>/<version>  // Not needed for Icehouse release
         openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE  auth_protocol https
         openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE insecure False
         openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE certfile /etc/contrail/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE keyfile /etc/contrail/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/contrail-keystone-auth.conf KEYSTONE cafile /etc/contrail/ssl/certs/keystone_ca.pem
+
+        openstack-config --set /etc/neutron/neutron.conf keystone_authtoken cafile /etc/neutron/ssl/certs/keystone.pem
+
+        chown neutron:neutron /etc/neutron/ssl/certs/apiserver*
 
 ## 9. Configure vnc_api_lib.ini
 
@@ -152,6 +189,9 @@ Restart harproxy,
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth certfile /etc/contrail/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth keyfile /etc/contrail/ssl/certs/keystone.pem
         openstack-config --set /etc/contrail/vnc_api_lib.ini auth cafile /etc/contrail/ssl/certs/keystone_ca.pem
+        openstack-config --set /etc/contrail-svc-monitor.conf DEFAULTS api_server_use_ssl True
+        openstack-config --set /etc/contrail-schema.conf DEFAULTS api_server_use_ssl True
+        openstack-config --set /etc/contrail-device-manager.conf DEFAULTS api_server_use_ssl True
 
 ## 10. Restart api-server
 
@@ -175,11 +215,12 @@ Download the script from github, if provisionig contrail release less than 3.0.3
 otherwise the script will be available at /opt/contrail/bin/create-ssl-certs.sh when 
 installing contrail-setup package.
 
-        wget https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh
+        wget --no-check-certificate https://raw.githubusercontent.com/Juniper/contrail-provisioning/master/contrail_provisioning/common/scripts/create-ssl-certs.sh
 
 ## 3. Create self-signed SSL certs for neutron-server
 
         # In neutron-server Node,
+        chmod +x create-ssl-certs.sh
         create-ssl-certs.sh <NeutronNodeIP|VIP> /etc/neutron/ssl/ neutron
 
 ## 4. Create certificate bundle
