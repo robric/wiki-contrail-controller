@@ -81,19 +81,21 @@ Update the existing keystone/neutron endpoint with'https' in url.
         
         For Keystone:
         mysql -u keystone -p keystone  -h localhost use keystone;
-        select * from service; // Note down service ID for “identity"
-        select * from endpoint where service_id='<service ID of Identity>’; // Shows current configuration
+        select * from service; // Note down service ID for “keystone"
+        select * from endpoint where service_id='<service ID of keystone>’; // Shows current configuration
 
-        update endpoint set url='https://<IP Address of openstack node>:$(public_port)s/v2.0' where (service_id=‘<service ID of Identity>' and interface='public');
-        update endpoint set url='https://<IP Address of openstack node>:$(admin_port)s/v2.0' where (service_id='<service ID of Identity>' and interface='admin');
-        update endpoint set url='https://<IP Address of openstack node>:$(admin_port)s/v2.0' where (service_id='<service ID of Identity>' and interface='internal');
+        update endpoint set url='https://<IP Address of openstack node>:$(public_port)s/v2.0' where (service_id=‘<service ID of keystone>' and interface='public');
+        update endpoint set url='https://<IP Address of openstack node>:$(admin_port)s/v2.0' where (service_id='<service ID of keystone>' and interface='admin');
+        update endpoint set url='https://<IP Address of openstack node>:$(admin_port)s/v2.0' where (service_id='<service ID of keystone>' and interface='internal');
 
-        select * from endpoint where service_id='<service ID of Identity>’;  // To print the updated information
+        select * from endpoint where service_id='<service ID of keystone>’;  // To print the updated information
         
         For Neutron:
-        select * from service; // Note down service ID for “network"
-        select * from endpoint where service_id='<service ID of network>’; // Shows current configuration
-        update endpoint set url='https://<IP Address of Api server>:9696' where service_id='<service ID of network>';
+        select * from service; // Note down service ID for “neutron"
+        select * from endpoint where service_id='<service ID of neutron>’; // Shows current configuration
+        update endpoint set url='https://<IP Address of Api server>:9696' where service_id='<service ID of neutron>';
+
+        select * from endpoint where service_id='<service ID of neutron>’;  // To print the updated information
 
 ## 7. Restart keystone
 
