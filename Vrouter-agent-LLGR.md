@@ -55,3 +55,5 @@ On seeing this event agent pushes this channel to last and iterates over remaini
 contrail-vrouter-agent.conf CN list changed
 This will be treated similar to timed-out event. New channels will take up slots and old channels(with paths) for those slots will be retained till EOR is seen from both new channels.
  
+**Bug under which feature is covered**
+https://bugs.launchpad.net/juniperopenstack/+bug/1659187
