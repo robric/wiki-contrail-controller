@@ -1,7 +1,9 @@
 This is to make sure same resources are allocated after restart. These are the resources allocated locally by agent. One of the resource which is visible across system is MPLS label.  On restart if agent sends new label for local routes then it will cause change in whole system. Presence of resource manager makes sure that same label is given and hence system does not see any change.
  
 **Resource Manager is divided in two parts - allocator and backup.**
-**Allocator **is responsible for identifying what kind of resource is needed and manages the users claims on them. Each user specifies a key and allocator allocates one resource to same. This key to resource mapping is stored in manager as a map. Keys can be heterogenous depending on users. For example MPLS label can have users like VRF, VMI, Multicast. Each of them can have different key.
+
+**Allocator **
+It is responsible for identifying what kind of resource is needed and manages the users claims on them. Each user specifies a key and allocator allocates one resource to same. This key to resource mapping is stored in manager as a map. Keys can be heterogenous depending on users. For example MPLS label can have users like VRF, VMI, Multicast. Each of them can have different key.
 Currently index vector has been made as a resource, but more can be added as and when needed.
  
 **Backup**
