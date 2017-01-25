@@ -1,8 +1,7 @@
-### Agent LLGR has been divided into following parts:
-### - On agent restart or new config server selection, end-of-config is determined.
-### - Agent end-of-rib is computed on restart/channel flaps, new channel connection.
-### - Route retention from each peer (in old terms headless per peer).
- 
+**Agent LLGR has been divided into two parts:**
+- On agent restart or new config server selection, end-of-config is determined.
+- Agent end-of-rib is computed on restart/channel flaps, new channel connection.
+- Route retention from each peer (in old terms headless per peer).
  
 **End of Config**
  
