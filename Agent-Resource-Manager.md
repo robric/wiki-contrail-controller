@@ -3,10 +3,12 @@ This is to make sure same resources are allocated after restart. These are the r
 **Resource Manager is divided in two parts - allocator and backup.**
 
 **Allocator**
+
 It is responsible for identifying what kind of resource is needed and manages the users claims on them. Each user specifies a key and allocator allocates one resource to same. This key to resource mapping is stored in manager as a map. Keys can be heterogenous depending on users. For example MPLS label can have users like VRF, VMI, Multicast. Each of them can have different key.
 Currently index vector has been made as a resource, but more can be added as and when needed.
  
 **Backup**
+
 Each resource allocated above has an option to be backed up. For backup the resource key and data is converted to sandesh format. In case of MPLS above each type of user key will have its sandesh representation and mpls label will be represented as one more sandesh. The key data pair is then pushed into a sandesh map which is then written to a file. Each resource update keeps on modifying this map. Point to note update does not result in file operation. There is a separate timer which is responsible for dumping all backed up resource to file.
 On restarting these files will be read and resource manager populated before any config is processed. This makes sure that same data is allocated for a key requested by config and hence persistence is achieved.
  
