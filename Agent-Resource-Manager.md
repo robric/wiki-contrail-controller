@@ -2,7 +2,7 @@ This is to make sure same resources are allocated after restart. These are the r
  
 **Resource Manager is divided in two parts - allocator and backup.**
 
-**Allocator **
+**Allocator**
 It is responsible for identifying what kind of resource is needed and manages the users claims on them. Each user specifies a key and allocator allocates one resource to same. This key to resource mapping is stored in manager as a map. Keys can be heterogenous depending on users. For example MPLS label can have users like VRF, VMI, Multicast. Each of them can have different key.
 Currently index vector has been made as a resource, but more can be added as and when needed.
  
