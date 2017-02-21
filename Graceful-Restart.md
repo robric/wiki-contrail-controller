@@ -57,7 +57,7 @@ service contrail-control restart
 
 ###[Contrail-Vrouter Head-Less mode](http://www.juniper.net/techpubs/en_US/contrail2.21/topics/concept/using-headless-vrouter-vnc.html)
 ```
-/usr/bin/openstack-config /etc/contrail/contrail-vrouter-agent.conf DEFAULT headless_mode true 
+/usr/bin/openstack-config --set /etc/contrail/contrail-vrouter-agent.conf DEFAULT headless_mode true 
 ```
 Headless mode is introduced as a resilient mode of operation for Agent. When running in Headless mode, agent will retain the last "Route Path" from Contrail-Controller. The "Route Path" are held till a new stable connection is established to one of the Contrail-Controller. Once the XMPP connection is up and is stable for a pre-defined duration, the "Route Path" from old XMPP connection are flushed.
 
