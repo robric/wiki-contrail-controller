@@ -1,4 +1,4 @@
-In Release 3.2, support to Graceful Restart (GR) and Long Lived Graceful Restart (LLGR) helper modes have been added to contrail-controller. This feature is not enabled by default.
+In Release 3.2, support to Graceful Restart (GR) and Long Lived Graceful Restart (LLGR) helper modes have been added to contrail-controller. This feature is not enabled by default. This is still marked as 'beta' as complete functionality including GR in agents is not available yet.
 
 ### Reference
 * GracefulRestart for BGP (and XMPP) follows [RFC4724](https://tools.ietf.org/html/rfc4724) specifications
@@ -44,8 +44,8 @@ GR helper modes can be enabled via schema. They can be disabled selectively in a
 
 e.g.
 ```
-/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_disable 1
-/usr/bin/openstack-config /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_disable 1
+/usr/bin/openstack-config --set /etc/contrail/contrail-control.conf DEFAULT gr_helper_bgp_disable 1
+/usr/bin/openstack-config --set /etc/contrail/contrail-control.conf DEFAULT gr_helper_xmpp_disable 1
 service contrail-control restart
 ```
 
