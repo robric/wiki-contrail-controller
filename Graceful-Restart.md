@@ -12,6 +12,9 @@ When ever a bgp peer (or contrail-vrouter-agent) session down is detected, all r
 
 When sessions goes down, learned routes are not deleted and also not withdrawn from advertised peers for certain period. Instead, they are kept as is and just marked as 'stale'. Thus, if sessions come back up and routes are relearned, the overall impact to the network is significantly contained.
 
+### BGP GR Helper Mode
+BGP helper mode can be used to minimize routing churn whenever BGP session flips. Especially in cases when SDN gateway router [gracefully] goes down (Such as RPD process crash/restart in MX/JUNOS), then contrail-control can act as GR-Helper to the gateway by retaining the routes learned from the gateway and continue advertising them to the rest of the network as applicable. In order for this work, the restarting router (SDN GateWay in this example) must support and be configured with graceful-restart for all of the address-families as applicable.
+
 ### Feature highlights
 * Support to advertise GR and LLGR capabilities in BGP (By configuring non-zero restart time)
 * Support for GR and LLGR helper mode to retain routes even after sessions go down (By configuring helper mode)
