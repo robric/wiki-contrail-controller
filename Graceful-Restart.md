@@ -57,11 +57,3 @@ service contrail-control restart
 * GracefulRestart for contrail-vrouter-agents is not supported yet (in 3.2). Hence, graceful_restart_xmpp_helper_enable should not be set. If agent restarts, data plane is reset and hence routes and flows get reprogrammed afresh (which typically results in traffic loss for new/existing flows for several seconds)
 * GR/LLGR is not supported for multicast routes
 * GR/LLGR helper mode may not work correctly for EVPN routes, if the restarting node does not preserve forwarding state
-
-###[Contrail-Vrouter Head-Less mode](http://www.juniper.net/techpubs/en_US/contrail2.21/topics/concept/using-headless-vrouter-vnc.html)
-```
-/usr/bin/openstack-config --set /etc/contrail/contrail-vrouter-agent.conf DEFAULT headless_mode true 
-```
-Headless mode is introduced as a resilient mode of operation for Agent. When running in Headless mode, agent will retain the last "Route Path" from Contrail-Controller. The "Route Path" are held till a new stable connection is established to one of the Contrail-Controller. Once the XMPP connection is up and is stable for a pre-defined duration, the "Route Path" from old XMPP connection are flushed.
-
-When Headless mode is used along with graceful-restart helper mode in contrail-control, vrouter can forward east-west traffic between vrouters for current and new flows (for already learnt routes) even if all control-nodes go down and remain down in the cluster. If graceful restart helper mode is also used in SDN gateways (such as JUNOS-MX), north south traffic between MX and Vrouters can also remain uninterrupted in headless mode. This particular aspect is not available in releases < 3.2. 
