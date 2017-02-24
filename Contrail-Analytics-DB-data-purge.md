@@ -20,15 +20,28 @@ the POST data is the percentage to purge and is input in JSON format, as below,
 The above purge method is a slow process, as deleting the data from database does not immediately free up the disk space which depends on cassandra doing the compaction, which may depend on various factors including system load etc..  
 In extreme cases, where one needs to manually purge analytics data, one of the following methods can be used  
 
-**Method 1**: will save latest analytics data, but involves stopping cassandra on all nodes [this will disrupt config operations]  
-a) stop cassandra on all nodes [_service contrail-database stop_]  
-b) delete files /var/lib/cassandra/data/ContrailAnalytics that are older than **some time** on all database nodes  
-c) restart cassandra  
+**Method 1**: lose all analytics data, and involves stopping cassandra on all nodes [this will disrupt config operations]
+ 
+a) stop config and analytics processes on all nodes [_service supervisor-analytics stop, service supervisor-config stop_] 
 
-**Method 2**: lose all analytics data, but cassandra can serve config operations  
-a) stop collectors on all nodes  [_service contrail-collector stop_]
-b) using cqlsh or cassandra-cli - drop ContrailAnalytics keyspace [this will take a bit of time]  
-c) verify ContrailAnalytics keyspace is indeed not present in any node  
-d) delete /var/lib/cassandra/data/ContrailAnalytics directory  
-d) restart collectors
+b) drain cassandra on all nodes [_nodetool drain_]; then stop cassandra on all nodes [_service contrail-database stop_]  
 
+c) delete analytics keyspace directory - /var/lib/cassandra/data/ContrailAnalytics or /var/lib/cassandra/data/ContrailAnalyticsCql 
+
+d) restart cassandra [_service contrail-database start_]
+
+e) start config and analytics processes on all nodes [_service supervisor-analytics start, service supervisor-config start_]  
+
+**Method 2**: lose all analytics data, but cassandra can serve config operations
+  
+a) stop analytics processes on all nodes  [_service supervisor-analytics stop_]
+
+b) using cqlsh or cassandra-cli - drop analytics keyspace - ContrailAnalytics or ContrailAnalyticsCql [this will take a bit of time and might timeout but the data should be eventually deleted]
+  
+c) verify analytics keyspace - ContrailAnalytics or ContrailAnalyticsCql is indeed not present in any node using cqlsh or cassandra-cli
+
+d) verify that the data is deleted using nodetool status and verify that the load is gone down
+  
+e) delete analytics keyspace directory - /var/lib/cassandra/data/ContrailAnalytics or /var/lib/cassandra/data/ContrailAnalyticsCql
+
+f) start analytics processes on all nodes [_service supervisor-analytics start_]
