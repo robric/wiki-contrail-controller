@@ -2,7 +2,7 @@
 
 #### In /etc/contrail/contrail-api.conf
 
-          SET “aaa_mode=rbac”
+          “aaa_mode=rbac”
 
 #### In /etc/neutron/api-paste.ini
 
@@ -21,7 +21,7 @@
 
 #### In /etc/contrail/contrail-analytics-api.conf
 
-           SET "aaa_mode = no-auth"
+           "aaa_mode = no-auth"
 
 #### Restart services
 
