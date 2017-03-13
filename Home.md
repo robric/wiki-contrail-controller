@@ -54,4 +54,4 @@ Features:
 
 Miscellaneous:
 * [Blueprint Format](Blueprint-Format)
-* [Python-coding-standard](https://github.com/Juniper/contrail-controller/wiki/Python-coding-style)
+* [Python coding standard](https://github.com/Juniper/contrail-controller/wiki/Python-coding-style)
