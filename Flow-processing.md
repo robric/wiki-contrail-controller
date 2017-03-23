@@ -120,7 +120,7 @@ This line give number of flow created on per-cpu basis and also number of overfl
 Flow table is organised as a hash-table with 4 entries per-bucket. Hash collision are resolved by allocating entries from an overflow table. The overflow table acts as free-list that can be used when all entries in bucket are allocated. Once allocated, the overflow entries are freed when corresponding flow is deleted.
 
 
-The default size of hash-table is 512K entries (128K buckets) and overflow table is 8K entries. The size of tables can be modified by setting the vrouter module parameters vr_flow_entries and vr_oflow_entries. It is recommended that overflow-table should be atleast twice the number of expected flows and the overflow entries must be atleast 25% of the flow-table size.
+The default size of hash-table is 512K entries (128K buckets) and overflow table is 8K entries. The size of tables can be modified by setting the vrouter module parameters vr_flow_entries and vr_oflow_entries. It is recommended that overflow-table should be atleast twice the number of expected flows and the overflow entries must be atleast 20% of the flow-table size.
 
 # AgentHdr format
 
