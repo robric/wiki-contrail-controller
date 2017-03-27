@@ -143,13 +143,21 @@ Comments in following launchpad bug are updated with the scalability numbers con
 https://bugs.launchpad.net/juniperopenstack/+bug/1543239
 
 Just to summarise here:
+
 Virtual Network created : 1
+
 IPAMs : 1000
+
 vDNS Server : 1000
+
 Records per server : 100
+
 Total records : 100,000
+
 Time to configure : ~3 hours
+
 Way of configuration : Direct VNC API calls
+
 
 
 ## Number of records/seconds handled by DNS server:
@@ -185,3 +193,5 @@ The scenario tested is best case scenario.
 We also tried to add 500 VDNS Servers and made the network and VMs use the 500th VDNS Server. (This involve search in views till the configured server is found)
 
 We saw that query resolution number was same in this case but the CPU utilization increased to ~600%
+
+Also note that the numbers will differ when the contrail DNS server will act as forwarder to resolve DNS queries going to the outside world (internet). Current DNS queries were to resolve the names of local VMs of the same network(VN).
