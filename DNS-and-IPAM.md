@@ -156,8 +156,9 @@ Way of configuration : Direct VNC API calls
 We were able to take results on R3.2.1 – Build 28.
 
 ### Setup:
-1 Control node – 32 cores
-2 computes - 40 cores, 4 computes – 32 cores, 1 compute – 4 cores (Total 7 computes)
+1 Control node – 32 cores.
+
+2 computes - 40 cores, 4 computes – 32 cores, 1 compute – 4 cores (Total 7 computes).
  
 ### Configurations:
 1 VDNS Server. 1 Virtual Network.
@@ -165,16 +166,22 @@ We were able to take results on R3.2.1 – Build 28.
  
  
 ### Agent capabilities:
-Top end compute nodes with 40 cores are able send/receive average of 3500 queries per seconds
-High end compute nodes with 32 cores are able send/receive average of 2400 queries per seconds
-Low end compute nodes with 4 cores is able send/receive average of 550 queries per seconds
+Top end compute nodes with 40 cores are able send/receive average of 3500 queries per seconds.
+
+High end compute nodes with 32 cores are able send/receive average of 2400 queries per seconds.
+
+Low end compute nodes with 4 cores is able send/receive average of 550 queries per seconds.
  
 ### Control Node capabilities:
 Total successful queries handled by DNS Server: Almost 17,000 queries/seconds
+
 CPU utilization by named: ~500%
+
 Note that we expect the number to increase further on increasing the compute nodes. We are stopping at this point assuming that we might easily go above 20K queries per seconds as we expect named to handle the queries till it reach 800% CPU utilization.
  
 ### NOTE:
 The scenario tested is best case scenario.
+
 We also tried to add 500 VDNS Servers and made the network and VMs use the 500th VDNS Server. (This involve search in views till the configured server is found)
+
 We saw that query resolution number was same in this case but the CPU utilization increased to ~600%
