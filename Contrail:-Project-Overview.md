@@ -13,7 +13,7 @@ This document covers following topics:
 
 - - -
 
-####OpenContrail vs Contrail Cloud/Contrail Networking ####
+#### OpenContrail vs Contrail Cloud/Contrail Networking ####
 
 OpenContrail provides virtual network functionality based on open protocols and Rest APIs. OpenContrail and Contrail Networking is identical in feature set. OpenContrail is freely available on Launchpad. Contrail Networking and Contrail Cloud is commercial supported product from Juniper. Contrail Networking consists of following major components (aka roles): 
 
@@ -41,7 +41,7 @@ More details on the release content of Contrail Cloud can be found at [http://te
 
 - - -
 
-####Developer Resources ####
+#### Developer Resources ####
 
 ###### Code Repositories: ######
 Entire Contrail code, test scripts and features available as part of Contrail Cloud are available in public at [GitHub](https://github.com/Juniper?query=). The developers are recommended to use android repo tool to create the development environment. The manifest files for OpenContrail is published at https://github.com/Juniper/contrail-vnc. For more information on building the OpenContrail packages refer to this [document](http://juniper.github.io/contrail-vnc/README.html).
