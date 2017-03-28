@@ -9,7 +9,7 @@ On each throttle branch (aka 'series' in launchpad), in general we do multiple m
 
 !['series' & 'milestone](https://github.com/aranjan7/contrail-misc/blob/master/images/series.png).
 
-#####Bugs scopes and milestones:
+##### Bugs scopes and milestones:
 It is a requirement to create bugs in Contrail project with correct 'scope'. 'Scope' is the 'series' (aka branch) on which the bug was found. The 'branch' could be actual git branch or 'trunk' its found on builds off master git repo.
 
 If the bug was found on mainline trunk, the scope needs to be set to 'trunk'. Bugs 'must' be created with correct scope. Scopes are not created by default, so one must create it explicitly even if the bug was found on mainline trunk.
