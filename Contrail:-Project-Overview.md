@@ -88,16 +88,16 @@ To get support on Contrail, join the mailing list as indicated in [http://www.op
 
 - - -
 
-####Project Management ####
+#### Project Management ####
 
-######Official releases: ######
+###### Official releases: ######
 Contrail Cloud follows continuous integration development model. The project schedules a major and minor release every 2-4 months. The schedule and branch information for the project are maintained on [launchpad](https://launchpad.net/juniperopenstack). The top level branch diagram shows the current 'milestone' and 'series' active on the project. 
 
 Contrail releases are done via internal build process. Official releases are done from the public throttle branches after the internal test cycle is done. All the development is in public but the Juniper's release is done after internal test process to harden the end product. We do not tag the exact version publicly on git on which a release was cut, as Juniper's product decisions are managed independent of OpenContrail. Release numbering follows 4 digit scheme, **a.b.c.d**. 'a' corresponds to yearly LTS release. 'b' represents the major release done 3-4 times in a year. Minor releases are represented by 'c' where small enhancements are done as needed. In some cases patch release (denoted by digit 'd') could be done for critical blocker issues on any minor or major releases. All LTS and major releases are done on its own throttle branch. Minor releases are done on the corresponding throttle branches. (Note that before 3.0 release, the numbering scheme did not have the period between 'b' and 'c', e.g., 2.21.1. From 3.0 onwards the 4 tuple will be separated by a period. e.g., 3.1.1.0)
 
 Contrail packages are available on OpenContrail launchpad PPA as stable opencontrail packages [here](https://launchpad.net/~opencontrail/+archive/ubuntu/ppa).  Periodically a working version is uploaded from mainline at snapshot area [here](https://launchpad.net/~opencontrail/+archive/ubuntu/snapshots). The installation instruction for OpenContrail packages can be found on this [wiki](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-bring-up-and-provisioning). These packages are community supoprted via mailing lists as indicated above. 
 
-######Bug tracking: ######
+###### Bug tracking: ######
 Bug tracking on this project is done publicly on Launchpad. Two Launchpad IDs (aka projects) are maintained for this project, [Contrail Cloud](https://launchpad.net/juniperopenstack) and [OpenContrail](https://launchpad.net/opencontrail). Bugs found during internal testing of Contrail Cloud/Contrail Network, are tracked at JuniperOpenstack project. All the bugs are made public, unless they have proprietary customer information. By default only Juniper Engineering team can create issues on this project. Anyone can add his/her ID to track a particular bug(s). Launchpad will generate email update for any change on these bugs.
 
 'OpenContrail' project account is meant to track community reported bugs. By default these bugs are public. No special privilege is needed to create a bug on this project. Optionally user can cross link these public bugs to make it dependent on JuniperOpenstack project and vice versa.
