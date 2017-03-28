@@ -57,6 +57,9 @@ Developers can upstream their patches via OpenContrail CI process. The tools and
 
 After that one can submit the patch to [review.opencontrail.org](https://review.opencontrail.org) by following the [CI document](https://github.com/Juniper/contrail-controller/wiki/OpenContrail-Continuous-Integration-(CI)). The CI tool enables code review and runs test script. After passing these steps code will be merged automatically to mainline.
 
+For any new feature commit, a blueprint must be submitted and reviewed for the same. These blueprints must be committed into 'specs' directory of the respective repo. Most of the blueprints of the project will reside [here](https://github.com/Juniper/contrail-controller/tree/master/specs). Blueprint must follow this [template](https://github.com/Juniper/contrail-controller/blob/master/specs/blueprint_template.md).
+
+
 ###### Guidelines for Commit Logs ######
 
 These are based on [Gerrit commit guidelines](https://wiki.openstack.org/wiki/Gerrit_Workflow#Committing_Changes)
