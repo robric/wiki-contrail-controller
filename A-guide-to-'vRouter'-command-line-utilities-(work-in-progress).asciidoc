@@ -251,6 +251,7 @@ Flow Action Drop              Flow action is drop
 Flow Action Invalid           Flow action is not valid
 Flow Invalid Protocol         (currently unused)
 Flow Queue Limit Exceeded     More than three packets received before flow processing is completed
+Flow Unusable (Eviction)      The flow has been marked for eviction by vrouter (based on TCP state) 
 
 Discards                      Packets going to discard Nexthop
 TTL Exceeded                  Packets whose TTL became zero
