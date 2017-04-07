@@ -27,4 +27,5 @@
 
            service contrail-api restart
            service neutron-server restart
+           service supervisor-analytics restart
            service supervisor-webui restart
