@@ -23,4 +23,5 @@
 | vdns | Issues affecting virtual DNS implementation. |
 | vpc | EC2 VPC API |
 | vrouter | Issues impacting virtual router agent or kernel module. |
+| windows | Any change related to the Windows OS. |
 | xmpp | |
