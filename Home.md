@@ -15,6 +15,9 @@ Opencontrail Development:
 * [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
 * [Code submission + review checklist](Code-Review-Checklist)
 
+Releases:
+* [Schedule ](https://github.com/Juniper/contrail-controller/wiki/Contrail-Release-Schedule#contrail-releases)
+
 Provisioning:  
 * [TTL configuration for Analytics](TTL-configuration-for-analytics-data)
 * [Module Parameters for vRouter](Vrouter-Module-Parameters)
