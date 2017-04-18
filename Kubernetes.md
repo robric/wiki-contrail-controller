@@ -109,18 +109,19 @@ Contrail achieves this reachability by the following:
 In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
 
 ## 3.4 Services
-A Kubernetes service is an abstraction which defines a logical set of Pods and policy by which to access them. The set of Pods frontend'ing a Service are selected based on **LabelSelector** field in **Service** definition.
+A Kubernetes _Service_ is an abstraction which defines a logical set of _Pods_ and policy by which to access the _Pods_. The set of Pods frontend'ing a Service are selected based on `LabelSelector` field in _Service_ definition.
 In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer**. 
 
-The OpenContrail Kubernetes integration supports following Service types:
+The OpenContrail Kubernetes integration supports following `ServiceTypes`:
 
-    * `clusterIP`: This is the default 'ServiceType'. Choosing this 'serviceType' makes it reachable with cluster-network.
+    * `clusterIP`: This is the default mode. Choosing this 'serviceType' makes the service reachable 
+      via cluster-network.
 
-    * `LoadBalancer`: Designating a ServiceType as LoadBalancer, exposes the service to external world. The LoadBalancer 
-       service is assigned both a CluserIP and ExternalIP addresses. This assumes that user has configured public network
-       with a floating-ip pool.
+    * `LoadBalancer`: Designating a ServiceType as LoadBalancer, exposes the service to external world. 
+       The LoadBalancer service is assigned both a CluserIP and ExternalIP addresses. This assumes that 
+       user has configured public network with a floating-ip pool.
 
-OpenContrail K8S **Service** integration supports `TCP` and `UDP` for protocols. Also **Service** can expose more than one port where `port` and `targetPort` are different. For example:
+OpenContrail K8S _Service_ integration supports `TCP` and `UDP` for protocols. Also _Service_ can expose more than one port where `port` and `targetPort` are different. For example:
 
 ```yaml
 kind: Service
@@ -143,6 +144,7 @@ spec:
 K8S user can specify `spec.clusterIP` and `spec.externalIPs` for both `LoadBalancer` and `ClusterIP` `ServiceTypes`.
 
 If `ServiceTypes` is `LoadBalancer` and no `spec.externalIP` is specified by the user, then contrail-kube-manager allocates a floating-ip from public pool and associates it to `externalIP`. 
+
 
 ## __K8S Ingress Introduction__
 k8s services can rbe exposed to external (outside of the cluster) in many
