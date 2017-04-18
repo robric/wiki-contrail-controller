@@ -54,6 +54,7 @@ Features:
 * [RBAC](RBAC)
 * [LLGR] (https://github.com/Juniper/contrail-controller/wiki/Vrouter-agent-LLGR)
 * [Resource Manager] (https://github.com/Juniper/contrail-controller/wiki/Agent-Resource-Manager)
+* [Kubernetes] (https://github.com/Juniper/contrail-controller/wiki/Kubernetes)
 
 Miscellaneous:
 * [Blueprint Format](Blueprint-Format)
