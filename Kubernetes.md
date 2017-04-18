@@ -108,6 +108,9 @@ Contrail achieves this reachability by the following:
 
 In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
 
+3.4 Services
+A Kubernetes service is an abstraction which defines a logical set of Pods and policy by which to access them.
+
 ## __K8S Ingress Introduction__
 k8s services can be exposed to external (outside of the cluster) in many
 ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/ingress/#alternatives>. Ingress is another way to expose the service to external. Ingress provides layer 7 load balancing whereas the others provide layer 4 load balancing.
