@@ -192,6 +192,7 @@ ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/
     Multiple host names use the same ip address. Based on the Host, traffic would be routed to desired service.<br/>
 
     Sample yaml to create name based virtual-hosting:<br/>
+```yaml
 &nbsp;&nbsp;&nbsp;&nbsp;apiVersion: extensions/v1beta1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;kind: ingress<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;metadata:<br/>
@@ -210,6 +211,7 @@ ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-  backend:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceName: google-images-webserver<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servicePort: 80<br/>
+```
 
     If the incoming traffic's host header matches to maps.google.com, the traffic would be routed to google-maps-webserver. If the incoming traffic's host header matches to images.google.com, the traffic would be routed to google-images-webserver.<br/>
 
