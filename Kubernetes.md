@@ -110,12 +110,18 @@ In this finer-grain isolation mode, the admin or app developer can add the label
 
 ## 3.4 Services
 A Kubernetes service is an abstraction which defines a logical set of Pods and policy by which to access them. The set of Pods frontend'ing a Service are selected based on **LabelSelector** field in **Service** definition.
-In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer**. The OpenContrail Kubernetes integration supports following Service types:
-    * 'clusterIP': This is the default 'ServiceType'. Choosing this 'serviceType' makes it reachable with cluster-network.
-    * 'LoadBalancer': Designating a ServiceType as LoadBalancer, exposes the service to external world. The LoadBalancer 
+In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer**. 
+
+The OpenContrail Kubernetes integration supports following Service types:
+
+    * `clusterIP`: This is the default 'ServiceType'. Choosing this 'serviceType' makes it reachable with cluster-network.
+
+    * `LoadBalancer`: Designating a ServiceType as LoadBalancer, exposes the service to external world. The LoadBalancer 
        service is assigned both a CluserIP and ExternalIP addresses. This assumes that user has configured public network
        with a floating-ip pool.
-OpenContrail K8S `Services` integration supports `TCP` and `UDP` for protocols. Also 'Service' can expose more than one port where 'port' and 'targetPort' are different. For example:
+
+OpenContrail K8S **Service** integration supports `TCP` and `UDP` for protocols. Also **Service** can expose more than one port where `port` and `targetPort` are different. For example:
+
 ```yaml
 kind: Service
 apiVersion: v1
@@ -134,9 +140,9 @@ spec:
         port: 443
         targetPort: 9377
 ``` 
-K8S user can specify `spec.clusterIP` and 'spec.externalIPs' for both 'LoadBalancer' and 'ClusterIP' serviceType.
-If ServiceType is 'LoadBalancer' and no externalIP is specified by user, then contrail-kube-manager allocates a
-floating-ip from public pool and associates it with externalIP. 
+K8S user can specify `spec.clusterIP` and `spec.externalIPs` for both `LoadBalancer` and `ClusterIP` `ServiceTypes`.
+
+If `ServiceTypes` is `LoadBalancer` and no `spec.externalIP` is specified by the user, then contrail-kube-manager allocates a floating-ip from public pool and associates it to `externalIP`. 
 
 ## __K8S Ingress Introduction__
 k8s services can rbe exposed to external (outside of the cluster) in many
