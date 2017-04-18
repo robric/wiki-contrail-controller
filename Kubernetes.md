@@ -147,12 +147,15 @@ K8S user can specify `spec.clusterIP` and `spec.externalIPs` for both `LoadBalan
 If `ServiceTypes` is `LoadBalancer` and no `spec.externalIP` is specified by the user, then contrail-kube-manager allocates a floating-ip from public pool and associates it to `externalIP`. 
 
 
-## __K8S Ingress Introduction__
+## 3.5 Ingress 
+
+### 3.5.1 Introduction
+
 k8s services can rbe exposed to external (outside of the cluster) in many
 ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/ingress/#alternatives>. Ingress is another way to expose the service to external. Ingress provides layer 7 load balancing whereas the others provide layer 4 load balancing.
 
-### __Types of ingress__
-1. Single Service:<br/>
+### 3.5.2 Types of ingress
+#### 3.5.2.1. Single Service:<br/>
     This type is as equivalent to exposing the services with other ways.<br/>
 
     Sample yaml to create single-service:<br/>
@@ -165,7 +168,7 @@ ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/
 
     All the traffic would be routed to nginx service.<br/>
 
-2.  Simple fanout:<br/>
+#### 3.5.2.2  Simple fanout:<br/>
     Based on the url path, the traffic would be routed to desired service.<br/>
 
     Sample yaml to create simple-fanout:<br/>
@@ -188,7 +191,7 @@ ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/
 
     If the incoming traffic's url path matches to qa.html, the traffic would be routed to qa-webserver service. If the incoming traffic ul matches to dev.html, the traffic's would be touted to dev-webserver.<br/>
 
-3.  Name based Virtual Hosting:<br/>
+#### 3.5.2.3 Name based Virtual Hosting:<br/>
     Multiple host names use the same ip address. Based on the Host, traffic would be routed to desired service.<br/>
 
     Sample yaml to create name based virtual-hosting:<br/>
