@@ -114,12 +114,13 @@ In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer
 
 The OpenContrail Kubernetes integration supports following `ServiceTypes`:
 
-    * `clusterIP`: This is the default mode. Choosing this 'serviceType' makes the service reachable 
-      via cluster-network.
+    * `clusterIP`: This is the default mode. Choosing this 'serviceType' makes 
+       the service reachable via cluster-network.
 
-    * `LoadBalancer`: Designating a ServiceType as LoadBalancer, exposes the service to external world. 
-       The LoadBalancer service is assigned both a CluserIP and ExternalIP addresses. This assumes that 
-       user has configured public network with a floating-ip pool.
+    * `LoadBalancer`: Designating a ServiceType as LoadBalancer, exposes the service
+       to external world. The `LoadBalancer` _Service_ is assigned both a CluserIP
+       and ExternalIP addresses. This assumes that user has configured public network 
+       with a floating-ip pool.
 
 OpenContrail K8S _Service_ integration supports `TCP` and `UDP` for protocols. Also _Service_ can expose more than one port where `port` and `targetPort` are different. For example:
 
