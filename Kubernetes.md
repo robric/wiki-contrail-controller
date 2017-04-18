@@ -29,7 +29,7 @@ Opencontrail can be configured in the following mode in a K8s cluster:
 |Custom (define network for a pod)|
 |Nested (k8s cluster in openstack virtual-machines|
 
-# 3.1 Default
+## 3.1 Default
 
 Kubernetes imposes the following fundamental requirement on any networking implementation:
 
@@ -45,26 +45,26 @@ from a pod subnet that the Contrail Kubernetes manager is configured with.
 NOTE:
 System pods spawned in Kube-system namespace are NOT run in the Kubernetes Cluster. Rather they run in the underlay. Networking for these pods is not handled by Contrail.
 
-# 3.1.1 Implementation
+### 3.1.1 Implementation
 
 Contrail achieves this inter-pod network connectivity by configuring all the pods in a single Virtual-network. When the cluster is initialized, Contrail creates a virtual-network called "cluster-network".
 
 In the absence of any network segmentation/isolation configured, ALL pods in ALL namespaces get assigned to "cluster-network" virtual-network.
 
-# 3.1.2   Pods
+### 3.1.2   Pods
 
 In Contrail, each POD is represented as a Virtual-Machine-Interface/Port.
 
 When a pod is created, a vmi/port is allocated for that POD. This port is made a member of the default virtual-network of that Kubernetes cluster.
 
-# 3.1.3   Pod subnet:
+### 3.1.3   Pod subnet:
 
 The CIDR to be used for IP address allocation for pods is provisioned as a configuration to
 contrail-kube-manger. To view this subnet info:
 
 Login to contrail-kube-manager docker running on the Master node and see the "pod_subnets" in configuration file:  /etc/contrail/contrail-kubernetes.conf
 
-# 3.2 Namespace isolation mode
+## 3.2 Namespace isolation mode
 
 In addition to default networking model mandated by Kubernetes, Contrail support additional, custom networking models that makes available the many rich features of Contrail to the users of the Kubernetes cluster. One such feature is network isolation for Kubernetes namespaces.
 
@@ -87,15 +87,15 @@ c.  Pods created in isolated namespace can reach pods in other namespaces.
 d.  Pods in isolated namespace will be able to reach ALL Services created in any namespace in the kubernetes cluster.
 e.  Pods in isolated namespace can be reached from pods in other namespaces through Kubernetes Service-ip.
 
-# 3.2.1 Implementation
+### 3.2.1 Implementation
 
 For each namespace that is annotated as isolated, Contrail will create a Virtual-network with name:  “<Namespace-name>-vn”.
 
-# 3.2.2 Pods
+### 3.2.2 Pods
 
 A Kubernetes pod is represented as vmi/port in Contrail. These ports are mapped to the virtual-network created for the corresponding isolated-namespace.
 
-# 3.2.3   Kubernetes Service Reachability:
+### 3.2.3   Kubernetes Service Reachability:
 
 Pods from an isolated namespace should be able to reach all Kubernetes in the cluster.
 
@@ -104,11 +104,11 @@ Contrail achieves this reachability by the following:
 1.  All Service-IP for the cluster is allocated from a Service Ipam associated with the default cluster virtual-network.
 2.  Pods in isolated namespaces are associated with a floating-ip from the default cluster-network. This floating-ip makes is possible for the pods in isolated-namespaces to be able to reach Services and Pods in the non-isolated namespaces.
 
-# 3.3 App isolation mode
+## 3.3 App isolation mode
 
 In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
 
-# 3.4 Services
+## 3.4 Services
 A Kubernetes service is an abstraction which defines a logical set of Pods and policy by which to access them. The set of Pods frontend'ing a Service are selected based on **LabelSelector** field in **Service** definition.
 In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer**. The OpenContrail Kubernetes integration supports following Service types:
     * 'clusterIP': This is the default 'ServiceType'. Choosing this 'serviceType' makes it reachable with cluster-network.
