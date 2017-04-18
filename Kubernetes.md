@@ -1,8 +1,6 @@
 
 # 1. Introduction
-Kubernetes (K8s) is an open source container management platform. It provides a portable platform across public and private clouds. K8s supports deployment, scaling and auto-healing of applications. More details can be found at: http://kubernetes.io/docs/whatisk8s/
-
-
+Kubernetes (K8s) is an open source container management platform. It provides a portable platform across public and private clouds. K8s supports deployment, scaling and auto-healing of applications. More details can be found at: http://kubernetes.io/docs/whatisk8s/. 
 
 
 # 2. Problem statement
@@ -10,9 +8,28 @@ There is a need to provide pod addressing, network isolation, policy based secur
 
 
 # 3. Proposed solution
-Currently K8s provides a flat networking model wherein all pods can talk to each other. Network policy is the new feature added to provide security between the pods. Opencontrail will add additional networking functionality to the solution - multi-tenancy, network isolation, micro-segmentation with network policies, load-balancing etc. Opencontrail can be configured in the following mode in a K8s cluster:
+Currently K8s provides a flat networking model wherein all pods can talk to each other. Network policy is the new feature added to provide isolation between pods/services. Opencontrail will add additional networking functionality to the solution - multi-tenancy, network isolation, micro-segmentation with network policies, load-balancing etc. 
 
-# 3.1 Cluster isolation
+Opencontrail maps the following k8s concepts into opencontrail resources:
+
+|Kubernetes|Opencontrail|
+|:---|:---|
+|Namespace|Shared or single project based on configuration|
+|Pod|Virtual-machine, Interface, Instance-ip|
+|Service|ECMP based native Loadbalancer|
+|Ingress|Haproxy based L7 Loadbalancer for URL routing|
+|Network Policy|Security group based on namespace and pod selectors|
+
+Opencontrail can be configured in the following mode in a K8s cluster:
+
+|Deployment modes|
+|:---|
+|Default|
+|Namespace isolation (with or without service isolation)|
+|Custom (define network for a pod)|
+|Nested (k8s cluster in openstack virtual-machines|
+
+# 3.1 Default
 
 Kubernetes imposes the following fundamental requirement on any networking implementation:
 
