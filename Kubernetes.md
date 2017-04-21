@@ -70,7 +70,7 @@ In addition to default networking model mandated by Kubernetes, Contrail support
 
 A Kubernetes namespace can be configured as “Isolated” by annotating the Kubernetes namespace metadata with following annotation:
 
-“opencontrail.kubernetes.isolated” : “true”
+'opencontrail.org/isolation' : 'true'
 
 Namespace isolation is intended to provide network isolation to pods.
 The pods in isolated namespaces are not reachable to pods in other namespaces in the cluster.
@@ -81,11 +81,11 @@ If any Kubernetes Service is implemented by pods in isolated namespace, these po
 
 A namespace annotated as “isolated” has the following network behavior:
 
-a.  All pods that are created in an isolated namespace have network reachability with each other.
-b.  Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
-c.  Pods created in isolated namespace can reach pods in other namespaces.
-d.  Pods in isolated namespace will be able to reach ALL Services created in any namespace in the kubernetes cluster.
-e.  Pods in isolated namespace can be reached from pods in other namespaces through Kubernetes Service-ip.
+* All pods that are created in an isolated namespace have network reachability with each other.
+* Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
+* Pods created in isolated namespace can reach pods in other namespaces.
+* Pods in isolated namespace will be able to reach ALL Services created in any namespace in the kubernetes cluster.
+* Pods in isolated namespace can be reached from pods in other namespaces through Kubernetes Service-ip.
 
 #### 3.2.1 __Implementation__
 
