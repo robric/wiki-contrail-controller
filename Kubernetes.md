@@ -284,7 +284,7 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 
     If the annotations on the namespace has the following statement, then the namespace is isolated.
 
-    “opencontrail.kubernetes.isolated” : “true”
+    'opencontrail.org/isolation' : 'true'
 
         [root@a7s16 ~]# kubectl describe namespace test-isolated-ns
         Name:       test-isolated-ns
