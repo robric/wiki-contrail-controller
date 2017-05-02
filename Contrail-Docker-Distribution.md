@@ -30,26 +30,28 @@ Using an example release as 4.0.0.0 and Version as 3045.
     |     |---- contrail-setup_4.0.0.0-3045_all.deb
     |     |---- contrail-vrouter-common_4.0.0.0-3045_all.deb
     |     |---- contrail-vrouter-init_4.0.0.0-3045_all.deb
-    |     |---- vrouter-openstack-extra_4.0.0.0-3045-mitaka.tgz (6)
+    |---- contrail-networking-openstack-extra_4.0.0.0-3045-mitaka.tgz (6)
+    |     |---- mitaka
     |     |     |---- python-novaclient_2%3a3.3.1-2ubuntu1~cloud0_all.deb
-    |     |     |---- ...
-    |---- contrail-openstack-networking_4.0.0.0-3045.tgz (7)
-    |    |---- contrail-nova-networkapi_4.0.0.0-3049_all.deb  
-    |    |---- contrail-heat_4.0.0.0-3049_all.deb  
-    |    |---- contrail-openstack_4.0.0.0-3049_all.deb  
-    |    |---- contrail-openstack-dashboard_4.0.0.0-3049_all.deb  
-    |    |---- python-neutronclient_4.1.1-2~cloud0.2contrail_all.deb  
-    |---- contrail-neutron-plugin-packages_4.0.0.0-3045.tgz (8)
-    |     |---- neutron-plugin-contrail_4.0.0.0-3045_all.deb
-    |     |---- python-contrail_4.0.0.0-3048_amd64.deb
-    |     |---- neutron-plugin-contrail-openstack-extra_4.0.0.0-3045-mitaka.tgz (9)
+    |     |     |---- contrail-nova-networkapi_4.0.0.0-3049_all.deb
+    |     |     |---- contrail-heat_4.0.0.0-3049_all.deb
+    |     |     |---- contrail-openstack-dashboard_4.0.0.0-3049_all.deb
     |     |     |---- python-neutronclient_4.1.1-2~cloud0.2contrail_all.deb
     |     |     |---- ...
-    |---- contrail-networking-thirdparty_4.0.0.0-3045.tgz (10)
+    |     |---- liberty
+    |     |     |---- python-novaclient_2%%3a2.30.1-1~cloud0_all.deb
+    |     |     |---- ...
+    |     |---- kilo
+    |     |     |---- python-novaclient_1%%3a2.22.0-0ubuntu2~cloud0_all.deb
+    |     |     |---- ... 
+    |---- contrail-neutron-plugin-packages_4.0.0.0-3045.tgz (7)
+    |     |---- neutron-plugin-contrail_4.0.0.0-3045_all.deb
+    |     |---- python-contrail_4.0.0.0-3048_amd64.deb
+    |---- contrail-networking-thirdparty_4.0.0.0-3045.tgz (8)
     |     |---- docker-engine_1.13.0-0~ubuntu-trusty_amd64.deb
     |     |---- ansible_2.2.0.0-1ppa~trusty_all.deb
     |     |---- ...  
-    |---- contrail-networking-dependents_4.0.0.0-3045.tgz (11)
+    |---- contrail-networking-dependents_4.0.0.0-3045.tgz (9)
     |     |---- git-man_1%3a1.9.1-1ubuntu0.3_all.deb
     |     |---- libogg0_1.3.1-1ubuntu1_amd64.deb
     |     |---- ...
@@ -120,33 +122,36 @@ Contains contrail packages required to install below provided list of packages
 * contrail-vrouter-dpdk-init  
 * contrail-openstack-vrouter  
 
-#### 6) vrouter-openstack-extra_4.0.0.0-3045-mitaka.tgz  
+#### 6) contrail-networking-openstack-extra_4.0.0.0-3045-mitaka.tgz
+Dependent packages from Openstack Repo which are required to install contrail vrouter role, contrail network plugin etc of all SKUs (eg mitaka, liberty...) in a directory structure  
+Each SKU directory contains has TGZs untarred in it
+* vrouter-openstack-extra_4.0.0.0-3045-mitaka.tgz 
+* contrail-openstack-networking_4.0.0.0-3045.tgz
+* neutron-plugin-contrail-openstack-extra_4.0.0.0-3045-mitaka.tgz  
+
+#### vrouter-openstack-extra_4.0.0.0-3045-mitaka.tgz  
 Dependent packages from Openstack Repo which are required to install contrail vrouter role. 
 This TGZ is tagged with SKU name as it contains packages from relevant SKU. In this case, it contains packages from Openstack Mitaka repo  
 Note: In Networking distribution, these packages are expected to be provided by User and this TGZ serves as a reference. 
-
-
-#### 7) contrail-openstack-networking_4.0.0.0-3045.tgz
+#### contrail-openstack-networking_4.0.0.0-3045.tgz
 Openstack packages created or rebuilt by contrail and are required to install contrail-openstack role  
 Contains below listed packages  
-* contrail-nova-networkapi_4.0.0.0-3049_all.deb  
-* contrail-heat_4.0.0.0-3049_all.deb  
-* contrail-openstack_4.0.0.0-3049_all.deb  
-* contrail-openstack-dashboard_4.0.0.0-3049_all.deb  
-* python-neutronclient_4.1.1-2~cloud0.2contrail_all.deb  
-
-#### 8) contrail-neutron-plugin-packages_4.0.0.0-3045.tgz
-Contains contrail packages required to install contrail neutron plugin role
-
-#### 9) neutron-plugin-contrail-openstack-extra_4.0.0.0-3045-mitaka.tgz  
+  * contrail-nova-networkapi_4.0.0.0-3049_all.deb  
+  * contrail-heat_4.0.0.0-3049_all.deb  
+  * contrail-openstack-dashboard_4.0.0.0-3049_all.deb  
+  * python-neutronclient_4.1.1-2~cloud0.2contrail_all.deb  
+#### neutron-plugin-contrail-openstack-extra_4.0.0.0-3045-mitaka.tgz  
 Dependent packages from Openstack Repo which are required to install contrail neutron plugin role.  
 This TGZ is tagged with SKU name as it contains packages from relevant SKU. In this case, it contains packages from Openstack Mitaka repo  
-Note: In Networking distribution, these packages are expected to be provided by User and this TGZ serves as a reference. 
+Note: In Networking distribution, these packages are expected to be provided by User and this TGZ serves as a reference.  
 
-#### 10) contrail-networking-thirdparty_4.0.0.0-3045.tgz  
+#### 7) contrail-neutron-plugin-packages_4.0.0.0-3045.tgz
+Contains contrail packages required to install contrail neutron plugin role
+
+#### 8) contrail-networking-thirdparty_4.0.0.0-3045.tgz  
 Thirparty packages required to install contrail vrouter + contrail neutron plugin  
 
-#### 11) contrail-networking-dependents_4.0.0.0-3045.tgz
+#### 9) contrail-networking-dependents_4.0.0.0-3045.tgz
 Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security) required for installing  
 1) contrail vrouter  
 2) neutron plugin    
