@@ -87,6 +87,47 @@ Using an example release as 4.0.0.0 and Version as 3045.
     |     |---- libmpc3_1.0.1-1ubuntu1_amd64.deb
     |     |---- python-decorator_3.4.0-2build1_all.deb
 
+## Kubernetes Distribution Structure:
+#### contrail-kubernetes-docker_4.0.0.0-3045.tgz (1)  
+    |---- contrail-docker-images_4.0.0.0-3045.tgz (2)
+    |     |---- contrail-controller-u14.04-4.0.0.0-3045.tar.gz
+    |     |---- contrail-analytics-u14.04-4.0.0.0-3045.tar.gz
+    |     |---- contrail-agent-u14.04-4.0.0.0-3045.tar.gz
+    |     |---- contrail-lb-u14.04-4.0.0.0-3045.tar.gz
+    |     |---- contrail-analyticsdb-u14.04-4.0.0.0-3045.tar.gz  
+    |---- contrail-networking-tools_4.0.0.0-3045.tgz (3)
+    |     |---- contrail-docker-tools-4.0.0.0-3045.tar.gz (4)
+    |---- contrail-vrouter-packages_4.0.0.0-3045.tgz (5)
+    |     |---- contrail-vrouter-agent_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-vrouter-dkms_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-vrouter-dpdk_4.0.0.0-3045_all.deb
+    |     |---- contrail-vrouter-source_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-vrouter-utils_4.0.0.0-3045_amd64.deb
+    |     |---- python-contrail_4.0.0.0-3045_amd64.deb
+    |     |---- python-contrail-vrouter-api_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-vrouter-3.13.0-106-generic_4.0.0.0-3045_all.deb
+    |     |---- python-opencontrail-vrouter-netns_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-utils_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-lib_4.0.0.0-3045_amd64.deb
+    |     |---- contrail-nova-vif_4.0.0.0-3045_all.deb
+    |     |---- contrail-openstack-vrouter_4.0.0.0-3045_all.deb
+    |     |---- contrail-setup_4.0.0.0-3045_all.deb
+    |     |---- contrail-vrouter-common_4.0.0.0-3045_all.deb
+    |     |---- contrail-vrouter-init_4.0.0.0-3045_all.deb
+    |---- contrail-networking-thirdparty_4.0.0.0-3045.tgz (8)
+    |     |---- docker-engine_1.13.0-0~ubuntu-trusty_amd64.deb
+    |     |---- ansible_2.2.0.0-1ppa~trusty_all.deb
+    |     |---- ...  
+    |---- contrail-kubernetes-dependents_4.0.0.0-3045.tgz (10)
+    |     |---- git-man_1%3a1.9.1-1ubuntu0.3_all.deb
+    |     |---- libogg0_1.3.1-1ubuntu1_amd64.deb
+    |     |---- ...
+    |     |---- ...
+    |     |---- ...
+    |     |---- gcc_4%3a4.8.2-1ubuntu6_amd64.deb
+    |     |---- libmpc3_1.0.1-1ubuntu1_amd64.deb
+    |     |---- python-decorator_3.4.0-2build1_all.deb  
+
 
 #### 1) contrail-docker-networking_4.0.0.0-3045.tgz:  
 Wrapper TGZ Containing below tgzs  
@@ -161,6 +202,8 @@ It will also have upstream packages required for below
 2. Docker-Engine dependents  
 3. Ansible dependents  
 
+#### 10) contrail-kubernetes-dependents_4.0.0.0-3045.tgz
+Dependent packages required to install contrail vrouter, contrail-kube-manager roles.
 
 #### 12) contrail-docker-cloud_4.0.0.0-3045-mitaka.tgz  
 Wrapper TGZ containing  
