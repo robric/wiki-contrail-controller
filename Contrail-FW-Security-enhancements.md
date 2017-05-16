@@ -224,7 +224,204 @@ boolean flag to indicate that, owner of the policy indicated that policy is audi
 Generate a log event for audited with timestamp and user details.
 
 
+### Firewall-rule
+Firewall-rule is a new rule object, which contains the following fields and syntax is to give information about their layout inside the rule. 
+
+* <sequence number>
+* [< id >]
+* [name < name >]
+* [description < description >]
+* public
+* {permit | deny} 
+* [ protocol {< protocol-name > | any } destination-port { < port range > | any } [  source-port { < port range > | any} ] ] | service-group < name > 
+* source { [ip < prefix > ] | [virtual-network < vnname >] | [address-group < group name >] | [tags T1 == V1 && T2 == V2 … && Tn == Vn && label == label name...] | any}
+* { -> | <- | <-> }
+* destination { [ip < prefix > ] | [virtual-network < vnname >] | [address-group < group name >] | [tags T1 == V1 && T2 == V2 … && Tn == Vn && label == label name...] | any }
+* [ match {T1 …. Tn} | none} ]
+* [ timer < start-time > < limit >]
+* [ log| mirror | alert | activate <rule id> | drop | reject | sdrop ]
+* { enable | disable}
+* filter
+
+#### sequence number
+It is a string object, instead of integer. 
+[May be not required, since we got an id for each rule, user can use insert_before/insert_after rule id, also need to support this for FWAASv2 APIs. 
+Not fully liking the idea of having sequence numbers, which is not user friendly] [2]
+
+#### id
+uuid 
+
+#### name
+Readable name, it is not unique 
+
+#### description
+as it says 
+
+#### actions
+permit/deny [3] 
+
+#### direction
+->, <-, <->
+It specifies connection direction. All the rules are connection oriented and this option gives the direction of the connection.
+
+#### complex actions
+log/mirror/alert/active <rule id>/drop/reject/sdrop [3] 
+
+#### source/destination tags option
+Tags at source or destination support RE of tags. We support only ‘==‘ and ‘&&’ operators. User can specify labels also as part the expression.
+Configuration object contains list of tag object references for source and destination tag option. We need to see, how to support different operators in RE (future requirements)? 
+
+#### match
+List of tag types or none. 
+User can specify either match with list of tags or none. Match with list of tags mean, source and destination tag values should match for the rule to take effect. 
+
+#### enabled
+A boolean flag to indicate the rule is enabled or disabled. Facilitates selectively turn off the rules, without remove the rule from the policy. Default is True.
+
+#### filter
+Will be discussed later 
+
+#### Rest of the fields 
+Rest of the fields are same as existing contrail network policy (NP)
+
+## User workflow
+
+### Policy attachment/apply
+
+Policy attachment happens via application tag. These application-policies are defined/scoped at global or project. As the application tag matches both global and project scoped list will be picked during the flow evaluation. Each application-policy has the sequence of policies to be applied in the order. 
+
+### Policy evaluation
+
+global_apply list contains list of ordered FWP
+global: application_policy list contains two list of ordered FWP and NP
+project: application_policy list contains two list of ordered FWP and NP
+
+Create a list of FWP [G1]
+This list formed picking FWP from global_apply, global:application_policy and project:application_policy list. At the end of these lists, there will be a ‘default deny all’
+
+Create a list of NP [G2] 
+This list formed picking NP from global_apply, global:application_policy and project:application_policy list. At the end of these lists, there will be a ‘default deny all’. May be we don’t need to change the existing behavior.
+
+Create a list of SG [G3]
+List of SGs attached to the workload, at the end there is a ‘default deny all’
+
+Policies evaluation goes through multiple gates. Each policy type is a gate, those are security groups, network policies, project application firewall policies, global firewall policies and in future FWAASv2 policies.  
+
+All the gates have to pass to allow the traffic flow. Otherwise, at the end, there is default deny to stop the flow. Policy rules might have terminate rule or non-terminate rule, evaluation proceeds until it hits terminate rule or end default deny rule. 
+Ingress traffic gates
+Ingress traffic gates are as follows... Network policies, Firewall policies and SGs 
+Egress traffic gates 
+evaluates reserve of ingress 
+
+### Operation mode
+
+There are two mode options, ‘production’ and ‘test’. Production mode is default and keeps default deny at the end of policy list. Whereas ‘test’ mode, will add default ‘allow' rule at the end, instead of ‘deny'. The idea is to conduct test phases, to figure out all the interactions and convert them into policy/rules for user. Customer could go on test loop to see any more flows not hitting the regular rules and keep converting them to rules. These rules might use ‘disabled’ flag and add it to the policy to present to the user, admin could check these rules to enable and audit.
+Where should we add this ‘operation mode’ field?
+
+### Policy portability
+
+This proposal makes it portable as much as possible via match conditions. Match condition is a way to match both source and destination tag values, without explicitly giving out the environment values (tag values). User can match on multiple tags. It is allowed set default match tags on project, so that all the policies’ rules get this match default. If a match is specified at rule, it overrides the default match. It is allowed to set match with ‘none’ to avoid this feature. 
+
+### Analytics and UI
+
+High level goals for WebUI and Analytics are -
+* Help configure/design security posture
+* Monitor
+* Security
+
+#### Aid configure/design security policies/posture
+The idea is to run the system in test mode, where connectivity between networks are present and security policies allow all traffic. Analytics engine and security admin with multiple iterations to come up with security policies based on the traffic ran in test mode. Analytics engine aids in identifying pattern in the flow traffic and presents user with possible tags to fit the traffic. This is an iterative process until figure out desired security policies.
+
+#### Monitor
+WebUI/Analytics to present user, system topology view and be able to drill down traffic based on network or security group or etc..
+Monitoring should also consider tags to show flow
+
+## High level implementation details
+
+### Agent
+
+#### Configuration
+
+Configuration objects global-apply, global application-policy, project application-policy, corresponding firewall policies and any dependent objects will be downloaded to agent, as tags are attached to VMIs.
+
+Tags can be attached to VMI via direct manual attachment or inheritance from VM/VN/Project.
+
+Firewall policies will be send as is to agent. 
+
+Firewall policies rules’ end points (source and destination) allows tag regular expressions. These expressions are limited to ‘==’ and ‘&&’ operators for first revision of implementation. Configuration will be converted to list configuration tag ids (32bit) in the rule and send it to agent.
+
+#### Building of tags
+
+All tags information in agent would be maintained at interface level. Interface would parse through all the links of interest and build the active tag list. Below are links of interest to VMI 
+
+* Virtual-Machine-Interface -> Tag
+* Virtual-Machine-Interface -> Virtual-Machine -> Tag
+* Virtual-Machine-Interface -> Virtual-Network -> Tag
+* Virtual-Machine-Interface -> Project -> Tag
+
+IFMAP dependency rules would be specified such that any of the above link gets added or deleted it would result in VMI revaluation. Tag value can change hence agent should also revaluate tags associated to VMI when any property in Tag object changes. Every time tag list associated with VMI changes all the routes (IP, EVPN, FIP, AAP and Static route) should be exported with new updated tag list. New extended community would be used to export tag value to control-node.
+
+#### Policy Set
+
+Firewall Policy contains a list of firewall rule to be applied sequentially, Firewall policy maps to existing ACL DB entry and rule maps to existing ACL Entry in agent operational DB. Sequential list of policy becomes Policy set and agent operation DB would create a new DB entry which has list of ACL DB entry to be applied. Policy set has an application tag associated with it which in turn could link to VMI, VM, VN or Project via tag link. Policy set are applied at interface by following the same order of preference with VMI first followed by VM, VN and Project. On an interface there can be only one application policy-set active at a given point.
+   
+Current ACL Entry has ability to match SG ID which could be reused to match tag values also. Match condition would be a new object under ACL Entry which would be used to match if tag of same type match between source endpoint and destination endpoint for example if policy rule allow communication between tier in same deployment agent has to get tag value if deployment and match that its same across source and destination.
+
+#### Flow evaluation
+
+There were multiple options to optimize RE comparison, while evaluating policy rules during the flow creation. It is ideal to optimize RE match during the evaluation. For the first cut of implementation FW rules would be evaluated sequentially.
+
+Get list of tags associated with ip end point and during the flow evaluation, match the policy rule’s tag list. Other option is to create RE list as policies received. These RE list evaluated during local or remote route updates and tag matched REs in the route/ip operational DB. Flow evaluation doesn’t have to compare tag list in rule, instead compare RE in one operation.
+
+Flow would be revaluated when any of the below thing changes
+1. Policy Set associated with VMI changes
+1. Policy set rule list change
+1. FW rules changes (Flow module already does this)
+1. Policy changes (Flow module already handles this)
+1. Tag value changes.
+1. Tag gets added or deleted to VMI.
+ 
+#### Updates
+
+Configuration updates on policies, application tags and route update should evaluate necessary flows, in addition to existing evaluations. 
+
+##### Flow reevaluation
+Reevaluation of flows in addition to the existing reevaluation conditions are –
+Changes in FWPx – 
+FWPx  flow’s application tag’s project policy_application FWP list or global policy_application FWP list or global_apply FWP list
+
+### Control node
+
+* policy and tags information along with flow.
+* Session aggregate feature needs to be enhanced to support tags.
+* Need a way to get metrics based on the tag or list of tags (tag expression)
 
 
+### Analytics 
+* Provide elastic search features for flows, logs and other features 
+* Show mapping of flow to ACL/ACE policy 
+* Finger printing of flows (Analytics Engine Vs vRouter) 
+* Show attack surface and help in reducing attack surface via visualization
+* Tag (dimension) based usage, sessions, metrics 
+* Example: Show application usage based on the flows
+* 	Multi dimension usage, sessions, metrics
+
+#### Logs
+Flow records with logging 
+Log historical usage to see what rules are actually used and to aid in troubleshooting 
+Log only configured rules/policies, (no logging for implicit flows, only during the troubleshooting, ex: Deny inter group traffic only allow intra group traffic) 
+
+#### Reports 
+Periodic reports or alerts to send out defined end points (email/channel) 
+
+#### Compliance 
+Pre-defined rules based on virtual security best practices 
+Build whitelists (wanted configuration) or blacklists or unwanted configuration 
+
+
+Refs 
+> http://specs.openstack.org/openstack/neutron-specs/specs/kilo/service-group.html
+> https://specs.openstack.org/openstack/neutron-specs/specs/newton/fwaas-api-2.0.html
+> http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node29.html#SECTION00421000000000000000
 
 
