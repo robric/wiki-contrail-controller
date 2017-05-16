@@ -1,9 +1,9 @@
 # Introduction
 This document addresses security enhancements to contrail product.
-* FW security policy feature enhancements
-* Decouple routing from security policy
-_* Integrate with third party NG FWs_
-_* Support FWAASv2 API_
+* **FW security policy feature enhancements**
+* **Decouple routing from security policy**
+* _Integrate with third party NG FWs_
+* _Support FWAASv2 API_
 
 This feature development addresses ‘Decoupling routing from security policy’ and ‘FW security policy feature enhancements’. It also considers future support for FWAASv2 API, while developing this feature. 
 
@@ -114,3 +114,117 @@ Identified the following objects as starting point for new security features.
 * address-group 
 * tag 
 * global-apply
+
+[Import picture from word document for configuration objects and their layout]
+
+### Tags
+
+#### Configuration Tag object
+
+Tag object contains type, value, description, configuration_id.
+type is one of the defined tag types, stored as string. 
+value is a string. 
+description is a string to describe the tag 
+configuration_id is a 32bit value 
+* 1 bit for global vs local 
+* 5 bits for tag types 
+* 26 bits for tag values 
+
+As each value is entered by user will create a unique id and maintained and will be used in the configuration_id 
+System can have up to 64 million tag values. On an average each tag can up to 2k values, but there are no restrictions per tag. 
+
+Tags/labels can be attached to project, VN, VM, VMI and policy objects. These objects will have tag ref list to support multiple tags. RBAC will control the users to modify or remove the attached tags. Some tags will be attached by system by default or via introspection, these tags are typically facts.
+
+Tag APIs
+boolean add_tag_<tag_name> (value) 
+boolean delete_tag_<tag_name>(value) 
+The above allows us to give RBAC per tag in any object (VMI, VM, Project ….)
+
+Configuration should support the following API also 
+Tag query
+tags(policy) 
+tags (application tag) 
+Object query
+tags(object) 
+tags (type, value) 
+
+Label
+label is special tag type, used to assign labels for objects. All the above tag constructs are valid, except that tag type will be ‘label'. 
+
+#### Analytics
+Given tag SQL where clause and select clause, analytics should give out objects. Query may contain labels also, whereas labels will have different operators. 
+Examples: User might want to know ... 
+list of VMIs where ’site == USA and deployment == Production' 
+list of VMIs where ’site == USA and deployment == Production has <label name>’ 
+Given tag SQL where clause and select clause, analytics should give out flows. 
+
+#### Control node
+Control node passes the tags along with route updates to agents and other control nodes.
+
+#### Agent
+Agent gets attached tags along with configuration objects. Agent also gets route updates containing tags associated with IP route. This process is similar to getting SG ids along with the route update.
+
+### Address-group
+
+There are multiple ways to add IP address to address-group. 
+A) user can manually add IP prefixes to it via configuration. 
+B) user can label a work load with address-group’s specified label. 
+C) Introspect workloads and based on certain criteria add ip-address to address-group. [Needs discussion]
+
+#### Configuration
+address-group object contains label object, description and list of IP prefixes.
+label - object is created using the tag APIs.
+
+#### Agent
+Agent gets address-group and label objects referenced in policy configuration. Agent uses this address group for matching policy rules.
+#### Analytics
+Given address group label, get all the objects associated with it. 
+Given address group label, get all the flows associated with it. 
+
+### Service-group
+
+#### Configuration
+service-group contains list of port list and protocol. 
+Whereas, open stack service-group has list of service objects and service object contains the following attributes [1] [2].
+Open stack service object contains the following parameters
+id, name, service group id, protocol, source_port, destination_port, icmp_code, icmp_type, timeout, tenant id
+
+#### Agent
+Agent gets service-group object as it is referred in a policy/rule. Agent uses this service group during policy evaluation. 
+
+### Application-policy
+
+application-policy configuration object contains application_tag, list of NP, list of FWP. This object could be project or global scoped.
+application_tag is tag object for application tag. It is allowed only application tags here as the name suggests. 
+NP is existing contrail network policies 
+FWP is new firewall policy object, which will be detailed in later section. 
+Upon seeing application tag for any object, the associated policies will be send to agent. Agent will use this information to find out the list of policies to be applied and their sequence during flow evaluation. User could attach application tag to allowed objects (Project, VN, VM or VMI). 
+
+### Policy-management
+
+Policy-management is a global container object for all policy related configuration. Policy-management object contains - 
+Network policies (NPs), Firewall policies (FWPs), Application-policy objects, global-policy objects, global-policy-apply objects 
+NPs - List of contrail networking policy objects 
+FWPs - List of new firewall policy objects 
+Application-policies - List of Application-policy objects 
+Global-policies - List of new firewall policy objects, that are defined for global access 
+Global-policy-apply - List of global policies in a sequence, and these policies applied during flow evaluation. 
+
+Network Policies (NP) references in the policy-management is long term plan, these changes are not required in the first release. NP policies will be available, as they are today.
+
+### Firewall-policy
+We discussed to use existing network policy, instead of creating new firewall-policy object. But, network policy supports both connectivity and policy.
+We decided to keep a separate new object for firewall policy to do all firewall related features, and network policy could slowly move towards to connectivity and includes service chain connectivity. 
+firewall-policy object will keep adding firewall related features like DDOS, filtering features and etc.…
+Firewall-policy is a new policy object, which contains list of firewall-rule-objects and audited flag. Firewall-policy could be project or global scoped depends on the usage.
+
+audited
+boolean flag to indicate that, owner of the policy indicated that policy is audited. Default is False, and will have to explicitly set to True after review.
+
+Generate a log event for audited with timestamp and user details.
+
+
+
+
+
+
