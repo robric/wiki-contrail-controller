@@ -85,6 +85,7 @@ Here are the pointers to Contrail documents:
 * Contrail Cloud / Contrail Networking user guide & release notes are hosted on [techwiki](http://techwiki.juniper.net/Documentation/Contrail)
 * Developer contributed wiki on Contrail internals, installations etc are hosted on [GitHub](https://github.com/Juniper/contrail-controller/wiki)
 * Community contributed blogs on Contrail features & capabilities are at [http://opencontrail.org/blog/](http://opencontrail.org/blog/)
+* Blueprints are contributed in GitHub in .md format in spec dir of respective code repos as indicated above. Follow this [template](https://github.com/Juniper/contrail-controller/blob/master/specs/blueprint_template.md).
 
 ###### Support ######
 To get support on Contrail, join the mailing list as indicated in [http://www.opencontrail.org/developer-resources/](http://www.opencontrail.org/developer-resources/)
