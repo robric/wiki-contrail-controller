@@ -26,7 +26,7 @@ Opencontrail can be configured in the following mode in a K8s cluster:
 |:---|
 |Default|
 |Namespace isolation (with or without service isolation)|
-|Custom (define network for a pod)|
+|Custom (define network for a pod, namespace)|
 |Nested (k8s cluster in openstack virtual-machines|
 
 ### 3.1 __Default__
