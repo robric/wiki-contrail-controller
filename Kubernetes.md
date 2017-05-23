@@ -104,7 +104,7 @@ Contrail achieves this reachability by the following:
 1.  All Service-IP for the cluster is allocated from a Service Ipam associated with the default cluster virtual-network.
 2.  Pods in isolated namespaces are associated with a floating-ip from the default cluster-network. This floating-ip makes is possible for the pods in isolated-namespaces to be able to reach Services and Pods in the non-isolated namespaces.
 
-### 3.3 __App isolation mode__
+### 3.3 __Custom isolation mode__
 
 In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
 
