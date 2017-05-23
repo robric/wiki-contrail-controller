@@ -33,7 +33,7 @@ Opencontrail can be configured in the following mode in a K8s cluster:
 
 Kubernetes imposes the following fundamental requirement on any networking implementation:
 
-All Pods can communicate with all other containers without NAT
+All Pods can communicate with all other Pods without NAT
 
 This is the default mode, and no action is required from the admin or app developer. It provides the same isolation level as kube-proxy. OpenContrail will create a cluster network shared by all namespaces, from where service IP addresses will be allocated.
 
