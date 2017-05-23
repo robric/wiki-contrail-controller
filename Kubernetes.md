@@ -303,7 +303,7 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 * Install Docker on all the target nodes. Update your /etc/apt/sources.list accordingly so that it can download package from internet 
 * Download contrail-ansible repo and create your inventory file. Setup passwordless access to all hosts.
 * Create a folder container_images inside contrail ansible playbook 
-* Download contrail-kubernetes-docker_<contrail-version>.tgz.Untar tgz and copy all docker image to container_images folder. 
+* Download contrail-kubernetes-docker_< contrail-version >.tgz.Untar tgz and copy all docker image to container_images folder. 
 * Run the ansible playbook: ansible-playbook  -i inventory/my-inventory site.yml
 
 
