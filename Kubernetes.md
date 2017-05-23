@@ -298,3 +298,47 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 ### 10.3 __System tests__
 
 ## 11. __Installation__
+
+### 11.1 Re-image the box with Ubuntu 16.04.2
+
+root@5b7s18:~# lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 16.04.2 LTS
+Release:        16.04
+Codename:       xenial
+root@5b7s18:~# uname -r
+4.4.0-62-generic
+root@5b7s18:~# uname -a
+Linux 5b7s18 4.4.0-62-generic #83-Ubuntu SMP Wed Jan 18 14:10:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+
+### 11.2 Install Docker on all the target nodes. Update your /etc/apt/sources.list accordingly so that it can download package from internet 
+
+root@5b7s18:~# docker version
+Client:
+ Version:      17.05.0-ce
+ API version:  1.29
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:10:54 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.05.0-ce
+ API version:  1.29 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:10:54 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+
+### 11.3 Download contrail-ansible repo and create your inventory file. Setup passwordless access to all hosts.
+  
+### 11.4 Create a folder container_images inside contrail ansible playbook 
+
+### 11.5 Download  contrail-kubernetes-docker_<contrail-version>.tgz.Untar tgz and copy all docker image to container_images folder. 
+
+### 11.6 Run the ansible playbook: ansible-playbook  -i inventory/my-inventory site.yml
+
+
+
