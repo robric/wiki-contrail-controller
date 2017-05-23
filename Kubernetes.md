@@ -297,6 +297,4 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 ### 10.2 __Dev tests__
 ### 10.3 __System tests__
 
-## 11. __Documentation Impact__
-
-## 12. __References__
+## 11. __Installation__
