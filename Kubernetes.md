@@ -106,7 +106,7 @@ Contrail achieves this reachability by the following:
 
 ### 3.3 __Custom isolation mode__
 
-In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/name" to the pod, replication controller and/or service specification, to enable micro-segmentation. As a result, virtual networks will be created for each pod/app tagged with the label. Network policies or security groups will need to be configured to define the rules for service accessibility.
+In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/network: <fq_network_name>". If this label is configured for a pod spec then the pod is launched in that network. If the label is used in the namespace spec then all the pods in the namespace will be launched in the provided network. Creation of this network should be done using VNC apis/ui prior to configuring it in the specs. 
 
 ### 3.4 __Services__
 A Kubernetes _Service_ is an abstraction which defines a logical set of _Pods_ and policy by which to access the _Pods_. The set of Pods frontend'ing a Service are selected based on `LabelSelector` field in _Service_ definition.
