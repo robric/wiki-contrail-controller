@@ -72,20 +72,33 @@ A Kubernetes namespace can be configured as “Isolated” by annotating the Kub
 
 'opencontrail.org/isolation' : 'true'
 
-Namespace isolation is intended to provide network isolation to pods.
+Namespace isolation is intended to provide network and service isolation to pods.
 The pods in isolated namespaces are not reachable to pods in other namespaces in the cluster.
+Services in isolated namespaces are also not reachable to pods in other namespaces.
 
-Kubernetes Services are considered cluster resources and they remain reachable to all pods, even those that belong to isolated namespaces. Thus Kubernetes service-ip remains reachable to pods in isolated namespaces.
+If it is desirable that services remain reachable to other namespaces, service isolation can be disabled
+by the following annotation on the namespace:
 
-If any Kubernetes Service is implemented by pods in isolated namespace, these pods are reachable to pods from other namespaces through the Kubernetes Service-ip.
+'opencontrail.org/isolation.service' : 'false'
 
-A namespace annotated as “isolated” has the following network behavior:
+Disabling service isolation will make the services reachable to pods in other namespaces. However pods in isolated
+namespaces will still remain unreachable to pods in other namespaces.
+
+A namespace annotated as “isolated” (i.e both pod and service isolation) has the following network behavior:
 
 * All pods that are created in an isolated namespace have network reachability with each other.
 * Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
 * Pods created in isolated namespace can reach pods in other namespaces.
-* Pods in isolated namespace will be able to reach ALL Services created in any namespace in the kubernetes cluster.
-* Pods in isolated namespace can be reached from pods in other namespaces through Kubernetes Service-ip.
+* Pods in isolated namespace will be able to reach "non-isolated services" in any namespace in the kubernetes cluster.
+* Pods from other namespaces will NOT be able to Services in this isolated namespace.
+
+A namespace annotated as “isolated” and service-isolation disabled (i.e only pod isolation) has the following network behavior:
+
+* All pods that are created in an isolated namespace have network reachability with each other.
+* Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
+* Pods created in isolated namespace can reach pods in other namespaces.
+* Pods in isolated namespace will be able to reach "non-isolated services" in any namespace in the kubernetes cluster.
+* Pods from other namespaces will be able to reach Services in this isolated namespace.
 
 #### 3.2.1 __Implementation__
 
@@ -305,6 +318,5 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 * Create a folder container_images inside contrail ansible playbook 
 * Download contrail-kubernetes-docker_< contrail-version >.tgz. Untar tgz and copy all docker image to container_images folder. 
 * Run the ansible playbook: ansible-playbook  -i inventory/my-inventory site.yml
-
 
 
