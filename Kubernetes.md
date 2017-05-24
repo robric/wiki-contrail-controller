@@ -131,16 +131,13 @@ both the Openstack and Kubernetes clusters. With this unified control and data p
 interworking and configuring these clusters becomes seemless and the lack of replication
 and duplicity makes this a very efficient proposition.
 
+In a nested mode, a Kubernetes cluster is provisioned in virtual-machines of an Openstack cluster.
+The CNI plugin and the Contrail-kubernetes manager of the kubernetes cluster, interfaces
+directly with Contrail componenets that manage Openstack cluster.
+
 In a nested mode deployment, ALL kubernetes features, functions and specifications are
 supported as is. Infact such a nested deployment stretches the boundaries and limits of
-kubernetes by allowing it to operate on the same plane underlying Openstack cluster.
-
-In a nested mode, a Kubernetes cluster is provisioned in VM's in an Openstack cluster.
-The CNI plugin and the Contrail-kubernetes manager from the Kubernetes cluster interface
-directly withe Contrail componenets that manage Openstack cluster. The Kubernetes cluster
-is provisioned in the Virtual Network of Virtual-Machines, on which the kubernetes
-cluster is being provisioned. This virtual-network info is made available to the
-contrail-kubernetes manager at the time of kubernetes cluster provisioning.
+Kubernetes by allowing it to operate on the same plane as underlying Openstack cluster.
 
 ### 3.5 __Services__
 A Kubernetes _Service_ is an abstraction which defines a logical set of _Pods_ and policy by which to access the _Pods_. The set of Pods frontend'ing a Service are selected based on `LabelSelector` field in _Service_ definition.
@@ -339,5 +336,4 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 * Create a folder container_images inside contrail ansible playbook 
 * Download contrail-kubernetes-docker_< contrail-version >.tgz. Untar tgz and copy all docker image to container_images folder. 
 * Run the ansible playbook: ansible-playbook  -i inventory/my-inventory site.yml
-
 
