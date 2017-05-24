@@ -92,7 +92,7 @@ A namespace annotated as “isolated” (i.e both pod and service isolation) has
 * Pods in isolated namespace will be able to reach "non-isolated services" in any namespace in the kubernetes cluster.
 * Pods from other namespaces will NOT be able to Services in the isolated namespace.
 
-A namespace annotated as “isolated” and service-isolation disabled (i.e only pod isolation) has the following network behavior:
+A namespace annotated as “isolated”, with service-isolation disabled (i.e only pod isolation), has the following network behavior:
 
 * All pods that are created in an isolated namespace have network reachability with each other.
 * Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
