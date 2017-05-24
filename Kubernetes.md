@@ -329,7 +329,7 @@ Kubernetes(K8S) implements DNS using SkyDNS, a small DNS application that respon
 ### 10.3 __System tests__
 
 ## 11. __Installation__
-
+Follow below steps to install Containerized contrail controller for Kubernetes.
 * Re-image all hosts with Ubuntu 16.04.2. Setup passwordless access to all hosts.
 * Install Docker on all the target nodes. Update your /etc/apt/sources.list accordingly so that it can download package from internet 
 * Download contrail-ansible repo and create your inventory file. 
