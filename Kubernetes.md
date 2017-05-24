@@ -121,7 +121,28 @@ Contrail achieves this reachability by the following:
 
 In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/network: <fq_network_name>". If this label is configured for a pod spec then the pod is launched in that network. If the label is used in the namespace spec then all the pods in the namespace will be launched in the provided network. Creation of this network should be done using VNC apis/ui prior to configuring it in the specs. 
 
-### 3.4 __Services__
+### 3.4 __Nested Mode__:
+
+Contrail brings together the excellence of kubernetes with that of Openstack, by enabling
+the provisioning of Kubernetes cluster inside an Openstack cluster. While this nesting of
+clusters by themselves is not unique, what Contrail offers is a "collapsed" control and data
+plane whereby a single contrail control plane and single network stack can manage and service
+both the Openstack and Kubernetes clusters. With this unified control and data planes,
+interworking and configuring these clusters becomes seemless and the lack of replication
+and duplicity makes this a very efficient proposition.
+
+In a nested mode deployment, ALL kubernetes features, functions and specifications are
+supported as is. Infact such a nested deployment stretches the boundaries and limits of
+kubernetes by allowing it to operate on the same plane underlying Openstack cluster.
+
+In a nested mode, a Kubernetes cluster is provisioned in VM's in an Openstack cluster.
+The CNI plugin and the Contrail-kubernetes manager from the Kubernetes cluster interface
+directly withe Contrail componenets that manage Openstack cluster. The Kubernetes cluster
+is provisioned in the Virtual Network of Virtual-Machines, on which the kubernetes
+cluster is being provisioned. This virtual-network info is made available to the
+contrail-kubernetes manager at the time of kubernetes cluster provisioning.
+
+### 3.5 __Services__
 A Kubernetes _Service_ is an abstraction which defines a logical set of _Pods_ and policy by which to access the _Pods_. The set of Pods frontend'ing a Service are selected based on `LabelSelector` field in _Service_ definition.
 In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer**. 
 
@@ -160,7 +181,7 @@ K8S user can specify `spec.clusterIP` and `spec.externalIPs` for both `LoadBalan
 If `ServiceTypes` is `LoadBalancer` and no `spec.externalIP` is specified by the user, then contrail-kube-manager allocates a floating-ip from public pool and associates it to `externalIP`. 
 
 
-### 3.5 __Ingress__ 
+### 3.6 __Ingress__ 
 k8s services can be exposed to external (outside of the cluster) in many
 ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/ingress/#alternatives>. Ingress is another way to expose the service to external. Ingress provides layer 7 load balancing whereas the others provide layer 4 load balancing.
 
