@@ -25,7 +25,7 @@ Contrail Roles that are distributed as a part of Contrail Networking Distributio
 
 #### Contrail Cloud Roles:
 Contrail Cloud Roles included as a part of Contrail Cloud Distribution.
-It includes all roles of Contrail Networking Roles as a part of contrail-networking-docker.tgz and along with below listed roles
+It includes all roles of Contrail Networking Roles as a part of contrail-networking-docker.tgz and along with below-listed roles
 
 1) Openstack role   
 2) Openstack HA role
@@ -34,6 +34,7 @@ It includes all roles of Contrail Networking Roles as a part of contrail-network
 
 ## Networking Distribution Structure:
 #### contrail-networking-docker_4.0.0.0-3045.tgz 
+
 ```
 contrail-networking-docker_4.0.0.0-3045.tgz  (1)
     |---- contrail-docker-images_4.0.0.0-3045.tgz (2)
@@ -215,10 +216,10 @@ Dependent packages from corresponding Openstack SKU Repo ie newton, mitaka, kilo
 Contains contrail packages required to install contrail neutron plugin role
 
 #### 11) contrail-networking-thirdparty_4.0.0.0-3045.tgz  
-Thirparty packages required to install contrail vrouter + contrail neutron plugin
+Thirparty packages required to install [Contrail Networking Roles](https://github.com/Juniper/contrail-controller/wiki/Contrail-Docker-Distribution#contrail-networking-roles)
 
 #### 12) contrail-networking-dependents_4.0.0.0-3045.tgz
-Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security or corresponding to give CODENAME) required for installing Contrail Networking Roles
+Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security or corresponding to give CODENAME) required for installing [Contrail Networking Roles](https://github.com/Juniper/contrail-controller/wiki/Contrail-Docker-Distribution#contrail-networking-roles)
 
 #### 13) contrail-cloud-docker_4.0.0.0-3045-mitaka.tgz  
 Wrapper TGZ containing  
@@ -241,14 +242,14 @@ Puppet Code used by SM to provision Openstack Role
 This TGZ is tagged with SKU name as it contains code for relevant SKU. In this case, it contains puppet code required to bring Openstack Mitaka
 
 #### 16) contrail-cloud-thirdparty_4.0.0.0-3045.tgz  
-Thirparty packages required to install Contrail Cloud Roles  
+Thirparty packages required to install [Contrail Cloud Roles](https://github.com/Juniper/contrail-controller/wiki/Contrail-Docker-Distribution#contrail-cloud-roles)
 
 #### 17) contrail-openstack-packages_4.0.0.0-3045-mitaka.tgz  
 Packages from Openstack repo needed to install Openstack role  
 This TGZ is tagged with SKU name as it contains packages from relevant SKU. In this case, it contains packages from Openstack Mitaka repo  
 
 #### 18) contrail-cloud-dependents_4.0.0.0-3045.tgz  
-Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security) required for installing Contrail Cloud Roles 
+Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security) required for installing [Contrail Cloud Roles](https://github.com/Juniper/contrail-controller/wiki/Contrail-Docker-Distribution#contrail-cloud-roles)
 
 #### 19) contrail-kubernetes-docker_4.0.0.0-3045.tgz  
 Wrapper TGZ containing
@@ -272,4 +273,4 @@ Docker images supplied in Kubernetes distribution
 Contrail packages required to install Kube manager and CNI
 
 #### 22) contrail-kubernetes-dependents_4.0.0.0-3045.tgz  
-Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security or corresponding to give CODENAME) required for installing Contrail Networking Roles and Kubernetes packages
+Dependent packages from Ubuntu upstream repos (trusty, trusty-updates, trusty-security or corresponding to give CODENAME) required for installing [Contrail Networking Roles](https://github.com/Juniper/contrail-controller/wiki/Contrail-Docker-Distribution#contrail-networking-roles) and [Contrail Kubernetes packages](https://github.com/Juniper/contrail-controller/wiki/Contrail-Docker-Distribution#21-contrail-kubernetes-packages_4000-12tgz)
