@@ -121,7 +121,7 @@ Contrail achieves this reachability by the following:
 
 In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/network: <fq_network_name>". If this label is configured for a pod spec then the pod is launched in that network. If the label is used in the namespace spec then all the pods in the namespace will be launched in the provided network. Creation of this network should be done using VNC apis/ui prior to configuring it in the specs. 
 
-### 3.4 __Nested Mode__:
+### 3.4 __Nested Mode__ (BETA feature in Contrail 4.0.0.0)
 
 Contrail brings together the excellence of kubernetes with that of Openstack, by enabling
 the provisioning of Kubernetes cluster inside an Openstack cluster. While this nesting of
