@@ -45,19 +45,17 @@ from a pod subnet that the Contrail Kubernetes manager is configured with.
 NOTE:
 System pods spawned in Kube-system namespace are NOT run in the Kubernetes Cluster. Rather they run in the underlay. Networking for these pods is not handled by Contrail.
 
-#### 3.1.1 __Implementation__
-
 Contrail achieves this inter-pod network connectivity by configuring all the pods in a single Virtual-network. When the cluster is initialized, Contrail creates a virtual-network called "cluster-network".
 
 In the absence of any network segmentation/isolation configured, ALL pods in ALL namespaces get assigned to "cluster-network" virtual-network.
 
-#### 3.1.2   __Pods__
+#### 3.1.1   __Pods__
 
 In Contrail, each POD is represented as a Virtual-Machine-Interface/Port.
 
 When a pod is created, a vmi/port is allocated for that POD. This port is made a member of the default virtual-network of that Kubernetes cluster.
 
-#### 3.1.3   __Pod subnet:__
+#### 3.1.2   __Pod subnet:__
 
 The CIDR to be used for IP address allocation for pods is provisioned as a configuration to
 contrail-kube-manger. To view this subnet info:
@@ -100,26 +98,18 @@ A namespace annotated as “isolated”, with service-isolation disabled (i.e on
 * Pods in isolated namespace will be able to reach "non-isolated services" in any namespace in the kubernetes cluster.
 * Pods from other namespaces will be able to reach Services in the isolated namespace.
 
-#### 3.2.1 __Implementation__
-
-For each namespace that is annotated as isolated, Contrail will create a Virtual-network with name:  “<Namespace-name>-vn”.
-
-#### 3.2.2 __Pods__
-
-A Kubernetes pod is represented as vmi/port in Contrail. These ports are mapped to the virtual-network created for the corresponding isolated-namespace.
-
-#### 3.2.3   __Kubernetes Service Reachability:__
-
-Pods from an isolated namespace should be able to reach all Kubernetes in the cluster.
-
-Contrail achieves this reachability by the following:
-
-1.  All Service-IP for the cluster is allocated from a Service Ipam associated with the default cluster virtual-network.
-2.  Pods in isolated namespaces are associated with a floating-ip from the default cluster-network. This floating-ip makes is possible for the pods in isolated-namespaces to be able to reach Services and Pods in the non-isolated namespaces.
-
 ### 3.3 __Custom isolation mode__
 
-In this finer-grain isolation mode, the admin or app developer can add the label "opencontrail.org/network: <fq_network_name>". If this label is configured for a pod spec then the pod is launched in that network. If the label is used in the namespace spec then all the pods in the namespace will be launched in the provided network. Creation of this network should be done using VNC apis/ui prior to configuring it in the specs. 
+Administrators / Application developers can add the annotations to specify the virtual-network in which a pods or all pods in a namespace, are to be provisioned.
+
+The annotation to specify this custom virtual-network is:
+
+"opencontrail.org/network: <fq_network_name>" 
+
+If this annotation is configured on a pod spec then the pod is launched in that network. 
+If the annotation is configured in the namespace spec then all the pods in the namespace will be launched in the provided network. 
+
+NOTE: Creation of the virtual-network should be done using Contrail VNC API's / Contrail-UI, prior to configuring it in the pod/namespace spec. 
 
 ### 3.4 __Nested Mode__ (BETA feature in Contrail 4.0.0.0)
 
