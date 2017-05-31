@@ -130,7 +130,7 @@ supported as is. Infact such a nested deployment stretches the boundaries and li
 Kubernetes by allowing it to operate on the same plane as underlying Openstack cluster.
 
 ### 3.5 __Services__
-A Kubernetes _Service_ is an abstraction which defines a logical set of _Pods_ and policy by which to access the _Pods_. The set of Pods implementing a Service are selected based on `LabelSelector` field in _Service_ definition.
+A Kubernetes _Service_ is an abstraction which defines a logical set of _Pods_ and policy by which to access the _Pods_. The Pods implementing a Service are selected based on `LabelSelector` field in _Service_ definition.
 In OpenContrail, Kubernetes Service is implemented as **ECMP Native LoadBalancer**. 
 
 The OpenContrail Kubernetes integration supports following `ServiceTypes`:
