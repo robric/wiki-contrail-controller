@@ -122,7 +122,7 @@ interworking and configuring these clusters becomes seemless and the lack of rep
 and duplicity makes this a very efficient proposition.
 
 In a nested mode, a Kubernetes cluster is provisioned in virtual-machines of an Openstack cluster.
-The CNI plugin and the Contrail-kubernetes manager of the kubernetes cluster, interfaces
+The CNI plugin and the Contrail-kubernetes manager of the kubernetes cluster, interface
 directly with Contrail componenets that manage Openstack cluster.
 
 In a nested mode deployment, ALL kubernetes features, functions and specifications are
