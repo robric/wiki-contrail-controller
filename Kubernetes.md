@@ -172,9 +172,9 @@ If `ServiceTypes` is `LoadBalancer` and no `spec.externalIP` is specified by the
 k8s services can be exposed to external (outside of the cluster) in many
 ways. Popular ways are <https://kubernetes.io/docs/concepts/services-networking/ingress/#alternatives>. Ingress is another way to expose the service to external. Ingress provides layer 7 load balancing whereas the others provide layer 4 load balancing.
 
-## 4. __Implementation__
+## 4. __Contrail Kubernetes Solution__
 ### 4.1 __Contrail kubernetes manager__
-Opencontrail implementation requires listening to K8s API messages and create corresponding resources in the Opencontrail API database. New module called "contrail-kube-manager" will run in a container to listen to the messages from the K8s api-server. A new project will be created in Opencontrail for each of the namespaces in K8s.
+Opencontrail implementation requires listening to K8s API messages and create corresponding resources in the Opencontrail API database. New module called "contrail-kube-manager" will run in a container to listen to the messages from the K8s api-server.
 
 ### 4.2 __Contrail CNI plugin__
 
