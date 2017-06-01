@@ -17,7 +17,7 @@ Each flow is subjected to the following algorithm, at regular intervals, to deci
 
 The actual flow-export-rate will be close to the configured configured export rate and whenever there is larger deviation, the sampling threshold is adjusted to bring the actual flow export rate close to configured flow export rate.
   
-Counters available in introspect (at http://compute-node-ip:8085/Snh_AgentStatsReq? )
+**Counters available in introspect** (at http://compute-node-ip:8085/Snh_AgentStatsReq? )
   
 flow_export_disable_drops  
 Total number of flow samples NOT exported because of disabling of export of flows    
