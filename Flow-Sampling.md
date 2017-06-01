@@ -19,7 +19,7 @@ The actual flow-export-rate will be close to the configured configured export ra
   
 ### **Counters available in introspect** (at http://compute-node-ip:8085/Snh_AgentStatsReq? )
   
-**flow_export_disable_drops ** 
+**flow_export_disable_drops** 
 Total number of flow samples NOT exported because of disabling of export of flows    
   
 **flow_export_sampling_drops**  
