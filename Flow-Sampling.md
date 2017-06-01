@@ -17,24 +17,24 @@ Each flow is subjected to the following algorithm, at regular intervals, to deci
 
 The actual flow-export-rate will be close to the configured configured export rate and whenever there is larger deviation, the sampling threshold is adjusted to bring the actual flow export rate close to configured flow export rate.
   
-**Counters available in introspect** (at http://compute-node-ip:8085/Snh_AgentStatsReq? )
+### **Counters available in introspect** (at http://compute-node-ip:8085/Snh_AgentStatsReq? )
   
-flow_export_disable_drops  
+**flow_export_disable_drops ** 
 Total number of flow samples NOT exported because of disabling of export of flows    
   
-flow_export_sampling_drops  
+**flow_export_sampling_drops**  
 Number of flow samples dropped by sampling algorithm without exporting.
   
-flow_export_drops  
+**flow_export_drops**  
 A flow may get exported multiple times (with different statistics) during its lifetime. This counter indicates number of flows that are not exported even once during their lifetime  
   
-flow_sample_export_count   
+**flow_sample_export_count**   
 Total number of flow samples exported  
   
-flow_msg_export_count    
+**flow_msg_export_count**    
 Agent while exporting flow samples to collector, bunches multiple samples together into one message and exports. Each message can have maximum of 16 samples. This counter indicates number of flow messages exported from agent. Each message can have 1 to 16 samples in it  
 
-flow_export_count  
+**flow_export_count**  
 Count of total number of flows exported  
 
 
