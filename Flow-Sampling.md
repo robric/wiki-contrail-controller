@@ -1,4 +1,4 @@
-contrail-vrouter-agent exports flow records to contrail-collector upon flow creation and deletion, updates flow statistics at regular intervals. Till R2.22, all flow records were exported from the agent. Depending on the scale of flows, some of these exported flows could be dropped due to queue overflow.
+contrail-vrouter-agent exports flow records to contrail-collector upon flow creation and deletion, updates flow statistics at regular intervals. From R4.0 onwards export of flows from contrail-vrouter-agent is disabled by default. To enable export of flows user has to configure flow-export-rate under global-vrouter-config. From R2.22 to R4.0 (excluding R4.0) the default flow-export-rate is 100. Till R2.22, all flow records were exported from the agent. Depending on the scale of flows, some of these exported flows could be dropped due to queue overflow.
 
 From R2.22, flow records are sampled and are exported to contrail-collector based on this sampling. The flows to be exported are selected based on the algorithm given below. The following parameters are used in the algorithm:
 
