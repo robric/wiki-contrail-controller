@@ -186,7 +186,7 @@ Loadbalancing for services will be L4 non-proxy loadbalancing based on ECMP. The
 ### 4.4 __Haproxy Loadbalancer for K8s ingress__
 K8s Ingress is implemented through haproxy load balancer feature in contrail.
 [Please refer contrail feature guide for more information on contrail
-load balancer].<br/><br/> Whenever ingress is configured in k8s, contrail-kube-manager creates the load balancer object in contrail-controller. Contrail service contrail-svc-monitor listens for the load balancer objects and launches the haproxy with appropriate configuration based on the ingress spec rules in active-standby mode in two active.<br/><br/>
+load balancer].<br/><br/> Whenever ingress is configured in k8s, contrail-kube-manager creates the load balancer object in contrail-controller. Contrail service contrail-svc-monitor listens for the load balancer objects and launches the haproxy with appropriate configuration based on the ingress spec rules in active-standby mode in two active compute nodes.<br/><br/>
 For more information please refer k8s-ingress.md
 
 ### 4.5 __Security groups for K8s network policy__
