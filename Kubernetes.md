@@ -108,6 +108,7 @@ The annotation to specify this custom virtual-network is:
 
 ```
 Example:
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -121,6 +122,7 @@ spec:
   containers:
     - name: ubuntuapp
       image: ubuntu-upstart
+
 ```
 If this annotation is configured on a pod spec then the pod is launched in that network. 
 If the annotation is configured in the namespace spec then all the pods in the namespace will be launched in the provided network. 
