@@ -8,11 +8,11 @@
 
           REPLACE
 
-          “keystone = cors request_id catch_errors authtoken keystone context extensions neutronapiapp_v2_0”  
+          “keystone = cors request_id catch_errors authtoken keystonecontext extensions neutronapiapp_v2_0”  
           
           WITH  
 
-          “keystone = user_token cors request_id catch_errors authtoken keystone context extensions neutronapiapp_v2_0”
+          “keystone = user_token cors request_id catch_errors authtoken keystonecontext extensions neutronapiapp_v2_0”
 
            AND ADD BELOW LINES,
 
