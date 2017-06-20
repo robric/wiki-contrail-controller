@@ -119,7 +119,7 @@ Replace localhost with IP of your controller
 
 If RBAC is enabled, Auth Token needs to be passed with the Curl commands. To disable, the authentication, change the value of aaa_mode attribute in /etc/contrail/contrail-analytics-api.conf to no-auth
 
-aaa_mode=no-auth
+    aaa_mode=no-auth
 
  
 
