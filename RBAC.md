@@ -82,7 +82,9 @@ After changing the files above, restart API server, neutron server and WEBUI
 * service supervisor-config restart
 * service neutron-server restart
 * service supervisor-webui restart
- 
+
+Note the `user_token` filter must not be set in the neutron `api-paste.ini` file.
+
 ## global_read_only_role
 Role configured as global_read_only_role allows read-only access to all contrail resources. This role must be configured in keystone. By default this is not set to any value. global_read_only_role user can view the global configuration of contrail default setting from WebUI. Admin has to set global_read_only_role in contrail api (/etc/contrail/contrail-api.conf) and restart contrail-api service (service contrail-api restart). 
 
