@@ -24,19 +24,17 @@ This is used for syncing of ports between plug-in (REST client) and agent across
 The timeout value of this timer is configurable in contrail-vrouter-agent config file. The configration parameter is stale_interface_cleanup_timeout under DEFAULT section. The value is set in seconds.
 
 ####Example:
-curl -X POST http://localhost:9091/syncports
+curl -X POST http://localhost:9091/syncports <br> <br>
  
-#(3) POST for GET of port
+#(3) POST for GET of port <br>
  
-http://localhost:9091/port/uuid (GET)
-
+http://localhost:9091/port/uuid (GET) <br>
 ####Example:
-curl -X GET http://localhost:9091/port/753a65ef-918a-4193-9266-dc23ed8a5982
+curl -X GET http://localhost:9091/port/753a65ef-918a-4193-9266-dc23ed8a5982 <br><br>
  
-#(4) POST for DELETE of port
+#(4) POST for DELETE of port <br>
  
-http://localhost:9091/port/uuid
-
+http://localhost:9091/port/uuid <br>
 ####Example:
-curl -X DELETE http://localhost:9091/port/753a65ef-918a-4193-9266-dc23ed8a5982
+curl -X DELETE http://localhost:9091/port/753a65ef-918a-4193-9266-dc23ed8a5982 <br>
 
