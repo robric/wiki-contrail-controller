@@ -2,7 +2,7 @@
 
 #### In /etc/contrail/contrail-api.conf
 
-          “aaa_mode=rbac”
+          “aaa_mode = rbac”
 
 #### In /etc/neutron/api-paste.ini
 
