@@ -1,6 +1,7 @@
 Caveat: These steps only works from systems from within Juniper Networks, Inc.
 
-# Use local disk space e.g. /build/$USERls -ald 
+```
+# Use local disk space e.g. /build/$USER
 rm -rf BUILD
 mkdir -p BUILD
 cd BUILD
@@ -9,4 +10,5 @@ repo sync
 python third_party/fetch_packages.py 
 scons -uj8 --optimization=production control-node
 ls -al build/production/control-node/contrail-control
+```
 
