@@ -113,7 +113,7 @@ Example:
 curl -X GET http://localhost:9091/port/753a65ef-918a-4193-9266-dc23ed8a5982
 ```
 
-## 1.4 DELETE port
+## 1.4 Delete port
 
 #### DELETE URL
 http://<vrouter>:9091/port/uuid
