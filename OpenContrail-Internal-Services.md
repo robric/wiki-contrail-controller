@@ -1,6 +1,6 @@
-#1 Configuration Node
+# 1 Configuration Node
 
-##1.1 Configuration API Server
+## 1.1 Configuration API Server
 * Mode: Active/Active
 * Launched using: /etc/contrail/supervisord_config_files/contrail-api.ini
 * Process configuration files:
@@ -35,7 +35,7 @@
 * Write: Register itself and IF-MAP server. Send heartbeat. Send request for other services.
 
 
-##1.2 Discovery
+## 1.2 Discovery
 * Mode: Active/Active
 * Launched using: /etc/contrail/supervisord_config_files/contrail-discovery.ini
 * Process configuration files: /etc/contrail/contrail-discovery.conf
@@ -55,7 +55,7 @@
 * Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 
-##1.3 Schema Transformer
+## 1.3 Schema Transformer
 * Mode: Active/Passive
 * Configuration: /etc/contrail/contrail-schema.conf
 * Log: Defined in configuration, typically
@@ -88,7 +88,7 @@
 * Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 
-##1.4 Service Monitor
+## 1.4 Service Monitor
 * Mode: Active/Passive
 * Configuration: /etc/contrail/contrail-svc-monitor.conf
 * Log: Defined in configuration
@@ -121,7 +121,7 @@
 * Read: For monitoring service-instance's VM state.
 * Write: For (re)launching service-instance VM.
 
-##1.5 IF-MAP Server
+## 1.5 IF-MAP Server
 * Configuration: /etc/ifmap-server/
 * Log: Defined in configuration. /var/log/contrail/ifmap-server*.log
 * Storage: Published configurations in-memory
@@ -145,7 +145,7 @@
 * Write: Send published configuration.
 
 
-##1.6 RabbitMQ
+## 1.6 RabbitMQ
 * Configuration: /etc/rabbitmq/rabbitmq.config
 * Log: Defined in configuration. /var/log/rabbitmq
 * Port:
@@ -164,7 +164,7 @@
 * Write: None.
 
 
-##1.7 Configuration Node Manager (server layer)
+## 1.7 Configuration Node Manager (server layer)
 Monitor all config services in this node, send all stats and process status to collector.
 
 #### Collector
@@ -172,7 +172,7 @@ Monitor all config services in this node, send all stats and process status to c
 * Write: Send positive (updates) and negative (error, failures) logs, and running stats.
 
 
-##1.8 User Configuration Flow
+## 1.8 User Configuration Flow
 User Request
 -> Original API Server
 -> Local RabbitMQ
@@ -181,7 +181,7 @@ User Request
 -> Schema Transformer and Service Monitor
 
 
-##1.9 Transformed Configuration Flow
+## 1.9 Transformed Configuration Flow
 Schema Transformer
 -> Configuration API Server
 -> Local RabbitMQ
@@ -190,9 +190,9 @@ Schema Transformer
 -> Control and DNS
 
 
-#2 Analytics Node
+# 2 Analytics Node
 
-##2.1 Analytics API Server
+## 2.1 Analytics API Server
 * Mode: Active/Active
 * Configuration: /etc/contrail/contrail-analytics-api.conf
 * Log: Defined in configuration
@@ -218,7 +218,7 @@ Schema Transformer
 * Write: Send logs and running stats
 
 
-##2.2 Collector
+## 2.2 Collector
 * Mode: Active/Active
 * Configuration: /etc/contrail/contrail-collector.conf
 * Log: Defined in configuration
@@ -240,7 +240,7 @@ Schema Transformer
 * Write: Write all collected info including both logs and UVEs.
 
 
-##2.3 Query Engine
+## 2.3 Query Engine
 * Mode: Active/Active
 * Configuration: /etc/contrail/contrail-query-engine.conf
 * Log: Defined in configuration
@@ -265,7 +265,7 @@ Schema Transformer
 * Write: Send logs and running stats
 
 
-##2.4 Redis Server
+## 2.4 Redis Server
 One Redis server supports query engine and caches UVEs.
 * Configuration: /etc/redis/redis.conf
 * Log: Defined in configuration
@@ -273,7 +273,7 @@ One Redis server supports query engine and caches UVEs.
 * Port:
   * 6379:
 
-##2.5 Analytics Node Manager
+## 2.5 Analytics Node Manager
 Monitor all analytics services in this node, send all stats to collector.
 
 #### Collector
@@ -281,14 +281,14 @@ Monitor all analytics services in this node, send all stats to collector.
 * Write: Send logs and running stats.
 
 
-#3 Database
+# 3 Database
 
-##3.1 Cassandra
+## 3.1 Cassandra
 * For Configuration related keyspaces[TBD: enumerate], replication factor = cluster size. Write and Read consistency levels are Quorum. With 2n+1 cluster/replication-factor, reads are consistent. Survive the loss of n nodes. Really read from and write to n+1 nodes (quorum). Each node holds 100% of data. So strict consistency.
 * For Analytics related keyspaces[TBD: enumerate], replication factor = 2. Write and Read consistency is Single. So eventual consistency.
 * See http://www.ecyrd.com/cassandracalculator/ for more details regarding consistency.
 
-##3.2 Database Node Manager
+## 3.2 Database Node Manager
 Monitor all database services in this node, send all stats to collector.
 
 #### Collector
@@ -296,7 +296,7 @@ Monitor all database services in this node, send all stats to collector.
 * Write: Send logs and running stats.
 
 
-##3.3 Zookeeper
+## 3.3 Zookeeper
 
 #### Schema Transformer
 * Master election
@@ -311,9 +311,9 @@ Monitor all database services in this node, send all stats to collector.
 * Master election
 
 
-#4 Control Node
+# 4 Control Node
 
-##4.1 Control
+## 4.1 Control
 * Mode: Active/Active
 * Configuration: /etc/contrail/contrail-control.conf
 * Log: Defined in configuration
@@ -344,7 +344,7 @@ Monitor all database services in this node, send all stats to collector.
 * Write: Send logs and running stats.
 
 
-##4.2 DNS (Contrail)
+## 4.2 DNS (Contrail)
 This is the front-end of name resolving. Host native named is the back-end.
 
 #### Discovery
@@ -364,7 +364,7 @@ This is the front-end of name resolving. Host native named is the back-end.
 * Write: Send logs and running stats.
 
 
-##4.3 Control Node Manager
+## 4.3 Control Node Manager
 Monitor all control services in this node, send all stats to collector.
 
 #### Collector
@@ -372,9 +372,9 @@ Monitor all control services in this node, send all stats to collector.
 * Write: Send logs and running stats.
 
 
-#5 Compute Node
+# 5 Compute Node
 
-##5.1 vRouter Agent
+## 5.1 vRouter Agent
 * Configuration: /etc/contrail/contrail-vrouter-agent.conf
 * Log: Defined in configuration
 * Storage:
@@ -394,11 +394,11 @@ Monitor all control services in this node, send all stats to collector.
 * Write: Send logs and running stats.
 
 
-##5.2 vRouter
+## 5.2 vRouter
 Kernel Module
 
 
-##5.3 vRouter Node Manager
+## 5.3 vRouter Node Manager
 Monitor all vRouter services in this node, send all stats to collector.
 
 #### Collector
