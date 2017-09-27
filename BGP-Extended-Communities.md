@@ -45,3 +45,7 @@ The MAC Mobility extended community is defined in [RFC 7432](https://tools.ietf.
 #### Load Balance
 
 This extended community is used to carry a list of packet fields to be used in the data plane while computing the hash during forwarding (over ECMP). It allows the originator (or re-originator) of a route to control the load balancing behavior at the traffic source(s).  By default, hashing is always based on the standard 5-tuple fields from the packet header (Src IP, Dest IP, L4 Protocol, Src Port and Dest Port). For further information, please refer to [format of this extended community] (https://github.com/Juniper/contrail-controller/blob/master/src/bgp/extended-community/load_balance.h#L24) and [Applicability](https://github.com/Juniper/contrail-controller/wiki/Customized-field-selection-for-ECMP-load-balancing). IETF Draft to standardize this has not been submitted yet.
+
+#### Tag
+
+This extended community is used to carry a opaque 4 bytes tag value with the routes. Format used to display is "tag:<4-byte-number>". Extended community type used to encode this is "Experimental (0x80)" with sub-type value "Tag (0x84)". One could use routing policies to match on the tags and perform various actions. Please refer to [tag.cc](https://github.com/Juniper/contrail-controller/blob/master/src/bgp/extended-community/tag.cc) more information in this regard.
