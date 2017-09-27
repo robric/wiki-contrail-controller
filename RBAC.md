@@ -42,7 +42,7 @@ perms2 property of an object allows fine grained access control per resource. It
  - share list (list of (tenant/domain UUID, Permissions) tuple) 
  - globally shared flag (plus Permissions)
 
-Owner field is populated at the time of creation with tenant UUID value extracted from token. Share list gets built as object is selected for sharing with other users. Sharing can be enabled at tenant or domain level.
+Owner field is populated at the time of creation as per the logic in section 'Object level RBAC ownership' below. Share list gets built as object is selected for sharing with other users. Sharing can be enabled at tenant or domain level.
 
 Permission field has following meaning:
   - R (Read object)
@@ -167,3 +167,19 @@ multi_tenancy flag is deprecated in 3.1. It should be removed from config and re
 For Contrail UI to work with RBAC, set aaa_mode to no_auth in /etc/contrail/contrail-analytics-api.conf and restart analytics-api service (service contrail-analytics-api restart)
 
     aaa_mode = no-auth
+
+## Object level RBAC ownership
+Once a request gets past API level RBAC access, object level RBAC kicks in. RBAC defines a owner field in each object, to limit the scope of object access. The access scope is limited to in that owner by any role that got passed RBAC API access check.
+
+We recommend owner to be explicitly set by users, while the objects are being created.
+If however the ownership is not defined. Here is the order in which this is populated.
+1. We derive the ownership from the parent’t owner.
+2. If there is no parent for an object we limit the scope of the object to the project context which it was created.
+
+To extend the scope of the object access, that object can be shared across tenants or domains with various permission levels.
+
+Objects from outside the scope of the owner can't be accessed, unless they are shared. However could-admin has no restrictions and can access any object.
+
+## Brown field migration
+Before enabling RBAC in brown field. Object's owner have to be set properly. The ownership of the objects may be validated and or corrected as per logic defined in section Object level RBAC ownership using the script chownproj.py. Instructions of execution is available in that script.
+It is always recommended to take a backup of the database using the script db_json_exim.py before modifying the data. Instructions on how to run db_json_exim.py is also available in that script.
