@@ -184,3 +184,6 @@ Objects from outside the scope of the owner can't be accessed, unless they are s
 Before enabling RBAC in brown field. Object's owner have to be correct. The ownership of the objects may be validated and or corrected as per logic defined in section 'Object level RBAC ownership' using the script chownproj.py. Instructions of execution is available in that script.
 
 It is always recommended to take a backup of the database using the script db_json_exim.py before modifying the data. Instructions on how to run db_json_exim.py is also available in that script.
+
+## Rule configuration changes from 3.2.6 onwards.
+From 3.2.6 all the CRUD requests would be subjected to respective singular object-type rules.
