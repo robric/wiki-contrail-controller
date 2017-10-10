@@ -3,7 +3,7 @@ Contrail FW Security Policy allows decoupling of routing from security policies 
 Contrail FW Security Policy introduces the concept of tags to achieve multi-dimension traffic segnmentation.
 Multi dimension segmentation is to segment traffic based on multiple dimensions of entities with security features. Tags are key-value pairs associated with different entities in the deployment. Tags can be predefined or custom defined.
 
-Kubernetes Network Policy is a specification of how groups of kubernetes workloads (i.e. pods) are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select wordloads and define rules which specify what traffic is allowed to the selected workload.
+Kubernetes Network Policy is a specification of how groups of kubernetes workloads (hereafter referred to as "pods") are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.
 
 This wiki discusses implementation of Kubernetes Network Policy in Contrail using Contrail FW Security Policy framework.
 
@@ -25,11 +25,11 @@ Kubernetes Network Policy specification has the following requirements.
 8. Ingress Policy:
    An ingress rule consists of the identity of the source and the type(i.e. protocol/port) of traffic from the source that is allowed to be forwarded to a pod.
    The identify of source can be of type:
-   	a. CIDR block
+   	 * CIDR block
    	   If the source IP is from the CIDR and the traffice matches the protocol:port, then traffic will be forwarded to the pod.
-   	b. Kubernetes Namespace.
+   	 * Kubernetes Namespace.
    	   Namespace selectors identify namespaces, whose pods can send the defined protocol:port traffic to the ingress pod.
-   	c. Pods:
+   	 * Pods:
    	   Pod selectors identify the pods in the namespace corresponding to the network policy, that can send matching protocol:port traffic to the ingress pods.
 9. Egress Policy:
     This specifies a whitelist CIDR to which a partificular protocol:port traffic is permitted from the pods targeted by this network policy
