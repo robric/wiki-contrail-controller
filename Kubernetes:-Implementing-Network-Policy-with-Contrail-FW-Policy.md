@@ -35,4 +35,4 @@ Kubernetes Network Policy specification has the following requirements.
 
    	   Pod selectors identify the pods in the namespace corresponding to the network policy, that can send matching protocol:port traffic to the ingress pods.
 9. Egress Policy:
-    This specifies a whitelist CIDR to which a partificular protocol:port traffic is permitted from the pods targeted by this network policy
+    This specifies a whitelist CIDR to which a partificular protocol:port traffic is permitted, from the pods targeted by this network policy
