@@ -26,10 +26,13 @@ Kubernetes Network Policy specification has the following requirements.
    An ingress rule consists of the identity of the source and the type(i.e. protocol/port) of traffic from the source that is allowed to be forwarded to a pod.
    The identify of source can be of type:
    	 * CIDR block
+
    	   If the source IP is from the CIDR and the traffice matches the protocol:port, then traffic will be forwarded to the pod.
-   	 * Kubernetes Namespace.
+   	 * Kubernetes Namespace
+
    	   Namespace selectors identify namespaces, whose pods can send the defined protocol:port traffic to the ingress pod.
-   	 * Pods:
+   	 * Pods
+
    	   Pod selectors identify the pods in the namespace corresponding to the network policy, that can send matching protocol:port traffic to the ingress pods.
 9. Egress Policy:
     This specifies a whitelist CIDR to which a partificular protocol:port traffic is permitted from the pods targeted by this network policy
