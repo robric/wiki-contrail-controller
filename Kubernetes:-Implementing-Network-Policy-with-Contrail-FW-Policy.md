@@ -114,10 +114,10 @@ Tags:
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
 
-	Key          |    Value
-	=============================
-	role              db
-	namespace       default
+       | Key | Value |
+       | --- | --- |
+       | role | db |
+       | namespace | default |
 
 Address Groups:
 ---------------
