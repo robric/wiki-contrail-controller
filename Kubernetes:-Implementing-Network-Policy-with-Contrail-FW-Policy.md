@@ -300,13 +300,13 @@ None
 | --- | --- | 
 | Default Application Policy Set | allow-all |
 
-Illustration: 5 Default deny all egress traffic.
-------------------------------------------------
+## Illustration: 5 
+### Default deny all egress traffic.
 
-Kubernetes Network Policy:
+**Kubernetes Network Policy**
 
 The below policy  explicitly denies all traffic from all pods in that namespace.
-
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -315,56 +315,49 @@ spec:
   podSelector:
   policyTypes:
   - Egress
+```
 
-Contrail Firewall Security Policy:
+**Contrail Firewall Security Policy**
 
-Tags:
------
+**Tags**
 
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
 
-	Key          |    Value
-	=============================
-	namespace       default
+| Key | Value |
+| --- | --- |
+| namespace | default |
 
-Address Groups:
----------------
+**Address Groups**
 
-	None
+None
 
+**Firewall Rules**
 
-Firewall Rules:
----------------
+| Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
+| --- | --- | --- | --- | --- | --- | --- |
+| default-deny-podSelector | pass | any | any | > | namespace=default | | 
+| default-deny-egress-deny | deny | any | namespace=default | > | any | |
 
-	Rule Name:                            |Action| Services |    Endpoint1               | Dir |          Endpoint2         | Match Tags
-	================================================================================================================================
-	default-deny-podSelector                pass     any      any                           >     namespace=default 
-	default-deny-egress-deny                deny     any      namespace=default             >     any
+**Firewall Policy**
 
+| Name | Rules |
+| --- | --- |
+| default-deny | default-deny-podSelector, default-deny-egress-deny |
 
-Firewall Policy:
-----------------
-
-	Name   					|	Rules
-	=====================================================================
-	default-deny                default-deny-podSelector
-								default-deny-egress-deny
-
-Application Policy Set:
------------------------
+**Application Policy Set**
  
-	Name   					         |	Firewall Policy
-	=====================================================================
-	Default Application Policy Set      default-deny
+| Name | Firewall Policy |
+| --- | --- | 
+| Default Application Policy Set | default-deny |
 
-Illustration: 6 Default deny all ingress and egress traffic.
-------------------------------------------------------------
+## Illustration: 6
+### Default deny all ingress and egress traffic.
 
-Kubernetes Network Policy:
+**Kubernetes Network Policy**
 
 The below policy explicitly denies all traffic from all pods in that namespace.
-
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -374,48 +367,41 @@ spec:
   policyTypes:
   - Ingress
   - Egress
+```
 
-Contrail Firewall Security Policy:
+**Contrail Firewall Security Policy**
 
-Tags:
------
+**Tags**
 
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
 
-	Key          |    Value
-	=============================
-	namespace       default
+| Key | Value |
+| --- | --- |
+| namespace | default |
 
-Address Groups:
----------------
+**Address Groups**
 
-	None
+None
 
+**Firewall Rules**
 
-Firewall Rules:
----------------
+| Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
+| --- | --- | --- | --- | --- | --- | --- |
+| default-deny-podSelector | deny | any | any | > | namespace=default | |
+| default-deny-egress-deny | deny | any | namespace=default | > | any | |
 
-	Rule Name:                            |Action| Services |    Endpoint1               | Dir |          Endpoint2         | Match Tags
-	================================================================================================================================
-	default-deny-podSelector                deny     any      any                           >     namespace=default 
-	default-deny-egress-deny                deny     any      namespace=default             >     any
+**Firewall Policy**
 
+| Name | Rules |
+| --- | --- |
+| default-deny | default-deny-podSelector, default-deny-egress-deny |
 
-Firewall Policy:
-----------------
-
-	Name   					|	Rules
-	=====================================================================
-	default-deny                default-deny-podSelector
-								default-deny-egress-deny
-
-Application Policy Set:
------------------------
+**Application Policy Set**
  
-	Name   					         |	Firewall Policy
-	=====================================================================
-	Default Application Policy Set      default-deny
+| Name | Firewall Policy |
+| --- | --- | 
+| Default Application Policy Set | default-deny |
 
 
 Implementation:
