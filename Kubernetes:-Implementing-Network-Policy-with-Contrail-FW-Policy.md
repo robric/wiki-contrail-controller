@@ -192,12 +192,11 @@ None
 | --- | --- |
 | allow-all-ingress | allow-all-ingress_podSelector, allow-all-ingress-egress-pass |
 
-Application Policy Set:
------------------------
- 
-	Name   					         |	Firewall Policy
-	=====================================================================
-	Default Application Policy Set      allow-all-ingress
+**Application Policy Set **
+
+| Name | Firewall Policy |
+| --- | --- |
+| Default Application Policy Set | allow-all-ingress |
 
 
 Illustration: 3 Default deny all ingress traffic.
