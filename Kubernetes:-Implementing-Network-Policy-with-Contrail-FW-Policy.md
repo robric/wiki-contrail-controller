@@ -60,22 +60,16 @@ We propose to mapping the constructs as follows:
 | Ingress CIDR Rules                              | Address Group |
 | Cluster                                         | Default Application Policy Set |
 
+**NOTE**
+
 The Contrail FW Policy constructs will be created in the "global" scope, if the kubernetes cluster is a standalone cluster.
 
 The Contrail FW Policy constructs will be created in the "project" scope, if the kubernetes cluster is a nested cluster. The project in 
 which these constructs are created will be the one that houses the cluster.
 
+## Illustration: 1  Sample Kubernetes Network Policy 
 
-Kubernetes NetworkPolicy:
--------------------------
-
-Kubernetes network policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints. 	NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.
-
-Illustration: 1  Sample Kubernetes Network Policy 
--------------------------------------------------
-
-An example NetworkPolicy might look like this:
-
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -111,6 +105,7 @@ spec:
     - protocol: TCP
       port: 5978
 
+```
 The test-network-policy defined in kubernetes will result in the following objects being created in Contrail.
 
 Tags:
