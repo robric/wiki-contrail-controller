@@ -250,13 +250,13 @@ None
 | --- | --- |
 | Default Application Policy Set | default-deny-ingress |
 
-Illustration: 4 Default allow all egress traffic.
---------------------------------------------------
+## Illustration: 4
+### Default allow all egress traffic.
 
-Kubernetes Network Policy:
+**Kubernetes Network Policy**
 
 The below policy explicitly allows all traffic from all pods in that namespace.
-
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -265,49 +265,40 @@ spec:
   podSelector:
   egress:
   - {}
+```
+**Contrail Firewall Security Policy**
 
-Contrail Firewall Security Policy:
-
-Tags:
------
+**Tags**
 
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
 
-	Key          |    Value
-	=============================
-	namespace       default
+| Key | Value |
+| --- | --- |
+| namespace | default |
 
-Address Groups:
----------------
+**Address Groups**
 
-	None
+None
 
+**Firewall Rules**
 
-Firewall Rules:
----------------
+| Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
+| --- | --- | --- | --- | --- | --- | --- |
+| allow-all-podSelector | pass | any | any | > | namespace=default | |
+| allow-all-egress-pass | pass | any | namespace=default | > | any | |
 
-	Rule Name:                            |Action| Services |    Endpoint1               | Dir |          Endpoint2         | Match Tags
-	================================================================================================================================
-	allow-all-podSelector                pass     any      any                           >     namespace=default 
-	allow-all-egress-pass                pass     any      namespace=default             >     any
+**Firewall Policy**
 
+| Name | Rules |
+| --- | --- |
+| allow-all | allow-all-podSelector, allow-all-egress-pass |
 
-Firewall Policy:
-----------------
+**Application Policy Set**
 
-	Name   					|	Rules
-	=====================================================================
-	allow-all                 allow-all-podSelector
-							  allow-all-egress-pass
-
-Application Policy Set:
------------------------
- 
-	Name   					         |	Firewall Policy
-	=====================================================================
-	Default Application Policy Set      allow-all
-
+| Name | Firewall Policy |
+| --- | --- | 
+| Default Application Policy Set | allow-all |
 
 Illustration: 5 Default deny all egress traffic.
 ------------------------------------------------
