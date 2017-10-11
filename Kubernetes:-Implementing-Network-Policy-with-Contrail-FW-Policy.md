@@ -420,3 +420,8 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 5. New network policies will always be added to the front of the list of FW policies in the default application set.
    This is so that, the latest rules that may potentially overlap existing policy behavior is always honored. 
 
+# References
+
+Contrail FW Security Policy: https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
+
+Kubernetes Network Policy: https://github.com/mironov/kubernetes/blob/master/docs/proposals/network-policy.md
