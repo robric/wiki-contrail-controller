@@ -165,40 +165,32 @@ The below policy  explicitly allows all traffic for all pods in that namespace.
 	  - {}
 ```
 
-Contrail Firewall Security Policy:
+**Contrail Firewall Security Policy:**
 
-Tags:
------
-
+**Tags**
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
 
-	Key          |    Value
-	=============================
-	namespace       default
+| Key | Value |
+| --- | --- |
+| namespace | default |
 
-Address Groups:
----------------
+**Address Groups**
 
-	None
+None
 
+**Firewall Rules**
 
-Firewall Rules:
----------------
+| Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
+| --- | --- | --- | --- | --- | --- | --- |
+| allow-all-ingresspodSelector | pass | any | any | > | namespace=default | |
+| allow-all-ingressegress-pass | pass | any |namespace=default | > | any | |
 
-	Rule Name:                            |Action| Services |    Endpoint1               | Dir |          Endpoint2         | Match Tags
-	================================================================================================================================
-	allow-all-ingresspodSelector                   pass     any      any                           >     namespace=default 
-	allow-all-ingressegress-pass                   pass     any      namespace=default             >     any
+**Firewall Policy**
 
-
-Firewall Policy:
-----------------
-
-	Name   					|	Rules
-	=====================================================================
-	allow-all-ingress           allow-all-ingress_podSelector
-								allow-all-ingress-egress-pass
+| Name | Rules |
+| --- | --- |
+| allow-all-ingress | allow-all-ingress_podSelector, allow-all-ingress-egress-pass |
 
 Application Policy Set:
 -----------------------
