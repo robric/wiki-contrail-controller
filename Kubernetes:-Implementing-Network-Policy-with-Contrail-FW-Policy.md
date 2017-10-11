@@ -404,8 +404,7 @@ None
 | Default Application Policy Set | default-deny |
 
 
-Implementation:
-===============
+# Implementation
 
 Contrail-kube-manager is the glue that binds the kubernetes and Contrail world together.
 This daemon connects to the api server of Kubernetes cluster/s and receives all events from them.
@@ -420,3 +419,4 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 4. Modifications to exiting Kubernetes networking policy will result in the corresponding FW policy being updated.
 5. New network policies will always be added to the front of the list of FW policies in the default application set.
    This is so that, the latest rules that may potentially overlap existing policy behavior is always honored. 
+
