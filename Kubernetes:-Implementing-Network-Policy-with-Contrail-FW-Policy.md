@@ -136,16 +136,14 @@ In a regular workflow, these tags would have been created by the time the namesp
 | test-network-policy-NamespaceSelector	| pass | tcp:6379 | role=frontend | > | role=db,namespace=default |    namespace |
 | test-network-policy-egress-cidr-pass | pass | tcp:5978 | role=db, namespace=default | > | test-network-policy-egress | |
 
-Firewall Policy:
-----------------
-
-	Name   					|	Rules
-	=====================================================================
-	test-network-policy         test-network-policy-cidr-deny
-								test-network-policy-cidr-pass
-								test-network-policy-podSelector
-								test-network-policy-NamespaceSelector
-								test-network-policy-egress-cidr-pass
+**Firewall Policy**
+| Name | Rules |
+| --- | --- |
+| test-network-policy | test-network-policy-cidr-deny
+			test-network-policy-cidr-pass
+			test-network-policy-podSelector
+			test-network-policy-NamespaceSelector
+			test-network-policy-egress-cidr-pass |
 
 Application Policy Set:
 -----------------------
