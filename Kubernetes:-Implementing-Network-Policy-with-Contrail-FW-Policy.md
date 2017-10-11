@@ -39,12 +39,11 @@ Kubernetes Network Policy specification has the following requirements.
 
 # Representing Kubernetes Network Policy as Contrail FW Securty Policy:
 
-Kubernetes and Contrail FW Policy are both similar and different in terms of the semantics in which network policy is specified in each. The key to efficient implementation of kubernetes network policy via Contrail FW policy is in mapping of the corresponding configuration constructs between these two entities. 
+Kubernetes and Contrail FW Policy are different in terms of the semantics in which network policy is specified in each. The key to efficient implementation of kubernetes network policy via Contrail FW policy is in mapping of the corresponding configuration constructs between these two entities. 
 
 We propose to mapping the constructs as follows:
 
-Kubernetes Network Policy Constructs        |    Contrail FW Policy Constructs
-================================================================================================
+Kubernetes Network Policy Constructs            Contrail FW Policy Constructs
 Label                                            Custom Tag (one for each label)
 Namespace                                        Custom Tag (one for each namespace)
 Network Policy                                   Firewall Policy (one FP per Network Policy)
