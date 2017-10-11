@@ -1,9 +1,8 @@
 # Introduction
 
-Contrail FW Security Policy allows decoupling of routing from security policies and provides multi dimension segmentation and policy portability, which significantly enhancing user visibility and analytics functions. 
+Contrail FW Security Policy allows decoupling of routing from security policies and provides multi dimension segmentation and policy portability, while significantly enhancing user visibility and analytics functions. 
 
-Contrail FW Security Policy introduces the concept of tags to achieve multi-dimension traffic segnmentation.
-Multi dimension segmentation is to segment traffic based on multiple dimensions of entities with security features. Tags are key-value pairs associated with different entities in the deployment. Tags can be predefined or custom defined.
+Contrail FW Security Policy introduces the concept of tags to achieve multi-dimension traffic segmentation among various entities, with security features. Tags are key-value pairs associated with different entities in the deployment. Tags can be pre-defined or custom/user defined.
 
 Kubernetes Network Policy is a specification of how groups of kubernetes workloads (hereafter referred to as "pods") are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.
 
@@ -11,7 +10,7 @@ Kubernetes Network Policy is a specification of how groups of kubernetes workloa
 
 This document discusses implementation of Kubernetes Network Policy in Contrail using Contrail FW Security Policy framework.
 
-While Kubernetes network policy can be implemented using other security objects in Contrail like Security Groups, Contrail network policies etc, the support of tags by Contrail FW Security Policy aids in the simplification and abstraction when targeting workloads.
+While Kubernetes network policy can be implemented using other security objects in Contrail like Security Groups, Contrail network policies etc, the support of tags by Contrail FW Security Policy aids in the simplification and abstraction of workloads.
 
 
 # Kubernetes Network Policy
@@ -109,6 +108,7 @@ spec:
 ```
 ### Sample Contrail FW Policy 
 The test-network-policy defined in kubernetes will result in the following objects being created in Contrail.
+
 **Tags**
 
 The following tags will be created, if they do not exist.
@@ -183,8 +183,8 @@ None
 
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
-| allow-all-ingresspodSelector | pass | any | any | > | namespace=default | |
-| allow-all-ingressegress-pass | pass | any |namespace=default | > | any | |
+| allow-all-ingress-podSelector | pass | any | any | > | namespace=default | |
+| allow-all-ingress-egress-pass | pass | any |namespace=default | > | any | |
 
 **Firewall Policy**
 
@@ -422,6 +422,6 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 
 # References
 
-Contrail FW Security Policy: https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
+Contrail FW Security Policy                                                    https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
 
-Kubernetes Network Policy: https://github.com/mironov/kubernetes/blob/master/docs/proposals/network-policy.md
+Kubernetes Network Policy                 https://github.com/mironov/kubernetes/blob/master/docs/proposals/network-policy.md
