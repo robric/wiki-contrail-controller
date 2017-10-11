@@ -108,26 +108,22 @@ spec:
 ```
 The test-network-policy defined in kubernetes will result in the following objects being created in Contrail.
 
-Tags:
------
+### Tags
 
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
 
-       | Key | Value |
-       | --- | --- |
-       | role | db |
-       | namespace | default |
+| Key | Value |
+| --- | --- |
+| role | db |
+| namespace | default |
 
-Address Groups:
----------------
-
-	Name   					    |	Prefix
-	=====================================================================
-
-	test-network-policy-except     172.17.1.0/24
-	test-network-policy            172.17.0.0/16
-    test-network-policy-egress     10.0.0.0/24
+### Address Groups
+| Name | Prefix |
+| --- | --- |
+| test-network-policy-except | 172.17.1.0/24 |
+| test-network-policy | 172.17.0.0/16 |
+| test-network-policy-egress | 10.0.0.0/24 |
 
 
 Firewall Rules:
