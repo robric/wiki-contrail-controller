@@ -137,30 +137,24 @@ In a regular workflow, these tags would have been created by the time the namesp
 | test-network-policy-egress-cidr-pass | pass | tcp:5978 | role=db, namespace=default | > | test-network-policy-egress | |
 
 **Firewall Policy**
+
 | Name | Rules |
 | --- | --- |
-| test-network-policy | test-network-policy-cidr-deny
-			test-network-policy-cidr-pass
-			test-network-policy-podSelector
-			test-network-policy-NamespaceSelector
-			test-network-policy-egress-cidr-pass |
+| test-network-policy | test-network-policy-cidr-deny, test-network-policy-cidr-pass, test-network-policy-podSelector, test-network-policy-NamespaceSelector, test-network-policy-egress-cidr-pass |
 
-Application Policy Set:
------------------------
+**Application Policy Set**
  
-	Name   					         |	Firewall Policy
-	=====================================================================
-	Default Application Policy Set      test-network-policy
+| Name | Firewall Policy |
+| --- | --- |
+| Default Application Policy Set | test-network-policy |
 
+## Illustration: 2  
+### Default allow all ingress traffic
 
-
-Illustration: 2  Default allow all ingress traffic
----------------------------------------------------
-
-Kubernetes Network Policy:
+**Kubernetes Network Policy**
 
 The below policy  explicitly allows all traffic for all pods in that namespace.
-
+```
 	apiVersion: networking.k8s.io/v1
 	kind: NetworkPolicy
 	metadata:
@@ -169,7 +163,7 @@ The below policy  explicitly allows all traffic for all pods in that namespace.
 	  podSelector:
 	  ingress:
 	  - {}
-
+```
 
 Contrail Firewall Security Policy:
 
