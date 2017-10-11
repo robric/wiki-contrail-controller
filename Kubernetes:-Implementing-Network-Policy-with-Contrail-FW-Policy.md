@@ -67,7 +67,8 @@ The Contrail FW Policy constructs will be created in the "global" scope, if the 
 The Contrail FW Policy constructs will be created in the "project" scope, if the kubernetes cluster is a nested cluster. The project in 
 which these constructs are created will be the one that houses the cluster.
 
-## Illustration: 1  Sample Kubernetes Network Policy 
+## Illustration: 1  
+### Sample Kubernetes Network Policy 
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -106,9 +107,9 @@ spec:
       port: 5978
 
 ```
+### Sample Contrail FW Policy 
 The test-network-policy defined in kubernetes will result in the following objects being created in Contrail.
-
-### Tags
+**Tags**
 
 The following tags will be created, if they do not exist.
 In a regular workflow, these tags would have been created by the time the namespace and pods were created.
@@ -126,16 +127,14 @@ In a regular workflow, these tags would have been created by the time the namesp
 | test-network-policy-egress | 10.0.0.0/24 |
 
 
-Firewall Rules:
----------------
-
-	Rule Name:                            |Action| Services |    Endpoint1               | Dir |          Endpoint2         |   Match Tags
-	================================================================================================================================
-	test-network-policy-cidr-deny			deny   tcp:6379   test-network-policy-except    >    role=db, namespace=default
-	test-network-policy-cidr-pass			pass   tcp:6379   test-network-policy           >    role=db, namespace=default
-	test-network-policy-podSelector			pass   tcp:6379   namespace=myproject           >    role=db, namespace=default
-	test-network-policy-NamespaceSelector	pass   tcp:6379   role=frontend                 >    role=db,namespace=default     namespace
-	test-network-policy-egress-cidr-pass    pass   tcp:5978   role=db, namespace=default    >    test-network-policy-egress
+### Firewall Rules
+| Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
+| --- | --- | --- | --- | --- | --- | --- |
+| test-network-policy-cidr-deny	| deny | tcp:6379 | test-network-policy-except | > | role=db, namespace=default| |
+| test-network-policy-cidr-pass	| pass | tcp:6379 | test-network-policy | > |role=db, namespace=default | |
+| test-network-policy-podSelector | pass  | tcp:6379 | namespace=myproject | > | role=db, namespace=default | |
+| test-network-policy-NamespaceSelector	| pass | tcp:6379 | role=frontend | > | role=db,namespace=default |    namespace |
+| test-network-policy-egress-cidr-pass | pass | tcp:5978 | role=db, namespace=default | > | test-network-policy-egress | |
 
 Firewall Policy:
 ----------------
