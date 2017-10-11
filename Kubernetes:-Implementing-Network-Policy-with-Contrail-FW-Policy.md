@@ -51,13 +51,14 @@ Kubernetes and Contrail FW Policy are different in terms of the semantics in whi
 
 We propose to mapping the constructs as follows:
 
-Kubernetes Network Policy Constructs            Contrail FW Policy Constructs
-Label                                            Custom Tag (one for each label)
-Namespace                                        Custom Tag (one for each namespace)
-Network Policy                                   Firewall Policy (one FP per Network Policy)
-Ingress Rule                                     Firewall Rule (one FW rule per Ingress Rule)
-Ingress CIDR Rules                               Address Group
-Cluster                                          Default Application Policy Set
+| Kubernetes Network Policy Constructs | Contrail FW Policy Constructs |
+| --- | --- |
+| Label                                         |  Custom Tag (one for each label) |
+| Namespace                                       | Custom Tag (one for each namespace) |
+| Network Policy                                  | Firewall Policy (one FP per Network Policy) |
+| Ingress Rule                                    | Firewall Rule (one FW rule per Ingress Rule) |
+| Ingress CIDR Rules                              | Address Group |
+| Cluster                                         | Default Application Policy Set |
 
 The Contrail FW Policy constructs will be created in the "global" scope, if the kubernetes cluster is a standalone cluster.
 
