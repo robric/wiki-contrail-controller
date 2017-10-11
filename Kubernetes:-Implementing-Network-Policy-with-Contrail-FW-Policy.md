@@ -44,7 +44,8 @@ Kubernetes Network Policy specification has the following requirements.
 9. Egress Policy:
     This specifies a whitelist CIDR to which a partificular protocol:port traffic is permitted, from the pods targeted by this network policy
 
-# Representing Kubernetes Network Policy as Contrail FW Securty Policy:
+# Proposed solution 
+## Representing Kubernetes Network Policy as Contrail FW Securty Policy:
 
 Kubernetes and Contrail FW Policy are different in terms of the semantics in which network policy is specified in each. The key to efficient implementation of kubernetes network policy via Contrail FW policy is in mapping of the corresponding configuration constructs between these two entities. 
 
