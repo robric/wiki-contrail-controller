@@ -1,3 +1,5 @@
+# Introduction
+
 Contrail FW Security Policy allows decoupling of routing from security policies and provides multi dimension segmentation and policy portability, which significantly enhancing user visibility and analytics functions. 
 
 Contrail FW Security Policy introduces the concept of tags to achieve multi-dimension traffic segnmentation.
@@ -5,7 +7,12 @@ Multi dimension segmentation is to segment traffic based on multiple dimensions 
 
 Kubernetes Network Policy is a specification of how groups of kubernetes workloads (hereafter referred to as "pods") are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.
 
-This wiki discusses implementation of Kubernetes Network Policy in Contrail using Contrail FW Security Policy framework.
+# Problem statement
+
+This document discusses implementation of Kubernetes Network Policy in Contrail using Contrail FW Security Policy framework.
+
+While Kubernetes network policy can be implemented using other security objects in Contrail like Security Groups, Contrail network policies etc, the support of tags by Contrail FW Security Policy aids in the simplification and abstraction when targeting workloads.
+
 
 # Kubernetes Network Policy
 Kubernetes Network Policy specification has the following requirements.
@@ -469,4 +476,3 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 4. Modifications to exiting Kubernetes networking policy will result in the corresponding FW policy being updated.
 5. New network policies will always be added to the front of the list of FW policies in the default application set.
    This is so that, the latest rules that may potentially overlap existing policy behavior is always honored. 
-
