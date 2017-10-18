@@ -187,7 +187,14 @@ opencontrail/bgp_stress_test:ubuntu_14.04.5_R4.1 --no-multicast
 
 Or with auth-enabled, use this
 
-docker run -v /root/server.pem:/controller/src/xmpp/testdata/server-build02.pem -v /root/server-privkey.pem:/controller/src/xmpp/testdata/server-build02.key -it --privileged --net=host opencontrail/bgp_stress_test:ubuntu_14.04.5_R4.1 --no-multicast --xmpp-port=5269 --xmpp-server=10.183.10.11 --xmpp-source=192.168.10.1 --ninstances=1 --instance-name=block1_n --test-id=2 --nagents=1 --nroutes=1000 --xmpp-nexthop=192.168.200.8 --no-agents-messages-processing --no-agents-updates-processing --log-level=SYS_EMERG --log-local --no-verify-routes --no-sandesh-server --nvms=0 --nevents=-1 --pause --xmpp-auth-enabled  --log-file=logs/bgp_stress_6350.log.1
+docker run -v /root/server.pem:/controller/src/xmpp/testdata/server-build02.pem 
+-v /root/server-privkey.pem:/controller/src/xmpp/testdata/server-build02.key -it
+--privileged --net=host opencontrail/bgp_stress_test:ubuntu_14.04.5_R4.1 --no-multicast
+--xmpp-port=5269 --xmpp-server=10.183.10.11 --xmpp-source=192.168.10.1 --ninstances=1
+--instance-name=block1_n --test-id=2 --nagents=1 --nroutes=1000 --xmpp-nexthop=192.168.200.8
+--no-agents-messages-processing --no-agents-updates-processing --log-level=SYS_EMERG
+--log-local --no-verify-routes --no-sandesh-server --nvms=0 --nevents=-1 --pause
+--xmpp-auth-enabled  --log-file=logs/bgp_stress_6350.log.1
 
 
 
