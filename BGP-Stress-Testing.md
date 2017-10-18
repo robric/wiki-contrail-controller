@@ -159,3 +159,39 @@ time   seconds   seconds    calls  ms/call  ms/call  name
   1.52      0.88     0.02   158205     0.00     0.00  autogen::TunnelEncapsulationListType::XmlParse(pugi::xml_node const&)
 [..clipped..]
 ```
+
+### Sample Usage for xmpp peering with external control-node
+
+```
+Steps for installing and running bgp stress test from docker.
+
+1. docker pull opencontrail/bgp_stress_test:ubuntu_14.04.5_R4.1
+
+2. Add secondary ip address on data/control interface based on the
+xmpp_source parameter which will be passed for running bgp_stress_test ,
+If nagents is 5 as shown in example below , need to add secondary address
+on the host data/ctrl interface for (xmpp-source : 117.0.0.1/2/3/4/5)
+
+3. Networks with name block1_n1 , block1_n2 , block1_n3 , block1_n4 ,
+block1_n5 needs to be created under default-project:admin prior to
+executing docker run command
+
+4. docker run -it --privileged --net=host
+opencontrail/bgp_stress_test:ubuntu_14.04.5_R4.1 --no-multicast
+--xmpp-port=5269 --xmpp-server=5.5.5.129 --xmpp-source=117.0.0.1
+--ninstances=5 --instance-name=block1_n --test-id=2 --nagents=5
+--nroutes=10 --xmpp-nexthop=192.168.200.8
+--no-agents-messages-processing --no-agents-updates-processing
+--log-level=SYS_EMERG --log-local --no-verify-routes --no-sandesh-server
+--nvms=0 --nevents=-1 --pause --log-file=logs/bgp_stress_6350.log.1
+
+Above example creates 5 agents having 5 routing instances each and
+advertising 10 prefixes for each routing instances , in total 250 routes
+will be advertised .
+
+Another docker needs to be launched if more than 60 agents needs to
+configured.
+
+Parameters can be varied to get more scale numbers .
+
+```
