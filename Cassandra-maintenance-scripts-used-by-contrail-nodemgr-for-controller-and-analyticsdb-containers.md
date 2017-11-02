@@ -27,7 +27,7 @@ To handle case 2, we need to determine the difference between current time and t
 2. If the difference is greater than 90% of `hinted_handoff` time but less than 90% `gc_grace_seconds` it will forward the start request to the cassandra init.d service and then invoke the `contrail-cassandra-repair` to run a `nodetool repair` on the config keyspaces
 3. If difference is less than 90% of `hinted_handoff` time, it will forward the start request to the cassandra init.d service.
 
-`contrail-cassandra-repair.py` script will be invoked to perform periodic `nodetool repair -pr` from nodemgr every 24 hours by default. Currently there does not seem to be a way to find out if a repair is already running on the cassandra node for a keycap. Hence we will create a file `/var/log/cassandra/repair-<keyspace>-running` file before running `nodetool repair -pr` on all the config keyspaces. We will log the start time and the end time of repair in /`var/log/cassandra/repair-<keyspace-name>.log` and remove the `/var/log/cassandra/repair-<keyspace>-running` file once the repair is done.
+`contrail-cassandra-repair.py` script will be invoked to perform periodic `nodetool repair -pr` from nodemgr every 24 hours by default. Currently there does not seem to be a way to find out if a repair is already running on the cassandra node for a keyspace. Hence we will create a file `/var/log/cassandra/repair-<keyspace>-running` file before running `nodetool repair -pr` on all the config keyspaces. We will log the start time and the end time of repair in /`var/log/cassandra/repair-<keyspace-name>.log` and remove the `/var/log/cassandra/repair-<keyspace>-running` file once the repair is done.
 
 
 ### Testing
