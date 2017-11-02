@@ -32,8 +32,8 @@ To handle case 2, we need to determine the difference between current time and t
 
 ### Testing
 The above two scenarios mentioned in the problem statement need to be tested.
-1. Test 1 - Network partition, on 3 database node, bring down the cassandra gossip port using nodetool/iptables. Verify that cassandra is stopped after 90% of gc_grace_seconds
-2. Test 2 - Node down, bring node down for greater than 90% of gc_grace_seconds, verify that when node comes up, cassandra is not started
-3. Test 3 - Node down, bring node down for greater than 90 % of hinted handoff but less than 90% of gc_grace_seconds, verify that when node comes up, cassandra is started and nodetool repair is run
+1. Test 1 - Network partition, on 3 database node, bring down the cassandra gossip port using `nodetool/iptables`. Verify that cassandra is stopped after 90% of `gc_grace_seconds`
+2. Test 2 - Node down, bring node down for greater than 90% of `gc_grace_seconds`, verify that when node comes up, cassandra is not started
+3. Test 3 - Node down, bring node down for greater than 90 % of hinted handoff but less than 90% of `gc_grace_seconds`, verify that when node comes up, cassandra is started and nodetool repair is run
 4. Test 4 - Node down, bring node down for less than 90% of hinted handoff and verify that when node comes up, cassandra is started
 5. Test 5 - Cluster reboot, verify that on cluster reboot, cassandra is started on all nodes and cluster is formed
