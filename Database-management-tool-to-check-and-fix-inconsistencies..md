@@ -7,12 +7,16 @@ where,
 * DB - Refers to zookeeper and Cassandra and 
 * Inconsistent DB entries - Refers to data inconsistency between tables in Cassandra or inconsistency between zookeeper and Cassandra.
 
+## All
+
 Tool supports various positional arguments treated as commands to for checking, healing and cleaning various DB inconsistencies. Following three commands can perform all inconsistency check/heal/clean by itself.
 
 * `db_check` command is used to check all supported inconsistency .
 * `db_heal` command is used to heal all supported inconsistency.
 * `db_clean` command is used to clean all supported inconsistency.
 
+
+## Partial
 
 Tool also provides commands to support sub set of DB inconsistency check/heal/clean. They are prefixed with `check`, `heal` and `clean` for checking, healing and cleaning. 
 
