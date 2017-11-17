@@ -1,4 +1,4 @@
-# Introduction:
+# 1 Introduction:
 
 Database management tool to check, heal and clean inconsistent DB entries.
 
@@ -7,7 +7,7 @@ where,
 * DB - Refers to zookeeper and Cassandra and 
 * Inconsistent DB entries - Refers to data inconsistency between tables in Cassandra or inconsistency between zookeeper and Cassandra.
 
-## All
+## 1.1 Commands to manage all inconsistencies
 
 Tool supports various positional arguments treated as commands to for checking, healing and cleaning various DB inconsistencies. Following three commands can perform all inconsistency check/heal/clean by itself.
 
@@ -16,7 +16,7 @@ Tool supports various positional arguments treated as commands to for checking, 
 * `db_clean` command is used to clean all supported inconsistency.
 
 
-## Partial
+## 1.2 Commands to manage sub set of  inconsistencies
 
 Tool also provides commands to support sub set of DB inconsistency check/heal/clean. They are prefixed with `check`, `heal` and `clean` for checking, healing and cleaning. 
 
@@ -26,7 +26,7 @@ Following are some examples,
 * `heal_route_targets_id` command is used to create the missing route targets id in DB's
 * `clean_stale_route_target_id`command is used to delete the stale route target id in DB's
 
-# Help and Usage:    
+# 2 Help and Usage:    
 
 Database management tool (db_manage.py) is located in config node at the following location.
 
