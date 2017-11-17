@@ -1,6 +1,9 @@
 # Introduction:
 
-Database management tool to check, heal and clean inconsistent DB entries. 
+Database management tool to check, heal and clean inconsistent DB entries.
+where, 
+DB - Refers to zookeeper and Cassandra and 
+Inconsistent DB entries - Refers to data inconsistency between tables in Cassandra or inconsistency between zookeeper and Cassandra.
 
 Tool supports various positional arguments treated as commands to for checking, healing and cleaning various DB inconsistencies. Following three commands can perform all inconsistency check/heal/clean by itself.
 
