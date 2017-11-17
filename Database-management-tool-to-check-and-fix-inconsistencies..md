@@ -2,12 +2,20 @@
 
 Database management tool to check, heal and clean inconsistent DB entries. 
 
-Tool supports checking, healing and cleaning commands for various DB inconsistencies as positional argument. All the positional arguments are prefixed with `check`, `heal` and `clean` for checking, healing and cleaning DB inconsistencies respectively.
+Tool supports various positional arguments treated as commands to for checking, healing and cleaning various DB inconsistencies. Following three commands can perform all inconsistency check/heal/clean by itself.
 
 * `db_check` command is used to check all supported inconsistency .
 * `db_heal` command is used to heal all supported inconsistency.
 * `db_clean` command is used to clean all supported inconsistency.
 
+
+Tool also provides commands to support sub set of DB inconsistency check/heal/clean. They are prefixed with `check`, `heal` and `clean` for checking, healing and cleaning. 
+
+Following are some examples,
+
+* `check_route_targets_id` command is used to checks and display the list of stale and missing route targets id.
+* `heal_route_targets_id` command is used to create the missing route targets id in DB's
+* `clean_stale_route_target_id`command is used to delete the stale route target id in DB's
 
 # Help and Usage:    
 
