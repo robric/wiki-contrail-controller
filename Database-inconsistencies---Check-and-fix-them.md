@@ -4,12 +4,15 @@
 
 Database management tool (db_manage.py) is located in config node at the following location.
 
+``
     [root@config ~]# cd /usr/lib/python2.7/site-packages/vnc_cfg_api_server
-
+``
 
 Following is the help and usage information about the database management tool.
 
-    [root@config vnc_cfg_api_server]# python db_manage.py --help
+``
+[root@config vnc_cfg_api_server]# python db_manage.py --help
+``
     usage: db_manage.py [-h] [--api-conf API_CONF] [--execute] [--verbose]
                         [--debug]
                         operation
