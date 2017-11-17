@@ -1,10 +1,12 @@
 # Introduction:
 
-Database management tool to check, heal and clean inconsistent DB entries. Tool supports checking, healing and cleaning various DB inconsistencies as positional argument. All the positional arguments starts are prefixed with check, heal and clean for checking, healing and cleaning DB inconsistencies respectively.
+Database management tool to check, heal and clean inconsistent DB entries. 
 
-* To check all supported inconsistency `db_check` positional argument is used.
-* To heal all supported inconsistency `db_heal` positional argument is used.
-* To clean all supported inconsistency `db_clean` positional argument is used.
+Tool supports checking, healing and cleaning commands for various DB inconsistencies as positional argument. All the positional arguments are prefixed with `check`, `heal` and `clean` for checking, healing and cleaning DB inconsistencies respectively.
+
+* `db_check` command is used to check all supported inconsistency .
+* `db_heal` command is used to heal all supported inconsistency.
+* `db_clean` command is used to clean all supported inconsistency.
 
 
 # Help and Usage:    
