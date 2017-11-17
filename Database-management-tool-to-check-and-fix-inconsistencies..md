@@ -1,5 +1,8 @@
 # Introduction:
 
+Database management tool to check, heal and clean inconsistent entries.
+
+
 # Help and Usage:    
 
 Database management tool (db_manage.py) is located in config node at the following location.
