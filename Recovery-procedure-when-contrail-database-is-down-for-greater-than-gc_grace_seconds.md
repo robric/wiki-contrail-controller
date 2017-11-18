@@ -14,12 +14,10 @@ For cassandra 2.1.x, the steps are at https://docs.datastax.com/en/cassandra/2.1
 
 Note: The `nodetool removenode` command mentioned in the steps above needs to run on the other cassandra nodes since cassandra is already stopped on the node to be removed.
 
-### Clear the cassandra data. 
+### Clear the cassandra analytics data (the one that gets corrupted more often). 
 
-For cassandra 1.2.x, the steps are at
-https://docs.datastax.com/en/cassandra/1.2/cassandra/reference/referenceClearCpkgData_t.html
-
-For cassandra 2.1.x, the steps are at https://docs.datastax.com/en/cassandra/2.1/cassandra/reference/referenceClearCpkgData_t.html
+rm -r /var/lib/cassandra/commitlog/*
+rm -r /var/lib/cassandra/ContrailAnalyticsCql/*
 
 ### Delete the cassandra cluster status file 
 `rm -f /var/log/cassandra/status-up`
