@@ -50,6 +50,8 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * git remote –v will include (moving_base) after the above command is invoked
 * git fetch moving_base
 * git merge moving_base/master (build, test, make necessary changes to scons, rules.py etc.)
+* (when you edit scons scripts, do not change the variant_dir of compiled and generated files)
+* (as you move things around install necessary files in build/include or build/lib)
 * git push -u github (whatever is your remote) merging_base
 * create a pull request on github and merge your changes
 
