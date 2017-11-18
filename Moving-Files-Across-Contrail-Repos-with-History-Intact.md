@@ -45,9 +45,9 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 **Merge a repo: Merge the new local repo (pruned contrail-controller with just base) with src/contrail-common:**
 * cd src/controller-common (root directory of your destination repo)
 * git checkout –b merging_base
-* git remote add moving_base ../../controller (this is the patch to the root of your source repo)
-* Moving_base is the name of your repo
-* git remote –v will show (moving_base) after this command
+* git remote add moving_base ../../controller (this is the path to the root of your source repo)
+* moving_base is the name of your repo
+* git remote –v will include (moving_base) after the above command is invoked
 * git fetch moving_base
 * git merge moving_base/master (build, test, make necessary changes to scons, rules.py etc.)
 * git push -u github (whatever is your remote) merging_base
