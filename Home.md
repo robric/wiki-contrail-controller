@@ -62,4 +62,4 @@ Features:
 Miscellaneous:
 * [Blueprint Format](Blueprint-Format)
 * [Python coding standard](https://github.com/Juniper/contrail-controller/wiki/Python-coding-style)
-* [Moving Files Across Repos] (https://github.com/Juniper/contrail-controller/wiki/Moving-Files-Across-Contrail-Repos-with-History-Intact)
+* [Moving Files Across Repos](https://github.com/Juniper/contrail-controller/wiki/Moving-Files-Across-Contrail-Repos-with-History-Intact)
