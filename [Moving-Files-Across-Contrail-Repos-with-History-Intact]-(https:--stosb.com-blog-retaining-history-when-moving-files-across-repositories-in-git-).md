@@ -1,4 +1,3 @@
-# [Moving Files and Directories Across Repos with History Intact](https://stosb.com/blog/retaining-history-when-moving-files-across-repositories-in-git/)
 
 The procedure to move files across repos is outlined at [stosb](https://stosb.com/blog/retaining-history-when-moving-files-across-repositories-in-git/). Fundamentally, any file or directory move (across repos) must be viewed as a sequence of two steps: repo split followed by repo merge (of one of the split-parts with the destination repo). A repo is split into two, and one of the split-parts that requires to be moved is merged with destination repo. In instances where entire source repo is merged with a destination repo, skip the split aspect and proceed to the merge step (However, most of the times it may not always be the case, one of the reasons is listed below). 
 
