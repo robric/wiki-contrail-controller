@@ -42,7 +42,7 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * The above steps create a local repo that contains base (base: the directory you want to move)
 * At this point the repo is split and you have the desired part of the repo, a new (local) repo, with ONLY base (the directory you want to move) at the root of the repo
 
-**Merge a repo: Merge the new local repo (pruned controller with just base) with src/contrail-common:**
+**Merge a repo: Merge the new local repo (pruned contrail-controller with just base) with src/contrail-common:**
 * cd src/controller-common (root directory of your destination repo)
 * git checkout –b merging_base
 * git remote add moving_base ../../controller (this is the patch to the root of your source repo)
