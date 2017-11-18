@@ -49,7 +49,7 @@ Features:
 * [Metadata Service](Metadata-service)
 * [Subnet options](Subnet-Options)
 * [Extra DHCP options configuration](Extra-DHCP-Options)
-* [Network Rate Limiting Configuration] (https://techwiki.juniper.net/Documentation/Contrail/Contrail_Controller_Feature_Guide/Configuration/Configuring_Network_QoS_Parameters_in_VM)
+* [Network Rate Limiting Configuration](https://techwiki.juniper.net/Documentation/Contrail/Contrail_Controller_Feature_Guide/Configuration/Configuring_Network_QoS_Parameters_in_VM)
 * [VPC API support](VPC-API-support)
 * [Support for Baremetal](Baremetal-Support)
 * [Configuring Contrail SSL with Openstack](https://github.com/Juniper/contrail-controller/wiki/Configuring-Contrail-SSL-with-Openstack)
