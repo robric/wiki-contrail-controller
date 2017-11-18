@@ -14,7 +14,7 @@ For cassandra 2.1.x, the steps are at https://docs.datastax.com/en/cassandra/2.1
 
 Note: The `nodetool removenode` command mentioned in the steps above needs to run on the other cassandra nodes since cassandra is already stopped on the node to be removed.
 
-### Clear the cassandra analytics data (the one that gets corrupted more often). 
+### If this is the analytics DB, clear the analytics data (the one that gets corrupted more often). 
 
 rm -r /var/lib/cassandra/commitlog/*
 rm -r /var/lib/cassandra/ContrailAnalyticsCql/*
