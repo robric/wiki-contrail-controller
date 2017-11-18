@@ -5,7 +5,7 @@ The procedure to move files across repos is outlined at [stosb](https://stosb.co
 
 Whenever a repo (a source repo) is merged with a destination repo, all the contents of the source repo are spit (or spewed) into the root directory of the destination repo. In most instances, it is not the desired directory structure. One cannot rely on ‘git mv’ to preserve history for the reasons listed above. As a result, one will have to split the source repo into two repos, a desired part and the other, and merge the desired part of the repo with destination repo (while enforcing a desired directory structure). One may end up repeating this process (once per each directory that needs to be moved from the source repo) because of desired directory layout in the destination repo. Once split, the source repo is unusable (the set of git commands invoked to achieve the split make the repo unusable for further splits), hence mandates that a fresh repo be pulled for every repetition (that would merge the next directory, implied in the fresh repo pull is repetition of all the steps).  
 
-Summary: Move of files across repo can be viewed as two steps, split and merge. One will have to repeat the split and merge steps per directory (per every top level directory under the repo root that requires move).
+Summary: Move of files across repo can be viewed as two step process, split and merge. One will have to repeat the split and merge steps per directory (per every top level directory under the repo root that requires move).
 
 **Split a repo**
 * Split an existing repo into two
