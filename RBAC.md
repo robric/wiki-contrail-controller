@@ -174,7 +174,9 @@ Once a request gets past API level RBAC access, object level RBAC kicks in. RBAC
 We recommend owner to be explicitly set by users, while the objects are being created.
 If however the ownership is not defined, here is the order in which this is populated.
 1. We derive the ownership from the parent’t owner.
-2. If there is no parent for an object we limit the scope of the object to the project context which it was created.
+2. For domain children, we derive the ownership from the tenant context in which this object is created.
+3. If there is no parent for an object we limit the scope of the object to the project context which it was created.
+4. Global-system-config children would have cloud-admin as owner, unless project scope is explicitly set. Such objects, where project scope is not set, have to be explicitly shared with the tenants that need access.
 
 To extend the scope of the object access, that object can be shared across tenants or domains with various permission levels.
 
