@@ -34,8 +34,7 @@ https://github.com/Juniper/contrail-controller/wiki/QoS-Queueing-Configurations-
 #Release
 1. QOS config and forwarding class will be implemented as part of 3.1
 2. Queueing in kernel mode vrouter will be implemented as part of 3.2
-3. Queueing in DPDK mode vrouter will be implemented as part of 4.0
-4. Egress marking and queueing is currently not planned.
+3. Egress marking and queueing is currently not planned.
 
 # Implementation details
 
