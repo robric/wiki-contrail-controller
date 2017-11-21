@@ -11,9 +11,9 @@ where,
 
 Tool supports various positional arguments treated as commands to for checking, healing and cleaning various DB inconsistencies. Following three commands can perform all inconsistency check/heal/clean by itself.
 
-* `db_check` command is used to check all supported inconsistency .
-* `db_heal` command is used to heal all supported inconsistency.
-* `db_clean` command is used to clean all supported inconsistency.
+* `check` command is used to check all supported inconsistency .
+* `heal` command is used to heal all supported inconsistency.
+* `clean` command is used to clean all supported inconsistency.
 
 
 ## 1.2 Commands to manage sub set of  inconsistencies
@@ -79,7 +79,7 @@ Tool can be executed with --help option to display the help and usage informatio
             DB's - refer to zookeeper and cassandra.
 
     NOTES:
-            db_check, db_heal and db_clean operations are used to do all checker, healer and cleaner operations respectively.
+            check, heal and clean operations are used to do all checker, healer and cleaner operations respectively.
 
     DOCUMENTAION:
             Documentaion for each supported operation is displayed in positional arguments below.
@@ -95,7 +95,7 @@ Tool can be executed with --help option to display the help and usage informatio
                                    of cassandra.
                                heal_route_targets_id
                                    - Creates missing route-targets id's in zk.
-                               db_heal
+                               heal
                                    - Creates missing entries in DB's for all inconsistencies.
                                heal_security_groups_id
                                    - Creates missing security-group id's in zk.
@@ -122,7 +122,7 @@ Tool can be executed with --help option to display the help and usage informatio
                                    - Displays error info about wrong replication factor in Cassandra.
                                check_virtual_networks_id
                                    - Displays VN ID inconsistencies between zk and cassandra.
-                               db_check
+                               check
                                    - Checks and displays all the inconsistencies in DB.
                                check_security_groups_id
                                    - Displays Security group ID inconsistencies between zk and cassandra.
@@ -165,7 +165,7 @@ Tool can be executed with --help option to display the help and usage informatio
                                    - Removes stale children entries from obj_uuid_table of cassandra.
                                clean_stale_security_group_id
                                    - Removes stale SG ID's from obj_uuid_table of cassandra and zk.
-                               db_clean
+                               clean
                                    - Removes stale entries from DB's.
                                clean_vm_with_no_vmi
                                    - Removes VM's without VMI from cassandra.
