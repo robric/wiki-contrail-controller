@@ -36,6 +36,7 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 
 * In this instance the file:script is located in the directory controller (at the same level as the directory being moved)
 * git filter-branch –f –prune-empty –tree-filter /build/username/mainline_build/controller/script HEAD
+* (git add -u; git commit)
 * git filer-branch –prune-empty –f subdirectory-filter newroot
 * git remote –v
 * git remote rm github (or whatever your remote, optional step)
