@@ -17,6 +17,7 @@ Note: The `nodetool removenode` command mentioned in the steps above needs to ru
 ### If this is the analytics DB, clear the analytics data (the one that gets corrupted more often). 
 
 `rm -rf /var/lib/cassandra/commitlog/*`
+
 `rm -rf /var/lib/cassandra/ContrailAnalyticsCql/*`
 
 ### Delete the cassandra cluster status file 
