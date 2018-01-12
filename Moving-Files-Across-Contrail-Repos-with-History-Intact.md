@@ -36,9 +36,9 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 
 * In this instance the file:script is located in the directory controller (at the same level as the directory being moved)
 * Apply tree filter:
-
     ``git filter-branch –f –-prune-empty –-tree-filter /build/username/mainline_build/controller/script HEAD``
-* git filer-branch –prune-empty –f subdirectory-filter newroot
+* Apply sub-directory filter: 
+    ``git filer-branch –-prune-empty –f --subdirectory-filter newroot``
 * git remote –v
 * The above steps create a local repo that contains base (base: the directory you want to move)
 * At this point the repo is split and you have the desired part of the repo, a new (local) repo, with ONLY base (the directory you want to move) at the root of the repo
