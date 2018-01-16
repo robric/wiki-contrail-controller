@@ -45,7 +45,7 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
  2. How discovery server responds to the above subscribe request?
 
-    Upon receiving the request from the client as shown in 1), the DiscoveryServer sends a subscribe response to the vrouter-agent showing all the published xmpp-server service. The following packet explains the publish request from the DiscoveryServer:
+    Upon receiving the request from the client as shown in 1), the DiscoveryServer sends a subscribe response to the vrouter-agent showing all published xmpp-server service. The following packet explains the subscribe response from the DiscoveryServer:
 
     Frame 28: 575 bytes on wire (4600 bits), 575 bytes captured (4600 bits)
 
@@ -117,7 +117,7 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
     In the above introspect, please look for "Time Remaining" Column for service-type=xmpp-server.
 
- 6. How to check the xmpp-servers vrouter-agent is connected to ?
+ 6. How to check the xmpp-servers vrouter-agent is connected to?
     
     [[http://vrouter_agent_ip:8085/Snh_AgentXmppConnectionStatusReq?]]
 
@@ -140,11 +140,11 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
  9. How vrouter-agent marks one xmpp-server connection as config master/multicast master?
 
-    The XMPP connection that comes up first is choosen to be the config Master/Multicast Master.
+    The XMPP connection that comes up first is choosen to be the config master/multicast Master.
 
  10. What happens when an active master xmpp-server connection disconnects due to underlay connectivity problem?
 
-     The second active session becomes master.  The vrouter-agent picks the next server in the list sent previously by DiscoveryServer for the secondary xmpp-server connection. The subscribe response from the DiscoveryServer looks the same as 2). The only change is Discovery publishes only two xmpp-server now excluding the active that went down due to underlay issues.
+     The second active session becomes master. The vrouter-agent picks the next server in the list sent previously by DiscoveryServer for the secondary xmpp-server connection. The subscribe response from the DiscoveryServer looks the same as 2). The only change is Discovery publishes only two xmpp-server now excluding the active that went down due to underlay issues.
 
      Note: The active connection was on 10.219.94.6 and it was brought down to demonstrate the packet sent by DiscoveryServer.
 
@@ -203,10 +203,10 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
  15. What happens when vrouter-agent crashes/cores?
 
-     After the vrouter-agent recovers, it again follows the same sequence explained in Q)10 to get a pair of xmpp-server connections. It decides on the active-backup part and marks it accordingly. This also results in the following:
+     After the vrouter-agent recovers, it again follows the same sequence explained in Q)10 to get a pair of xmpp-server connections. It decides on the active connection part and marks it accordingly. This also results in the following:
     
     a. Routes, Config and Multicast information has to be downloaded by the agent post the xmpp-server connections are honored.
-    b. All existing flows on the compute are evicted and the flow table has to be rebuilt. 
+    b. All existing flows on the compute are evicted and the flow table has to be re-computed. 
     c. The multicast tree needs to be re-baked.
 
     Due to this, all kind of communication (unicast, bum etc) are impacted on the involved VRFs. 
