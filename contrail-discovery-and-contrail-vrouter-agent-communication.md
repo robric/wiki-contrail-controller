@@ -126,9 +126,9 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
     XMPP is a protocol that is used between controllers and compute nodes (vrouter-agent in particular). 
     Through XMPP, the following messages are exchanged:
 
-    a. Routes
-    b. Config
-    c. Multicast Information
+     * Routes
+     * Config
+     * Multicast Information
 
     vrouter-agent follows an active-active model with two xmpp-server connections it receives. It is important to  note that route exchanges happen on both xmpp-server connections. However, Config and Multicast gets updated only on the first active(*) channel. 
 
@@ -204,12 +204,14 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
  15. What happens when vrouter-agent crashes/cores?
 
      After the vrouter-agent recovers, it again follows the same sequence explained in Q)10 to get a pair of xmpp-server connections. It decides on the active connection part and marks it accordingly. This also results in the following:
-    
-    a. Routes, Config and Multicast information has to be downloaded by the agent post the xmpp-server connections are honored.
-    b. All existing flows on the compute are evicted and the flow table has to be re-computed. 
-    c. The multicast tree needs to be re-baked.
 
-    Due to this, all kind of communication (unicast, bum etc) are impacted on the involved VRFs. 
+        *  Routes, Config and Multicast information has to be downloaded by the agent post the xmpp-server connections are honored.
+
+        *  All existing flows on the compute are evicted and the flow table has to be re-computed. 
+
+        *  The multicast tree needs to be re-baked.
+     
+     Due to this, all kind of communication (unicast, bum etc) are impacted on the involved VRFs. 
 
  16. What is the impact on traffic if a control node involved in the active session is restarted?
     
