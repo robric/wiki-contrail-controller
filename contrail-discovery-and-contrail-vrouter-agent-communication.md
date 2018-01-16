@@ -3,6 +3,7 @@
 The following IP addresses are used throughout the document to explain message exchanges:
 
 vrouter-agent: 10.219.94.10
+
 DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
 
