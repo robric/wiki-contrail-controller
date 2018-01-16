@@ -44,7 +44,7 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
  2. How discovery server responds to the above subscribe request?
 
-    Upon receiving the request from the client as shown in 1), the DiscoveryServer sends a subscribe response to the vrouter-agent showing all the published xmpp-server service. The following packet explains the publish request from the DiscoveryServer
+    Upon receiving the request from the client as shown in 1), the DiscoveryServer sends a subscribe response to the vrouter-agent showing all the published xmpp-server service. The following packet explains the publish request from the DiscoveryServer:
 
     Frame 28: 575 bytes on wire (4600 bits), 575 bytes captured (4600 bits)
 
@@ -106,51 +106,60 @@ DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
  4. Is there an introspect for discovery that shows the TTL values that came from the DiscoveryServer?
     
-    http://discovery_server_ip:5998/clients
+    [[http://discovery_server_ip:5998/clients]]
 
-    In the above introspect, please look for TTL Column for service-type=xmpp-server
+    In the above introspect, please look for TTL Column for service-type=xmpp-server.
 
  5. Is there a way with which we can determine the time elapsed for a specific TTL. 
    
-    http://discovery_server_ip:5998/clients
+    [[http://discovery_server_ip:5998/clients]]
 
-    In the above introspect, please look for "Time Remaining" Column for service-type=xmpp-server
+    In the above introspect, please look for "Time Remaining" Column for service-type=xmpp-server.
 
  6. How to check the xmpp-servers vrouter-agent is connected to ?
     
-    http://vrouter_agent_ip:8085/Snh_AgentXmppConnectionStatusReq?
+    [[http://vrouter_agent_ip:8085/Snh_AgentXmppConnectionStatusReq?]]
 
  7. Why vrouter-agent requires two xmpp-server connections?
 
-    XMPP is a protocol that is used between the controllers and the compute nodes (vrouter-agent in particular). 
+    XMPP is a protocol that is used between controllers and compute nodes (vrouter-agent in particular). 
     Through XMPP, the following messages are exchanged:
+
     a. Routes
     b. Config
     c. Multicast Information
 
-    vrouter-agent follows an active-active model with two xmpp-server connections it receives. It is important to note that route exchanges happen on both xmpp-server connetions. However, Config and Multicast gets updated only on the first active(*) channel. 
+    vrouter-agent follows an active-active model with two xmpp-server connections it receives. It is important to  note that route exchanges happen on both xmpp-server connections. However, Config and Multicast gets updated only on the first active(*) channel. 
 
-8. How do we determine which xmpp-server connection is active for Multicast and Config?
-[Sandeep]: http://vrouter_agent_ip:8085/Snh_AgentXmppConnectionStatusReq?
-Please look for cfg_controller and mcast_controller in the above introspect. The ones that has "Yes" as the value for this column indicates the active cfg_controller and mcast_controller. The other way to determine this is through Contrail WebUI -> Virtual Routers -> Click on the vRouter in question -> Look for Control Nodes with a (*).  
+ 8. How do we determine which xmpp-server connection is active for Multicast and Config?
 
-9. How vrouter-agent marks one xmpp-server connection as config master/multicast master?
-[Sandeep]: The XMPP connection that comes up first is choosen to be the config Master/Multicast Master.
+    [[http://vrouter_agent_ip:8085/Snh_AgentXmppConnectionStatusReq?]]
+ 
+    Please look for cfg_controller and mcast_controller in the above introspect. The ones that has "Yes" as the value for this column indicates the active cfg_controller and mcast_controller. The other way to determine this is through Contrail WebUI -> Virtual Routers -> Click on the vRouter in question -> Look for Control Nodes with a (*).  
 
+ 9. How vrouter-agent marks one xmpp-server connection as config master/multicast master?
 
-10. What happens when an active master xmpp-server connection disconnects due to underlay connectivity problem?
-[Sandeep]: The second active session becomes master.  The vrouter-agent picks the next server in the list sent previously by DiscoveryServer for the secondary xmpp-server connection. The subscribe response from the DiscoveryServer looks the same as 2). The only change is Discovery publishes only two xmpp-server now excluding the active that went down due to underlay.
+    The XMPP connection that comes up first is choosen to be the config Master/Multicast Master.
 
-Note: The active connection was on 10.219.94.6 and it was brought down to demonstrate the packet sent by DiscoveryServer
+ 10. What happens when an active master xmpp-server connection disconnects due to underlay connectivity problem?
 
-Frame 14: 470 bytes on wire (3760 bits), 470 bytes captured (3760 bits)
-Ethernet II, Src: HewlettP_31:e3:95 (14:02:ec:31:e3:95), Dst: IntelCor_c9:a8:e0 (90:e2:ba:c9:a8:e0)
-Internet Protocol Version 4, Src: 10.219.94.4, Dst: 10.219.94.10
-Transmission Control Protocol, Src Port: 5998, Dst Port: 53377, Seq: 1, Ack: 426, Len: 404
-Hypertext Transfer Protocol
-eXtensible Markup Language
-    <?xml
-    <response>
+     The second active session becomes master.  The vrouter-agent picks the next server in the list sent previously by DiscoveryServer for the secondary xmpp-server connection. The subscribe response from the DiscoveryServer looks the same as 2). The only change is Discovery publishes only two xmpp-server now excluding the active that went down due to underlay issues.
+
+     Note: The active connection was on 10.219.94.6 and it was brought down to demonstrate the packet sent by DiscoveryServer.
+
+     Frame 14: 470 bytes on wire (3760 bits), 470 bytes captured (3760 bits)
+
+     Ethernet II, Src: HewlettP_31:e3:95 (14:02:ec:31:e3:95), Dst: IntelCor_c9:a8:e0 (90:e2:ba:c9:a8:e0)
+
+     Internet Protocol Version 4, Src: 10.219.94.4, Dst: 10.219.94.10
+
+     Transmission Control Protocol, Src Port: 5998, Dst Port: 53377, Seq: 1, Ack: 426, Len: 404
+
+     Hypertext Transfer Protocol
+     
+     eXtensible Markup Language
+     ```xml
+     <response>
         <xmpp-server
             publisher-id="contrail64">
             <port>
@@ -172,34 +181,43 @@ eXtensible Markup Language
         <ttl>
             1341
         </ttl>
-    </response>
+     </response>
+   
+ 11. What is the impact of traffic when scenario in 10) happens.
+    
+     Any result in flap of multicast master connection results in re-baking of the multicast tree and the multicast traffic is impacted till we re-bake it completely. Please note this communication impact is only for the VRFs involved on that compute/TSN. Unicast traffic must not be impacted.
+
+ 12. What is the impact of traffic when non-cfg/non-mcast xmpp-server connection disconnects due to underlay connectivity problem?
+
+     The vrouter-agent re-subscribes when all servers in the previous list have been tried and max-retries parameter is reached. Once obtained, it marks the new session as backup. No impact on BUM/Unicast traffic should be seen here as we are not re-computing the multicast tree.
+
+ 13. What happens when TTL is expired for the master xmpp-server connection?
+    
+     The client resubscribes and the same flow mentioned in answer for Q10 is seen.
 
 
-11. What is the impact of traffic when scenario in 10) happens.
-[Sandeep]: Any result in flap of multicast master connection results in re-baking of the multicast tree and the multicast traffic is impacted till we re-bake it completely. Please note this communication impact is only for the VRFs involved on that compute/TSN. Unicast traffic must not be impacted.
+ 14. What happens when TTL is expired for the backup xmpp-server connection?
+   
+     Same answer as that of Q)12.
 
-12. What is the impact of traffic when non-cfg/non-mcast xmpp-server connection disconnects due to underlay connectivity problem?
-[Sandeep]: The vrouter-agent re-subscribes when all servers in the previous list have been tried and max-retries parameter is reached. Once obtained, it marks the new session as backup. No impact on BUM/Unicast traffic should be seen here as we are not re-computing the multicast tree.
+ 15. What happens when vrouter-agent crashes/cores?
 
-13. What happens when TTL is expired for the master xmpp-server connection?
-[Sandeep]: The client resubscribes and the same flow mentioned in answer for Q10 is seen.
-
-
-14. What happens when TTL is expired for the backup xmpp-server connection?
-[Sandeep]: Same answer as that of Q)12.
-
-15. What happesn when vrouter-agent crashes/cores?
-[Sandeep]: After the vrouter-agent recovers, it again follows the same sequence explained in Q)10 to get a pair of xmpp-server connections. It decides on the active-backup part and marks it accordingly. This also results in the following:
+     After the vrouter-agent recovers, it again follows the same sequence explained in Q)10 to get a pair of xmpp-server connections. It decides on the active-backup part and marks it accordingly. This also results in the following:
+    
     a. Routes, Config and Multicast information has to be downloaded by the agent post the xmpp-server connections are honored.
     b. All existing flows on the compute are evicted and the flow table has to be rebuilt. 
     c. The multicast tree needs to be re-baked.
-With all this, all kind of communication (unicast, bum etc) are impacted on the involved VRFs. 
 
-16. What is the impact on traffic if a control node involved in the active session is restarted?
-[Sandeep]: Same answer as that of Q)10
+    Due to this, all kind of communication (unicast, bum etc) are impacted on the involved VRFs. 
 
-17. What is the impact on traffic if a control node involved in the backup session is restarted?
-[Sandeep]: Same answer as that of Q)12
+ 16. What is the impact on traffic if a control node involved in the active session is restarted?
+    
+     Same answer as that of Q)10
 
-18. How XMPP connections are rebalanced when a control node involved in active XMPP sessions for few computes are restarted in a three-node controller scenario?
-[Sandeep]: All active XMPP sessions on the restarted controller node is closed. The corresponding agents will determine the loss in connection and requests discovery for a new set of xmpp-server connections. DiscoveryServer will send the ordered list of xmpp-server to be used based on an internal load balancing algorithm.
+ 17. What is the impact on traffic if a control node involved in the backup session is restarted?
+    
+     Same answer as that of Q)12
+
+ 18. How XMPP connections are rebalanced when a control node involved in active XMPP sessions for few computes are restarted in a three-node controller scenario?
+    
+     All active XMPP sessions on the restarted controller node is closed. The corresponding agents will determine the loss in connection and requests discovery for a new set of xmpp-server connections. DiscoveryServer will send the ordered list of xmpp-server to be used based on an internal load balancing algorithm.
