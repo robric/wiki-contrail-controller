@@ -1,10 +1,10 @@
 ## The below document has a list of frequently asked questions about the communication between contrail-vrouter-agent and contrail-discovery in various scenarios. 
 
-The following IP addresses are used throughout the document to explain message exchanges:
+### The following IP addresses are used throughout the document to explain message exchanges:
 
-vrouter-agent: 10.219.94.10
+    vrouter-agent: 10.219.94.10
 
-DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
+    DiscoveryServer/ControlNode : 10.219.94.4, 10.219.94.5 and 10.219.94.6
 
 
  1. How does vrouter-agent request IP addresses of available xmpp-servers from Discovery?
