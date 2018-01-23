@@ -119,7 +119,15 @@ Cassandra version of SD has feature of PUTting attribute named “oper-state” 
 
 ## Future of SD
 
-SD should go away in Contrail v4.
+SD should was deprecated in Contrail v4.
+
+Centralized service discovery was replaced with Distributed Service Resource Allocation. It was done in order to have finite time required to switch fro a failed node to a replacement.
+
+Details are here: https://www.juniper.net/documentation/en_US/contrail4.0/topics/concept/distributed-service-resource-allocation.html
+
+In short: we'll need to provision every module of Contrail with a list of nodes to use.
+
+For example, contrail-vrouter-agent.conf will have [CONTROL-NODE].servers with provisioned list of control-nodes, like "10.1.1.1:5269 10.1.1.12:5269". And so on, every module will have a list of counterparts to interact with. Update of configuration file should be followed with SIGHUP, to force a module to reload configuration.
 
 ## Tables
 
