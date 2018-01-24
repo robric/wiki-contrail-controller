@@ -19,6 +19,8 @@ For a general overview of Contrail APIs refer to (http://www.juniper.net/us/en/l
 
 [**R4.0**] (http://www.opencontrail.org/documentation/api/r4.0)
 
+[**R4.1**] (http://www.opencontrail.org/documentation/api/r4.1)
+
 ###Release specific OpenAPI doc:
 
 [**R3.1**] (http://configuration-schema-documentation.s3-website-us-west-1.amazonaws.com/R3.2/contrail_openapi.json)
