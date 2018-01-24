@@ -20,7 +20,7 @@ The example below walks through how controller/src/base is split into a repo ([a
 **Split a repo: Split contrail-controller into a repo that contains only base:**
 Currently, base is part of the contrail-controller repo. Let’s split the controller/src/base from contrail-controller and create a new (local) repo.
 * cd controller
-* git checkout –b master
+* git checkout master
 * Run all the commands from the root directory of the source repo (in this case controller)
 * create a file called script with following lines:
 
