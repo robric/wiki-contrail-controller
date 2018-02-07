@@ -49,10 +49,11 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * Edit the manifest file: manifest-mitaka.xml 
 * For e.g to host github.com/Juniper/contrail-common repo at src/contrail-common add the following line to manifest-mitaka.xml '<project name="contrail-common" remote="github" path="src/contrail-common"/> '
 * If the repo already exists, skip the creation and host it at an appropriate directory 
+* Add the new repo to all manifests that require the new repo visibility
 
 **Merge a repo: Merge the new local repo (pruned contrail-controller with just base) with src/contrail-common:**
 * cd src/controller-common (root directory of your destination repo)
-* git checkout –b merging_base
+* git checkout –b merging_base (create a branch merging_base)
 * git remote add moving_base ../../controller (this is the path to the root of your source repo)
 * moving_base is the name of your repo
 * git remote –v will include (moving_base) after the above command is invoked
@@ -60,8 +61,8 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * git merge moving_base/master (build, test, make necessary changes to scons, rules.py etc.)
 * (when you edit scons scripts, do not change the variant_dir of compiled and generated files)
 * (as you move things around install necessary files in build/include or build/lib)
-* git push -u github (whatever is your remote) merging_base
+* git push -u github (whatever is your remote, here it is github) merging_base (merging_base is your branch name in this case)
 * create a pull request on github and merge your changes
 
-
-
+**Moving a directory to a repo already in production in Jenkins:**
+* In this case, create a fork of the repo by following [these steps](https://guides.github.com/activities/forking/)
