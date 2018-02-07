@@ -71,12 +71,11 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * Verify that the fork shows the files and directory with history
 * [Update the fork](https://gist.github.com/CristinaSolana/1885435) if necessary from the parent
 * At this point, contact CI to merge your fork with parent 
-* Someone in CI execute the following steps to merge the fork with parent: 
--- locally on review.opencontrail.org, using the userid `gerrit2`
--- 1. Clone the master repo from gerrit to a working copy
--- 2. Clone your repo
--- 3. In the tree of (1), do ‘git fetch’ from (2), then ‘git merge’ 
--- 4. Check it
--- 5. stop the gerrit service
--- 6. in tree of (1), do ‘git push’ to update master repo
--- 7. start the gerrit service
+* Someone in CI will execute the following steps to merge the fork with parent (locally on review.opencontrail.org, using the userid `gerrit2`):
+- 1. Clone the master repo from gerrit to a working copy
+- 2. Clone your repo
+- 3. In the tree of (1), do ‘git fetch’ from (2), then ‘git merge’ 
+- 4. Check it
+- 5. stop the gerrit service
+- 6. in tree of (1), do ‘git push’ to update master repo
+- 7. start the gerrit service
