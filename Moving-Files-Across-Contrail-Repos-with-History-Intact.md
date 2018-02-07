@@ -66,3 +66,8 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 
 **Moving a directory to a repo already in production in Jenkins:**
 * In this case, create a fork of the repo by following [these steps](https://guides.github.com/activities/forking/)
+* At this point, git clone the fork to a directory where you want to do your work
+* Move the desired directory to the clone of the fork by following the steps listed in the 'Merge a repo section'
+* Verify that the fork shows the files and directory with history
+* [Update the fork](https://gist.github.com/CristinaSolana/1885435) if necessary from the parent
+* At this point, contact CI to merge your fork with parent 
