@@ -79,3 +79,4 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 - 5. stop the gerrit service
 - 6. in tree of (1), do ‘git push’ to update master repo
 - 7. start the gerrit service
+(Steps 1,2,3, and 6 are similar to updating a private fork from upstream)
