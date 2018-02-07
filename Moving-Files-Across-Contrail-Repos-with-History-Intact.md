@@ -44,6 +44,9 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * At this point the repo is split and you have the desired part of the repo, a new (local) repo, with ONLY base (the directory you want to move) at the root of the repo
 
 **Creating a repo: Before proceeding to the step of "Merge a repo" listed below - create the repo by following the [steps at](https://help.github.com/articles/create-a-repo/), if doesn't already exist. Go to setting tab of your new repo set the access permissions. 
+* Go to the directory where the manifest file corresponding to the repo init is located. For e.g. in case of mainline/ubuntu-14-04/manifest-mitaka.xml it would be .repo/manifests/mainline/ubuntu-14-04. 
+* Edit the manifest file: manifest-mitaka.xml 
+* For e.g to host github.com/Juniper/contrail-common repo at src/contrail-common add the following line to manifest-mitaka.xml '<project name="contrail-common" remote="github" path="src/contrail-common"/> '
 
 **Merge a repo: Merge the new local repo (pruned contrail-controller with just base) with src/contrail-common:**
 * cd src/controller-common (root directory of your destination repo)
