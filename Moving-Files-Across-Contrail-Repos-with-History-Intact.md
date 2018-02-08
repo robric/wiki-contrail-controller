@@ -7,6 +7,15 @@ Whenever a repo (a source repo) is merged with a destination repo, all the conte
 
 Summary: Move of files across repo can be viewed as a two step process, split and merge. One will have to repeat the split and merge per directory under the source repo (All the contents, files and subdirs, under that directory will be moved). To move files across directories within a repo and preserve history [follow this link](https://stackoverflow.com/questions/2314652/is-it-possible-to-move-rename-files-in-git-and-maintain-their-history) 
 
+**Creating a new repo and mapping the directory structure:** 
+* Before proceeding to the step of "Merge a repo" listed below - create the a new repo by following the [steps at](https://help.github.com/articles/create-a-repo/), if doesn't already exist. Go to settings tab of your new repo and set the access permissions. 
+* Init your repo by following the contrail guidelines (for e.g. repo init -u git@github.com:Juniper/contrail-vnc-private -m  mainline/ubuntu-14-04/manifest-mitaka.xml)
+* Go to the directory where the manifest file corresponding to your repo init is located. For e.g. in case of mainline/ubuntu-14-04/manifest-mitaka.xml it would be .repo/manifests/mainline/ubuntu-14-04. 
+* Edit the manifest file: manifest-mitaka.xml 
+* For e.g to host github.com/Juniper/contrail-common repo at src/contrail-common add the following line to manifest-mitaka.xml '<project name="contrail-common" remote="github" path="src/contrail-common"/> '
+* If the repo already exists, skip the creation and host it at an appropriate directory 
+* Add the new repo to all manifests that require the new repo visibility
+
 **Split a repo**
 * Split an existing repo into two
 * Part that you requires merge with a destination repo
@@ -42,14 +51,6 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * git remote –v
 * The above steps create a local repo that contains base (base: the directory you want to move)
 * At this point the repo is split and you have the desired part of the repo, a new (local) repo, with ONLY base (the directory you want to move) at the root of the repo
-
-**Creating a new repo and mapping the directory structure:** 
-* Before proceeding to the step of "Merge a repo" listed below - create the repo by following the [steps at](https://help.github.com/articles/create-a-repo/), if doesn't already exist. Go to setting tab of your new repo set the access permissions. 
-* Go to the directory where the manifest file corresponding to your repo init is located. For e.g. in case of mainline/ubuntu-14-04/manifest-mitaka.xml it would be .repo/manifests/mainline/ubuntu-14-04. 
-* Edit the manifest file: manifest-mitaka.xml 
-* For e.g to host github.com/Juniper/contrail-common repo at src/contrail-common add the following line to manifest-mitaka.xml '<project name="contrail-common" remote="github" path="src/contrail-common"/> '
-* If the repo already exists, skip the creation and host it at an appropriate directory 
-* Add the new repo to all manifests that require the new repo visibility
 
 **Merge a repo: Merge the new local repo (pruned contrail-controller with just base) with src/contrail-common:**
 * cd src/controller-common (root directory of your destination repo)
