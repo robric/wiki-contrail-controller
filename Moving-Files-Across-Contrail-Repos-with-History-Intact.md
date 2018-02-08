@@ -9,7 +9,8 @@ Summary: Move of files across repo can be viewed as a two step process, split an
 
 **Creating a new repo and mapping the directory structure:** 
 * Before proceeding to the step of "Merge a repo" listed below - create the a new repo by following the [steps at](https://help.github.com/articles/create-a-repo/), if doesn't already exist. Go to settings tab of your new repo and set the access permissions. 
-* Init your repo by following the contrail guidelines (for e.g. repo init -u git@github.com:Juniper/contrail-vnc-private -m  mainline/ubuntu-14-04/manifest-mitaka.xml)
+* Init all your contrail repos by following the contrail guidelines (for e.g. repo init -u git@github.com:Juniper/contrail-vnc-private -m  mainline/ubuntu-14-04/manifest-mitaka.xml)
+* Before invoking repo sync edit the manifest file corresponding to the repo sync and add an anchor directory for newly created repo (steps listed below)
 * Go to the directory where the manifest file corresponding to your repo init is located. For e.g. in case of mainline/ubuntu-14-04/manifest-mitaka.xml it would be .repo/manifests/mainline/ubuntu-14-04. 
 * Edit the manifest file: manifest-mitaka.xml 
 * For e.g to host github.com/Juniper/contrail-common repo at src/contrail-common add the following line to manifest-mitaka.xml '<project name="contrail-common" remote="github" path="src/contrail-common"/> '
