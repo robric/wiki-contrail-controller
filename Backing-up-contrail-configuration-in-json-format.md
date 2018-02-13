@@ -1,6 +1,6 @@
 # Backup
 
-_Note_: _This is an experimental procedure for backing up cassandra and zookeeper in json format._
+
 
 * Simple Backup:
 
