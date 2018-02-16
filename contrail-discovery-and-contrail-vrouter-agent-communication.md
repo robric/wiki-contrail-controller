@@ -194,12 +194,12 @@
 
  13. What happens when TTL is expired for the master xmpp-server connection?
     
-     The client resubscribes and the same flow mentioned in answer for Q10 is seen.
+     No change in the existing connections. The xmpp-servers held by the agent before TTL expiry would continue after the TTL is renewed.
 
 
  14. What happens when TTL is expired for the backup xmpp-server connection?
    
-     Same answer as that of Q)12.
+     No change in the existing connections. The xmpp-servers held by the agent before TTL expiry would continue after the TTL is renewed. 
 
  15. What happens when vrouter-agent crashes/cores?
 
