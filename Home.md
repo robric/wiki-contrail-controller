@@ -14,7 +14,7 @@ Architecture:
 Opencontrail Development:
 * [Continuous Integration (CI)](OpenContrail-Continuous-Integration-(CI))
 * [Code submission + review checklist](Code-Review-Checklist)
-* [Developer sandbox](https://hub.docker.com/r/opencontrail/developer-sandbox/tags/)
+* [Developer sandbox](https://hub.docker.com/r/opencontrail/developer-sandbox/tags/) using a [container](https://github.com/Juniper/contrail-dev-env/blob/master/container/Dockerfile)
 
     ```docker run --name $USER-opencontrail-sandbox -it opencontrail/developer-sandbox:centos-7.4```
 
