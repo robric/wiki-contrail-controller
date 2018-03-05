@@ -420,6 +420,17 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 5. New network policies will always be added to the front of the list of FW policies in the default application set.
    This is so that, the latest rules that may potentially overlap existing policy behavior is always honored. 
 
+# Limitation / Errata
+
+1. Pod label with key as "Application" should not be used
+  
+   Label with key "Application" is reserved keyword in Contrail and has special meaning and semantics.
+   If a pod has a label with key "Application", the enforcement of network policy specified for the Pod is
+   not guaranteed/undefined. So the recommendation in release 5.0 is to not created Pod's with label
+   key "Application".
+   
+   https://bugs.launchpad.net/juniperopenstack/+bug/1749902
+
 # References
 
 Contrail FW Security Policy                                                    https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
