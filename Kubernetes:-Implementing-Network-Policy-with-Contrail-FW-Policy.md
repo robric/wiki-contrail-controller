@@ -405,8 +405,7 @@ None
 
 # Cluster-wide Action Enforcement
 
-Kubernetes Network Policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints. The spec and the syntax of
-network policy allow for maximum flexibility and varied combinations. The framework
+The spec and the syntax of network policy allow for maximum flexibility and varied combinations. The framework
 provides the user with all possible bells and whistles so as to not limit the user's imagination. With such great power, it is quite possible to shoot onself at the foot.
 
 Lets assume a case where two network policies are created:
@@ -414,9 +413,7 @@ Lets assume a case where two network policies are created:
          Policy 1: Pod A can send to Pod B.
          Policy 2: Pod B can only recieve from Pod C.
 
-From a cluster networking level and a flow level, there is an inherent contradiction
-between the above policy. What these policies say is that, from the source (PodA)
-the flow from PodA to PodB is allowed. But at the destination(PodB), this flow is not allowed. Such contradictions are extermely fuzzy and unmanagable when we have hundreds
+From a cluster networking level and a flow level, there is an inherent contradiction between the above policies. What these policies say is that,  flow from PodA to PodB is allowed. But at the destination(PodB), this flow is not allowed. Such contradictions are extermely fuzzy and unmanagable when we have hundreds
 and thousands of rules in the cluster. Debugging and rearranging such policies to orchestrate a flow will be cumbersome, as the user has to deal with this 2D matrix
 of disparate policies applied at source and destination.
 
