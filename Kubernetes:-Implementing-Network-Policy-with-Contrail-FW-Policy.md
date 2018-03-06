@@ -140,13 +140,7 @@ In a regular workflow, these tags would have been created by the time the namesp
 
 | Name | Rules |
 | --- | --- |
-| test-network-policy | test-network-policy-cidr-deny, test-network-policy-cidr-pass, test-network-policy-podSelector, test-network-policy-NamespaceSelector, test-network-policy-egress-cidr-pass |
-
-**Application Policy Set**
-
-| Name | Firewall Policy |
-| --- | --- |
-| Default Application Policy Set | test-network-policy |
+| default-test-network-policy | default-ingress-test-network-policy-0-ipBlock-0-172.17.1.0/24-0, default-ingress-test-network-policy-0-ipBlock-0-cidr-172.17.0.0/16-0, default-ingress-test-network-policy-0-namespaceSelector-1-0, default-ingress-test-network-policy-0-podSelector-2-0, default-egress-test-network-policy-ipBlock-0-cidr-10.0.0.0/24-0	|
 
 ## Illustration: 2  
 ### Default allow all ingress traffic
