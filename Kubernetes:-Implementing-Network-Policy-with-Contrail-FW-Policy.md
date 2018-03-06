@@ -424,7 +424,7 @@ Contrail implementation of Kubernetes Network Policy brings some sanity to this
 goose chase, by providing sensible behavior while implementating kubernetes network
 policy. One of the core aspects is this notion that:
 
-    Every policy/rule in the policy specifies a flow.
+    If a policy matches a flow, the action is honored cluster-wide.
 
 If a flow satisfies a rule at the source, then it will be honored at the destination as well. So going back to our prior example:
 
@@ -433,9 +433,9 @@ If a flow satisfies a rule at the source, then it will be honored at the destina
 
 The flow behavior in a Contrail manager kubernetes cluster will be as follows:
 
-    1. Flow will PodA to PodB will be allowed.
-    2. Flow from PodC to PodB will be allowed.
-    3. Any other flow to PodB will be disallowed.
+    1. Flow from PodA to PodB will be allowed. (due to Policy 1)
+    2. Flow from PodC to PodB will be allowed. (due to Policy 2)
+    3. Any other flow to PodB will be disallowed. (due to Policy 2)
 
 Illustrations:
 
