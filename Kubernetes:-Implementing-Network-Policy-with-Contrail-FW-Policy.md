@@ -403,6 +403,97 @@ None
 | --- | --- | 
 | Default Application Policy Set | default-deny |
 
+# Flow based enforcement
+
+Kubernetes Network Policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints. The spec and the syntax of
+network policy allow for maximum flexibility and varied combinations. The framework
+provides the user with all possible bells and whistles so as to not limit the user's imagination. With such great power, it is quite possible to shoot onself at the foot.
+
+Lets assume a case where two network policies are created:
+
+         Policy 1: Pod A can send to Pod B.
+         Policy 2: Pod B can only recieve from Pod C.
+
+From a cluster networking level and a flow level, there is an inherent contradiction
+between the above policy. What these policies say is that, from the source (PodA)
+the flow from PodA to PodB is allowed. But at the destination(PodB), this flow is not allowed. Such contradictions are extermely fuzzy and unmanagable when we have hundreds
+and thousands of rules in the cluster. Debugging and rearranging such policies to orchestrate a flow will be cumbersome, as the user has to deal with this 2D matrix
+of disparate policies applied at source and destination.
+
+Contrail implementation of Kubernetes Network Policy brings some sanity to this
+goose chase, by providing sensible behavior while implementating kubernetes network
+policy. One of the core aspects is this notion that:
+
+    Every policy/rule in the policy specifies a flow.
+
+If a flow satisfies a rule at the source, then it will be honored at the destination as well. So going back to our prior example:
+
+         Policy 1: Pod A can send to Pod B.
+         Policy 2: Pod B can only recieve from Pod C.
+
+The flow behavior in a Contrail manager kubernetes cluster will be as follows:
+
+    1. Flow will PodA to PodB will be allowed.
+    2. Flow from PodC to PodB will be allowed.
+    3. Any other flow to PodB will be disallowed.
+
+Illustrations:
+
+1. Egress allow all and Ingress deny all
+
+   Setup:
+
+   Namespace NS1 has two pods, PodA and PodB.
+
+   Policy:
+
+   A network policy applied on namespace NS1 states:
+   
+   Rule 1. Allow all egress traffic from all pods in NS1.
+   Rule 2. Deny all ingress traffic to all pods in NS1.
+
+   Behavior:
+
+   * PodA can send traffic to PodB. (due to rule 1)
+   * PodB can send traffic to PodA. (due to rule 1)
+   * PodX from a different namespace cannot send traffic to PodA or PodB(Due to rule 2)
+
+2. Ingress allow all and Egress deny all
+
+   Setup:
+
+   Namespace NS1 has two pods, PodA and PodB.
+
+   Policy:
+
+   A network policy applied on namespace NS1 states:
+
+   Rule 1. Allow all ingress traffic to all pods in NS1.
+   Rule 2. Deny all egress traffic from all pods in NS1.
+
+   Behavior:
+
+   * PodA can send traffic to PodB. (due to rule 1)
+   * PodB can send traffic to PodA. (due to rule 1)
+   * PodA and PodB cannot send traffic to pods in any other namespace.
+
+3. Egress CIDR rule.
+   
+   Setup:
+
+   Namespace NS1 has two pods, PodA and PodB.
+
+   Policy:
+
+   A network policy applied on namespace NS1 states:
+
+   Policy 1: Allow PodA to send traffic to CIDR of PodB.
+   Policy 2: Deny all ingress traffic to all pods in NS1.
+
+   Behavior:
+
+   * PodA can send traffic to PodB. (due to Policy 1)
+   * All other traffic to PodA and PodB will be dropped. (due to policy 2)
 
 # Implementation
 
