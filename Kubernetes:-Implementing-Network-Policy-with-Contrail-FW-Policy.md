@@ -439,7 +439,7 @@ The flow behavior in a Contrail managed kubernetes cluster will be as follows:
     2. Flow from PodC to PodB will be allowed. (due to Policy 2)
     3. Any other flow to PodB will be disallowed. (due to Policy 2)
 
-Illustrations:
+**Illustrations:**
 
 1. Egress allow all and Ingress deny all
 
