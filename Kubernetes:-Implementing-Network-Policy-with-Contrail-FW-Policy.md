@@ -195,7 +195,7 @@ The below policy  explicitly denies all traffic to all pods in that namespace.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: default-deny-ingress
+  name: deny-ingress
 spec:
   podSelector:
   policyTypes:
@@ -221,8 +221,10 @@ None
 
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
-| default-deny-ingress-podSelector | deny| any | any | > | namespace=default | |
-| default-deny-ingress-egress-pass | pass | any | namespace=default | > | any | |
+
+NOTE: No explicit rule is required in this policy, as the implicit behavior for any network
+policy is to deny traffic not matching explicit flows. The specified policy does not have
+any explicit allow flows. Hence there are not Firewall Rules created.
 
 **Firewall Policy**
 
