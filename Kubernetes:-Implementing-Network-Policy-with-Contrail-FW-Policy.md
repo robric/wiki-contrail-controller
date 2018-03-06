@@ -77,7 +77,7 @@ For example: Network policy "world" in namespace "Hello" will be named: Hello-wo
 ### Contrail Firewall Rule
 Contrail Firewall Rules create for a K8s network policy will named in the following format:
 
-    < Namespace-name >-<PolicyType>-< Network Policy Name >-<Index of from/to blocks>-<from/to type>-<rule-index>-<svc/port index>
+    < Namespace-name >-<PolicyType>-< Network Policy Name >-<Index of from/to blocks>-<selector type>-<rule-index>-<svc/port index>
 
 For example:
 ```
@@ -98,7 +98,9 @@ spec:
         matchLabels:
           role: frontend
 ```
-A Rule corresponding to the above policy would be named: hello-ingress-world-0-podSelector-0-0
+A Rule corresponding to the above policy would be named:
+
+    hello-ingress-world-0-podSelector-0-0
 
 ## Illustration: 1  
 ### Sample Kubernetes Network Policy 
