@@ -419,11 +419,14 @@ However from a networking flow perspective, there is an inherent contradiction b
 Policy1 states that a flow from PodA to PodB is allowed.
 Subsequent policy implies that flow from PodA to PodB is not allowed.
 
+From a networking narrative, Contrail prioritizes flow behavior as more critical.
+In the event of inherent contradiction in network policies, Contrail will honor the flow perspective.
 
-One of the core aspects is this notion that:
+One of the core aspects of this notion is:
 
     If a policy matches a flow, the action is honored cluster-wide.
-    i.e If a flow matches a policy at the source, the flow will match the same policy in the  destination as well. 
+    
+i.e If a flow matches a policy at the source, the flow will match the same policy in the  destination as well. 
 
 So going back to our prior example:
 
