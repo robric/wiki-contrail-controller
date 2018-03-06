@@ -222,21 +222,15 @@ None
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
 
-NOTE: No explicit rule is required in this policy, as the implicit behavior for any network
-policy is to deny traffic not matching explicit flows. The specified policy does not have
-any explicit allow flows. Hence there are not Firewall Rules created.
+    NOTE: The implicit behavior of any network policy is to deny traffic not matching explicit allow flows. 
+          However in this policy, there are no explicit allow rules.
+          Hence there are no firewall rules created for this policy.
 
 **Firewall Policy**
 
 | Name | Rules |
 | --- | --- |
-| default-deny-ingress | default-deny-ingress-podSelector, default-deny-ingress-egress-pass |
-
-**Application Policy Set**
- 
-| Name | Firewall Policy |
-| --- | --- |
-| Default Application Policy Set | default-deny-ingress |
+| default-deny-ingress |  |
 
 ## Illustration: 4
 ### Default allow all egress traffic.
