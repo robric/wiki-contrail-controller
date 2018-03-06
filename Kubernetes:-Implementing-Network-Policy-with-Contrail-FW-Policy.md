@@ -72,7 +72,9 @@ Contrail Firewall Policy create for a K8s network policy will named in the follo
 
     < Namespace-name >-< Network Policy Name >
 
-For example: Network policy "world" in namespace "Hello" will be named: Hello-world
+For example: Network policy "world" in namespace "Hello" will be named:
+
+    Hello-world
 
 ### Contrail Firewall Rule
 Contrail Firewall Rules create for a K8s network policy will named in the following format:
