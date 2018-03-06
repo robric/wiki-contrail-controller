@@ -242,7 +242,7 @@ The below policy explicitly allows all traffic from all pods in that namespace.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-all
+  name: allow-all-egress
 spec:
   podSelector:
   egress:
@@ -267,20 +267,13 @@ None
 
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
-| allow-all-podSelector | pass | any | any | > | namespace=default | |
-| allow-all-egress-pass | pass | any | namespace=default | > | any | |
+| default-egress-allow-all-egress-allow-all-0 | pass | any | namespace=default | > | any | |
 
 **Firewall Policy**
 
 | Name | Rules |
 | --- | --- |
-| allow-all | allow-all-podSelector, allow-all-egress-pass |
-
-**Application Policy Set**
-
-| Name | Firewall Policy |
-| --- | --- | 
-| Default Application Policy Set | allow-all |
+| default-allow-all-egress | default-egress-allow-all-egress-allow-all-0 |
 
 ## Illustration: 5 
 ### Default deny all egress traffic.
