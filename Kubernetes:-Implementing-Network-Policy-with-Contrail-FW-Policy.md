@@ -413,13 +413,14 @@ Lets assume a case where two network policies are created:
          Policy 1: Pod A can send to Pod B.
          Policy 2: Pod B can only recieve from Pod C.
 
-From a cluster networking level and a flow level, there is an inherent contradiction between the above policies. What these policies say is that,  flow from PodA to PodB is allowed. But at the destination(PodB), this flow is not allowed. Such contradictions are extermely fuzzy and unmanagable when we have hundreds
-and thousands of rules in the cluster. Debugging and rearranging such policies to orchestrate a flow will be cumbersome, as the user has to deal with this 2D matrix
-of disparate policies applied at source and destination.
+These policies make sense when looking at source and destination endpoints independently.
 
-Contrail implementation of Kubernetes Network Policy brings some sanity to this
-goose chase, by providing sensible behavior while implementating kubernetes network
-policy. One of the core aspects is this notion that:
+However from a networking flow perspective, there is an inherent contradiction between the above policies. 
+Policy1 states that a flow from PodA to PodB is allowed.
+Subsequent policy implies that flow from PodA to PodB is not allowed.
+
+
+One of the core aspects is this notion that:
 
     If a policy matches a flow, the action is honored cluster-wide.
     i.e If a flow matches a policy at the source, the flow will match the same policy in the  destination as well. 
