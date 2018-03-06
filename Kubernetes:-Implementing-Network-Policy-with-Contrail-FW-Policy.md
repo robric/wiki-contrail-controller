@@ -312,9 +312,10 @@ None
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
 
-    NOTE: The implicit behavior of any network policy with egress policy type is to deny egress
-          traffic not matching explicit egress allow flows. In this policy, there are no explicit egress 
-          allow rules. Hence there are no firewall rules created for this policy.
+    NOTE: The implicit behavior of any network policy with egress policy type
+          is to deny egress traffic not matching explicit egress allow flows.
+          In this policy, there are no explicit egress allow rules.
+          Hence there are no firewall rules created for this policy.
 
 **Firewall Policy**
 
@@ -332,7 +333,7 @@ The below policy explicitly denies all traffic from all pods in that namespace.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: default-deny
+  name: deny-all-ingress-egress
 spec:
   podSelector:
   policyTypes:
@@ -359,20 +360,17 @@ None
 
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
-| default-deny-podSelector | deny | any | any | > | namespace=default | |
-| default-deny-egress-deny | deny | any | namespace=default | > | any | |
+
+    NOTE: The implicit behavior of any network policy with ingress/egress policy
+          type is to deny corresponding traffic not matching explicit allow flows.
+          In this policy, there are no explicit allow rules.
+          Hence there are no firewall rules created for this policy.
 
 **Firewall Policy**
 
 | Name | Rules |
 | --- | --- |
-| default-deny | default-deny-podSelector, default-deny-egress-deny |
-
-**Application Policy Set**
- 
-| Name | Firewall Policy |
-| --- | --- | 
-| Default Application Policy Set | default-deny |
+| default-deny-all-ingress-egress | |
 
 # Cluster-wide Action Enforcement
 
