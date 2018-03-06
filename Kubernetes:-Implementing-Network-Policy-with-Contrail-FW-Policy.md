@@ -122,19 +122,19 @@ In a regular workflow, these tags would have been created by the time the namesp
 ### Address Groups
 | Name | Prefix |
 | --- | --- |
-| test-network-policy-except | 172.17.1.0/24 |
-| test-network-policy | 172.17.0.0/16 |
-| test-network-policy-egress | 10.0.0.0/24 |
+| 172.17.1.0/24 | 172.17.1.0/24 |
+| 172.17.0.0/16 | 172.17.0.0/16 |
+| 10.0.0.0/24 | 10.0.0.0/24 |
 
 
 ### Firewall Rules
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
-| test-network-policy-cidr-deny	| deny | tcp:6379 | test-network-policy-except | > | role=db, namespace=default| |
-| test-network-policy-cidr-pass	| pass | tcp:6379 | test-network-policy | > |role=db, namespace=default | |
-| test-network-policy-podSelector | pass  | tcp:6379 | namespace=myproject | > | role=db, namespace=default | |
-| test-network-policy-NamespaceSelector	| pass | tcp:6379 | role=frontend | > | role=db,namespace=default |    namespace |
-| test-network-policy-egress-cidr-pass | pass | tcp:5978 | role=db, namespace=default | > | test-network-policy-egress | |
+| default-ingress-test-network-policy-0-ipBlock-0-172.17.1.0/24-0 | deny | tcp:6379 | Address Group: 172.17.1.0/24 | > | role=db && namespace=default| |
+| default-ingress-test-network-policy-0-ipBlock-0-cidr-172.17.0.0/16-0	| pass | tcp:6379 | Address Group: 172.17.0.0/16 | > |role=db && namespace=default | |
+| default-ingress-test-network-policy-0-namespaceSelector-1-0 | pass  | tcp:6379 | project=myproject | > | role=db && namespace=default | |
+| default-ingress-test-network-policy-0-podSelector-2-0	| pass | tcp:6379 | namespace=default && role=frontend | > | role=db && namespace=default ||
+| default-egress-test-network-policy-ipBlock-0-cidr-10.0.0.0/24-0 | pass | tcp:5978 | role=db && namespace=default | > | Address Group: 10.0.0.0/24 | |
 
 **Firewall Policy**
 
