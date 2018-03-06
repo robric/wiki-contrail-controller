@@ -177,21 +177,13 @@ None
 
 | Rule Name | Action | Services | Endpoint1 | Dir | Endpoint2 | Match Tags |
 | --- | --- | --- | --- | --- | --- | --- |
-| allow-all-ingress-podSelector | pass | any | any | > | namespace=default | |
-| allow-all-ingress-egress-pass | pass | any |namespace=default | > | any | |
+| default-ingress-allow-all-ingress-0-allow-all-0 | pass | any | any | > | namespace=default | |
 
 **Firewall Policy**
 
 | Name | Rules |
 | --- | --- |
-| allow-all-ingress | allow-all-ingress_podSelector, allow-all-ingress-egress-pass |
-
-**Application Policy Set **
-
-| Name | Firewall Policy |
-| --- | --- |
-| Default Application Policy Set | allow-all-ingress |
-
+| default-allow-all-ingress | default-ingress-allow-all-ingress-0-allow-all-0 |
 
 ## Illustration: 3
 ### Default deny all ingress traffic.
