@@ -425,13 +425,14 @@ goose chase, by providing sensible behavior while implementating kubernetes netw
 policy. One of the core aspects is this notion that:
 
     If a policy matches a flow, the action is honored cluster-wide.
+    i.e If a flow matches a policy at the source, the flow will match the same policy in the  destination as well. 
 
-If a flow satisfies a rule at the source, then it will be honored at the destination as well. So going back to our prior example:
+So going back to our prior example:
 
          Policy 1: Pod A can send to Pod B.
          Policy 2: Pod B can only recieve from Pod C.
 
-The flow behavior in a Contrail manager kubernetes cluster will be as follows:
+The flow behavior in a Contrail managed kubernetes cluster will be as follows:
 
     1. Flow from PodA to PodB will be allowed. (due to Policy 1)
     2. Flow from PodC to PodB will be allowed. (due to Policy 2)
