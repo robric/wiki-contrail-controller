@@ -66,6 +66,14 @@ The Contrail FW Policy constructs will be created in the "global" scope, if the 
 The Contrail FW Policy constructs will be created in the "project" scope, if the kubernetes cluster is a nested cluster. The project in 
 which these constructs are created will be the one that houses the cluster.
 
+## Naming Convention
+### Contrail Firewall Policy
+Contrail Firewall Policy create for a K8s network policy will named in the following format:
+    < Namespace-name >-< Network Policy Name >
+
+For example: Network policy "world" in namespace "Hello" will be named: Hello-world
+
+
 ## Illustration: 1  
 ### Sample Kubernetes Network Policy 
 
