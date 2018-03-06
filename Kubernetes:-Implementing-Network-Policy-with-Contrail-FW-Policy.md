@@ -69,10 +69,36 @@ which these constructs are created will be the one that houses the cluster.
 ## Naming Convention
 ### Contrail Firewall Policy
 Contrail Firewall Policy create for a K8s network policy will named in the following format:
+
     < Namespace-name >-< Network Policy Name >
 
 For example: Network policy "world" in namespace "Hello" will be named: Hello-world
 
+### Contrail Firewall Rule
+Contrail Firewall Rules create for a K8s network policy will named in the following format:
+
+    < Namespace-name >-<PolicyType>-< Network Policy Name >-<Index of from/to blocks>-<from/to type>-<rule-index>-<svc/port index>
+
+For example:
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: world
+  namespace: hello
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+```
+A Rule corresponding to the above policy would be named: hello-ingress-world-0-podSelector-0-0
 
 ## Illustration: 1  
 ### Sample Kubernetes Network Policy 
