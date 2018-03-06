@@ -403,7 +403,7 @@ None
 | --- | --- | 
 | Default Application Policy Set | default-deny |
 
-# Flow based enforcement
+# Cluster-wide Action Enforcement
 
 Kubernetes Network Policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints. The spec and the syntax of
 network policy allow for maximum flexibility and varied combinations. The framework
