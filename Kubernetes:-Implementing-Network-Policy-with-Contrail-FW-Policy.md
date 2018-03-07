@@ -540,7 +540,8 @@ Kubernetes Network Policy                 https://github.com/mironov/kubernetes/
 # FAQ
 
 ```
-Does Contrail Firewall Policy implement K8s network policy, by resolving labels to their respective pods and applying Firewall rules at a per pod/ip level ?
+* Does Contrail Firewall Policy implement K8s network policy, by resolving labels to
+  their respective pods and applying firewall rules at a per pod/ip level ?
 ```
 
 The representation of pods in Contrail FW policy is exactly the same as in corresponding K8s network policy. 
