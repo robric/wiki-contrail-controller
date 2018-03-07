@@ -536,3 +536,31 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 Contrail FW Security Policy                                                    https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
 
 Kubernetes Network Policy                 https://github.com/mironov/kubernetes/blob/master/docs/proposals/network-policy.md
+
+# FAQ
+
+```
+Does Contrail Firewall Policy implement K8s network policy, by resolving labels to their respective pods and applying Firewall rules at a per pod/ip level ?
+```
+
+The representation of pods in Contrail FW policy is exactly the same as in corresponding K8s network policy. 
+i.e Contrail FW policy deals only with labels ("tags" in Contrail terminology).
+Contrail do not expand labels to IP's.
+
+For example: 
+
+In the "default" namespace, if network policy-podSelector specifies: role=db,
+then the corresponding FW rule will specify the pods as (role=db && namespace=default).
+No other translations( to pod IP or otherwise) are done.
+
+If the same network-policy also has namespaceSelector as: namespace=myproject,
+then the corresponding FW rule will represent that namespace as (namespace=myproject).
+No other translations or rules representing pods in "myproject" namespace is done.
+
+Similarly, each CIDR is represented by one rule.
+
+In essence, the K8s network policy is translated 1:1 to Contrail Firwall Policy.
+That is the hallmark of this design. 
+There is only one additional FW rule created for each K8s network policy.
+The purpose of that rule is to implement the implicit deny requirements of the network policy.
+Nothing more is created.
