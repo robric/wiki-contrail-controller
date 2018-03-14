@@ -144,7 +144,7 @@
 
  10. What happens when an active master xmpp-server connection disconnects due to underlay connectivity problem?
 
-     The second active session becomes master. The vrouter-agent picks the next server in the list sent previously by DiscoveryServer for the secondary xmpp-server connection. The subscribe response from the DiscoveryServer looks the same as 2). The only change is Discovery publishes only two xmpp-server now excluding the active that went down due to underlay issues.
+     The second active session becomes master. The vrouter-agent requests the discovery server for a pair of XMPP servers again. The subscribe response from the DiscoveryServer looks the same as 2). The only change is Discovery publishes only two xmpp-server now excluding the active that went down due to underlay issues.
 
      Note: The active connection was on 10.219.94.6 and it was brought down to demonstrate the packet sent by DiscoveryServer.
 
