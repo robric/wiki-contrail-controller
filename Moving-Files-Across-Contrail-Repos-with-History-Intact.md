@@ -83,3 +83,4 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 - 6. in tree of (1), do ‘git push’ to update master repo
 - 7. start the gerrit service
 (Steps 1,2,3, and 6 are similar to updating a private fork from upstream)
+* After the fork is merged with mainline, enable scons to include new location of sources, and disable scons at the old location of sources (follow the same make before break model and push changes into repos) and push chnages through gerrit
