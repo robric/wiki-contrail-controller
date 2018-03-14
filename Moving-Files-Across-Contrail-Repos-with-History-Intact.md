@@ -72,7 +72,7 @@ Currently, base is part of the contrail-controller repo. Let’s split the contr
 * Move the desired directory to the clone of the fork by following the steps listed in the 'Merge a repo section'
 * Verify that the fork shows the files and directory with history
 * [Update the fork](https://gist.github.com/CristinaSolana/1885435) if necessary from the parent
-* (pull and compile: invoke repo init, point the applicable repo to the fork and then invoke repo sync)
+* (No need to compile at this point because the objective is to move files to new location with history)
 * At this point, contact CI to merge your fork with parent 
 * Someone in CI will execute the following steps to merge the fork with parent (locally on review.opencontrail.org, using the userid `gerrit2`):
 - 1. Clone the master repo from gerrit to a working copy
