@@ -57,7 +57,7 @@ We propose to mapping the constructs as follows:
 | Network Policy                                  | Firewall Policy (one FP per Network Policy) |
 | Ingress Rule                                    | Firewall Rule (one FW rule per Ingress Rule) |
 | Ingress CIDR Rules                              | Address Group |
-| Cluster                                         | Default Application Policy Set |
+| Cluster                                         | Application Policy Set |
 
 **NOTE**
 
@@ -514,10 +514,10 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 
 1. Will create on Contrail Tag for each Kubernetes Label.
 2. Will create one FW policy per Kubernetes Network Policy. 
-3. Will create one Default Application Set to represent the cluster. All FW policies created in that cluster
-   will be attached to this default application set.
+3. Will create one Application Set to represent the cluster. All FW policies created in that cluster
+   will be attached to this application set.
 4. Modifications to exiting Kubernetes networking policy will result in the corresponding FW policy being updated.
-5. New network policies will always be added to the front of the list of FW policies in the default application set.
+5. New network policies will always be added to the front of the list of FW policies in the application set.
    This is so that, the latest rules that may potentially overlap existing policy behavior is always honored. 
 
 # Limitation / Errata
