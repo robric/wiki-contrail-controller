@@ -555,8 +555,20 @@ Verify that network policy exists in Kubernetes.
 kubectl get networkpolicy -n <namespace-name>
 
 NOTE: Namespace name is optional to search of network policy in default namespace.
+
+Example: 
+[root@kvm1 ~]# kubectl get networkpolicies
+NAME                  POD-SELECTOR   AGE
+test-network-policy   role=db        16h
+[root@kvm1 ~]# 
 ```
 
+### Validate that network policy has the intended spec.
+```
+kubectl get networkpolicy -n <namespace-name>
+
+NOTE: Namespace name is optional to search of network policy in default namespace.
+```
 
 
 
