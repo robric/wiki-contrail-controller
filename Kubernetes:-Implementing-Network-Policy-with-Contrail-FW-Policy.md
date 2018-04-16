@@ -601,7 +601,19 @@ Example:
 http://localhost:8108/kube_introspect.xml#Snh_NetworkPolicyDatabaseList
 ```
 
-## Contrail kibe-manager creates Contrail config objects.
+## Contrail kube-manager creates Contrail config objects.
+
+Validate that Contrail FW Security objects are in Contrail Config.
+
+```
+1. Login to Contrail GUI
+2. Goto  Configure -> Security -> Global Policies -> Firewall Policies
+3. Validate that there is a Firewall policy with the following name: <namespace>-<network-policy-name>
+   namespace -> is the namespace in which the network policy is created
+   network-policy name -> is the name of the network policy created in Kubernetes
+4. Verify that the FW Rules in the Firewall Policy is as per the Kubernetes-network-policy spec.
+```
+
 ## Data path is programmed
 
 # References
