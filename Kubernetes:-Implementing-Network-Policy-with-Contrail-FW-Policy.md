@@ -542,6 +542,9 @@ A typical workflow is as follows:
    Kubernetes Network Policy.
 
 ## Network Policy created in Kubernetes
+
+User creates a network policy in Kubernetes.
+Typically the network policy is created 
 ## Contrail kube-manager is notified of Network Policy create
 ## Contrail kibe-manager creates Contrail config objects.
 ## Data path is programmed
