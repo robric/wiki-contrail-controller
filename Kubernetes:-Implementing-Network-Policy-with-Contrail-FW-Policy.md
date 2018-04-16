@@ -564,10 +564,28 @@ test-network-policy   role=db        16h
 ```
 
 ### Validate that network policy has the intended spec.
+
 ```
-kubectl get networkpolicy -n <namespace-name>
+kubectl get network policies <network-policy-name> -o json
 
 NOTE: Namespace name is optional to search of network policy in default namespace.
+
+Example:
+
+[root@kvm1 ~]# kubectl get networkpolicies test-network-policy -o json
+{
+    "apiVersion": "extensions/v1beta1",
+    "kind": "NetworkPolicy",
+    "metadata": {
+        "creationTimestamp": "2018-04-16T00:46:04Z",
+        "generation": 1,
+        "name": "test-network-policy",
+        "namespace": "default",
+        "resourceVersion": "442034",
+        "selfLink": "/apis/extensions/v1beta1/namespaces/default/networkpolicies/test-network-policy",
+        "uid": "8ae4727a-410f-11e8-974b-525400b2e981"
+    },
+<...snipped...>
 ```
 
 
