@@ -536,10 +536,15 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 A typical workflow is as follows:
 
 1. Network policy is created in Kubernetes 
-2. Contrail Kube-manager detects that the network policy is created. 
-3. Contrail Kube-manager created Contrail FW security policy objects on Contrail Config Api server.
+2. Contrail kube-manager detects that the network policy is created. 
+3. Contrail kube-manager created Contrail FW security policy objects on Contrail Config Api server.
 4. Packet path is programmed by Contrail Controller and flows are enforced according to configured
    Kubernetes Network Policy.
+
+## Network Policy created in Kubernetes
+## Contrail kube-manager is notified of Network Policy create
+## Contrail kibe-manager creates Contrail config objects.
+## Data path is programmed
 
 # References
 
