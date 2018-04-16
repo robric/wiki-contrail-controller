@@ -588,9 +588,19 @@ Example:
 <...snipped...>
 ```
 
-
-
 ## Contrail kube-manager is notified of Network Policy create
+
+Contrail kube-manager is registered with Kubernetes API server to be notified of network policy create
+events. Once notified, kube-manager caches the event it its in memory database.
+This database is available via kube-manager introspect port.
+
+```
+Kube-manager introspect port number: 8108
+
+Example:
+http://localhost:8108/kube_introspect.xml#Snh_NetworkPolicyDatabaseList
+```
+
 ## Contrail kibe-manager creates Contrail config objects.
 ## Data path is programmed
 
