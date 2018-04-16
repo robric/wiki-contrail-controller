@@ -544,7 +544,22 @@ A typical workflow is as follows:
 ## Network Policy created in Kubernetes
 
 User creates a network policy in Kubernetes.
-Typically the network policy is created 
+Network policy is created in kubernetes using Kubernetes CLI.
+```
+kubectl create -f np.yml    // np.yml is the file with spec for network policy
+```
+### Validate that network policy is successfully created in Kubernetes.
+
+Verify that network policy exists in Kubernetes.
+```
+kubectl get networkpolicy -n <namespace-name>
+
+NOTE: Namespace name is optional to search of network policy in default namespace.
+```
+
+
+
+
 ## Contrail kube-manager is notified of Network Policy create
 ## Contrail kibe-manager creates Contrail config objects.
 ## Data path is programmed
