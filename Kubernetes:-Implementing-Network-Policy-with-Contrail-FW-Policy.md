@@ -616,6 +616,8 @@ Validate that Contrail FW Security objects are in Contrail Config.
 
 ## Data path is programmed
 
+Validate the flow entries exists for the flow you are try go debug using "flow -l" command on the Vrouter agent.
+
 # References
 
 Contrail FW Security Policy                                                    https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
