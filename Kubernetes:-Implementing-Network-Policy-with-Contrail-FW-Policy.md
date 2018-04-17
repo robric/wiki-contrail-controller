@@ -22,7 +22,7 @@ Kubernetes Network Policy specification has the following requirements.
 3. A network policy may define traffic rules for a pod at the ingress, egress or both. 
    If no direction is specified, then the specified policy will be applied to ingress by default.
 4. When network policy is applied to a pod, the policy should have explicit rules to specify a whitelist of permitted
-  traffic in the egress and egress. All traffic that does not match the whitelist rules are to be denied and dropped.
+  traffic in the ingress and egress. All traffic that does not match the whitelist rules are to be denied and dropped.
 5. Mutiple network policies can be applied on any pod. Traffic matching ANY of the network policies should be permitted.
 6. NetworkPolicy act on connections rather than individual packets. That is to say that if traffic from pod A to
    pod B is allowed by the configured policy, then the return packets for that connection from B -> A are also allowed, even if the policy in place would not allow B to initiate a connection to A. 
