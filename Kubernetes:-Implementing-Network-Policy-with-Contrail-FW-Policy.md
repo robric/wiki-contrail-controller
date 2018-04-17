@@ -618,6 +618,14 @@ Validate that Contrail FW Security objects are in Contrail Config.
 
 Validate the flow entries exists for the flow you are try go debug using "flow -l" command on the Vrouter agent.
 
+NOTE: 
+The source and destination pods for the flow of interest can be in the same compute node or can be across multiple compute nodes. To identify the node on which the pod is running, please execute:
+```
+kubectl get pods -n <namespace-name> -o wide
+
+NOTE: Namespace name is optional if pod is running in the default namespace.
+```
+
 # References
 
 Contrail FW Security Policy                                                    https://github.com/Juniper/contrail-controller/wiki/Contrail-FW-Security-enhancements
