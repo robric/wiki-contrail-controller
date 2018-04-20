@@ -62,16 +62,9 @@ We propose to mapping the constructs as follows:
 | Label                                         |  Custom Tag (one for each label) |
 | Namespace                                       | Custom Tag (one for each namespace) |
 | Network Policy                                  | Firewall Policy (one FP per Network Policy) |
-| Ingress Rule                                    | Firewall Rule (one FW rule per Ingress Rule) |
-| Ingress CIDR Rules                              | Address Group |
+| Rule                                            | Firewall Rule (one FW rule per Network Policy Rule) |
+| CIDR Rules                                      | Address Group |
 | Cluster                                         | Application Policy Set |
-
-**NOTE**
-
-The Contrail FW Policy constructs will be created in the "global" scope, if the kubernetes cluster is a standalone cluster.
-
-The Contrail FW Policy constructs will be created in the "project" scope, if the kubernetes cluster is a nested cluster. The project in 
-which these constructs are created will be the one that houses the cluster.
 
 ## Naming Convention
 ### Contrail Firewall Policy
@@ -514,7 +507,7 @@ The flow behavior in a Contrail managed kubernetes cluster will be as follows:
 # Implementation
 
 Contrail-kube-manager is the glue that binds the kubernetes and Contrail world together.
-This daemon connects to the api server of Kubernetes cluster/s and receives all events from them.
+This daemon connects to the api server of Kubernetes cluster and receives all events from them.
 It coverts kubernetes events, including Network policy events, into appropriate Contrail objects.
 
 With respect to Kuberneter Network Policy, contrail-kube-manager will implement the following behavior:
@@ -524,8 +517,6 @@ With respect to Kuberneter Network Policy, contrail-kube-manager will implement 
 3. Will create one Application Set to represent the cluster. All FW policies created in that cluster
    will be attached to this application set.
 4. Modifications to exiting Kubernetes networking policy will result in the corresponding FW policy being updated.
-5. New network policies will always be added to the front of the list of FW policies in the application set.
-   This is so that, the latest rules that may potentially overlap existing policy behavior is always honored. 
 
 # Limitation / Errata
 
