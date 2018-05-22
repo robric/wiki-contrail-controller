@@ -108,6 +108,9 @@
             root@5b5s44:~# service contrail-hamon stop
             contrail-hamon stop/waiting
 
+      - Stop all controller services if they are sharing Cassandra
+
+
       - Backup zookeeper data directory on all controllers
 
             root@5b5s42:~# cd /var/lib/zookeeper/
@@ -123,13 +126,13 @@
       - Backup cassandra data directory on all controllers
       
             root@5b5s42:~# cd /var/lib/
-            root@5b5s42:/var/lib# cp -R cassandra cassandra-save
+            root@5b5s42:/var/lib# cp -R cassandra/data/* cassandra-save/data
             root@5b5s42:/var/lib#
             root@5b5s43:~# cd /var/lib/
-            root@5b5s43:/var/lib# cp -R cassandra cassandra-save
+            root@5b5s43:/var/lib# cp -R cassandra/saved_caches/* cassandra-save/saved_caches
             root@5b5s43:/var/lib#
             root@5b5s44:~# cd /var/lib/
-            root@5b5s44:/var/lib# cp -R cassandra/ cassandra-save
+            root@5b5s44:/var/lib# cp -R cassandra/commitlog/* cassandra-save/commitlog
             root@5b5s44:/var/lib#
             
       - Wipe out zookeeper data directory contents on all controllers
@@ -143,11 +146,11 @@
             
       - Wipe out cassandra data directory contents on all controllers
       
-            root@5b5s42:~# rm -rf /var/lib/cassandra/*
+            root@5b5s42:~# rm -rf /var/lib/cassandra/data/*
             root@5b5s42:~#
-            root@5b5s43:~# rm -rf /var/lib/cassandra/*
+            root@5b5s43:~# rm -rf /var/lib/cassandra/saved_caches/*
             root@5b5s43:~#
-            root@5b5s44:~# rm -rf /var/lib/cassandra/*
+            root@5b5s44:~# rm -rf /var/lib/cassandra/commitlog/*
             root@5b5s44:~#
             
       - Start zookeeper on all controllers
@@ -188,6 +191,8 @@
             root@5b5s44:~# service supervisor-config start
             supervisor-config start/running, process 21242
             root@5b5s44:~#
+
+      - Start all contrail services, if they were stopped previously
             
       - Start kafka on all controllers (maybe in analytics controllers)
 
