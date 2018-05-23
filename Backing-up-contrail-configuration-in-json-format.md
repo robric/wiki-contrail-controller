@@ -127,14 +127,16 @@
       
             root@5b5s42:~# cd /var/lib/
             root@5b5s42:/var/lib# cp -R cassandra/data/* cassandra-save/data
-            root@5b5s42:/var/lib#
+            root@5b5s42:/var/lib# cp -R cassandra/saved_caches/* cassandra-save/saved_caches
+            root@5b5s42:/var/lib# cp -R cassandra/commitlog/* cassandra-save/commitlog
             root@5b5s43:~# cd /var/lib/
+            root@5b5s43:/var/lib# cp -R cassandra/data/* cassandra-save/data
             root@5b5s43:/var/lib# cp -R cassandra/saved_caches/* cassandra-save/saved_caches
-            root@5b5s43:/var/lib#
+            root@5b5s43:/var/lib# cp -R cassandra/commitlog/* cassandra-save/commitlog
             root@5b5s44:~# cd /var/lib/
-            root@5b5s44:/var/lib# cp -R cassandra/commitlog/* cassandra-save/commitlog
-            root@5b5s44:/var/lib#
-            
+            root@5b5s44:/var/lib# cp -R cassandra/data/* cassandra-save/data
+            root@5b5s44:/var/lib# cp -R cassandra/saved_caches/* cassandra-save/saved_caches
+            root@5b5s44:/var/lib# cp -R cassandra/commitlog/* cassandra-save/commitlog            
       - Wipe out zookeeper data directory contents on all controllers
        
             root@5b5s42:~# rm -rf /var/lib/zookeeper/version-2/*
@@ -147,12 +149,15 @@
       - Wipe out cassandra data directory contents on all controllers
       
             root@5b5s42:~# rm -rf /var/lib/cassandra/data/*
-            root@5b5s42:~#
+            root@5b5s42:~# rm -rf /var/lib/cassandra/saved_caches/*
+            root@5b5s42:~# rm -rf /var/lib/cassandra/commitlog/*
+            root@5b5s43:~# rm -rf /var/lib/cassandra/data/*
             root@5b5s43:~# rm -rf /var/lib/cassandra/saved_caches/*
-            root@5b5s43:~#
-            root@5b5s44:~# rm -rf /var/lib/cassandra/commitlog/*
-            root@5b5s44:~#
-            
+            root@5b5s43:~# rm -rf /var/lib/cassandra/commitlog/*
+            root@5b5s44:~# rm -rf /var/lib/cassandra/data/*
+            root@5b5s44:~# rm -rf /var/lib/cassandra/saved_caches/*
+            root@5b5s44:~# rm -rf /var/lib/cassandra/commitlog/*            
+
       - Start zookeeper on all controllers
 
             root@5b5s42:~# service zookeeper start
