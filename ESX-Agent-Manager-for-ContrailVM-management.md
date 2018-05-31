@@ -1,9 +1,8 @@
 1. Introduction
 
-Contrail integration with VMware requires a Contrail Vrouter VM (ContrailVM)
-running on each of the ESXi hosts in the vcenter cluster.
-Today, this ContrailVM is provisioned and setup by server manager and is like
-any other tenant VM (with Contrail vrouter setup) running in the cluster.
+Contrail integration with VMware runs contrail vrouter in a VM (ContrailVM) on 
+each of the ESXi hosts in the vcenter cluster. Today, the ContrailVM provisioned 
+and setup is like any other tenant VM running in the cluster.
 
 2. Problem statement
 
