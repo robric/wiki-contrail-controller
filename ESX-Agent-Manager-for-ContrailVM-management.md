@@ -130,6 +130,4 @@ If this feature deprecates any older feature or API then list it here.
 
 11. References
 
-https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.ext_solutions.doc_50%2FGUID-A0B694CC- 9B63-4147-9B4F-E585AC57DBDF.html
-http://pubs.vmware.com/vsphere-6-5/index.jsp?topic=%2Fcom.vmware.vsphere.ext_solutions.doc%2FGUID-AC9DC022-2FBB-43FE-9CA6-5B3CD6AAD42D.html
 http://pubs.vmware.com/vsphere-6-5/index.jsp?topic=%2Fcom.vmware.vsphere.ext_solutions.doc%2FGUID-BCF564C0-3CCA-4067-99D1-5C90D86914B1.html
