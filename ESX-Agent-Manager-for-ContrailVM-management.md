@@ -131,3 +131,4 @@ If this feature deprecates any older feature or API then list it here.
 11. References
 
 http://pubs.vmware.com/vsphere-6-5/index.jsp?topic=%2Fcom.vmware.vsphere.ext_solutions.doc%2FGUID-BCF564C0-3CCA-4067-99D1-5C90D86914B1.html
+https://vdc-download.vmware.com/vmwb-repository/dcr-public/3d076a12-29a2-4d17-9269-cb8150b5a37f/8b5969e2-1a66-4425-af17-feff6d6f705d/SDK/eam/doc/index.html
