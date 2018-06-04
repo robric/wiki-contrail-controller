@@ -41,7 +41,7 @@ K8S_MASTER_IP=x.x.x.x; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER
 
 2. You installed entire Contrail Networking suite with rich Networking, Analytics, Security, Visualization functions, to name a few.
 
-3. Contrail UI is available on port 8143 of your node.  Feel free to play around.
+3. Contrail UI is available on port 8143 of your node.  Feel free to play around.[About Contrail](https://www.juniper.net/documentation/en_US/release-independent/contrail/information-products/pathway-pages/index.html)
 ```
 https://x.x.x.x:8143
 Default credentials: admin/contrail123
