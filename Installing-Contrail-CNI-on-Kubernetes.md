@@ -37,7 +37,7 @@ K8S_MASTER_IP=x.x.x.x; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER
 
 **Hurray! Welcome to Contrail.**
 
-1. You installed Contrail CNI in your Kubernetes node. If new compute nodes are added to your Kubernetes cluster, Contrail CNI will be propogated to them auto-magically through Kubernetes Daemaonsets.
+1. You installed Contrail CNI in your Kubernetes node. If new compute nodes are added to your Kubernetes cluster, Contrail CNI will be propogated to them auto-magically as it is backed by a Kubernetes DaemaonSet.
 
 2. You installed entire Contrail Networking suite with rich Networking, Analytics, Security, Visualization functions, to name a few.
 
