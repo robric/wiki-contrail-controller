@@ -80,7 +80,7 @@ WARNING: container with original name 'contrail-external-zookeeper' have Pod os 
 vrouter kernel module is PRESENT
 == Contrail control ==
 control: active
-nodemgr: initializing (NTP state unsynchronized. )
+nodemgr: initializing (NTP state unsynchronized. ) . <-- Safe to ignore
 named: active
 dns: active
 
@@ -89,12 +89,12 @@ kube-manager: active
 
 == Contrail database ==
 kafka: active
-nodemgr: initializing (NTP state unsynchronized. )
-zookeeper: inactive
+nodemgr: initializing (NTP state unsynchronized. ) . <-- Safe to ignore
+zookeeper: inactive                                  <-- Safe to ignore
 cassandra: active
 
 == Contrail analytics ==
-nodemgr: initializing (NTP state unsynchronized. )
+nodemgr: initializing (NTP state unsynchronized. ) . <-- Safe to ignore
 api: active
 collector: active
 query-engine: active
@@ -105,14 +105,14 @@ web: active
 job: active
 
 == Contrail vrouter ==
-nodemgr: initializing (NTP state unsynchronized. )
+nodemgr: initializing (NTP state unsynchronized. )    <-- Safe to ignore
 agent: active
 
 == Contrail config ==
 api: active
-zookeeper: inactive
+zookeeper: inactive                                   <-- Safe to ignore
 svc-monitor: active
-nodemgr: initializing (NTP state unsynchronized. )
+nodemgr: initializing (NTP state unsynchronized. ) .  <-- Safe to ignore
 device-manager: active
 cassandra: active
 rabbitmq: active
