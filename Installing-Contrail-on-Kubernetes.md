@@ -3,7 +3,7 @@ Contrail can be installed on a Kubernetes cluster through multiple provisioning 
 This wiki will layout the most simplest of all: **A single yaml based install**
 
 # Pre-requisites
-1. **  A running Kubernetes cluster.**
+**A running Kubernetes cluster**
 
    There are multiple options available to user. The most simplest being [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
 
