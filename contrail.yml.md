@@ -15,8 +15,8 @@ data:
   RABBITMQ_NODE_PORT: "5673"
   ZOOKEEPER_ANALYTICS_PORT: "2182"
   ZOOKEEPER_PORTS: "2888:3888"
-  ZOOKEEPER_NODES: 10.84.27.16
-  RABBITMQ_NODES: 10.84.27.16
+  ZOOKEEPER_NODES: {{ K8S_MASTER_IP }}
+  RABBITMQ_NODES: {{ K8S_MASTER_IP }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -49,7 +49,7 @@ metadata:
   name: contrail-analyticsdb-config
   namespace: kube-system
 data:
-  CASSANDRA_SEEDS: 10.84.27.16
+  CASSANDRA_SEEDS: {{ K8S_MASTER_IP }}
   CASSANDRA_CLUSTER_NAME: Contrail
   CASSANDRA_START_RPC: "true"
   CASSANDRA_LISTEN_ADDRESS: auto
@@ -65,7 +65,7 @@ metadata:
   name: contrail-configdb-config
   namespace: kube-system
 data:
-  CASSANDRA_SEEDS: 10.84.27.16
+  CASSANDRA_SEEDS: {{ K8S_MASTER_IP }}
   CASSANDRA_CLUSTER_NAME: ContrailConfigDB
   CASSANDRA_START_RPC: "true"
   CASSANDRA_LISTEN_ADDRESS: auto
@@ -89,7 +89,7 @@ metadata:
   name: kube-manager-config
   namespace: kube-system
 data:
-  KUBERNETES_API_SERVER: 10.84.27.16
+  KUBERNETES_API_SERVER: {{ K8S_MASTER_IP }}
   KUBERNETES_API_SECURE_PORT: "6443"
   K8S_TOKEN_FILE: "/tmp/serviceaccount/token"
 # Containers section
