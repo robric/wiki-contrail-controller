@@ -33,7 +33,16 @@ kubectl label node $HOSTNAME opencontrail.org/controller=true
 K8S_MASTER_IP=x.x.x.x; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply  -f -
 ```
 
+# What just happened ?
+1. We installed Contrail CNI in your Kubernetes node. If new compute nodes are added to your Kubernetes cluster, Contrail CNI will be propogated to them auto-magically through Kubernetes Daemaonsets.
 
+2. 
+Check Contrail Status
+
+1. Verify Contrail components are running
+
+
+    
 
 
 
