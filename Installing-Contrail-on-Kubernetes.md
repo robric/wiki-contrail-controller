@@ -119,3 +119,7 @@ rabbitmq: active
 schema: active
 
 ```
+
+# Get to know Contrail more
+
+[Contrail and Kubernetes Intro](https://github.com/Juniper/contrail-controller/wiki/Kubernetes)
