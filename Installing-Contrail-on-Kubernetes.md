@@ -21,9 +21,6 @@ curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<p
   **Step 2**
 
   Label your Kubernetes master node.
-
-  Note: Replace x.x.x.x with the IP of your Kubernetes Master node.
-
 ```
 kubectl label node $HOSTNAME opencontrail.org/controller=true
 ```
