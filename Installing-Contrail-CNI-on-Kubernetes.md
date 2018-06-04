@@ -48,7 +48,7 @@ Default credentials: admin/contrail123
 ```
 # Check Contrail Status
 
-You can get the status of Contrail compoenents, by running "contrail-status" command line tool in your Kubernetes master node. This will list all Contrail components running in your system.
+You can get the status of Contrail components, by running "contrail-status" command line tool in your Kubernetes master node. This will list all Contrail components running in your system.
 ```
 [root@foo ~]# contrail-status
 Pod         Service         Original Name                          State    Status         
