@@ -11,6 +11,13 @@ This wiki will describe the most simplest of all: **A single yaml based install*
 
 # Installation
   Installation of Contrail is a **2**-step process
+
+  **Step 1**
+
+   Download Contrail single yaml file
+```
+curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<pre><code>/{flag=1;next}/<\/pre>/{flag=0}flag' > contrail.yml
+```
   
 
 
