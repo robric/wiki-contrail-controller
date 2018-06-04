@@ -18,7 +18,12 @@ This wiki will describe the most simplest of all: **A single yaml based install*
 ```
 curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<pre><code>/{flag=1;next}/<\/pre>/{flag=0}flag' > contrail.yml
 ```
-  
+  **Step 2**
+
+  Install Contrail
+```
+K8S_MASTER_IP=10.84.27.16; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply  -f -
+```
 
 
 
