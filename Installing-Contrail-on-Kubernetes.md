@@ -1,106 +1,15 @@
-
-## 1. __Introduction__
-Kubernetes (K8s) is an open source container management platform. It provides a portable platform across public and private clouds. K8s supports deployment, scaling and auto-healing of applications. More details can be found at: http://kubernetes.io/docs/whatisk8s/. 
-
-
-## 2. __Problem statement__
-There is a need to provide pod addressing, network isolation, policy based security, gateway, SNAT, loadalancer and service chaining capability in Kubernetes orchestratation. To this end K8s supports a framework for most of the basic network connectivity. This pluggable framework is called Container Network Interface (CNI). Opencontrail will support CNI for Kubernetes.
+Contrail can be installed on a Kubernetes cluster through multiple provisioning schemes.
+This wiki will layout the most simplest of all: **A single yaml based install**
 
 
-## 3. __Proposed solution__
-Currently K8s provides a flat networking model wherein all pods can talk to each other. Network policy is the new feature added to provide isolation between pods/services. Opencontrail will add additional networking functionality to the solution - multi-tenancy, network isolation, micro-segmentation with network policies, load-balancing etc. 
 
-Opencontrail maps the following k8s concepts into opencontrail resources:
 
-|Kubernetes|Opencontrail|
-|:---|:---|
-|Namespace|Shared or single project based on configuration|
-|Pod|Virtual-machine, Interface, Instance-ip|
-|Service|ECMP based native Loadbalancer|
-|Ingress|Haproxy based L7 Loadbalancer for URL routing|
-|Network Policy|Security group based on namespace and pod selectors|
 
-Opencontrail can be configured in the following mode in a K8s cluster:
 
-|Deployment modes|
-|:---|
-|Default|
-|Namespace isolation (with or without service isolation)|
-|Custom (define network for a pod, namespace)|
-|Nested (k8s cluster in openstack virtual-machines|
 
-### 3.1 __Default__
 
-Kubernetes imposes the following fundamental requirement on any networking implementation:
 
-All Pods can communicate with all other Pods without NAT
-
-This is the default mode, and no action is required from the admin or app developer. It provides the same isolation level as kube-proxy. OpenContrail will create a cluster network shared by all namespaces, from where service IP addresses will be allocated.
-
-This in essence is the "default" mode in Contrail networking model in Kubernetes.
-In this mode, ALL pods in ALL namespaces that are spawned in the Kubernetes cluster will
-be able to communicate with each other. The IP addresses for all the pods will be allocated
-from a pod subnet that the Contrail Kubernetes manager is configured with.
-
-NOTE:
-System pods spawned in Kube-system namespace are NOT run in the Kubernetes Cluster. Rather they run in the underlay. Networking for these pods is not handled by Contrail.
-
-Contrail achieves this inter-pod network connectivity by configuring all the pods in a single Virtual-network. When the cluster is initialized, Contrail creates a virtual-network called "cluster-network".
-
-In the absence of any network segmentation/isolation configured, ALL pods in ALL namespaces get assigned to "cluster-network" virtual-network.
-
-#### 3.1.1   __Pods__
-
-In Contrail, each POD is represented as a Virtual-Machine-Interface/Port.
-
-When a pod is created, a vmi/port is allocated for that POD. This port is made a member of the default virtual-network of that Kubernetes cluster.
-
-#### 3.1.2   __Pod subnet:__
-
-The CIDR to be used for IP address allocation for pods is provisioned as a configuration to
-contrail-kube-manger. To view this subnet info:
-
-Login to contrail-kube-manager docker running on the Master node and see the "pod_subnets" in configuration file:  /etc/contrail/contrail-kubernetes.conf
-
-### 3.2 __Namespace isolation mode__
-
-In addition to default networking model mandated by Kubernetes, Contrail support additional, custom networking models that makes available the many rich features of Contrail to the users of the Kubernetes cluster. One such feature is network isolation for Kubernetes namespaces.
-
-A Kubernetes namespace can be configured as “Isolated” by annotating the Kubernetes namespace metadata with following annotation:
-
-'opencontrail.org/isolation' : 'true'
-
-Namespace isolation is intended to provide network and service isolation to pods.
-The pods in isolated namespaces are not reachable to pods in other namespaces in the cluster.
-Services in isolated namespaces are also not reachable to pods in other namespaces.
-
-If it is desirable that services remain reachable to other namespaces, service isolation can be disabled
-by the following additional annotation on the namespace:
-
-'opencontrail.org/isolation.service' : 'false'
-
-Disabling service isolation will make the services reachable to pods in other namespaces. However pods in isolated
-namespaces will still remain unreachable to pods in other namespaces.
-
-A namespace annotated as “isolated” (i.e both pod and service isolation) has the following network behavior:
-
-* All pods that are created in an isolated namespace have network reachability with each other.
-* Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
-* Pods created in isolated namespace can reach pods in other non-isolated namespaces.
-* Pods in isolated namespace will be able to reach "non-isolated services" in any namespace in the kubernetes cluster.
-* Pods from other namespaces will NOT be able to reach Services in the isolated namespace.
-
-A namespace annotated as “isolated”, with service-isolation disabled (i.e only pod isolation), has the following network behavior:
-
-* All pods that are created in an isolated namespace have network reachability with each other.
-* Pods in other namespaces in the Kubernetes cluster will NOT be able to reach pods in the isolated namespace.
-* Pods created in isolated namespace can reach pods in other namespaces.
-* Pods in isolated namespace will be able to reach "non-isolated services" in any namespace in the kubernetes cluster.
-* Pods from other namespaces will be able to reach Services in the isolated namespace.
-
-### 3.3 __Custom isolation mode__
-
-Administrators / Application developers can add the annotations to specify the virtual-network in which a pods or all pods in a namespace, are to be provisioned.
+all pods in a namespace, are to be provisioned.
 
 The annotation to specify this custom virtual-network is:
 
