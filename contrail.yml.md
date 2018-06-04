@@ -1,4 +1,4 @@
-'''
+```
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -1151,4 +1151,4 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: contrail-kube-manager
 type: kubernetes.io/service-account-token
-'''
+```
