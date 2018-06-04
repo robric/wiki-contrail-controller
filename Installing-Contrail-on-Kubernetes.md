@@ -25,7 +25,7 @@ curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<p
   Note: Replace x.x.x.x with the IP of your Kubernetes Master node.
 
 ```
-   kubectl label node <k8s-master-hostname> opencontrail.org/controller=true
+   kubectl label node $HOSTNAME opencontrail.org/controller=true
 ```
   **Step 3**
 
