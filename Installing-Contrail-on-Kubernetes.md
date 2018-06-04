@@ -3,14 +3,16 @@ Contrail can be installed on a Kubernetes cluster through multiple provisioning 
 This wiki will describe the most simplest of all: **A single yaml based install**
 
 # Pre-requisites
-**A running Kubernetes cluster**
+1. **A running Kubernetes cluster**
 
    There are multiple options available to user. The most simplest being [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
 
    Alternatively if you would like to install Contrail and K8s cluster together, you can use [Contrail Ansible Deployer](https://github.com/Juniper/contrail-ansible-deployer/wiki/Contrail-microservice-installation-with-kubernetes).
 
+2. 
+
 # Installation
-  Installation of Contrail is a **2**-step process.
+  Installation of Contrail is a **3**-step process.
 
   **Step 1**
 
@@ -19,6 +21,15 @@ This wiki will describe the most simplest of all: **A single yaml based install*
 curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<pre><code>/{flag=1;next}/<\/pre>/{flag=0}flag' > contrail.yml
 ```
   **Step 2**
+
+  Label your Kubernetes master node.
+
+  Note: Replace x.x.x.x with the IP of your Kubernetes Master node.
+
+```
+   kubectl label node <k8s-master-hostname> opencontrail.org/controller=true
+```
+  **Step 3**
 
   Install Contrail.
 
