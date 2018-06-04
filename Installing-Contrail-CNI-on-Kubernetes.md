@@ -1,4 +1,4 @@
-Contrail can be installed on a Kubernetes cluster through multiple provisioning schemes.
+Contrail CNI can be installed on a Kubernetes cluster through multiple provisioning schemes.
 
 This wiki will describe the most simplest of all: **A single yaml based install**
 
