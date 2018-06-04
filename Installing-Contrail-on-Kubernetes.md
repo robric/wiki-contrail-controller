@@ -21,6 +21,7 @@ curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<p
   **Step 2**
 
   Install Contrail.
+
   Note: Replace x.x.x.x with the IP of your Kubernetes Master node.
 ```
 K8S_MASTER_IP=x.x.x.x; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply  -f -
