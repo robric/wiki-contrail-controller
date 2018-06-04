@@ -10,7 +10,7 @@ This wiki will describe the most simplest of all: **A single yaml based install*
    Alternatively if you would like to install Contrail and K8s cluster together, you can use [Contrail Ansible Deployer](https://github.com/Juniper/contrail-ansible-deployer/wiki/Contrail-microservice-installation-with-kubernetes).
 
 # Installation
-  Installation of Contrail is a **2**-step process
+  Installation of Contrail is a **2**-step process.
 
   **Step 1**
 
@@ -20,9 +20,10 @@ curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<p
 ```
   **Step 2**
 
-  Install Contrail
+  Install Contrail.
+  Note: Replace x.x.x.x with the IP of your Kubernetes Master node.
 ```
-K8S_MASTER_IP=10.84.27.16; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply  -f -
+K8S_MASTER_IP=x.x.x.x; cat contrail.yml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply  -f -
 ```
 
 
