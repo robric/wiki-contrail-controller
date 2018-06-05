@@ -15,7 +15,7 @@ This wiki will describe the most simplest of all: **A single yaml based install*
   Note: Replace x.x.x.x with the IP of your Kubernetes Master node.
 
 ```
-K8S_MASTER_IP=x.x.x.x;  mkdir -m 777 /var/lib/contrail/kafka-logs; curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<pre><code>/{flag=1;next}/<\/pre>/{flag=0}flag' | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply -f -
+K8S_MASTER_IP=x.x.x.x;  mkdir -pm 777 /var/lib/contrail/kafka-logs; curl https://github.com/Juniper/contrail-controller/wiki/contrail.yml | awk '/<pre><code>/{flag=1;next}/<\/pre>/{flag=0}flag' | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g" | kubectl apply -f -
 ```
 
 # What just happened ?
