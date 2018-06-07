@@ -9,7 +9,7 @@ This wiki will describe the most simplest of all: **A single yaml based install*
 
    Alternatively if you would like to install Contrail and K8s cluster together, you can use [Contrail Ansible Deployer](https://github.com/Juniper/contrail-ansible-deployer/wiki/Contrail-microservice-installation-with-kubernetes). 
 
-2. ** Linux kernel version 3.10.0-862.3.2 **
+2. **Linux kernel version 3.10.0-862.3.2**
 
    Contrail forwarding uses a kernel module to provide high throughput, low latency networking.
 
