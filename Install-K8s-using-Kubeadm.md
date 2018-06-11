@@ -54,7 +54,7 @@ kubeadm init
 ```
 example:
 "kubeadm join 192.168.1.3:6443 --token 0smq4g.7pmg2jqc8arl1uz7 --discovery-token-ca-cert-hash sha256:d92ac0785b1435666d726f4bc54fde58693f87cf91371d9fd553da4a40813650"
-``
+```
 10. Run the following commands to initially kubernetes command line
 ```
 mkdir -p $HOME/.kube
