@@ -98,3 +98,9 @@ yum update -y; yum install -y kubelet kubeadm
 sysctl -w net.bridge.bridge-nf-call-iptables=1
 systemctl stop firewalld; systemctl disable firewalld
 ```
+6. Join the Master node
+Copy paste the "join" command you saved from, while installing K8s on master.
+```
+"kubeadm join 192.168.1.3:6443 --token 0smq4g.7pmg2jqc8arl1uz7 --discovery-token-ca-cert-hash sha256:d92ac0785b1435666d726f4bc54fde58693f87cf91371d9fd553da4a40813650"
+
+```
