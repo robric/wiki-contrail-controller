@@ -1,4 +1,4 @@
-# Installing Kubernetes on Master VM (Centos)
+# Installing Kubernetes on Master VM (Centos 7.4 - 3.10.0-862.3.2 kernel)
 
 1. Prepare the node by running the following pre-requisites
 ```
@@ -62,7 +62,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-# Installing Kubernetes on all your compute VM's (Centos 7.4)
+# Installing Kubernetes on all your compute VM's (Centos 7.4 - 3.10.0-862.3.2 kernel)
 
 1. Prepare the node by running the following pre-requisites
 ```
