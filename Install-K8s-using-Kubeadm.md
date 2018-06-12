@@ -61,3 +61,40 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+
+# Installing Kubernetes on all your compute VM's (Centos 7.4)
+
+1. Prepare the node by running the following pre-requisites
+```
+sudo setenforce 0
+swapoff -a
+```
+2. Install Docker
+```
+sudo yum install -y docker
+systemctl enable docker.service;service docker start
+
+```
+3. Add Kubernetes repo 
+```
+cat << EOF >> /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+```
+4. Install Kubernetes components
+```
+yum update -y; yum install -y kubelet kubeadm
+```
+5. Disable firewalld
+```
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+systemctl stop firewalld; systemctl disable firewalld
+```
