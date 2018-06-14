@@ -36,6 +36,7 @@ tripeo_repos=`python -c 'import requests;r = requests.get("https://trunk.rdoproj
 yum install -y https://trunk.rdoproject.org/centos7-queens/current/${tripeo_repos}
 tripleo-repos -b queens current
 sudo yum install -y python-tripleoclient
+cp /usr/share/instack-undercloud/undercloud.conf.sample ~/undercloud.conf
 ```
 ## Modify the undercloud.conf with the following entries:
 ```
