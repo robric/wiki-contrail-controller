@@ -65,7 +65,7 @@ tar xvf overcloud-full.tar
 openstack overcloud image upload
 ```
 
-## Node discovery
+## Node discovery for BareMetal Servers
 ```
 source stackrc
 openstack baremetal node list (The output will be empty at this time)
