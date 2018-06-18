@@ -1,11 +1,13 @@
 ## Setting up the undercloud environment.
-   Use Centos7.5 
-```
-yum install -y ipmitool
-```
+   Use Centos7.5
+
 Log in to your machine (baremetal or VM) where you want to install the undercloud as a non-root user (such as the stack user):
 ```
-ssh <non-root-user>@<undercloud-machine>
+ssh root@<undercloud-machine>
+```
+```
+yum install -y ipmitool
+yum install python-requests
 ```
 If you don’t have a non-root user created yet, log in as root and create one with following commands:
 ```
@@ -23,35 +25,45 @@ Ensure that there is a FQDN hostname set and that the $HOSTNAME environment vari
 ```
 undercloud_name=`hostname -s`
 undercloud_suffix=`hostname -d`
-hostnamectl set-hostname ${undercloud_name}.${undercloud_suffix}
-hostnamectl set-hostname --transient ${undercloud_name}.${undercloud_suffix}
+echo $undercloud_name
+echo $undercloud_suffix
+sudo hostnamectl set-hostname ${undercloud_name}.${undercloud_suffix}
+sudo hostnamectl set-hostname --transient ${undercloud_name}.${undercloud_suffix}
 ```
 Get the undercloud ip and set the correct entries in /etc/hosts, ie (assuming the mgmt nic is eth0):
 ```
 undercloud_ip=`ip addr sh dev eth0 |grep "inet " |awk '{print $2}' |awk -F"/" '{print $1}'`
-sudo echo ${undercloud_ip} ${undercloud_name}.${undercloud_suffix} ${undercloud_name} >> /etc/hosts
+#Make sure the echoed value is showing your management ip
+echo $undercloud_ip
+In the /etc/host file have an entry like this
+<mgmt_ip< <fqdn> <hostname>
+# Make sure you have the FQDN entry in the /etc/hosts file like in the example given below
+# 12.2.2.2 undercloud_hostname.domain_name undercloud_hostname
 ```
 tripleo queens/current
 ```
 tripeo_repos=`python -c 'import requests;r = requests.get("https://trunk.rdoproject.org/centos7-queens/current"); print r.text ' |grep python2-tripleo-repos|awk -F"href=\"" '{print $2}'|awk -F"\"" '{print $1}'`
-yum install -y https://trunk.rdoproject.org/centos7-queens/current/${tripeo_repos}
-tripleo-repos -b queens current
+sudo yum install -y https://trunk.rdoproject.org/centos7-queens/current/${tripeo_repos}
+sudo tripleo-repos -b queens current
 sudo yum install -y python-tripleoclient
 cp /usr/share/instack-undercloud/undercloud.conf.sample ~/undercloud.conf
 ```
 ## Modify the undercloud.conf with the following entries:
 ```
+[DEFAULT]
 local_ip = 192.168.24.1/24
-local_interface = <control_data_interface>
-masquerade_network = 192.168.24.0/24 
+local_interface = ens2f0
+masquerade_network = 192.168.24.0/24
 enable_node_discovery = true
 discovery_default_driver = pxe_ipmitool
+[ctlplane-subnet]
 cidr = 192.168.24.0/24
 dhcp_start = 192.168.24.5
 dhcp_end = 192.168.24.24
 inspection_iprange = 192.168.24.100,192.168.24.120
 gateway = 192.168.24.1
 ```
+Ensure you have 0644 permission to all interface files  under /etc/sysconfig/network-scripts/ifcfg-*
 ```
 openstack undercloud install
 ```
