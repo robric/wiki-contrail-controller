@@ -52,7 +52,7 @@ cp /usr/share/instack-undercloud/undercloud.conf.sample ~/undercloud.conf
 ```
 [DEFAULT]
 local_ip = 192.168.24.1/24
-local_interface = ens2f0
+local_interface = <control_data_interface>
 masquerade_network = 192.168.24.0/24
 enable_node_discovery = true
 discovery_default_driver = pxe_ipmitool
@@ -90,6 +90,8 @@ Set the machine to pxe boot and start it
 ipmitool -I lanplus -H <ipmi_address> -U <ipmi_username> -P <ipmi_password> -L ADMINISTRATOR chassis bootdev pxe options=persistent
 ipmitool -I lanplus -H  <ipmi_address> -U <ipmi_username> -P <ipmi_password> -L ADMINISTRATOR chassis power on
 ```
+Make sure no other dhcp servers responds to the pxe/dhcp request from the node that is getting discovered
+
 Reboot the machine to be discovered.
 
 Observe in the console if it pxe boots the introspection ramdisk from the undercloud machine. This may take a while
