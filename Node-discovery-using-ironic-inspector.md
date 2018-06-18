@@ -1,4 +1,5 @@
-## Setting up the undercloud environment
+## Setting up the undercloud environment.
+   Use Centos7.5 
 ```
 yum install -y ipmitool
 ```
