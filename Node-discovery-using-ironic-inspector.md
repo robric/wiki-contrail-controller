@@ -75,12 +75,13 @@ curl -O https://images.rdoproject.org/queens/rdo_trunk/current-tripleo-rdo/ironi
 curl -O https://images.rdoproject.org/queens/rdo_trunk/current-tripleo-rdo/overcloud-full.tar
 tar xvf ironic-python-agent.tar
 tar xvf overcloud-full.tar
+source ~/stackrc
 openstack overcloud image upload
 ```
 
 ## Node discovery for BareMetal Servers
 ```
-source stackrc
+
 openstack baremetal node list (The output will be empty at this time)
 ```
 Set the machine you want to be discovered and auto-enrolled in ironic using the ipmitool command
@@ -89,6 +90,7 @@ Set the machine to pxe boot and start it
 ```
 ipmitool -I lanplus -H <ipmi_address> -U <ipmi_username> -P <ipmi_password> -L ADMINISTRATOR chassis bootdev pxe options=persistent
 ipmitool -I lanplus -H  <ipmi_address> -U <ipmi_username> -P <ipmi_password> -L ADMINISTRATOR chassis power on
+ipmitool -I lanplus -H <ipmi_address> -U <ipmi_username> -P <ipmi_password> -L ADMINISTRATOR chassis power cycle
 ```
 Make sure no other dhcp servers responds to the pxe/dhcp request from the node that is getting discovered
 
