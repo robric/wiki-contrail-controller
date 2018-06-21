@@ -7,7 +7,7 @@ ssh root@<undercloud-machine>
 ```
 ```
 yum install -y ipmitool
-yum install python-requests
+yum install -y python-requests
 ```
 If you don’t have a non-root user created yet, log in as root and create one with following commands:
 ```
