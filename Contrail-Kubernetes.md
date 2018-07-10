@@ -11,7 +11,7 @@
 
 ------------------------------------------------------
 
-Standalone Kubernetes Cluster
+# Standalone Kubernetes Cluster
 
 # INTRODUCTION
 # PICTURE
