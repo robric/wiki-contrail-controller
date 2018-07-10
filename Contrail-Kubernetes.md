@@ -1,15 +1,21 @@
 
 # INTRODUCTION
-
 # PICTURE
-
 # SUPPORTED INSTALL MODES
-
 # FEATURES
 # FAQ
-
 # ADDITIONAL RESOURCES
-
 # CONTACTS
 
 
+
+------------------------------------------------------
+
+Standalone Kubernetes Cluster
+
+# INTRODUCTION
+# PICTURE
+# PRE-REQUISITES
+# INSTALLATION
+# FAQ
+# ERRATA
