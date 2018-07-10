@@ -5,11 +5,9 @@
 # FEATURES
 # FAQ
 # ADDITIONAL RESOURCES
-# CONTACTS
+# CONTACTS - Alias
 
 
-
-------------------------------------------------------
 
 # Standalone Kubernetes Cluster
 
