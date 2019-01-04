@@ -160,6 +160,7 @@ The forwarding rules in ARP Forwarding is given below,
 
 <H2>VRouter MAC Address</H2>
 VRouter generates ARP response with its own MAC address in following scenario,
+
 - ARP request is for gateway address
 - VRouter identifes that packet must be routed
 
