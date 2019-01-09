@@ -4,7 +4,7 @@ Kubernetes (K8s) is an open source container management platform. It provides a 
 
 
 ## 2. __Problem statement__
-There is a need to provide pod addressing, network isolation, policy based security, gateway, SNAT, loadalancer and service chaining capability in Kubernetes orchestratation. To this end K8s supports a framework for most of the basic network connectivity. This pluggable framework is called Container Network Interface (CNI). Opencontrail will support CNI for Kubernetes.
+There is a need to provide pod addressing, network isolation, policy based security, gateway, SNAT, loadbalancer and service chaining capability in Kubernetes orchestratation. To this end K8s supports a framework for most of the basic network connectivity. This pluggable framework is called Container Network Interface (CNI). Opencontrail will support CNI for Kubernetes.
 
 
 ## 3. __Proposed solution__
