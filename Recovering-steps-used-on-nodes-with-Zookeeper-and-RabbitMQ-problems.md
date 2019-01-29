@@ -12,8 +12,8 @@ We looked at the zookeeper logs and saw that there was no quorum as other two co
 2.  	RabbitMQ issue
 We noticed that RabbitMQ DB was corrupted. We recovered it using the following steps on all three nodes.
  
-     	Logged on to controller docker container using following command:
-        docker exec -it controller bash
+Logged on to controller docker container using following command:
+docker exec -it controller bash
  
 Cleared the rabbitMQ DB by delete the following directory.
 rm -rf /var/lib/rabbitmq/mnesia/
