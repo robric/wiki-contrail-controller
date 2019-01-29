@@ -7,8 +7,6 @@ and how to query for the same.
 
 In the following a brief description of different types of information provided through contrail-analytics-api server is given.  
 
-# Recovering from Zookeeper and RabbitMQ problems
-[Here](https://docs.google.com/document/d/130FXxbro8TJYJNL6lv_wxu3yZ1ILkb2e_doAsFqw-CM) is the link for steps to recover from zookeeper and rabbitmq problems.
 
 # UVE [User Visible Entities]
 _http://\<contrail-analytics-api-IP\>:8081/analytics/uves_  
