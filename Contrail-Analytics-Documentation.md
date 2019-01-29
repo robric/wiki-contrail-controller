@@ -1,4 +1,6 @@
-Most of the analytics documenation and information can be obtained from the REST API
+[Here](https://docs.google.com/document/d/130FXxbro8TJYJNL6lv_wxu3yZ1ILkb2e_doAsFqw-CM) is the link for steps to recover from zookeeper and rabbitmq problems.
+
+Most of the analytics documentation and information can be obtained from the REST API
 of the contrail-analytics-api server.
 
 _http://\<contrail-analytics-api-IP\>:8081/documentation/index.html_  
