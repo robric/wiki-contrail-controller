@@ -20,11 +20,14 @@ cd controller/src/control-node
 git checkout -b master github/master
 cd /build/$USER/fresh-sandbox
 
-# Build unit test
+# Build one unit test
 BUILD_ONLY=TRUE NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug src/bgp:bgp_server_test
 
-# Run the unit test
-./build/debug/bgp/test/bgp_server_test
+# Run unit test
+LOG_DISABLE=1 ./build/debug/bgp/test/bgp_server_test
+
+# Build all unit tests
+BUILD_ONLY=TRUE NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug controller/src/bgp:test
 
 ```
 
