@@ -27,8 +27,12 @@ BUILD_ONLY=TRUE NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug src/bgp:bgp_s
 # Run unit test
 LOG_DISABLE=1 ./build/debug/bgp/test/bgp_server_test
 
-# Build all unit tests
+# Build all bgp unit tests
 BUILD_ONLY=TRUE NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug controller/src/bgp:test
+
+# Run all all bgp unit tests
+LOG_DISABLE=1 NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug controller/src/bgp:test
+
 
 ```
 
