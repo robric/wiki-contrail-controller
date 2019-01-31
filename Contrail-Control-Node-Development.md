@@ -33,6 +33,9 @@ BUILD_ONLY=TRUE NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug controller/sr
 # Run all all bgp unit tests
 LOG_DISABLE=1 NO_HEAPCHECK=TRUE scons -uj32 --optimization=debug controller/src/bgp:test
 
+# Run a single test-case within a unit test
+LOG_DISABLE=1 gdb --args build/debug/bgp/test/bgp_route_test --gtest_filter=BgpRouteTest.PathCompareEIBGP
+
 
 ```
 
