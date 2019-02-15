@@ -54,19 +54,31 @@ Tool can be executed with --help option to display the help and usage informatio
 	EXAMPLES:
 
 		Checker example,
+			python db_manage.py check
+				- Checks and displays the list of all stale and missing objects.
 
 			python db_manage.py check_route_targets_id
 				- Checks and displays the list of stale and missing route targets id.
 
 		Healer examples,
+			python db_manage.py heal
+				- Displays the list of missing object IDs to be healed(dry-run).
 
 			python db_manage.py heal_route_targets_id
 				- Displays the list of missing route targets id to be healed(dry-run).
+
+			python db_manage.py --execute heal
+				- Creates the missing objects in DB's with(--execute).
 
 			python db_manage.py --execute heal_route_targets_id
 				- Creates the missing route targets id in DB's with(--execute).
 
 		Cleaner examples,
+			python db_manage.py clean
+				- Displays the list of all Object id to be cleaned(dry-run).
+
+			python db_manage.py --execute clean
+				- Deletes all stale object id in DB's with(--execute).
 
 			python db_manage.py clean_stale_route_target_id
 				- Displays the list of stale route target id to be cleaned(dry-run).
