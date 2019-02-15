@@ -30,9 +30,15 @@ Following are some examples,
 
 Database management tool (db_manage.py) is located in config node at the following location.
 
-``
-    /usr/lib/python2.7/site-packages/vnc_cfg_api_server
-``
+```
+    /usr/lib/python2.7/dist-packages/vnc_cfg_api_server (Ubuntu)
+```
+
+or
+
+```
+    /usr/lib/python2.7/site-packages/vnc_cfg_api_server (Redhat/Centos)
+```
 
 Tool can be executed with --help option to display the help and usage information about the database management tool.
 
